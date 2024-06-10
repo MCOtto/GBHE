@@ -1,0 +1,42 @@
+Package: GBHE
+Type: Package
+Title: Great Blue Heron Dual-Frame Survey Design, Sample Selection, 
+ Processing, and Analysis
+Version: 0.01.01
+Date: 2024-06-09
+Author: Mark C. Otto 
+Maintainer: Mark C. Otto <mark.ot2o@gmail.com>
+Depends: R (>= 4.2.0)
+VignetteBuilder: quarto
+Suggests: 
+        guarto
+	knitr,
+	modeest
+Description: For designing and analyzing 
+ bald eagle dual-frame surveys.  The functions create
+ cost functions, calculate sample sizes for stratified
+ surveys, select the samples, predict the cost of flying
+ the sample, process the observer files into a database,
+ and estimate the population occupied nest totals.
+License: Do not redistribute without permission of the author.  
+ The author and maintainer are not responsible for losses from using this package. 
+ The package is distributed as is.
+LazyData: true
+LazyLoad: true
+ZipData: true
+StagedInstall: no
+RoxygenNote: 7.3.1
+Encoding: UTF-8
+Imports: 
+    dplyr,
+    purrr,
+    ggplot2,
+    modeest,
+    readr,
+    rstan,
+    runjags,
+    rv,
+    sf,
+    spsurvey,
+    stringr,
+    tidyr

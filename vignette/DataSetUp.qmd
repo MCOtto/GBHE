@@ -1,0 +1,855 @@
+---
+title: "Combined 2015 and 2023 Data Setup"
+author: "Mark C. Otto"
+date: "9 June 2024"
+format: pdf
+editor: visual
+---
+
+## Introduction
+
+We combine the 2015 and 2023 survey files:
+The spatial files are:
+`MEBoundrySF`,
+`StrSF`,
+`StrPlotSF`,
+`ColonySF`
+
+The data files are
+`GRTSLoc`
+`tblFlightInfo`
+`tblPlotDetails`
+`tblObservations`
+`tblStaff`
+
+Reference files:
+`StrArea`
+
+
+These are combined over years.  The flight, plot, and observation files combine into `RecObs`.  Do I add the `begplot` and `endplot` in `r`RecObs` when I can get that information from Danielle's tables?  Why don't I use her tables and create the list, plot, and caphist files for information from them.
+
+I follow Danielle D'Auria's convention of using `_PK` of a primary key variable and `_FK` for a foreign key variable.  
+
+The result can be an `SQLite3` database and a `R Savefile`. 
+
+
+```{r SetUp}
+library(readr)
+library(sf)
+library(dplyr)
+
+library(stringr)
+library(tidyr)
+library(purrr)
+library(ggplot2)
+
+CurrentYr <- 2023
+
+```
+
+## CRS Projections
+The spatial projections or CRS codes do not seem to define the projections correctly, so save them: Alpers equal area, UTS, and WGS84 (World Geodetic System 1984).
+
+```{r CRSProjections}
+CRS.WGS84 <- st_crs("EPSG:4326")
+save(CRS.WGS84, file = here::here("data/CRS.WGS84.RData"))
+tStrPlotSp <- st_read("~/Profesional/GBHE.2023/GIS/StrPlotSp.shp")
+CRS.Alpers <- st_crs(tStrPlotSp)
+save(CRS.Alpers, file = here::here("data/CRS.Alpers.RData"))
+tColonySp <- st_read("~/Profesional/GBHE.2023/GIS/2015/GBHE_ColonyPlotJoin.shp")
+CRS.UTM19N <- st_crs(tColonySp)
+save(CRS.UTM19N, file = here::here("data/CRS.UTM19N.RData"))
+
+```
+## Maine State Boundary Layer
+The state boundary polygon, [Maine State Boundary Polygon Feature](https://maine.hub.arcgis.com/datasets/maine::maine-state-boundary-polygon-feature/explore), is `WGS 84`.  This is just a reference layer, so leave the variables as is.  Transform it to Alpers and save as a KML file
+
+```{r MEBoundary}
+tMEBoundarySF <- st_read("~/Profesional/GBHE.2023/GIS/Maine_State_Boundary_Polygon_Feature.shp")
+MEBoundarySF <- st_transform(x = tMEBoundarySF, crs = CRS.Alpers)
+st_write(MEBoundarySF, dsn = here::here("gis/MEBoundarySF.kml"))
+rm(tMEBoundarySF)
+
+```
+## Stratum Layer
+Stratum, `StrSF`. Don't worry about the complication of list and area strata that are not involved in this survey.
+
+Maine is supposed to have 91,646km².  Danielle may have removed some water area.  Use the areas in `StrArea`.
+
+```{r Stratum}
+StrArea <- RDB2Data(Tbl = "StrArea",
+                    RowNames = "DFStr",
+                    RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3"
+                   ) %>%
+  select(Str_PK = DFStr, cStratum, KMSq)
+fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
+nStr <- length(fStr)
+cStr <- c(fStr, "Total")
+
+tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp") %>%
+  mutate(KMSq = AREA / 10 ^ 6, cStratum = NAME2_) %>%
+  select(cStratum, KMSq)
+
+# `dplyr` joins removes the `sf` class.
+tStrSF2 <- st_as_sf(inner_join(tibble::as_tibble(
+  x = list(Str_FK = fStr, cStratum = StrArea$cStratum)
+), tStrSF, by = "cStratum") %>%
+  arrange(Str_FK))
+
+StrSF <- st_transform(x = tStrSF2, crs = CRS.Alpers)
+st_write(StrSF, dsn = here::here("gis/StrSF.kml"))
+SavObj <- c(
+  "CRS.Alpers",
+  "CRS.UTM",
+  "CRS.UTM19N",
+  "CRS.WGS84",
+  "MEBoundary",
+  "StrSF",
+  "StrArea",
+  "fStr",
+  "nStr",
+  "cStr"
+)
+rm(tStrSF, tStrSF2)
+
+```
+## Colony List for both years
+We should start with the colony list we had in 2015, add the new colonies found in the 2015 survey and any in the following eight years.
+
+What is odd is ME.0712 was dropped from the list and we had new colonies at least found in the survey.  If ME.0712 was in active since the last survey, then there is good reason to drop it.  
+
+The `AnnObs` table is a good way to create the list colonies for each survey, but we don't have a current set of those observations.
+
+To add the 2015 new colonies, use the locations and match them to the `AllColonies` list.  Ask Danielle.
+
+Make the spatial layer out of the `.csv` files.
+
+```{r ListColony}
+tColony2015 <- RDB2Data(Tbl = "Nest",
+                        RowNames = "FWSNestID",
+                        RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3") %>%
+  select(
+    FWSColonyID_PK = FWSNestID,
+    Str_FK = LstStr,
+    PlotID_FK = PlotID,
+    Lng,
+    Lat,
+    LastYr,
+    Status,
+    nNest,
+    nActive,
+    Comment
+  )
+
+# These are all the colonies.  445 of them so select from the last list
+# Where are the new colonies found in the last survey.
+tColony2023 <- inner_join(
+  RDB2Data(
+    Tbl = "Nest",
+    RowNames = "FWSNestID",
+    RDB =  "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3"
+  ) %>%
+    select(
+      FWSColonyID_PK = FWSNestID,
+      Str_FK = LstStr,
+      PlotID_FK = PlotID,
+      Lng,
+      Lat,
+      LastYr,
+      Status,
+      nNest,
+      nActive,
+      Comment
+    )
+  ,
+  read_csv(
+    "~/Profesional/GBHE.2023/extdata/2023/GBHE_ColonyPlotJoin.csv",
+    col_types = "------i---------"
+  ) %>%
+    mutate(FWSColonyID_PK = sprintf("ME.%04d", Colony)) %>%
+    select(FWSColonyID_PK),
+  by = "FWSColonyID_PK"
+)
+setdiff(tColony2023$FWSColonyID_PK, tColony2015$FWSColonyID_PK)
+setdiff(tColony2015$FWSColonyID_PK, tColony2023$FWSColonyID_PK)
+
+# tColonies2015SF <- st_read("~/Profesional/GBHE.2023/GIS/2015/GBHE_ColonyPlotJoin.shp") 
+  
+
+
+```
+## Stratum-Plot Layer
+I intersected or spatially joined the stratum with the plot layers, so use `StrPlotSF`.  Later create the lat-long using `st_centroid()`.  Also copy over the `Plot` table that is non spatial but has number of colonies and km^2^.  The row and col come from `RC2XY` made in the Bald Eagle national grid.
+
+```{r StrPlot}
+tStrPlotSF <- st_read("~/Profesional/GBHE.2023/GIS/StrPlotSp.shp") %>%
+  select(Str_FK = Str, PlotID_FK = PlotID, KMSq, Col, Row)
+
+tLatLong <- st_transform(x = st_centroid(tStrPlotSF), crs = CRS.WGS84)
+LatLong <- st_drop_geometry(tLatLong %>%
+                              mutate(Lng = unlist(map(
+                                tLatLong$geometry, 1
+                              )), Lat = unlist(map(
+                                tLatLong$geometry, 2
+                              ))) %>%
+                              select(Lng, Lat))
+
+# Add the long-lat to the nestlist
+StrPlotSF <- bind_cols(tStrPlotSF, LatLong) %>%
+  select(Str_FK, PlotID_FK, KMSq, Lng, Lat, Col, Row)
+
+rm(tStrPlotSF, tLatLong, LatLong)
+
+```
+
+Combine the current year GRTS sample file with the past years.  Add the year onto the
+
+```{r GetFromDB}
+tGRTSLoc <- RDB2Data(
+  Tbl = "GRTSLoc",
+  RowNames = "siteID",
+  RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3",
+  envir = NULL
+) %>%
+  mutate(Year = 2015)
+
+tGRTSCurrent <- RDB2Data(
+  Tbl = "GRTSLoc",
+  RowNames = "siteID",
+  RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3",
+  envir = NULL
+) %>%
+  mutate(Year = CurrentYr)
+
+GRTSLoc <- bind_rows(tGRTSLoc, tGRTSCurrent) %>%
+  mutate(EvalStatus = ifelse(is.na(EvalStatus), 
+                             FALSE, 
+                             EvalStatus == "Evaluated")) %>%
+  select(
+    Year,
+    siteID,
+    Str = stratum,
+    PlotID,
+    SmpType,
+    xcoord,
+    ycoord,
+    mdcaty,
+    wgt,
+    panel,
+    EvalStatus,
+    EvalReason,
+    Comment
+  )
+
+readr::write_csv(GRTSLoc,
+                 here::here("data/GRTSLoc.csv"),
+                 na = "")
+rm(tGRTSLoc, tGRTSCurrent)
+
+```
+The plots `GIS/MEPlots_GBHE` only are identified by stratum in the sample plots. They need to be intersected by stratum. The should be done in the UTM projection: Albers Equal Area, NAD83, EPSG:6269.
+
+Get the PlotID from the North American Grid `RC2XY`.
+
+```{r PlotSpatial}
+setwd("/Users/motto/Profesional/GBHE")
+tPlotSp <- st_read("GIS/MEPlots_GBHE.shp") %>%
+  select(Row, Col)
+# st_geometry_type(PlotSp)
+# st_crs(PlotSp)
+
+tLatLong <- st_transform(x = tColoniesSF, crs = 4326)
+
+LatLong <- st_drop_geometry(tLatLong %>%
+                              mutate(Lng = unlist(map(
+                                tLatLong$geometry, 1
+                              )), Lat = unlist(map(
+                                tLatLong$geometry, 2
+                              ))) %>%
+                              select(Lng, Lat))
+
+# Add the long-lat to the nestlist
+tColoniesSF2 <- bind_cols(tColoniesSF, LatLong) %>%
+  select(FWSNestID, StNestID, PlotID, Str, Lng, Lat)
+rm(RC2XY)
+
+```
+
+Get the stratum layer and only keep the stratum name. Transform is from UTMs to Alper's Equal Area. Intersect the strata and plot layers to get the plots divided by strata. Calculate the area and convert from $\mathrm{m}^2$ to $\mathrm{km}^2$.
+
+```{r StratumSpatial}
+setwd("/Users/motto/Profesional/GBHE")
+# Read the reference strata in to translate the cStratum to the
+# codes
+tStrDesc <- readr::read_csv("./extdata/Reference/StrDesc.csv",
+                            col_types = "-ccc") %>%
+  filter(SvyTyp == "DF") %>%
+  select(-SvyTyp)
+
+tStratumSp <-
+  st_transform(x = st_read("GIS/GBHE_Stratum.shp"),
+               crs = st_crs(PlotSp)) %>%
+  select(cStratum = NAME2_)
+
+tStrSp <- inner_join(tStratumSp, tStrDesc,  by = "cStratum")
+# st_geometry_type(StrSp)
+# st_crs(StrSp)
+
+StrPlotSp <- st_intersection(tStrSp, PlotSp) %>%
+  select(-cStratum)
+StrPlotSp$KMSq <- as.double(st_area(StrPlotSp) / 10 ^ 6)
+StrPlotSp <- StrPlotSp %>%
+  select(
+    Str,
+    PlotID,
+    KMSq,
+    Col,
+    Row
+  )
+
+```
+
+`GIS/ListFrame` has 317 colonies has all waders. `GIS/COLONIES` has 315. The `GIS/ListFrame` spatial dataset has 215 along with `GBHE_ColonyPlotJoin`. Unfortunately both these are joined with the sample plots and not all the plots. They have the GBHE, so need to be joined with the plot-stratum layer to tag them with the right plot-startum.
+
+Take the locations of colonies and tag them with stratum and plot.
+
+```{r List Spatial}
+setwd("/Users/motto/Profesional/GBHE")
+
+# NestList is the colony list.  Need to remove all the colonies without
+# locations.
+tColoniesSF <- st_read("./GIS/ColPlotStr2.dbf") %>%
+  mutate(
+    FWSNestID = sprintf("ME.%04d", COLONYNO),
+    Str = c(
+      "Coastal" = "Co",
+      "North and Downeast" = "ND",
+      "South Central" = "SC"
+    )[cStratum]
+  ) %>%
+  select(FWSNestID, StNestID = COLONYNO, PlotID, Str) %>%
+  distinct() # 0919 was a duplicate.
+
+
+# Identify the colonies used for known colonies.
+tColUsed <- read_csv("./extdata/2023/GBHE_ColonyPlotJoin.csv",
+           col_types = "---idd------ii----------------c-") %>%
+    mutate(FWSNestID = sprintf("ME.%04d", COLONYNO),
+           DatEntered = "2022-01-01") %>%
+    select(FWSNestID, DatEntered)
+
+# Identfy the colonies used by 2022 for the `DatEntered` and 2008 otherwise.
+ColoniesSF <- left_join(tColoniesSF2, tColUsed, by = "FWSNestID") %>%
+  mutate(
+    St = "ME",
+    StNestID = as.integer(sub("ME.", "", FWSNestID)),
+    LocAcc = .1,
+    Location = "",
+    Access = "",
+    Owner = "Danielle D'Auria",
+    ListYr = 2008,
+    DatEntered = ifelse(is.na(DatEntered), "2008-01-01", DatEntered),
+    Comment = ""
+  ) %>%
+  select(
+    FWSNestID  ,
+    St       ,
+    StNestID ,
+    PlotID   ,
+    Str      ,
+    Lng      ,
+    Lat      ,
+    LocAcc   ,
+    Location ,
+    Access   ,
+    Owner    ,
+    ListYr   ,
+    DatEntered,
+    Comment
+  ) %>%
+  arrange(FWSNestID)
+
+# This will become `NestList` in the database.
+ColList <- st_drop_geometry(ColoniesSF)
+readr::write_csv(ColList, "./extdata/2023/ColList.csv")
+
+# Plot the colonies on the stratum-plots
+ggplot() +
+  geom_sf(data = StrPlotSp) +
+  geom_sf(data = ColoniesSF,
+          color = ifelse(ColoniesSF$DatEntered == "2022-01-01", "blue", "black")
+          )
+
+```
+
+Write out the stratum plot and the colony list.
+
+```{r WriteSP}
+setwd("/Users/motto/Profesional/GBHE")
+st_write(StrPlotSp,
+         "GIS/StrPlotSp.shp",
+         driver = "LIBKML",
+         delete_layer = TRUE)
+
+st_write(ColoniesSF,
+         "GIS/ColoniesList.shp",
+         driver = "LIBKML",
+         delete_layer = TRUE)
+
+```
+
+The annual observations table, `AnnObs` is not necessary if we had the last year the colony was observed. Danielle has created `NestList`. Redo the view to remove the need for `AnnObs`.
+
+The view is messed up because LastYr needs to be determined from `AnnObs` and the view creates it from `NestList` and `PlotList`.
+
+```{=tex}
+\begin{verbatim}
+CREATE VIEW Nest as 
+ select FWSNestID,Svy,LstStr,PlotID,Lng,Lat,
+  LastYr,Status,Occ,nNest,nActive,Comment 
+  from (
+   select FWSNestID,k.Svy,LstStr,PlotID,
+    Lng,Lat,LastYr,
+    case when LastYr is NULL or LastYr<2022 then 
+     'notchecked' else Status end as Status,
+    case when LastYr is NULL or LastYr<2022 then
+     NULL else nNest end as nNest,
+    case when LastYr is NULL or LastYr<2022 then
+     NULL else nActive end as nActive,    
+    case when LastYr is NULL then 'No annual observations'
+         when LastYr<2022    then 'Last status was '||Status||
+         ' nNest='||nNest||' nActive='||nActive
+    else a.Comment end as Comment
+    from ((NestList inner join PlotList
+     using(St,Str,PlotID)) as np inner join StStrKey as k
+     using(St,Str,Svy)
+    ) left join (
+     select FWSNestID,Year as LastYr,Status,nNest,nActive,
+      Comment
+      from (
+       select FWSNestID,Year
+        from AnnObs
+        where Year<2023
+        group by FWSNestID
+        having Year=max(Year)
+      ) inner join AnnObs using(FWSNestID,Year)
+   ) as a
+   using(FWSNestID)
+   where ListYr is NULL or ListYr<2023 and 
+    FWSNestID not in(select FWSNestID from NewNest)
+  ) inner join OccStatus using(Status);
+\end{verbatim}
+```
+Here is a view without `AnnObs`. Ignore the list and area strata because we are not using differences. and `PlotList` would have to have the list and area strata
+
+```{=tex}
+\begin{verbatim}
+CREATE VIEW Nest as 
+ select FWSNestID,Svy,LstStr,Svy,PlotID,Lng,Lat,
+  LastYr,Status,Occ,nNest,nActive,Comment 
+  from (
+   select FWSNestID,
+    'GBHE' as Svy, 
+    LstStr,PlotID,
+    Lng,Lat,
+    2022 as LastYr,
+    'notchecked' as Status,
+    NULL as nNest,
+    NULL as nActive,    
+    'No annual observations' as Comment
+    from ((NestList inner join (
+      select * from PlotList inner join StStrKey as k
+      using(St,Str,Svy)
+     ) using(St,Str,PlotID)) as np
+    )
+   where FWSNestID not in(select FWSNestID from NewNest)
+  ) inner join OccStatus using(Status);
+\end{verbatim}
+```
+```{r AnnObs}
+# Annual observations.
+```
+
+```{=tex}
+\begin{verbatim}
+CREATE TABLE RecObs (
+   OBJECTID integer,
+   Yr       integer,
+   St       text,
+   Svy      text,
+   -- Crew in the JH transcribe
+   DatTim   text,
+   Pilot text, Front text, Rear text,
+   Str text, PlotID text, siteID text,
+   Lng double, Lat double,
+   -- Code,Val,Type in JH transcribe are
+   AOU text, CapHist text,Location text,
+   -- FWSNestID for known nests observations
+   FWSNestID text references NestIDNew,
+   fNest int,rNest int,fAct int,rAct int,
+   Comment text, Edit text,
+   File text,Rec text,
+   primary key(St,Svy,OBJECTID)
+);
+\end{verbatim}
+```
+Set up the `GRTSSmp`. Found that `GRTSSmpComb` is the file to use because it has L89. `GRTSLoc`, stops at L67, so get the plots flown from `tblPlotDetails`. Check the meaning of `OldsiteID`. I thought it would be the siteID of the 2015 sample, but it is defined for every plot. It maybe when I added samples.
+
+```{r GRSTSmp}
+setwd("/Users/motto/Profesional/GBHE")
+GRTSSmpComb <- readr::read_csv("./extdata/2023/GRTSSmpComb.csv",
+                               col_types = "cccddcd-dicc-ci") %>%
+  arrange(siteID, stratum, ID)
+GRTSSmpComb$siteID[duplicated(GRTSSmpComb$siteID)]
+duplicated(GRTSSmpComb$siteID)
+
+# GRTSSmp2023 <- readr::read_csv("./extdata/2023/GRTSSmp2023.csv",
+#                                col_types = "ccddcd-dicci") %>%
+#   arrange(siteID, stratum, ID)
+# setdiff(GRTSSmpComb$siteID, GRTSSmp2023$siteID)
+# setdiff(GRTSSmp2023$siteID, GRTSSmpComb$siteID)
+
+# I found the New XL sheet in extdata.
+# GRTSSmpNew <- readxl::read_excel("./extdata/GRTSSmpNew.xlsx") %>%
+#   filter(!is.na(siteID)) %>%
+#   arrange(siteID) %>%
+#   mutate(caty = NA)
+# setdiff(GRTSSmpComb$siteID, GRTSSmpNew$siteID)
+# readr::write_csv(GRTSSmpNew, "./extdata/GRTSSmpNew.csv",
+#                  na = "")
+
+GRTSSmp <- GRTSSmpComb %>%
+  mutate(caty = NA,
+         PlotID = substr(PltStrID, 9, 13)) %>%
+  select(
+    siteID,
+    OldsiteID,
+    siteuse,
+    X,
+    Y,
+    stratum,
+    caty,
+    wgt,
+    KMSq,
+    nNest,
+    PlotID,
+    SmpType,
+    Notes,
+    ID
+  )
+rm(GRTSSmp2023, GRTSSmpNew, GRTSSmpComb)
+
+```
+
+The colony observations, `RecObs` are created from `tblFlightInfo`, `tblObservations`, `tblPlotDetails`, and `tblStaff`.
+
+First combine the flight and plot files.
+
+```{r FlightPlot}
+setwd("/Users/motto/Profesional/GBHE")
+
+# Problems with commas in the weather notes, `WxNotes`.  Put quotes around the
+# field.
+tblFlightInfo <- read_csv("./extdata/2023/tblFlightInfo.csv",
+                          col_types = "iiiicccTTcc") %>%
+  mutate(
+    Date = sprintf("%04d-%02d-%02d", DateYear, DateMonth, DateDay),
+    Start = as.POSIXct(Start, format = "%H:%M:%S"),
+    End = as.POSIXct(End, format = "%H:%M:%S")
+  ) %>%
+  select(Flight_PK, Date, Pilot, Front = FObs, Rear = RObs)
+
+tblPlotDetails <-
+  left_join(
+    read_csv("./extdata/2023/tblPlotDetails.csv",
+             col_types = "iiclTTTTc"),
+    GRTSSmp %>%
+      select(SiteID = siteID, PlotID),
+    by = "SiteID"
+  ) %>%
+  mutate(
+    BegArea = as.POSIXct(BegArea, format = "%H:%M:%S"),
+    EndArea = as.POSIXct(EndArea, format = "%H:%M:%S"),
+    BegList = as.POSIXct(BegList, format = "%H:%M:%S"),
+    EndList = as.POSIXct(EndList, format = "%H:%M:%S")
+  ) %>%
+  select(PlotDetails_PK, Flight_FK, SiteID, PlotID)
+
+tRecObs <- inner_join(tblFlightInfo, tblPlotDetails,
+                      by = c(Flight_PK = "Flight_FK"))
+
+# I should do a spatial join for every colony observed in case there
+# are any strata that split sample plots.
+tRecObs2 <- left_join(tRecObs %>%
+                        select(Flight_PK,
+                               PlotDetails_PK,
+                               siteID = SiteID,
+                               PlotID,
+                               Date,
+                               Pilot,
+                               Front,
+                               Rear),
+                      GRTSSmp %>%
+                        select(siteID, PlotID, Str = stratum),
+                      by = c("siteID", "PlotID")) %>%
+  distinct()
+
+```
+
+## Observation File
+
+Way point ID, Strata and Time are not recorded so skip them. I could get time from the `Track` file later. GPS points were only taken for the new colonies, so we assume the list colony locations are valid and use them. Stratum may change within the plot. I don't think it does for any of the 2023 samples but the code should be general
+
+Keep track of the new nests. Do some fall in out of sample plots? They should have `OOS` sample plots then.
+
+```{r ObservationFile}
+setwd("/Users/motto/Profesional/GBHE")
+cObsFile <- "./extdata/2023/tblObservations.csv"
+
+tObs <- read_csv(cObsFile, col_types = "ii-li--ciiiicccdd") %>%
+  mutate(
+    # FWSNestID for known nests observations
+    FWSNestID = ifelse(
+      `NewColony?`,
+      sprintf("new.%04d", WBC_ID),
+      sprintf("ME.%04d", WBC_ID)
+    ),
+    Str = NA,
+    fNest = FObsTot,
+    rNest = RObsTot,
+    fAct = FObsAct,
+    rAct = RObsAct,
+    Edit = NA,
+    File = cObsFile,
+    Rec = row_number()
+  ) %>%
+  select(
+    Obs_PK,
+    PlotDetails_FK,
+    Lng = Longitude,
+    Lat = Latitude,
+    AOU = Species,
+    CapHist = CaptHist,
+    Location = Habitat,
+    FWSNestID,
+    fNest,
+    rNest,
+    fAct,
+    rAct,
+    Comment = Comments,
+    Edit,
+    File,
+    Rec
+  )
+
+# Add the known colony locations
+tblObservations <- left_join(tObs,
+                             ColList %>%
+                               select(FWSNestID, Str, PlotID, nLng = Lng, nLat = Lat),
+                             by = "FWSNestID") %>%
+  mutate(Lng = ifelse(is.na(Lng), nLng, Lng),
+         Lat = ifelse(is.na(Lat), nLat, Lat))
+
+# Many colonies observed are not in the colony list.
+MisCol <- sort(setdiff(tObs$FWSNestID, ColList$FWSNestID))
+
+# A good portion of the list is observed on the flights
+intersect(ColList$FWSNestID, tObs$FWSNestID)
+
+# Merge the flight, plot, and observation tables to make `RecObs`.
+# Keep all the flight, plot, and observation keys for reference.
+tRecObs3 <- inner_join(tRecObs2,
+                       tblObservations,
+                       by = c(PlotDetails_PK = "PlotDetails_FK")) %>%
+  mutate(
+    AOU = "GBHE",
+    Str = ifelse(is.na(Str.x), Str.y, Str.x),
+    PlotID = ifelse(is.na(PlotID.x), PlotID.y, PlotID.x)
+  ) %>%
+  select(-Str.x, -Str.y, -PlotID.x, -PlotID.y, -nLat, -nLng)
+
+RecObs <- tRecObs3 %>%
+  mutate(
+    OBJECTID = row_number(),
+    DatTim = Date,
+    Yr = format(as.Date(Date, "%Y-%m-%d"), "%Y"),
+    St = "ME",
+    Svy = "GBHE",
+    FWSNestID = stringr::str_replace(FWSNestID, "new", paste("new", 
+                                                             ifelse(is.na(Str), 
+                                                                    "  ", 
+                                                                    Str), 
+                                                             sep = "."))
+  ) %>%
+  select(
+    OBJECTID,
+    Yr,
+    St,
+    Svy,
+    DatTim,
+    Pilot,
+    Front,
+    Rear,
+    Str,
+    PlotID,
+    siteID,
+    Lng,
+    Lat,
+    AOU,
+    CapHist,
+    Location,
+    FWSNestID,
+    fNest,
+    rNest,
+    fAct,
+    rAct,
+    Comment,
+    Edit,
+    File,
+    Rec
+  )
+
+```
+
+Check stratum and plot for those that have it and add it where they are missing.
+
+```{r CheckRecObs}
+tRecObsSF <- st_as_sf(RecObs, coords = c("Lng", "Lat"), crs = st_crs(4326))
+tRecObsSF2 <- st_intersection(StrPlotSp %>%
+                         select(tStr = Str, tPlotID = PlotID), 
+                       st_transform(x = tRecObsSF, crs = st_crs(StrPlotSp))) %>%
+  mutate(
+    Str = ifelse(is.na(Str), tStr, Str),
+    PlotID = ifelse(is.na(PlotID), tPlotID, PlotID)
+  )
+
+# Check of stratum and plot differences.  Resolve.
+tRecObsSF2 %>%
+  filter(tStr != Str | tPlotID != PlotID)
+
+# Edit RecObs, to avoid the complications of dropping the spatial
+# and rearranging the columns.
+
+RecObs$Str <- ifelse(is.na(RecObs$Str), tRecObsSF2$Str, RecObs$Str)
+RecObs$PlotID <- ifelse(is.na(RecObs$PlotID), tRecObsSF2$PlotID, RecObs$PlotID)
+RecObs$FWSNestID <- ifelse(
+  grepl("\\.  \\.", RecObs$FWSNestID),
+  stringr::str_replace(RecObs$FWSNestID, "  ", RecObs$Str),
+  RecObs$FWSNestID
+)
+
+```
+
+From looking at the spatial data and the Danielle's notebooks, we edited `RecObs`.
+
+```{r EditRecObs}
+# MCO:  The ME.0647 seems to be off c6.1v vs. c4.1r (2 over and 3 up).
+# DDA:  This should be c6.1v.
+#  This is probably due to the original data entry error where it was entered as 105.
+# MCO:  ColList:  ME.0647 c6.1v SC -70.78627 43.17239
+#   It was in a list plot, L63, with no nests.
+#   c6.1v is not a sample plot, but this was the colony that was sampled?
+#   ColList:  ME.0105 c4.1r SC -70.82679 43.61651
+#   105 is in the c4.1r or the L63 sample plot.  Is 105 647?
+# RecObs[25,"FWSNestID"]
+RecObs[25, "PlotID"] <- "c6.1v"
+RecObs[25, "siteID"] <- "OOS"
+RecObs[25, "Edit"] <- "Changed PlotID from c4.1r and siteID from L63."
+
+# MCO:  new.SC.0917 may be just over the border, so go with what you marked it as.
+# DDA:  This should be ci.18.
+# MCO:  So it is outside the A16 ci.19 sample plot?
+#   That would make it OOS.  I will change it.
+#  RecObs[81,"FWSNestID"]
+RecObs[81, "PlotID"] <- "ci.18"
+RecObs[81, "siteID"] <- "OOS"
+RecObs[81, "Edit"] <- "Changed PlotID from ci.19 and siteID from A18."
+
+# MCO: ch.1c is a split plot, so go with the Co part of the plot?
+# DDA:   Yes, this colony (866) is in Co stratum.
+# MCO: Good
+#  RecObs[184,"FWSNestID"]
+RecObs[184, "Str"] <- "Co"
+RecObs[184, "Edit"] <- "Changed Str from SC because it was a plot split between strata."
+
+# MCO: ME.0721 is just over in the next plot, so should we stick with the
+# assigned plot as it is the sample plot?
+# DDA:  This should be c4.16
+# MCO: c4.16 is not a sample plot, but it was a list plot and had no nests.
+#  RecObs[217,"FWSNestID"]
+RecObs[217, "PlotID"] <- "c4.16"
+RecObs[217, "siteID"] <- "OOS"
+RecObs[217, "Edit"] <- "Changed PlotID from c4.15 and siteID from L73."
+
+# MCO: cd.1l (1 down and 5 up) is a ways off.  Not sure what to do for ME.0739.
+# DDA:  This should be cd.1l
+# MCO: cd.1l  is the listover.  I can fix that.
+#  RecObs[221,"FWSNestID"]
+RecObs[221, "PlotID"] <- "cd.1l"
+RecObs[221, "siteID"] <- "L79"
+RecObs[221, "Edit"] <- "Changed PlotID from c4.16 and siteID from L03."
+ 
+```
+
+Write out `RecObs` in standard form.
+
+```{r WriteRecObs}
+setwd("/Users/motto/Profesional/GBHE")
+readr::write_csv(RecObs, "./extdata/2023/RecObs.csv", na = "")
+
+MisInRecObs <-  RecObs %>%
+  filter(FWSNestID %in% MisCol) %>%
+  select(FWSNestID, Str, siteID, Lng, Lat, fNest, rNest, fAct, rAct) %>%
+  arrange(FWSNestID)
+print(n = 9999, MisInRecObs)
+write_csv(MisInRecObs, "./TmpData/MisInRecObs.csv")
+
+```
+
+## Sample Plots
+
+`GRTSLoc` was the the file in the form used in the old GRTS. For the GBHE survey `GRTSSmp` has more information, like the full sample and the legacy plots.
+
+```{r GRTSLoc}
+setwd("/Users/motto/Profesional/GBHE")
+GRTSLoc <- left_join(
+  GRTSSmp,
+  tblPlotDetails %>%
+    distinct(SiteID) %>%
+    filter(SiteID != "OOS") %>%
+    mutate(EvalStatus = "Evaluated"),
+  by = c(siteID = "SiteID")
+) %>%
+  mutate(
+    Svy = "GBHE",
+    panel = ifelse(grepl("Over", SmpType), "Over", "PanelOne"),
+    EvalReason = ifelse(grepl("PanelOne", panel) &
+                          is.na(EvalStatus), "Reason?", NA),
+    Plot = siteID
+  ) %>%
+  select(
+    Svy,
+    siteID,
+    xcoord = X,
+    ycoord = Y,
+    mdcaty = nNest,
+    wgt = wgt,
+    stratum,
+    panel,
+    EvalStatus,
+    EvalReason,
+    Plot,
+    PlotID,
+    SmpType,
+    Comment = Notes
+  )
+
+```
+
+Write the sample plots out in standard form, if possible.
+
+```{r WriteGRTSLoc}
+setwd("/Users/motto/Profesional/GBHE")
+readr::write_csv(GRTSLoc, "./extdata/2023/GRTSLoc.csv", na = "")
+
+```

@@ -1,0 +1,17 @@
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user
+*.log
+*.Rproj
+.Rproj.user
+*.aux
+*.bbl
+*.synctex.gz
+Archive/*
+Notes/*
+TmpData/*
+Samples/*
+jagsfiles*/*
