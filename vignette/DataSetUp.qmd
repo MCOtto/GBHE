@@ -1,7 +1,7 @@
 ---
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
-date: "11 June 2024"
+date: "13 June 2024"
 format: pdf
 editor: visual
 ---
@@ -29,6 +29,7 @@ library(stringr)
 library(tidyr)
 library(purrr)
 library(ggplot2)
+library(RSQLite)
 source(here::here("R/RDB2Data.R"))
 
 CurrentYr <- 2023
@@ -58,7 +59,11 @@ The state boundary polygon, [Maine State Boundary Polygon Feature](https://maine
 ```{r MEBoundary}
 tMEBoundarySF <- st_read("~/Profesional/GBHE.2023/GIS/Maine_State_Boundary_Polygon_Feature.shp")
 MEBoundarySF <- st_transform(x = tMEBoundarySF, crs = CRS.Alpers)
-st_write(MEBoundarySF, dsn = here::here("gis/MEBoundarySF.kml"))
+st_write(
+  MEBoundarySF,
+  dsn = here::here("gis/MEBoundarySF.kml"),
+  delete_layer = TRUE
+)
 rm(tMEBoundarySF)
 
 ```
@@ -72,8 +77,7 @@ Maine is supposed to have 91,646km². Danielle may have removed some water area.
 ```{r Stratum}
 StrArea <- RDB2Data(Tbl = "StrArea",
                     RowNames = "DFStr",
-                    RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3"
-                   ) %>%
+                    RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3") %>%
   select(Str_PK = DFStr, cStratum, KMSq)
 fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
 nStr <- length(fStr)
@@ -90,7 +94,9 @@ tStrSF2 <- st_as_sf(inner_join(tibble::as_tibble(
   arrange(Str_FK))
 
 StrSF <- st_transform(x = tStrSF2, crs = CRS.Alpers)
-st_write(StrSF, dsn = here::here("gis/StrSF.kml"))
+st_write(StrSF,
+         dsn = here::here("gis/StrSF.kml"),
+         delete_layer = TRUE)
 rm(tStrSF, tStrSF2)
 
 ```
@@ -168,13 +174,13 @@ tColony2015SF <- inner_join(
 # and annual observations file like `AnnObs`.
 ColonySF <- st_as_sf(bind_rows(
   tColony2015SF %>%
-    mutate(Year_FK = 2015),
+    mutate(Year = 2015),
   tColony2015SF %>%
-    mutate(Year_FK = 2023)
+    mutate(Year = 2023)
 ))  %>%
   select(
     FWSColonyID_PK,
-    Year_FK,
+    Year,
     Str_FK,
     PlotID_FK,
     Lng,
@@ -189,9 +195,7 @@ st_write(ColonySF,
          dsn = here::here("gis/ColonySF.kml"),
          delete_layer = TRUE)
 
-rm(tColony2015,
-   tColony2023,
-   tColony2015SF)
+rm(tColony2015, tColony2023, tColony2015SF)
 
 ```
 
@@ -216,7 +220,6 @@ LatLong <- st_drop_geometry(tLatLong %>%
 StrPlotSF <- bind_cols(tStrPlotSF, LatLong) %>%
   select(Str_FK, PlotID_FK, KMSq, Lng, Lat, Col, Row)
 st_write(StrPlotSF, here::here("GIS/StrPlotSp.kml"), delete_layer = TRUE)
-
 rm(tStrPlotSF, tLatLong, LatLong)
 
 ```
@@ -284,7 +287,7 @@ tblFlightInfo <- bind_rows(tblFlightInfo2015, tblFlightInfo2023) %>%
   ) %>%
   select(
     Flight_PK,
-    Year_FK = DateYear,
+    Year = DateYear,
     Date,
     Start,
     End,
@@ -299,40 +302,90 @@ rm(tblFlightInfo2015, tblFlightInfo2023)
 
 ```
 ## Merge the plot tables
+Combine with `GRTSLoc` to add `Str` and `PlotID`.  The `OOS` will not have stratum or plot ID.
 
 ```{r PlotDetails}
 tblPlotDetails2015 <- readr::read_csv("~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblPlotDetails.csv",
-                                      col_types = "iclccccci")
+                                      col_types = "iclccccci") %>%
+  mutate(Year = 2015)
 
 tblPlotDetails2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblPlotDetails.csv",
-                               col_types = "iiclccccc")
-tblPlotDetails <- bind_rows(tblPlotDetails2015, tblPlotDetails2023) %>%
+                               col_types = "iiclccccc") %>%
+  mutate(Year = CurrentYr)
+
+ttblPlotDetails <- bind_rows(tblPlotDetails2015, tblPlotDetails2023) %>%
   mutate(
     BegArea = as.POSIXct(BegArea, format = "%H:%M:%S"),
     EndArea = as.POSIXct(EndArea, format = "%H:%M:%S"),
     BegList = as.POSIXct(BegList, format = "%H:%M:%S"),
     EndList = as.POSIXct(EndList, format = "%H:%M:%S"),
-    Comment = ifelse(`Combined?`, paste("Combined. ", Comments), Comments)
-  ) %>%
-  
+    Comment = ifelse(`Combined?`, paste("Combined.", ifelse(
+      is.na(Comments), "", Comments
+    )), Comments)
+  )
+
 tblPlotDetails <-
   left_join(
-    read_csv("./extdata/2023/tblPlotDetails.csv",
-             col_types = "iiclTTTTc"),
-    GRTSSmp %>%
-      select(SiteID = siteID, PlotID),
-    by = "SiteID"
+    ttblPlotDetails,
+    GRTSLoc %>%
+      select(Year, SiteID = siteID, Str, PlotID),
+    by = c("Year", "SiteID")
   ) %>%
+  select(
+    PlotDetails_PK,
+    Year,
+    Str,
+    Flight_FK,
+    SiteID,
+    PlotID,
+    BegArea,
+    EndArea,
+    BegList,
+    EndList,
+    Comment
+  )
+readr::write_csv(GRTSLoc, here::here("data/tblPlotDetails.csv"), na = "")
+rm(tblPlotDetails2015, tblPlotDetails2023, ttblPlotDetails)
+
+
+```
+
+## Observations
+
+```{r Observations}
+tblObservations2015 <- readr::read_csv(
+  "~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblObservations.csv",
+  col_types = "iclccccci"
+) %>%
+  mutate(Year = 2015)
+
+tblObservations2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblObservations.csv",
+                                col_types = "iiclccccc") %>%
+  mutate(Year = CurrentYr)
+
+ttblObservations <- bind_rows(tblObservations2015, tblObservations2023) %>%
   mutate(
     BegArea = as.POSIXct(BegArea, format = "%H:%M:%S"),
     EndArea = as.POSIXct(EndArea, format = "%H:%M:%S"),
     BegList = as.POSIXct(BegList, format = "%H:%M:%S"),
-    EndList = as.POSIXct(EndList, format = "%H:%M:%S")
-  ) %>%
-  select(PlotDetails_PK, Flight_FK, SiteID, PlotID)
+    EndList = as.POSIXct(EndList, format = "%H:%M:%S"),
+    Comment = ifelse(`Combined?`, paste("Combined.", ifelse(
+      is.na(Comments), "", Comments
+    )), Comments)
+  )
+
+
+
+```
+
+
+
+
+
 
 tRecObs <- inner_join(tblFlightInfo, tblPlotDetails,
                       by = c(Flight_PK = "Flight_FK"))
+                      
 
 # I should do a spatial join for every colony observed in case there
 # are any strata that split sample plots.
