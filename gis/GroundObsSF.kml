@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="GroundObsSF" id="GroundObsSF">
+	<SimpleField name="OBJECTID" type="int"></SimpleField>
+	<SimpleField name="Year" type="float"></SimpleField>
+	<SimpleField name="FWSColonyID" type="string"></SimpleField>
+	<SimpleField name="Frame" type="string"></SimpleField>
+	<SimpleField name="Svy" type="string"></SimpleField>
+	<SimpleField name="Str" type="string"></SimpleField>
+	<SimpleField name="PlotID" type="string"></SimpleField>
+	<SimpleField name="Lng" type="float"></SimpleField>
+	<SimpleField name="Lat" type="float"></SimpleField>
+	<SimpleField name="DatTim" type="string"></SimpleField>
+	<SimpleField name="Obsr" type="string"></SimpleField>
+	<SimpleField name="Seat" type="string"></SimpleField>
+	<SimpleField name="Nest" type="float"></SimpleField>
+	<SimpleField name="Act" type="float"></SimpleField>
+	<SimpleField name="Comment" type="string"></SimpleField>
+</Schema>
+<Folder><name>GroundObsSF</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">1</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0119</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c9.1e</SimpleData>
+		<SimpleData name="Lng">-69.9026557987022</SimpleData>
+		<SimpleData name="Lat">44.6084509668623</SimpleData>
+		<SimpleData name="DatTim">2015-05-25</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.9026557987022,44.6084509668623</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">2</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0166</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1a</SimpleData>
+		<SimpleData name="Lng">-69.4124783760438</SimpleData>
+		<SimpleData name="Lat">44.8860151486853</SimpleData>
+		<SimpleData name="DatTim">2015-05-24</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">8</SimpleData>
+		<SimpleData name="Act">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.4124783760438,44.8860151486853</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">3</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0604</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c6.1j</SimpleData>
+		<SimpleData name="Lng">-70.4530382157055</SimpleData>
+		<SimpleData name="Lat">44.215968937742</SimpleData>
+		<SimpleData name="DatTim">2015-07-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">13</SimpleData>
+		<SimpleData name="Act">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.4530382157055,44.215968937742</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">4</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0609</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c2.1g</SimpleData>
+		<SimpleData name="Lng">-70.7280706046304</SimpleData>
+		<SimpleData name="Lat">44.6182803032515</SimpleData>
+		<SimpleData name="DatTim">2015-07-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7280706046304,44.6182803032514</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">5</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0622</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1d</SimpleData>
+		<SimpleData name="Lng">-69.039505880862</SimpleData>
+		<SimpleData name="Lat">44.5303306335143</SimpleData>
+		<SimpleData name="DatTim">2015-06-07</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">5</SimpleData>
+		<SimpleData name="Act">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.039505880862,44.5303306335143</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">6</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0632</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cc.1c</SimpleData>
+		<SimpleData name="Lng">-69.4027290027751</SimpleData>
+		<SimpleData name="Lat">44.7116674847713</SimpleData>
+		<SimpleData name="DatTim">2015-05-15</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">5</SimpleData>
+		<SimpleData name="Act">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.4027290027751,44.7116674847713</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">7</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0646</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1w</SimpleData>
+		<SimpleData name="Lng">-70.7959443864382</SimpleData>
+		<SimpleData name="Lat">43.1233125556857</SimpleData>
+		<SimpleData name="DatTim">2015-05-29</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">18</SimpleData>
+		<SimpleData name="Act">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7959443864382,43.1233125556857</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">8</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0648</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1f</SimpleData>
+		<SimpleData name="Lng">-69.6510880960262</SimpleData>
+		<SimpleData name="Lat">44.4519307735552</SimpleData>
+		<SimpleData name="DatTim">2015-05-20</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">12</SimpleData>
+		<SimpleData name="Act">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6510880960262,44.4519307735552</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">9</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0657</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ch.1b</SimpleData>
+		<SimpleData name="Lng">-68.8018205508003</SimpleData>
+		<SimpleData name="Lat">44.7032032196632</SimpleData>
+		<SimpleData name="DatTim">2015-06-04</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.8018205508003,44.7032032196632</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">10</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0678</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cg.1c</SimpleData>
+		<SimpleData name="Lng">-68.9256857861944</SimpleData>
+		<SimpleData name="Lat">44.5773160378631</SimpleData>
+		<SimpleData name="DatTim">2015-05-13</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.9256857861944,44.5773160378631</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">11</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0687</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1m</SimpleData>
+		<SimpleData name="Lng">-70.4781716040899</SimpleData>
+		<SimpleData name="Lat">43.9555688519831</SimpleData>
+		<SimpleData name="DatTim">2015-05-18</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">7</SimpleData>
+		<SimpleData name="Act">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.4781716040899,43.9555688519831</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">12</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0688</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1e</SimpleData>
+		<SimpleData name="Lng">-69.098049411015</SimpleData>
+		<SimpleData name="Lat">44.4602631763189</SimpleData>
+		<SimpleData name="DatTim">2015-05-01</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.098049411015,44.4602631763189</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">13</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0692</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c4.1l</SimpleData>
+		<SimpleData name="Lng">-70.7097777605089</SimpleData>
+		<SimpleData name="Lat">44.0783840372988</SimpleData>
+		<SimpleData name="DatTim">2015-06-09</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">30</SimpleData>
+		<SimpleData name="Act">29</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7097777605089,44.0783840372988</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">15</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0716</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c4.1q</SimpleData>
+		<SimpleData name="Lng">-70.8295165926574</SimpleData>
+		<SimpleData name="Lat">43.7073854995786</SimpleData>
+		<SimpleData name="DatTim">2015-06-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.8295165926574,43.7073854995786</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">16</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0717</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c5.1r</SimpleData>
+		<SimpleData name="Lng">-70.8149806829016</SimpleData>
+		<SimpleData name="Lat">43.5545515131769</SimpleData>
+		<SimpleData name="DatTim">2015-05-23</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">2</SimpleData>
+		<SimpleData name="Act">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.8149806829016,43.5545515131769</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">17</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0722</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c4.15</SimpleData>
+		<SimpleData name="Lng">-70.1974444596761</SimpleData>
+		<SimpleData name="Lat">45.4712517971799</SimpleData>
+		<SimpleData name="DatTim">2015-06-11</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.1974444596761,45.4712517971799</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">18</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0731</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1c</SimpleData>
+		<SimpleData name="Lng">-69.0930177353298</SimpleData>
+		<SimpleData name="Lat">44.6297324615662</SimpleData>
+		<SimpleData name="DatTim">2015-06-07</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.0930177353298,44.6297324615662</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">19</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0742</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">cg.1d</SimpleData>
+		<SimpleData name="Lng">-68.9462336054159</SimpleData>
+		<SimpleData name="Lat">44.4985406130521</SimpleData>
+		<SimpleData name="DatTim">2015-05-15</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">8</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.9462336054159,44.4985406130521</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">20</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0754</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1h</SimpleData>
+		<SimpleData name="Lng">-69.6841692966567</SimpleData>
+		<SimpleData name="Lat">44.2661130807481</SimpleData>
+		<SimpleData name="DatTim">2015-06-14</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6841692966567,44.2661130807482</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">21</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0758</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ck.1a</SimpleData>
+		<SimpleData name="Lng">-68.444719283921</SimpleData>
+		<SimpleData name="Lat">44.6576760179167</SimpleData>
+		<SimpleData name="DatTim">2015-05-13</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.444719283921,44.6576760179168</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">22</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0772</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c2.1j</SimpleData>
+		<SimpleData name="Lng">-70.8186453014362</SimpleData>
+		<SimpleData name="Lat">44.3169117170441</SimpleData>
+		<SimpleData name="DatTim">2015-05-25</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.8186453014362,44.3169117170441</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">23</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0773</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ci.19</SimpleData>
+		<SimpleData name="Lng">-68.580632629949</SimpleData>
+		<SimpleData name="Lat">44.8450760207846</SimpleData>
+		<SimpleData name="DatTim">2015-05-09</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">5</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.580632629949,44.8450760207846</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">24</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0780</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1a</SimpleData>
+		<SimpleData name="Lng">-68.9777857359073</SimpleData>
+		<SimpleData name="Lat">44.7931041439713</SimpleData>
+		<SimpleData name="DatTim">2015-05-29</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">21</SimpleData>
+		<SimpleData name="Act">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.9777857359073,44.7931041439712</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">25</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0796</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">cc.1k</SimpleData>
+		<SimpleData name="Lng">-69.6395543065893</SimpleData>
+		<SimpleData name="Lat">44.0137077882961</SimpleData>
+		<SimpleData name="DatTim">2015-05-30</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">26</SimpleData>
+		<SimpleData name="Act">26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6395543065893,44.0137077882961</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">26</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0799</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.1i</SimpleData>
+		<SimpleData name="Lng">-69.5120177893182</SimpleData>
+		<SimpleData name="Lat">44.1653311682698</SimpleData>
+		<SimpleData name="DatTim">2015-05-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">6</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.5120177893182,44.1653311682698</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">27</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0803</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.19</SimpleData>
+		<SimpleData name="Lng">-69.2145072045809</SimpleData>
+		<SimpleData name="Lat">44.9377574300184</SimpleData>
+		<SimpleData name="DatTim">2015-05-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.2145072045809,44.9377574300183</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">28</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0804</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cc.1h</SimpleData>
+		<SimpleData name="Lng">-69.6317942521999</SimpleData>
+		<SimpleData name="Lat">44.3054984646257</SimpleData>
+		<SimpleData name="DatTim">2015-06-17</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6317942521999,44.3054984646258</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">29</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0810</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1r</SimpleData>
+		<SimpleData name="Lng">-70.6843093191628</SimpleData>
+		<SimpleData name="Lat">43.5994200823697</SimpleData>
+		<SimpleData name="DatTim">2015-05-02</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.6843093191628,43.5994200823697</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">30</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0811</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c5.1q</SimpleData>
+		<SimpleData name="Lng">-70.781690136932</SimpleData>
+		<SimpleData name="Lat">43.6272211772504</SimpleData>
+		<SimpleData name="DatTim">2015-06-06</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.781690136932,43.6272211772504</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">31</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0812</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ch.1c</SimpleData>
+		<SimpleData name="Lng">-68.758687710644</SimpleData>
+		<SimpleData name="Lat">44.606518748573</SimpleData>
+		<SimpleData name="DatTim">2015-06-04</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.758687710644,44.606518748573</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">32</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0816</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cc.1h</SimpleData>
+		<SimpleData name="Lng">-69.5876713884308</SimpleData>
+		<SimpleData name="Lat">44.241437472523</SimpleData>
+		<SimpleData name="DatTim">2015-05-15</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.5876713884308,44.241437472523</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">33</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0817</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ch.18</SimpleData>
+		<SimpleData name="Lng">-68.708652436296</SimpleData>
+		<SimpleData name="Lat">44.9089479357918</SimpleData>
+		<SimpleData name="DatTim">2015-06-26</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.708652436296,44.9089479357918</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">34</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0819</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ch.17</SimpleData>
+		<SimpleData name="Lng">-68.6213017514409</SimpleData>
+		<SimpleData name="Lat">45.0448985749231</SimpleData>
+		<SimpleData name="DatTim">2015-06-05</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.6213017514409,45.044898574923</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">35</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0820</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c7.1n</SimpleData>
+		<SimpleData name="Lng">-70.3669688123938</SimpleData>
+		<SimpleData name="Lat">43.835245516676</SimpleData>
+		<SimpleData name="DatTim">2015-05-18</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">6</SimpleData>
+		<SimpleData name="Act">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.3669688123938,43.835245516676</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">36</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0823</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">ch.0q</SimpleData>
+		<SimpleData name="Lng">-68.052813017869</SimpleData>
+		<SimpleData name="Lat">46.5048764217257</SimpleData>
+		<SimpleData name="DatTim">2015-06-12</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.052813017869,46.5048764217257</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">37</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0828</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1r</SimpleData>
+		<SimpleData name="Lng">-70.7107045481157</SimpleData>
+		<SimpleData name="Lat">43.5288670403097</SimpleData>
+		<SimpleData name="DatTim">2015-05-09</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7107045481157,43.5288670403096</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">38</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0832</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c9.17</SimpleData>
+		<SimpleData name="Lng">-69.5839946767422</SimpleData>
+		<SimpleData name="Lat">45.1645533689345</SimpleData>
+		<SimpleData name="DatTim">2015-07-11</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">5</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.5839946767422,45.1645533689345</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">39</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0833</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">cl.1a</SimpleData>
+		<SimpleData name="Lng">-68.314464168154</SimpleData>
+		<SimpleData name="Lat">44.6258738040154</SimpleData>
+		<SimpleData name="DatTim">2015-05-18</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">18</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.314464168154,44.6258738040154</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">40</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0835</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cj.1a</SimpleData>
+		<SimpleData name="Lng">-68.4573259690749</SimpleData>
+		<SimpleData name="Lat">44.6615659040924</SimpleData>
+		<SimpleData name="DatTim">2015-06-06</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">7</SimpleData>
+		<SimpleData name="Act">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.4573259690749,44.6615659040924</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">41</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0843</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">cm.17</SimpleData>
+		<SimpleData name="Lng">-68.0146916963369</SimpleData>
+		<SimpleData name="Lat">44.8337039589621</SimpleData>
+		<SimpleData name="DatTim">2015-06-14</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.0146916963369,44.8337039589621</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">42</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0849</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1p</SimpleData>
+		<SimpleData name="Lng">-70.6077304446915</SimpleData>
+		<SimpleData name="Lat">43.7217685176271</SimpleData>
+		<SimpleData name="DatTim">2015-07-31</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">19</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.6077304446915,43.7217685176271</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">43</SimpleData>
+		<SimpleData name="Year">2015</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0851</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">co.1b</SimpleData>
+		<SimpleData name="Lng">-67.8873668602347</SimpleData>
+		<SimpleData name="Lat">44.5071190287601</SimpleData>
+		<SimpleData name="DatTim">2015-06-25</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-67.8873668602347,44.5071190287601</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">45</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0754</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1h</SimpleData>
+		<SimpleData name="Lng">-69.6841692966567</SimpleData>
+		<SimpleData name="Lat">44.2661130807481</SimpleData>
+		<SimpleData name="DatTim">2023-06-20T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+		<SimpleData name="Comment">amy.mclaughlin@maine.gov;At least one young observed with down.  Probably recently hatched, as I have been keeping an eye on this nest.  The adult is brooding still.  Hasn't been any eagle activity for quite a while.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6841692966567,44.2661130807482</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">46</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0739</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">cd.1l</SimpleData>
+		<SimpleData name="Lng">-69.595291893471</SimpleData>
+		<SimpleData name="Lat">43.895479732707</SimpleData>
+		<SimpleData name="DatTim">2023-05-14T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">amyw@me.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.595291893471,43.895479732707</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">47</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0677</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.1d</SimpleData>
+		<SimpleData name="Lng">-69.2874449076904</SimpleData>
+		<SimpleData name="Lat">44.6309938151844</SimpleData>
+		<SimpleData name="DatTim">2023-07-03T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">beth.swartz@maine.gov;this is year four since the colony was abandoned due to complete loss of nest structures following a late spring snow storm in April 2020</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.2874449076904,44.6309938151844</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">48</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0648</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1f</SimpleData>
+		<SimpleData name="Lng">-69.6510880960262</SimpleData>
+		<SimpleData name="Lat">44.4519307735552</SimpleData>
+		<SimpleData name="DatTim">2023-05-18T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">betsypoulin@gmail.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6510880960262,44.4519307735552</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">50</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0717</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c5.1r</SimpleData>
+		<SimpleData name="Lng">-70.8149806829016</SimpleData>
+		<SimpleData name="Lat">43.5545515131769</SimpleData>
+		<SimpleData name="DatTim">2023-05-06T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">bmoger@maine.rr.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.8149806829016,43.5545515131769</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">51</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0101</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1v</SimpleData>
+		<SimpleData name="Lng">-70.779469717813</SimpleData>
+		<SimpleData name="Lat">43.1868000371848</SimpleData>
+		<SimpleData name="DatTim">2023-07-20T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">5</SimpleData>
+		<SimpleData name="Act">5</SimpleData>
+		<SimpleData name="Comment">brittany.currier@maine.gov;Nests are in two different groups.One near 43.185546°, -70.777066°The other closer to 43.186598°, -70.780345°Both of these areas can be accessed by driving to the end of Punkintown Rd and walking down the trail to the wetland.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.779469717813,43.1868000371848</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">52</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0792</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ce.1g</SimpleData>
+		<SimpleData name="Lng">-69.3212780046688</SimpleData>
+		<SimpleData name="Lat">44.3570509069794</SimpleData>
+		<SimpleData name="DatTim">2023-06-21T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">brittany.currier@maine.gov;No GBHE observed and no sign of GBHE activity seen</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.3212780046688,44.3570509069794</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">54</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0851</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">co.1b</SimpleData>
+		<SimpleData name="Lng">-67.8873668602347</SimpleData>
+		<SimpleData name="Lat">44.5071190287601</SimpleData>
+		<SimpleData name="DatTim">2023-06-21T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">7</SimpleData>
+		<SimpleData name="Act">5</SimpleData>
+		<SimpleData name="Comment">brutreehopper@gmail.com;Turkey vultures were also circling and baby Herons were very alert to that activity.  We also observed lots of feathers and bones from what seemed to be Herons near a whole in close proximity to a beaver lodge.  It is not clear what had attacted them</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-67.8873668602347,44.5071190287601</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">55</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0622</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1d</SimpleData>
+		<SimpleData name="Lng">-69.039505880862</SimpleData>
+		<SimpleData name="Lat">44.5303306335143</SimpleData>
+		<SimpleData name="DatTim">2023-08-10T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">Bythesea584@gmail.com;There was only one nest left, and it was empty. No sign of any bird activity while I was there.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.039505880862,44.5303306335143</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">56</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0773</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ci.19</SimpleData>
+		<SimpleData name="Lng">-68.580632629949</SimpleData>
+		<SimpleData name="Lat">44.8450760207846</SimpleData>
+		<SimpleData name="DatTim">2023-05-14T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">2</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">Carmillr@live.com;Only 2 unkept nests. Wind damage to lots of trees. Third nest from last year was gone.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.580632629949,44.8450760207846</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">58</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0646</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1w</SimpleData>
+		<SimpleData name="Lng">-70.7959443864382</SimpleData>
+		<SimpleData name="Lat">43.1233125556857</SimpleData>
+		<SimpleData name="DatTim">2023-06-08T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+		<SimpleData name="Comment">ddutton22467@gmail.com;we were able to see three nests in one pine tree at the northwest corner of the bog. A homeowner on Adlington Road let us access the bog through his property. The nest behind his house that was active last year, appeared to be inactive this time.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7959443864382,43.1233125556857</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">60</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0775</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.19</SimpleData>
+		<SimpleData name="Lng">-69.2031908223995</SimpleData>
+		<SimpleData name="Lat">44.9427679563204</SimpleData>
+		<SimpleData name="DatTim">2023-05-09T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">e_yahn@hotmail.com;No nesta visible at this site. Including remains of old nests</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.2031908223995,44.9427679563204</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">61</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0805</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c8.1c</SimpleData>
+		<SimpleData name="Lng">-69.91247672814</SimpleData>
+		<SimpleData name="Lat">44.8293539562979</SimpleData>
+		<SimpleData name="DatTim">2023-06-30T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">23</SimpleData>
+		<SimpleData name="Act">21</SimpleData>
+		<SimpleData name="Comment">fernguly@tdstelme.net;Access route is old, overgrown snowmobile trail , that leads by wet beaver dam area to an old snowmobile bridge, where best observation is done. Wearing waders is recommended!</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.9124767281399,44.8293539562979</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">62</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0846</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">c9.19</SimpleData>
+		<SimpleData name="Lng">-69.6360331457065</SimpleData>
+		<SimpleData name="Lat">44.9837974950383</SimpleData>
+		<SimpleData name="DatTim">2023-06-30T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">fernguly@tdstelme.net;The large beaver dam that creates the wetland was breached, likely due to recent very heavy rains. So water was drained, and mostly mud with pockets of standing water.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6360331457065,44.9837974950382</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">63</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0608</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">ck.1g</SimpleData>
+		<SimpleData name="Lng">-68.5798604495246</SimpleData>
+		<SimpleData name="Lat">44.1682312534951</SimpleData>
+		<SimpleData name="DatTim">2023-07-26T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">grusss@roadrunner.com;Observations made from boat.  No nests or herons observed.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.5798604495246,44.1682312534951</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">64</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0835</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cj.1a</SimpleData>
+		<SimpleData name="Lng">-68.4573259690749</SimpleData>
+		<SimpleData name="Lat">44.6615659040924</SimpleData>
+		<SimpleData name="DatTim">2023-05-17T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">14</SimpleData>
+		<SimpleData name="Act">14</SimpleData>
+		<SimpleData name="Comment">grusss@roadrunner.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.4573259690749,44.6615659040924</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">65</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0780</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cf.1a</SimpleData>
+		<SimpleData name="Lng">-68.9777857359073</SimpleData>
+		<SimpleData name="Lat">44.7931041439713</SimpleData>
+		<SimpleData name="DatTim">2023-06-14T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">33</SimpleData>
+		<SimpleData name="Act">31</SimpleData>
+		<SimpleData name="Comment">gsmith1955@spectrum.net;I was very happy to see so many nests this year, it's been steadily climbing back each of the last several years.  27 last year. I think it was down to 5 a few years ago, but not sure.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.9777857359073,44.7931041439712</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">68</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0820</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c7.1n</SimpleData>
+		<SimpleData name="Lng">-70.3669688123938</SimpleData>
+		<SimpleData name="Lat">43.835245516676</SimpleData>
+		<SimpleData name="DatTim">2023-05-29T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">hubermargaret7@gmail.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.3669688123938,43.835245516676</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">70</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0844</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.1e</SimpleData>
+		<SimpleData name="Lng">-69.3749694640105</SimpleData>
+		<SimpleData name="Lat">44.5500140220198</SimpleData>
+		<SimpleData name="DatTim">2023-05-30T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+		<SimpleData name="Comment">jmcolemanphotos@live.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.3749694640105,44.5500140220198</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">71</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0811</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c5.1q</SimpleData>
+		<SimpleData name="Lng">-70.781690136932</SimpleData>
+		<SimpleData name="Lat">43.6272211772504</SimpleData>
+		<SimpleData name="DatTim">2023-05-07T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">JTMCMNO@AOL.COM;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.781690136932,43.6272211772504</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">72</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0827</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1r</SimpleData>
+		<SimpleData name="Lng">-70.6241066224649</SimpleData>
+		<SimpleData name="Lat">43.5356581950777</SimpleData>
+		<SimpleData name="DatTim">2023-05-07T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+		<SimpleData name="Comment">JTMCMNO@AOL.COM;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.6241066224649,43.5356581950777</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">73</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0828</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1r</SimpleData>
+		<SimpleData name="Lng">-70.7107045481157</SimpleData>
+		<SimpleData name="Lat">43.5288670403097</SimpleData>
+		<SimpleData name="DatTim">2023-05-07T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">JTMCMNO@AOL.COM;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7107045481157,43.5288670403096</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">75</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0849</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1p</SimpleData>
+		<SimpleData name="Lng">-70.6077304446915</SimpleData>
+		<SimpleData name="Lat">43.7217685176271</SimpleData>
+		<SimpleData name="DatTim">2023-05-06T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">8</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+		<SimpleData name="Comment">kalipbt@icloud.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.6077304446915,43.7217685176271</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">76</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0656</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ca.1g</SimpleData>
+		<SimpleData name="Lng">-69.8523084790117</SimpleData>
+		<SimpleData name="Lat">44.3760997227829</SimpleData>
+		<SimpleData name="DatTim">2023-06-14T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">15</SimpleData>
+		<SimpleData name="Act">11</SimpleData>
+		<SimpleData name="Comment">kawwilkins@yahoo.com;Over cast day, many swallows flying about. Visit in evening.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.8523084790117,44.3760997227829</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">78</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0776</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.19</SimpleData>
+		<SimpleData name="Lng">-69.2069070057748</SimpleData>
+		<SimpleData name="Lat">44.9230784509422</SimpleData>
+		<SimpleData name="DatTim">2023-06-07T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">2</SimpleData>
+		<SimpleData name="Act">2</SimpleData>
+		<SimpleData name="Comment">kit_pfeiffer@yahoo.com;A Broad Wing Hawk flew over twice, chased by a Kingbird. No apparent disturbance to the adult herons on the nests.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.2069070057748,44.9230784509421</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">79</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0816</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cc.1h</SimpleData>
+		<SimpleData name="Lng">-69.5876713884308</SimpleData>
+		<SimpleData name="Lat">44.241437472523</SimpleData>
+		<SimpleData name="DatTim">2023-05-01T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">kit_pfeiffer@yahoo.com;Someone drained the swamp, so to speak! The large historic beaver dam at the outlet of the wetlands must have blown out in one of the storms this winter. There is no water in the wetland. It is not a wetland anymore.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.5876713884308,44.241437472523</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">80</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0102</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1u</SimpleData>
+		<SimpleData name="Lng">-70.7081186671899</SimpleData>
+		<SimpleData name="Lat">43.2770681378159</SimpleData>
+		<SimpleData name="DatTim">2023-05-10T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">lauramerrill3@gmail.com;An abutter has built a house at the edge of the wetland. This year, he has cut trees, trucked in fill, and has been constructing new buildings. In late winter/early spring, he began pounding/blasting ledge. It has been very noisy with lots of commotion.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7081186671899,43.277068137816</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">81</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0119</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c9.1e</SimpleData>
+		<SimpleData name="Lng">-69.9026557987022</SimpleData>
+		<SimpleData name="Lat">44.6084509668623</SimpleData>
+		<SimpleData name="DatTim">2023-06-15T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">learamirez74@gmail.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.9026557987022,44.6084509668623</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">82</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0166</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cb.1a</SimpleData>
+		<SimpleData name="Lng">-69.4124783760438</SimpleData>
+		<SimpleData name="Lat">44.8860151486853</SimpleData>
+		<SimpleData name="DatTim">2023-05-16T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">lindaleehunter@hotmail.com;There were no nests visible. The tree that was used last year is also gone.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.4124783760438,44.8860151486853</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">84</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0632</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cc.1c</SimpleData>
+		<SimpleData name="Lng">-69.4027290027751</SimpleData>
+		<SimpleData name="Lat">44.7116674847713</SimpleData>
+		<SimpleData name="DatTim">2023-06-22T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">llfsculptor@gmail.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.4027290027751,44.7116674847713</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">85</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0692</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c4.1l</SimpleData>
+		<SimpleData name="Lng">-70.7097777605089</SimpleData>
+		<SimpleData name="Lat">44.0783840372988</SimpleData>
+		<SimpleData name="DatTim">2023-06-07T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">14</SimpleData>
+		<SimpleData name="Act">13</SimpleData>
+		<SimpleData name="Comment">lmachayes@gmail.com;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7097777605089,44.0783840372988</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">89</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0628</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cj.18</SimpleData>
+		<SimpleData name="Lng">-68.4647326612135</SimpleData>
+		<SimpleData name="Lat">44.8461573104158</SimpleData>
+		<SimpleData name="DatTim">2023-06-08T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">mhunter@maine.edu;No herons, no raptors, no waterfowl</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.4647326612135,44.8461573104158</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">91</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0810</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c6.1r</SimpleData>
+		<SimpleData name="Lng">-70.6843093191628</SimpleData>
+		<SimpleData name="Lat">43.5994200823697</SimpleData>
+		<SimpleData name="DatTim">2023-05-30T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">3</SimpleData>
+		<SimpleData name="Act">3</SimpleData>
+		<SimpleData name="Comment">mjnation1@gmail.com;Observed an adult heron feeding her young in the lower nest on the tall tree. Was able to hear the calls of the young and then observed an adult heron land on the upper nest of the tall tree.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.6843093191628,43.5994200823697</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">93</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0760</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">cd.1c</SimpleData>
+		<SimpleData name="Lng">-69.3458249031035</SimpleData>
+		<SimpleData name="Lat">44.6680668751914</SimpleData>
+		<SimpleData name="DatTim">2023-06-22T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">1</SimpleData>
+		<SimpleData name="Comment">rsburke87@gmail.com;The private land that I walked across to get to the site was posted &quot;NO TRESPASSING&quot;,which made me question whether I should be crossing it. I didn't see anybody and was not sure who to ask for permission. I noticed two houses near the road where I parked</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.3458249031035,44.6680668751913</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">96</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0684</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">ci.19</SimpleData>
+		<SimpleData name="Lng">-68.5639741948445</SimpleData>
+		<SimpleData name="Lat">44.7745615332082</SimpleData>
+		<SimpleData name="DatTim">2023-05-21T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">0</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">smduchesne@roadrunner.com;One heron pair has historically nested (or renested) very late at this location, so I plan to go back and check one more time in June for nesting activity.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-68.5639741948445,44.7745615332082</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">97</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0830</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">SC</SimpleData>
+		<SimpleData name="PlotID">c7.1n</SimpleData>
+		<SimpleData name="Lng">-70.3641998183707</SimpleData>
+		<SimpleData name="Lat">43.8958871342304</SimpleData>
+		<SimpleData name="DatTim">2023-06-29T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">36</SimpleData>
+		<SimpleData name="Act">34</SimpleData>
+		<SimpleData name="Comment">stevemcpike@gmail.com;34 nests (6 more since May), 14 adults, 84 chicks. Two nests had recently hatched chicks with down, many nests with chicks about ready to fledge. Red shouldered hawk flew south and west of marsh but not over it. Bobcat seen near eastern shore.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.3641998183707,43.8958871342304</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">99</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0623</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">Co</SimpleData>
+		<SimpleData name="PlotID">cd.1j</SimpleData>
+		<SimpleData name="Lng">-69.5562794949471</SimpleData>
+		<SimpleData name="Lat">44.0590244435957</SimpleData>
+		<SimpleData name="DatTim">2023-05-14T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">1</SimpleData>
+		<SimpleData name="Act">0</SimpleData>
+		<SimpleData name="Comment">thealy@tidewater.net;NA</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.5562794949471,44.0590244435957</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#GroundObsSF">
+		<SimpleData name="OBJECTID">101</SimpleData>
+		<SimpleData name="Year">2023</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0801</SimpleData>
+		<SimpleData name="Frame">List</SimpleData>
+		<SimpleData name="Svy">GBHE</SimpleData>
+		<SimpleData name="Str">ND</SimpleData>
+		<SimpleData name="PlotID">ca.19</SimpleData>
+		<SimpleData name="Lng">-69.6117421479934</SimpleData>
+		<SimpleData name="Lat">44.9819530269254</SimpleData>
+		<SimpleData name="DatTim">2023-05-21T00:00:00Z</SimpleData>
+		<SimpleData name="Obsr">Gnd</SimpleData>
+		<SimpleData name="Seat">Dirt</SimpleData>
+		<SimpleData name="Nest">4</SimpleData>
+		<SimpleData name="Act">4</SimpleData>
+		<SimpleData name="Comment">vicmorin1@outlook.com;Three nests low and at an intersection of two leaning snags. Stage of nests and exact number of adults unknown. Reported 4 active nests.</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-69.6117421479934,44.9819530269254</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

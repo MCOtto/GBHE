@@ -1,0 +1,38 @@
+Flight_PK,Year,Date,Start,End,Pilot,Front,Rear,Comment
+8,2015,2015-05-28,,,JB,DD,DK,; It took a few sites for DK to get a good search image going.
+9,2015,2015-05-30,,,CL,DD,SS,"Clear but windy; SS got sick after colony #16, so we landed on Georges Pond in Franklin for a 15 min. break."
+10,2015,2015-06-03,,,JB,DD,AM,Overcast; winds ~10 mph.; 
+11,2015,2015-06-08,,,JB,DD,MC,Rain showers; Break in Millinocket for 25 min.
+12,2015,2015-06-10,,,CB,DD,DK,"Breezy, partly sunny, ~70 deg F.; "
+13,2015,2015-06-11,,,CL,DD,KM,"~70 deg F, clear, light wind.; "
+14,2015,2015-06-12,,,JB,DD,AD,; Commute from Old Town to Presque Isle to pick up AD; and back at end.
+15,2015,2015-06-15,,,JB,DD,BZ,; Picked up BZ in Lewiston and left there at 9:55.
+16,2015,2015-06-17,,,JS,DD,AS,; Picked up at Cold Stream Pond.
+17,2015,2015-06-18,,,JB,DD,AD,"; Picked up AD at Presque Isle 8:30, started out at 8:45; back to Presque Isle at 13:30, started out at 14:00"
+18,2015,2015-06-19,,,JB,DD,BC,Cloudy; variable amounts of clouds/sun and variable winds.; Started and ended in Norridgewock.
+4,2015,2015-05-15,,,JB,DD,KM,Calm and clear to start; a little windy at mid and end of day.; Stop in Belfast 13:30-13:55.
+5,2015,2015-05-18,,,JB,DD,BZ,"Overcast, ~50 deg F.; "
+6,2015,2015-05-18,,,JB,DD,CS,Overcast; 
+7,2015,2015-05-22,,,JB,DD,KM,"Coastal fog, low clouds; rain showers scattered across state.; Attempted to check coastal colonies and Area Plots, but got turned away due to low clouds."
+1,2015,2015-05-01,,,CL,DD,CT,"Clear, light wind; "
+2,2015,2015-05-06,,,CL,DD,KM,"Clear, light winds to start; 60 deg F; gusty at end.; Break from 12:30-13:20"
+3,2015,2015-05-08,,,CL,DD,BZ,"Clear, very little wind at start, 10-15 mph at end.; 10 min stop in Lewiston; 1 hr stop in Sanford."
+19,2023,2023-05-05,,,JS,DD,BZ,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; "
+20,2023,2023-05-06,,,CH,DD,LM,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; "
+21,2023,2023-05-09,,,NM,DD,BCU,"clear and calm to start, inceeasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness"
+22,2023,2023-05-10,,,NM,DD,KM,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; "
+23,2023,2023-05-13,,,NM,DD,RP,"clear but hazy; low of 52 deg F, high of 65 deg F, wind 10-20 mph with some gusts.; ended early due to illness."
+24,2023,2023-05-15,,,MT,DD,MT,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; "
+25,2023,2023-05-24,,,JS,DD,MC,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; "
+26,2023,2023-05-26,,,CH,DD,AF,"49-53 deg F, winds 9-12 mph, parly cloudy; "
+27,2023,2023-05-27,,,NM,DD,KS,"54-75 deg F, clear and calm 5-12mph; "
+28,2023,2023-05-28,,,NM,DD,MT,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; "
+29,2023,2023-05-29,,,CH,DD,CW,"55-63 deg F, 10-15 mph wind, clear; "
+30,2023,2023-05-30,,,CH,DD,VH,"48-70 deg F, clear, wind 5-10 mph; "
+31,2023,2023-06-12,,,NM,DD,BP,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; "
+32,2023,2023-06-13,,,NM,DD,LM,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; 
+33,2023,2023-06-20,,,NM,DD,MT,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; 
+34,2023,2023-06-22,,,CH,DD,CK,"clear, calm, 60-75 deg F; "
+35,2023,2023-06-23,,,JS,DD,SB,"54-87 deg F, clear, 8-15 mph wind; "
+36,2023,2023-06-30,,,NM,DD,JR,"low cloud ceilings but broken, temps 60s-70s; "
+37,2023,2023-07-01,,,NM,DD,MC,"temps in 80s, partly cloudy, 5-10 mph; "
