@@ -3,7 +3,8 @@ title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
 author: "Mark C. Otto. 28 June 2024"
 echo: false
 eval: true
-include: false
+warning: false
+error: false
 format: docx
 editor: visual
 bibliography: GBHESurvey.bib
@@ -550,23 +551,26 @@ NestPerCol <- rvnorm(mean = FSEst, sd = FSSD)
 Nests <- nCol * NestPerCol
 NestSmry$NestMn <- pmax(0, rvmean(Nests))
 NestSmry$NestSD <- rvsd(Nests)
-knitr::kable(NestSmry, digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1))
+knitr::kable(NestSmry, digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1),
+             caption = "Nest per Colony Summary")
 
 ```
 
-Model the number of active nests per colony. The over all mean model is best.
+Model the number of active nests per colony. The year-frame-stratum model is best.
 
 ```{r ModelActPerColony}
 ActMdl0 <-
   lm(Act ~ 1, data = SmpColObs)
 summary(ActMdl0)
 ActMdlYrStr <-
-  lm(Act ~ Year*Str+-1, data = SmpColObs)
+  lm(Act ~ Year + Str+-1, data = SmpColObs)
 summary(ActMdlYrStr)
-lm(Act ~ Year*Str+-1, data = SmpColObs)
+
 ActMdlFS <-
   lm(Act ~ FS - 1, data = SmpColObs)
 summary(ActMdlFS)
+
+# Use the YrStr
 AIC(ActMdl0, ActMdlYrStr, ActMdlFS)
 
 # MdlFS estimate and SD
@@ -617,7 +621,8 @@ ActPerCol <- rvnorm(mean = FSEst, sd = FSSD)
 Act <- nCol * ActPerCol
 ActSmry$ActMn <- pmax(0, rvmean(Act))
 ActSmry$ActSD <- rvsd(Act)
-knitr::kable(ActSmry, digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1))
+knitr::kable(ActSmry, digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1),
+             caption = "Active Nest per Colony Summary")
 
 ```
 
@@ -734,6 +739,37 @@ DetPN <- tribble( ~ Pf, ~ Pr, ~ N,
 tmp <- c(round(Est$par, 2), N=currentN)
 names(tmp) <- c("Pf", "Pr", "N")
 DetPN[1, 1:3] <- as.list(tmp)
-knitr::kable(DetPN, digits =2)
-      
+knitr::kable(DetPN, digits =2,
+             caption = "Front-Rear Observer Detection Estimates")
+
+```
+
+## Save data and estimates to use with the 
+
+```{r SaveEst}
+save(
+  cDFStr,
+  nStr,
+  cStr,
+  Colony,
+  cFrame,
+  RecObsList,
+  LstSmry,
+  RecObsArea,
+  LstData,
+  LstEst,
+  NewSmry,
+  SmpColObs,
+  NestSmry,
+  ActSmry,
+  ObsrSeat,
+  cObsr,
+  RearAreaObsr,
+  nRearAreaObsr,
+  cCHCol,
+  OSCmb,
+  DetPN,
+  file = here::here("output/CochranEst.RData")
+)
+
 ```
