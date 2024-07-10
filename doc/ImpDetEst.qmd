@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey 2015 and 2023"
 author: "Mark C. Otto"
-date: "7 July 2024"
+date: "9 July 2024"
 echo: false
 format: docx
 editor: visual
@@ -15,8 +15,6 @@ Great blue heron dual-frame survey 2015
 Estimation with random observer effects
 
 ```{r SetUp}
-setwd("/Users/MOtto/Profesional/GBHE")
-
 library(MASS)
 library(DualFrame)
 library(CollisionModel)
@@ -30,71 +28,33 @@ library(xlsx)
 
 source("/Users/MOtto/Ref/RLib/logit.R")
 source("/Users/MOtto/Ref/RLib/expit.R")
-source("R/MkSmry.R")
+source(here::here("R/MkSmry.R"))
 
 # Load the data
 load(file = here::here("output/GBHE.RData"))
-load(here::here("output/CochranEst.RData"))
+load(file =here::here("output/CochranEst.RData"))
 cMdl <- "DFCH1dDA" # Imperfect detection for list and area
 
 ```
+## Loaded Data
 
-```{r GetRecObs}
+```{r LoadedData}
 
-cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GndObs -> GroundObs, cFS, AllCol -> AllColonies, 
- 
- List nests per colony model: only stratum and frame effects
-FSEst, FSVar
-
-
- 
-
-
-```
-## Set up the observers for observer detection
-Put ground last and set detection to one.
-
-```{r ObsDet}   
- 
-LastFirst, cObsr, nObsr, ObsrSeat
-# Make to rear front
-SmpColObs$Obsr <- factor(SmpColObs$Obsr, cObsr)
-
-# Data augmentation
-# Make the capture history matrix
-# Different rear-seat observers in the area frame
-RearAreaObsr <- sort(unique(RecObsArea$Rear))
-nRearAreaObsr <- length(RearAreaObsr)
-cCHCol <- c("01", "10", "11", "00")
+# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GndObs -> GroundObs, cFS, AllCol -> AllColonies, 
+#  
+#  List nests per colony model: only stratum and frame effects
+# FSEst, FSVar
+# LastFirst, cObsr, nObsr, ObsrSeat
+# RearAreaObsr, nRearAreaObsr, cCHCol 
 
 ```
+## Create Augmented Data
+Keep the rear observer initials for a more complicated analysis.
 
-```{r xxx}   
- 
-
-
-# Extract capture histories
-OSCmb <- tRecObs %>%
-  filter(!is.na(CapHist)) %>%
-  select(Str, StrPltID, ColID,
-         Front, Rear,
-         #  Lng,Lat,AOU,
-         CapHist) %>%
-  mutate(
-    Str = as.character(Str),
-    inCNA = ifelse(grepl("ME", ColID), FALSE, TRUE),
-    OSCmb = paste(Front, Rear, sep = "."),
-    CH = gsub("x", "0", substring(CapHist, 2, 3))
-  ) %>%
-  group_by(Str, inCNA, OSCmb, Front, Rear, ColID, CH) %>%
-  summarise(N = n(), .groups = "drop") %>%
-  spread(CH, N, 0) %>%
-  mutate(`00` = ifelse(`01` > 0 |
-                         `10` > 0 | `11` > 0, 0, 1)) # Could just set to zero
-
+```{r AugmentedData}   
 # Augmented data
 nAug <- 50
-tmp <- expand.grid(
+tmp <- expand_grid(
   Str = cStr[1:nStr],
   inCNA = TRUE,
   OSCmb = paste("DD", "RR", sep = "."),
@@ -110,40 +70,43 @@ tmp$OSCmb <- with(tmp, paste("DD", Rear, sep = "."))
 nACH <- nrow(tmp)
 cDAColID <- sprintf("DA.%04d", 1:nACH)
 tmp$ColID <- cDAColID
-OSCmb <- data.frame(OSCmb)
-colnames(OSCmb) <- colnames(tmp)
+tOSCmb <- data.frame(OSCmb %>%
+                       select(-CapHist))
+colnames(tOSCmb) <- colnames(tmp)
 
-OSCmb <- rbind(OSCmb, tmp)
+OSCmb <- bind_rows(tOSCmb, tmp)
 OSCmb$Str <- factor(OSCmb$Str, cDFStr)
 Cmb2FS <- nStr + as.numeric(OSCmb$Str)
+rm(tmp)
 
 ```
+Relate the nestID to the record in Nest, so the nest ID are the same
+All new codes would get the same id.  
+Not sure how this relates.
 
-```{r xxx}   
- 
-  
-# Relate the nestID to the record in Nest, so the nest ID are the same
-# All new codes would get the same id.  
-# Not sure how this relates.
-  Cmb2Col<-as.numeric(factor(OSCmb$ColID, c(cColID,cDAColID)))
-sum(duplicated(OSCmb$ColID)) # the new
+```{r AugmentedColonies} 
+cColID <- sort(unique(c(RecObs$FWSColonyID, Colony$FWSColonyID)))
+cColLvl <- sort(unique(c(cColID, cDAColID)))
+Cmb2Col <- as.numeric(factor(OSCmb$ColID, cColLvl))
+sum(duplicated(OSCmb$ColID)) # the new colonies
 
-  Grp<-rbind(
-   match(OSCmb$Front,cObsr),
-   match(OSCmb$Rear,cObsr)
-  )
+# Only used for observer detection, not seat detection.
+Grp <- rbind(match(OSCmb$Front, cObsr), match(OSCmb$Rear, cObsr))
 
 ```
+## Observer Detection
+ Coefficient matrix for 0O, P0, and PO
 
-```{r xxx}   
-  
- # Coefficient matrix for 0O, P0, and PO
- nObsrs<-2
- nCH<-2^nObsrs
- tMltObsr<-matrix(0,nrow=nrow(OSCmb),ncol=length(cCHCol),
-                  dimnames=list(OSCmb$OSCmb,cCHCol)
- )
- tMltObsr[,]<-as.matrix(OSCmb[,c("01","10","11","00")])
+```{r ObsMtx}   
+nObsrs <- 2
+nCH <- 2 ^ nObsrs
+tMltObsr <- matrix(
+  0,
+  nrow = nrow(OSCmb),
+  ncol = length(cCHCol),
+  dimnames = list(OSCmb$OSCmb, cCHCol)
+)
+tMltObsr[,]<-as.matrix(OSCmb[,c("01","10","11","00")])
  dimnames(tMltObsr)<-NULL
 
 # Colony indicator to match number of nests in colonies
@@ -151,23 +114,21 @@ sum(duplicated(OSCmb$ColID)) # the new
  Obs2Obsr<-as.numeric(SmpColObs$Obsr)
  Obs2Str<-as.numeric(SmpColObs$Str)
 
- # Design matrix
- ToStr<-rbind(
-   cbind(diag(nStr),0),
-   cbind(diag(nStr),1)
- )
+ # nFS by (nYear -1) + (nFrame -1) + nStr Design matrix 
+ tToStr <- rbind(cbind(0, diag(nStr)), cbind(1, diag(nStr)))
+ ToStr <-  rbind(cbind(0, tToStr), cbind(1, tToStr))
 
 # Z[ColID]~bernoulli(1|Str);
  ColObs<-SmpColObs%>%
    mutate(
-    FS=factor(paste(Frame,Str,sep="."),cFS),
+    FS=factor(paste(Year, Frame, Str,sep="."),cFS),
     GndNest=ifelse(Obsr=="Gnd",Nest,NA)
    )%>%
-   group_by(ColID,Frame,Str,FS)%>%
+   group_by(FWSColonyID,FS)%>%
    summarise(Nest=max(Nest,na.rm=TRUE),Act=max(Act,na.rm=TRUE),
              GndNest=sum(GndNest,na.rm=TRUE), .groups="drop"
    )%>%
-   arrange(ColID)
+   arrange(FWSColonyID)
 
  # If not in the sample estimate the ground? 
  Idx<-SmpColObs[SmpColObs$ColID%in%GndObs[GndObs$InSmp,"ColID"],"ColID"]
@@ -178,56 +139,32 @@ sum(duplicated(OSCmb$ColID)) # the new
  nNewCol<- nrow(filter(ColObs,Frame=="Area"))
  nCol<-nrow(ColObs)
 
-# Model to estimate occupancy: binomial logits
- occmdl<-glm(I(Nest>0)~Str-1,data=ColObs,family=binomial,
-             subset=Frame=="List")
- summary(occmdl )
- OccEst<-coefficients(occmdl)
- OccSD<-sqrt(diag(vcov(occmdl)))
-
-# Proportion of active nests 
- actmdl<-glm(cbind(Act,Nest-Act)~Str-1,data=ColObs,family=binomial)
- summary(actmdl )
- ActEst<-coefficients(actmdl)
- ActSD<-sqrt(diag(vcov(actmdl)))
-
 ```
+## Area Sample
 
-```{r xxx}   
- 
- 
+```{r NewSample}   
 # Area sample
 # We need the sample area for all area plot
- data(GRTSArea)
- NewSmp <- left_join(
-   inner_join(
-     GRTSArea %>%
-       filter(as.logical(Smpd)) %>%
-       select(AreaStr, PlotID),
-     Plot %>%
-       select(AreaStr, PlotID, KMSq),
-     by = c("AreaStr", "PlotID")
-   ),
-   RecObsArea %>%
-     filter(NestID == "new") %>%
-     group_by(AreaStr, PlotID) %>%
-     summarise(nColony = n()),
-   by = c("AreaStr", "PlotID")
- ) %>%
-   mutate(nColony = ifelse(is.na(nColony), 0, nColony))
-
-# Expansion factors
- tmp<-NewSmp%>%
-   group_by(AreaStr)%>%
-   summarize(KMSq=sum(KMSq))
- ExpFac<-StrArea$KMSq/(tmp$KMSq)
+NewSmp <- left_join(
+  inner_join(
+    GRTSLoc %>%
+      filter(SmpType != "List" & Smpd) %>%
+      select(Year, Str, PlotID),
+    Plot %>%
+      select(Year, Str, PlotID, KMSq),
+    by = c("Year", "Str", "PlotID")
+  ),
+  RecObsArea %>%
+    group_by(Year, Str, PlotID) %>%
+    summarise(nColony = n()),
+  by = c("Year", "Str", "PlotID")
+) %>%
+  mutate(nColony = ifelse(is.na(nColony), 0, nColony))
 
 ```
 
-```{r xxx}   
- 
-
-# Number of new colonies by stratum  
+```{r NewColonies}   
+ # Number of new colonies by stratum  
   tNewColStr<-NewSmp%>%
    group_by(AreaStr)%>%
    summarize(nColony=sum(nColony))
