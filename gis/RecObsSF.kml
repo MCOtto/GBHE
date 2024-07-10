@@ -1960,7 +1960,7 @@
 		<SimpleData name="Lng">-68.8713937302</SimpleData>
 		<SimpleData name="Lat">44.5187254903</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">XX1</SimpleData>
+		<SimpleData name="CapHist">xx1</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0765</SimpleData>
 		<SimpleData name="fNest">11</SimpleData>
@@ -2877,7 +2877,7 @@
 		<SimpleData name="Lng">-67.3631801247635</SimpleData>
 		<SimpleData name="Lat">45.0794542366358</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X10</SimpleData>
+		<SimpleData name="CapHist">x10</SimpleData>
 		<SimpleData name="Location">Upland</SimpleData>
 		<SimpleData name="fNest">1</SimpleData>
 		<SimpleData name="rNest">1</SimpleData>
@@ -3107,7 +3107,7 @@
 		<SimpleData name="Lng">-67.8873814268302</SimpleData>
 		<SimpleData name="Lat">44.5071286536441</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X10</SimpleData>
+		<SimpleData name="CapHist">x10</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
 		<SimpleData name="FWSColonyID">new.0851</SimpleData>
 		<SimpleData name="fNest">4</SimpleData>
@@ -3689,7 +3689,7 @@
 		<SimpleData name="Lng">-70.7959443864</SimpleData>
 		<SimpleData name="Lat">43.1233125557</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X11</SimpleData>
+		<SimpleData name="CapHist">x11</SimpleData>
 		<SimpleData name="Location">Upland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0646</SimpleData>
 		<SimpleData name="fNest">11</SimpleData>
@@ -3714,7 +3714,7 @@
 		<SimpleData name="Lng">-70.7794697178</SimpleData>
 		<SimpleData name="Lat">43.1868000372</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X11</SimpleData>
+		<SimpleData name="CapHist">x11</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0101</SimpleData>
 		<SimpleData name="fNest">8</SimpleData>
@@ -4495,7 +4495,7 @@
 		<SimpleData name="Lng">-68.8306026193</SimpleData>
 		<SimpleData name="Lat">44.9249274538</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X11</SimpleData>
+		<SimpleData name="CapHist">x11</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0822</SimpleData>
 		<SimpleData name="fNest">1</SimpleData>
@@ -5373,7 +5373,7 @@
 		<SimpleData name="Lng">-70.0528347029</SimpleData>
 		<SimpleData name="Lat">43.7109675772</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
-		<SimpleData name="CapHist">X11</SimpleData>
+		<SimpleData name="CapHist">x11</SimpleData>
 		<SimpleData name="Location">Upland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0004</SimpleData>
 		<SimpleData name="fNest">2</SimpleData>
