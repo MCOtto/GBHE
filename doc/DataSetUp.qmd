@@ -631,10 +631,7 @@ tblObservations <- bind_rows(tblObservations2015, tblObservations2023)  %>%
       sprintf("ME.%04d", WBC_ID)
     )),
     Str = Strata,
-    fNest = FObsTot,
-    rNest = RObsTot,
-    fAct = FObsAct,
-    rAct = RObsAct,
+    CapHist = tolower(CaptHist),
   ) %>%
   select(
     Year,
@@ -643,13 +640,13 @@ tblObservations <- bind_rows(tblObservations2015, tblObservations2023)  %>%
     Lng = Longitude,
     Lat = Latitude,
     AOU = Species,
-    CapHist = CaptHist,
+    CapHist,
     Location = Habitat,
     FWSColonyID,
-    fNest,
-    rNest,
-    fAct,
-    rAct,
+    fNest = FObsTot,
+    rNest = RObsTot,
+    fAct = FObsAct,
+    rAct = RObsAct,
     Comment = Comments
   )
 if (lWrite) {
