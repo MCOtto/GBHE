@@ -388,10 +388,43 @@ NonSmpCol <- anti_join(
 ) 
 
 ```
+## Expansion Factors
+
+```{r ExpansionFactors}
+# Expansion factors
+ExpFac <- inner_join(
+  sf::st_drop_geometry(StrSF) %>%
+    select(Str = Str_FK, KMSq),
+  GRTSLoc %>%
+    filter(SmpType != "List" & EvalStatus) %>%
+    group_by(Year, Str) %>%
+    summarize(KMSq = sum(KMSq), .groups = "drop"),
+  by = c("Str")
+) %>%
+  mutate(ExpFac = KMSq.x / KMSq.y) %>%
+  select(Year, Str, ExpFac) %>%
+  arrange(Year, factor(Str, cDFStr))
+
+```
+## New Colony Estimates
 
 Make a simple summary of the new colonies. Use linear regression to get the density of colonies and their SDs. We use the finite sample to only predict the number and SD of colonies in the non-sampled plots.
 
-```{r ExpansionFactors}
+```{r NewColEst}
+# Expansion factors
+ExpFac <- inner_join(
+  sf::st_drop_geometry(StrSF) %>%
+    select(Str = Str_FK, KMSq),
+  GRTSLoc %>%
+    filter(SmpType != "List" & EvalStatus) %>%
+    group_by(Year, Str) %>%
+    summarize(KMSq = sum(KMSq), .groups = "drop"),
+  by = c("Str")
+) %>%
+  mutate(ExpFac = KMSq.x / KMSq.y) %>%
+  select(Year, Str, ExpFac) %>%
+  arrange(Year, factor(Str, cDFStr))
+
 tNewCol <-   NewCol %>%
   group_by(Year, Str) %>%
   summarize(
@@ -413,7 +446,7 @@ NewSmry <- inner_join(tNewCol, tNonSmpCol, by = c("Year", "Str")) %>%
     nCol = SmpCol + ColDen * NSKMSq,
     nColSD = ColSD * NSKMSq
   )
- 
+
 knitr::kable(NewSmry[, 1:5], digits = c(0, 0, 0, 1, 0), caption = "Area Plot Summaries")
 knitr::kable(NewSmry[, c(1, 2, 3, 7:10)], digits = c(0, 1, 0, 4, 4, 1, 1))
 
@@ -427,12 +460,15 @@ All known and new colony list to use in `FWSColonyID` factor. FS is frame-stratu
 # Make the year-frame-stratum levels
 cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, function(x)
   paste(x[1], x[2], x[3], sep = "."))
+nFS <- length(cFS)
 
 # I was using nest but did all the prep on SmpColObs
 tSmpCol <- SmpColObs %>%
-  mutate(Year = factor(Year, cYear),
+  mutate(
+    Year = factor(Year, cYear),
     FS = factor(paste(Year, Frame, Str, sep = "."), cFS),
-    InSmp = TRUE) %>%
+    InSmp = TRUE
+  ) %>%
   select(Year, FWSColonyID, Frame, Str, FS, InSmp)
 
 tNonSmpCol <- anti_join(
@@ -751,6 +787,8 @@ save(
   cDFStr,
   nStr,
   cStr,
+  cFS,
+  nFS,
   Colony,
   cFrame,
   RecObsList,
@@ -758,6 +796,7 @@ save(
   RecObsArea,
   LstData,
   LstEst,
+  ExpFac,
   NewSmry,
   SmpColObs,
   NestSmry,
