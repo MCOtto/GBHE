@@ -67,7 +67,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,78,49,,,GBHE,,Wetland,ME.0830,27,20,27,20,
 2015,79,49,,,GBHE,,Wetland,ME.0670,1,1,0,0,1 sparse nest.
 2015,80,49,,,GBHE,,Wetland,ME.0820,6,5,6,5,1 nest by itself at NE end.
-2015,81,51,,,GBHE,XX1,Wetland,ME.0765,11,11,11,11,"Right under plane on both passes, KM saw it out his left window."
+2015,81,51,,,GBHE,xx1,Wetland,ME.0765,11,11,11,11,"Right under plane on both passes, KM saw it out his left window."
 2015,82,53,,,GBHE,,Wetland,ME.0780,14,16,14,16,
 2015,83,53,,,GBHE,,Wetland,ME.0635,8,9,8,9,
 2015,84,54,,,GBHE,,Wetland,ME.0822,2,0,2,0,Nestlings likely; adults standing at nests.
@@ -103,7 +103,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,114,75,,,GBHE,,Wetland,ME.0675,1,0,1,0,
 2015,115,76,-68.8684732339391,45.23421799840678,GBHE,x10,Wetland,new.0850,2,2,0,0,Moose in wetland.
 2015,116,78,-67.34892377047736,45.10505709527638,OSPR,x01,,,1,1,0,0,1 empty nest looked like OSPR.
-2015,117,78,-67.36318012476353,45.07945423663581,BAEA,X10,Upland,,1,1,0,0,Empty BAEA nest in prominent pine just north of house.
+2015,117,78,-67.36318012476353,45.07945423663581,BAEA,x10,Upland,,1,1,0,0,Empty BAEA nest in prominent pine just north of house.
 2015,118,78,-67.4523773932786,45.13712113862388,OSPR,x10,Wetland,,1,0,0,0,"OSPR nest low in tree, empty."
 2015,119,79,-67.23146819194109,44.86889662222928,OSPR,x11,Wetland,,2,2,1,1,West nest was active.
 2015,120,79,-67.2439450228121,44.9077531491734,OSPR,x01,,,1,1,1,1,Active OSPR nest.
@@ -112,7 +112,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,123,83,,,GBHE,,Upland,ME.0008,65,75,60,70,Island.
 2015,124,84,,,GBHE,,Upland,ME.0608,25,30,23,27,Island.
 2015,125,86,,,GBHE,,Wetland,ME.0707,7,6,0,0,1 nest was active OSPR.
-2015,126,87,-67.8873814268302,44.507128653644074,GBHE,X10,Wetland,new.0851,4,4,4,4,"Plus 1 active OSPR, 1 inactive OSPR"
+2015,126,87,-67.8873814268302,44.507128653644074,GBHE,x10,Wetland,new.0851,4,4,4,4,"Plus 1 active OSPR, 1 inactive OSPR"
 2015,127,88,,,GBHE,,Upland,ME.0510,0,0,0,0,"No nests seen, but did see prominent pine where DD recalls an old nest had been."
 2015,128,89,,,GBHE,,Wetland,ME.0823,3,3,3,2,Hard to tell if 3rd nest active.
 2015,129,90,,,GBHE,,Wetland,ME.0712,0,0,0,0,
@@ -149,11 +149,11 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,11,6,,,GBHE,,Wetland,ME.0632,5,6,5,6,
 2015,12,7,,,GBHE,,Wetland,new.0846,2,,2,,Found while looking for colony #801.
 2023,151,121,,,,111,Wetland,new.0910,1,1,0,0,1 inactive nest in wetland just south of 907.
-2023,152,121,,,GBHE,X11,Split: upland and wetland,ME.0849,9,10,2,2,Mix oflive and dead trees. One of active nests may have been an osprey nest.
+2023,152,121,,,GBHE,x11,Split: upland and wetland,ME.0849,9,10,2,2,Mix oflive and dead trees. One of active nests may have been an osprey nest.
 2023,153,117,,,,,Wetland,ME.0100,0,0,0,0,
-2023,154,117,,,GBHE,X11,Upland,ME.0646,11,16,11,16,All nests in live pines on NW edge of wetland; osprey nest in snag in middle of wetland.
+2023,154,117,,,GBHE,x11,Upland,ME.0646,11,16,11,16,All nests in live pines on NW edge of wetland; osprey nest in snag in middle of wetland.
 2023,155,121,,,,,,ME.0105,0,0,0,0,unknown habitat of original colony
-2023,156,121,,,GBHE,X11,Wetland,ME.0101,8,8,8,8,"Cluster of 5 nests, then 3 more scattered more south/east; 1 osprey nest"
+2023,156,121,,,GBHE,x11,Wetland,ME.0101,8,8,8,8,"Cluster of 5 nests, then 3 more scattered more south/east; 1 osprey nest"
 2023,157,118,,,,,Wetland,ME.0102,0,0,0,0,
 2023,158,118,,,GBHE,x11,Wetland,new.0911,3,3,3,3,New nearby colony found.
 2023,159,118,,,,,Wetland,ME.0771,0,0,0,0,
@@ -206,7 +206,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,204,144,,,,,Wetland,ME.0870,0,0,0,0,DRY
 2023,205,145,,,,,Wetland,ME.0655,0,0,0,0,DRY
 2023,206,145,,,,,Wetland,ME.0798,0,0,0,0,DRY
-2023,207,144,,,OSPR,X11,Wetland,ME.0822,1,1,1,1,Active osprey nest at colony 822.
+2023,207,144,,,OSPR,x11,Wetland,ME.0822,1,1,1,1,Active osprey nest at colony 822.
 2023,208,144,,,,,Wetland,ME.0822,0,0,0,0,
 2023,209,144,,,GBHE,x10,Upland,new.0916,30,15,30,2,Upland pine stand next to the field.
 2023,210,145,,,OSPR,x11,Wetland,ME.0785,1,1,1,1,Active osprey nest at colony 785.
@@ -228,7 +228,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,226,150,,,,,Wetland,ME.0769,0,0,0,0,
 2023,227,150,,,,,Wetland,ME.0881,0,0,0,0,
 2023,228,151,,,,,Wetland,ME.0770,0,0,0,0,Empty BAEA(?) nest in live pine on west side of wetland. No other nests seen.
-2023,229,152,,,GBHE,X10,Wetland,new.0917,2,2,0,0,Northwest corner of plot; not detected by Robs at first.
+2023,229,152,,,GBHE,x10,Wetland,new.0917,2,2,0,0,Northwest corner of plot; not detected by Robs at first.
 2023,230,152,,,,,Wetland,ME.0684,0,0,0,0,
 2023,231,152,,,GBHE,x10,Wetland,ME.0773,1,1,0,0,There are 2 nests here - we each saw a different nest and realized it after that there were 2 total.
 2023,232,152,,,GBHE,x00,Upland,ME.0905,1,1,1,1,
@@ -262,9 +262,9 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,260,164,,,,,Wetland,ME.0775,0,0,0,0,
 2023,261,164,,,,,Wetland,ME.0803,0,0,0,0,
 2023,262,165,,,,,Wetland,ME.0634,0,0,0,0,Very dry
-2023,263,166,,,OSPR,X11,Upland,ME.0004,2,2,2,2,2 ACTIVE OSPREY NESTS; 0 HERONS
+2023,263,166,,,OSPR,x11,Upland,ME.0004,2,2,2,2,2 ACTIVE OSPREY NESTS; 0 HERONS
 2023,264,166,,,,,Upland,ME.0004,0,0,0,0,2 ACTIVE OSPREY NESTS; 0 HERONS
-2023,265,167,,,,X11,Upland,ME.0005,1,1,0,0,1 EMPTY NEST - LOOKED LIKE OSPR OR BAEA
+2023,265,167,,,,x11,Upland,ME.0005,1,1,0,0,1 EMPTY NEST - LOOKED LIKE OSPR OR BAEA
 2023,266,167,,,,,Upland,ME.0026,0,0,0,0,
 2023,267,167,,,,,Upland,ME.0756,0,0,0,0,
 2023,268,167,,,,,Upland,ME.0757,0,0,0,0,
