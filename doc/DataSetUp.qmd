@@ -4,7 +4,7 @@ author: "Mark C. Otto"
 eval: true
 date: "01 July 2024"
 format: docx
-editor: visual
+editor: source
 ---
 
 ## Introduction
@@ -34,7 +34,30 @@ library(ggplot2)
 library(RSQLite)
 source(here::here("R/RDB2Data.R"))
 
+# Survey years
 CurrentYr <- 2023
+cYear <- c(2015, CurrentYr)
+nYear <- length(cYear)
+
+# Survey frames
+cFrame <- c("List", "Area")
+nFrame <- length(cFrame)
+
+# Survey strata
+cDFStr <- c("SC", "Co", "ND")
+nStr <- length(cDFStr)
+
+# Make the year-stratum levels
+cYrStr <- apply(expand_grid(Year = cYear, Str = cDFStr), 1, function(x)
+  paste(x[1], x[2], sep = "."))
+nYrStr <- length(cYrStr)
+
+# Make the year-frame-stratum levels.
+# Should call cYFS.
+cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, function(x)
+  paste(x[1], x[2], x[3], sep = "."))
+nFS <- length(cFS)
+
 lWrite <- TRUE
 
 ```
@@ -87,8 +110,6 @@ StrArea <- RDB2Data(Tbl = "StrArea",
                     RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3") %>%
   select(Str_PK = DFStr, cStratum, KMSq)
 fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
-nStr <- length(fStr)
-cStr <- c(as.character(fStr), "Total")
 
 tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp") %>%
   mutate(KMSq = AREA / 10 ^ 6, cStratum = NAME2_) %>%
@@ -210,7 +231,25 @@ if(lWrite) {
 rm(tColony2015, tColony2023, tColony2015SF)
 
 ```
+## Non-Spatial Colony List
 
+```{r NonSpatialColonies}
+Colony <-  st_drop_geometry(ColonySF) %>%
+  select(
+    Year,
+    FWSColonyID = FWSColonyID_PK,
+    Str = Str_FK,
+    PlotID = PlotID_FK,
+    Lng,
+    Lat,
+    nNest,
+    nActive
+  )
+if (lWrite) {
+  readr::write_csv(Colony, here::here("data/Colony.csv"), na = "")
+}
+
+```
 ## Stratum-Plot Layer
 
 I intersected or spatially joined the stratum with the plot layers, so use `StrPlotSF`. Later create the lat-long using `st_centroid()`. Also copy over the `Plot` table that is non spatial but has number of colonies and km^2^. The row and col come from `RC2XY` made in the Bald Eagle national grid.
@@ -293,10 +332,11 @@ if (lWrite) {
 rm(tColonySF, tColonySF2, tLatLong, LatLong)
 
 ```
+
 ## List Plot List
- Doesn't this depend on the year the sample was taken as to what is put in the list?
- For now we use all colonies.
- 
+
+Doesn't this depend on the year the sample was taken as to what is put in the list? For now we use all colonies.
+
 ```{r List}
 List <- st_drop_geometry(ColonySF) %>%
   select(Str = Str_FK,
@@ -316,6 +356,7 @@ if (lWrite) {
 }
 
 ```
+
 ## Identify the colonies used for known colonies.
 
 ```{r IntoBaldEagleForm}
@@ -363,8 +404,9 @@ tColUsed <- read_csv("~/Profesional/GBHE.2023/extdata/2023/GBHE_ColonyPlotJoin.c
 
 ```
 
-## Plot Non-Spatial 
-Add the nests too. 
+## Plot Non-Spatial
+
+Add the nests too.
 
 ```{r Plot}
 tPlot <- st_drop_geometry(StrPlotSF) %>%
@@ -385,7 +427,8 @@ rm(tPlot)
 ```
 
 ## GRTS Sample
-Combine the current year GRTS sample file with the past years. Add the year onto the tables.
+
+Combine the current year GRTS sample file with the past years. Add the year onto the tables.  Archive `GRTSLoc` that has all the information used for the sample design.  Make `GRTSSmp` that identifies the samples flown and keep that for the estimation.
 
 L79 was sampled, so correct `EvalStatus`.
 
@@ -440,6 +483,18 @@ if (lWrite) {
   readr::write_csv(GRTSLoc, here::here("data/GRTSLoc.csv"), na = "")
 }
 rm(tGRTSLoc, tGRTSLoc2, tGRTSCurrent)
+
+```
+## `GRTSSmp` for the Estimation
+
+```{r GRTSSmp}
+GRTSSmp <- GRTSLoc %>%
+  filter(EvalStatus) %>%
+  select(Year, siteID, Str, PlotID, SmpType, KMSq, nAct)
+if (lWrite) {
+  readr::write_csv(GRTSSmp, here::here("data/GRTSSmp.csv"), na = "")
+}
+
 
 ```
 
@@ -658,6 +713,7 @@ if (lWrite) {
 rm(tblObservations2015, tblObservations2023)
 
 ```
+
 ## Combine `RecObs` from `tbl*` data files
 
 ```{r CombineRecObs}
@@ -806,6 +862,7 @@ if (lWrite) {
 rm(tRecObs, tRecObs2, tRecObs3)
 
 ```
+
 ## Combine `RecObs` from year-specific `RecObs`
 
 Use `Obs_FK` rather than `OBJECTID`.\
@@ -1153,7 +1210,16 @@ if (lWrite) {
 rm(GroundObs2015, GroundObs2023, tGroundObs, tGroundObsSF)
 
 ```
+## Non-Spatial Ground Observations
 
+
+```{r GroundObsNonSpatial}
+GroundObs <- st_drop_geometry(GroundObsSF)
+if (lWrite) {
+  readr::write_csv(GroundObs, here::here("data/GroundObs.csv"), na = "")
+}
+
+```
 ## Save Data
 
 Save all the tables we need for the estimation. The spatial data are already in `gis` and the non-spatial tables in `data`, so they can be accessed easily by `locdata` which is more general than `base::data`. `Load`ing the save file makes data access easy as if this were an `R` project.
@@ -1163,18 +1229,30 @@ save(
   CRS.WGS84,
   CRS.Alpers,
   CRS.UTM19N,
+  cYear,
+  nYear,
+  cFrame,
+  nFrame,
+  cDFStr,
+  nStr,
+  cYrStr,
+  nYrStr,
+  cFS,
+  nFS,
   MEBoundarySF,
   StrSF,
   ColonySF,
+  Colony,
   StrPlotSF,
   List,
   Plot,
-  GRTSLoc,
+  GRTSSmp,
   tblFlightInfo,
   tblPlotDetails,
   tblObservations,
   RecObs,
   GroundObsSF,
+  GroundObs,
   file = here::here("output/GBHE.RData")
 )
 
