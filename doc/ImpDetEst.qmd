@@ -1,14 +1,15 @@
 ---
 title: "Great Blue Heron Survey 2015 and 2023"
 author: "Mark C. Otto"
-date: "9 July 2024"
+date: "10 July 2024"
 echo: false
 format: docx
-editor: visual
+editor: source
 ---
 
 ## Introduction
-## \# Use data augmentation Royle and Dorazio, 2008.  p. 211--224 to
+
+## Use data augmentation Royle and Dorazio, 2008. p. 211--224 to
 
 Great blue heron dual-frame survey 2015
 
@@ -20,6 +21,7 @@ library(DualFrame)
 library(CollisionModel)
 library(dplyr)
 library(tidyr)
+library(lme4)
 library(rjags)
 library(runjags)
 library(modeest)
@@ -28,19 +30,23 @@ library(xlsx)
 
 source("/Users/MOtto/Ref/RLib/logit.R")
 source("/Users/MOtto/Ref/RLib/expit.R")
+source(here::here("R/Beta.R"))
 source(here::here("R/MkSmry.R"))
 
 # Load the data
 load(file = here::here("output/GBHE.RData"))
 load(file =here::here("output/CochranEst.RData"))
-cMdl <- "DFCH1dDA" # Imperfect detection for list and area
+Probs<-c(0.5,0.05,0.95)
+cMdl <- "DFCH1dDA" 
+File<-paste("Doc/Notes/",cMdl,".xlsx",sep="")
 
 ```
+
 ## Loaded Data
 
 ```{r LoadedData}
 
-# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GndObs -> GroundObs, cFS, AllCol -> AllColonies, 
+# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GrndObs -> GroundObs, cFS, AllCol -> AllColonies, 
 #  
 #  List nests per colony model: only stratum and frame effects
 # FSEst, FSVar
@@ -48,295 +54,374 @@ cMdl <- "DFCH1dDA" # Imperfect detection for list and area
 # RearAreaObsr, nRearAreaObsr, cCHCol 
 
 ```
+
+## Occupancy Proportion
+
+This is a rough estimate, so just do an overall.  Convert the logistic estimates in to proportions with simulations, then get the mean and standard deviations.  Since this is a random effect we need the Beta $nu$ and $nu'$.  Use the\ `Beta`\ function to get it
+
+```{r OccProp}
+OccMdl <- glm(I(Act > 0) ~ 1, family = binomial, data = SmpColObs)
+summary(OccMdl)
+Sim <- expit(rvnorm(1, mean = coefficients(OccMdl), sd = sqrt(vcov(OccMdl))))
+OccEst <- rvmean(Sim)
+OccSD <- rvsd(Sim)
+OccBeta <- Beta(Mean = OccEst, SD = OccSD)
+
+```
+
+## Poisson GLM New Colony Model
+
+New colony per full plot GLM model with year-stratum effects
+
+```{r GLMNewCol}
+tSmpColObs <- SmpColObs %>%
+  mutate(
+    Year = factor(Year, cYear)
+  )
+NpCGLM <- glm(
+  Nest ~ FS - 1,
+  data = SmpColObs,
+  family = poisson
+#  ,offset = log(KMSq / 100)
+)
+NpCYrpStrGLM <- glm(
+  Nest ~ Str + Year - 1,
+  data = tSmpColObs,
+  family = poisson
+#  ,offset = log(KMSq / 100)
+)
+summary(NpCYrpStrGLM)
+
+NpCYrGLM <- glm(
+  Nest ~ Year - 1,
+  data = tSmpColObs,
+  family = poisson
+#  ,offset = log(KMSq / 100)
+)
+summary(NpCYrGLM)
+
+NpCLME <- glmer(
+  Nest ~ 1 + (1|FS),
+  data = SmpColObs,
+  family = poisson
+#  ,offset = log(KMSq / 100)
+)
+summary(NpCLME)
+AIC(NpCGLM, NpCYrpStrGLM, NpCLME)
+
+
+
+# Estimates are on the log scale.
+# Use the unconditional mean and variance to estimate missing
+# effects
+tNpCEst <- coef(NpCLME)$FS
+NpCEst <- rep(NA, nFS)
+names(NpCEst) <- cFS
+NpCEst[rownames(tNpCEst)] <-tNpCEst$"(Intercept)"
+NpCEst[is.na(NpCEst)] <- mean(NpCEst, na.rm = TRUE)
+NpCVar <- diag(as.numeric(vcov(NpCLME)), nFS) + 
+               as.numeric(VarCorr(NpCLME))
+
+# nFS by (nYear -1) + (nFrame -1) + nStr Design matrix
+ToStr <- rbind(cbind(diag(nStr), 0), 
+               cbind(diag(nStr), 0),
+               cbind(diag(nStr), 1), 
+               cbind(diag(nStr), 1))
+NpCEst <- coefficients(NpCYrpStrGLM)
+NpCVar <- vcov(NpCYrpStrGLM)
+
+```
+
+## Proportion of Active Nest
+
+```{r ActiveNests}
+# Dropping `Frame` lowered the AIC.
+ActGLM <- glm(cbind(Act, Nest - Act) ~ FS - 1, 
+              data = SmpColObs, family = binomial)
+summary(ActGLM)
+ActLME <- glmer(cbind(Act, Nest - Act) ~ 1 + (1 | FS),
+                data = SmpColObs,
+                family = binomial)
+summary(ActLME)
+AIC(ActGLM, ActLME)
+
+# Fill in the combinations with data
+# Estimates are on the log scale.
+# Use the unconditional mean and variance to estimate missing
+# effects
+tActEst <- coef(ActLME)$FS
+ActEst <- rep(NA, nFS)
+names(ActEst) <- cFS
+ActEst[rownames(tActEst)] <-tActEst$"(Intercept)"
+NAIdx <- is.na(ActEst)
+ActEst[NAIdx] <- mean(ActEst, na.rm = TRUE)
+ActVar <- diag(as.numeric(vcov(ActLME)), nFS) + 
+               as.numeric(VarCorr(ActLME))
+
+Sim <- expit(mvrnorm(n = nSim, mu = ActEst , 
+                     Sigma = ActVar))
+ActLMEEst <- apply(Sim, 2, mean, na.rm = TRUE)
+ActLMESD <- apply(Sim, 2, sd, na.rm = TRUE)
+pActBeta <- Beta(Mean = mean(ActLMEEst), 
+        SD = sqrt(var(ActLMEEst) + mean(ActLMESD ^ 2)))
+
+```
+
 ## Create Augmented Data
+
 Keep the rear observer initials for a more complicated analysis.
 
-```{r AugmentedData}   
+```{r AugmentedData}
 # Augmented data
 nAug <- 50
 tmp <- expand_grid(
-  Str = cStr[1:nStr],
+  Year = cYear,
+  Str = cDFStr,
   inCNA = TRUE,
-  OSCmb = paste("DD", "RR", sep = "."),
+  CapHist = paste("DD", "RR", sep = "."),
   Front = "DD",
   Rear = RearAreaObsr,
-  ColID = sprintf("DA.%04d", 1:nAug),
+  FWSColonyID = sprintf("DA.%04d", 1:nAug),
   `01` = 0,
   `10` = 0,
   `11` = 0,
   `00` = 1
 )
-tmp$OSCmb <- with(tmp, paste("DD", Rear, sep = "."))
+tmp$CapHist <- with(tmp, paste("DD", Rear, sep = "."))
 nACH <- nrow(tmp)
-cDAColID <- sprintf("DA.%04d", 1:nACH)
-tmp$ColID <- cDAColID
-tOSCmb <- data.frame(OSCmb %>%
+cDAFWSColonyID <- sprintf("DA.%04d", 1:nACH)
+tmp$FWSColonyID <- cDAFWSColonyID
+tCapHist <- data.frame(CapHist %>%
                        select(-CapHist))
-colnames(tOSCmb) <- colnames(tmp)
+colnames(tCapHist) <- colnames(tmp)
 
-OSCmb <- bind_rows(tOSCmb, tmp)
-OSCmb$Str <- factor(OSCmb$Str, cDFStr)
-Cmb2FS <- nStr + as.numeric(OSCmb$Str)
+CapHistAug <- bind_rows(tCapHist, tmp)
+CapHistAug$Year <- factor(CapHistAug$Year, cYear)
+CapHistAug$Str <- factor(CapHistAug$Str, cDFStr)
+Cmb2FS <- nStr + as.numeric(CapHistAug$Str)
 rm(tmp)
 
 ```
-Relate the nestID to the record in Nest, so the nest ID are the same
-All new codes would get the same id.  
+
+Relate the ColonyID to the record in Nest, so the nest ID are the same All new codes would get the same id.  
 Not sure how this relates.
 
-```{r AugmentedColonies} 
-cColID <- sort(unique(c(RecObs$FWSColonyID, Colony$FWSColonyID)))
-cColLvl <- sort(unique(c(cColID, cDAColID)))
-Cmb2Col <- as.numeric(factor(OSCmb$ColID, cColLvl))
-sum(duplicated(OSCmb$ColID)) # the new colonies
+```{r AugmentedColonies}
+cFWSColonyID <- sort(unique(c(RecObs$FWSColonyID, Colony$FWSColonyID)))
+cColLvl <- sort(unique(c(cFWSColonyID, cDAFWSColonyID)))
+Cmb2Col <- as.numeric(factor(CapHistAug$FWSColonyID, cColLvl))
+sum(duplicated(CapHistAug$FWSColonyID)) # the new colonies
 
 # Only used for observer detection, not seat detection.
-Grp <- rbind(match(OSCmb$Front, cObsr), match(OSCmb$Rear, cObsr))
+Grp <- rbind(match(CapHistAug$Front, cObsr), match(CapHistAug$Rear, cObsr))
 
 ```
-## Observer Detection
- Coefficient matrix for 0O, P0, and PO
 
-```{r ObsMtx}   
+## Observer Detection
+
+Coefficient matrix for 0O, P0, and PO
+
+```{r ObsMtx}
 nObsrs <- 2
 nCH <- 2 ^ nObsrs
 tMltObsr <- matrix(
   0,
-  nrow = nrow(OSCmb),
+  nrow = nrow(CapHistAug),
   ncol = length(cCHCol),
-  dimnames = list(OSCmb$OSCmb, cCHCol)
+  dimnames = list(CapHistAug$CapHist, cCHCol)
 )
-tMltObsr[,]<-as.matrix(OSCmb[,c("01","10","11","00")])
- dimnames(tMltObsr)<-NULL
+tMltObsr[, ] <- as.matrix(CapHistAug[, c("01", "10", "11", "00")])
+dimnames(tMltObsr) <- NULL
 
 # Colony indicator to match number of nests in colonies
- Obs2Col<-as.numeric(SmpColObs$ColID)
- Obs2Obsr<-as.numeric(SmpColObs$Obsr)
- Obs2Str<-as.numeric(SmpColObs$Str)
+Obs2Col <- as.numeric(SmpColObs$FWSColonyID)
+Obs2Obsr <- as.numeric(SmpColObs$Obsr)
+Obs2Str <- as.numeric(SmpColObs$Str)
 
- # nFS by (nYear -1) + (nFrame -1) + nStr Design matrix 
- tToStr <- rbind(cbind(0, diag(nStr)), cbind(1, diag(nStr)))
- ToStr <-  rbind(cbind(0, tToStr), cbind(1, tToStr))
+# Z[FWSColonyID]~bernoulli(1|Str);
+ColObs <- SmpColObs %>%
+  mutate(FS = factor(paste(Year, Frame, Str, sep = "."), cFS),
+         GndNest = ifelse(Obsr == "Gnd", Nest, NA)) %>%
+  group_by(FWSColonyID, FS) %>%
+  summarize(
+    Nest = pmax(0, max(Nest, na.rm = TRUE)),
+    Act = pmax(0, max(Act, na.rm = TRUE)),
+    GndNest = sum(GndNest, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(FWSColonyID)
 
-# Z[ColID]~bernoulli(1|Str);
- ColObs<-SmpColObs%>%
-   mutate(
-    FS=factor(paste(Year, Frame, Str,sep="."),cFS),
-    GndNest=ifelse(Obsr=="Gnd",Nest,NA)
-   )%>%
-   group_by(FWSColonyID,FS)%>%
-   summarise(Nest=max(Nest,na.rm=TRUE),Act=max(Act,na.rm=TRUE),
-             GndNest=sum(GndNest,na.rm=TRUE), .groups="drop"
-   )%>%
-   arrange(FWSColonyID)
+# If not in the sample estimate the ground?
+# For now all the ground were in sample for some reason.
+# Idx <- SmpColObs[SmpColObs$FWSColonyID %in% GroundObs[GroundObs$InSmp, "FWSColonyID"], "FWSColonyID"]
+# Now none of the ground IDs match the sample IDs.  Why?!
+# Idx <- SmpColObs[SmpColObs$FWSColonyID %in% GroundObs[, "FWSColonyID"], "FWSColonyID"]
+# ColObs[!ColObs$FWSColonyID %in% Idx, "GndNest"] <- NA
 
- # If not in the sample estimate the ground? 
- Idx<-SmpColObs[SmpColObs$ColID%in%GndObs[GndObs$InSmp,"ColID"],"ColID"]
- ColObs[!ColObs$ColID%in%Idx,"GndNest"]<-NA
+# Could get the nest that had "Dirt"
+ColObs[ColObs$GndNest == 0, "GndNest"] <- NA
 
- Col2FS<-as.integer(ColObs$FS)
- nLstCol<- nrow(filter(ColObs,Frame=="List"))
- nNewCol<- nrow(filter(ColObs,Frame=="Area"))
- nCol<-nrow(ColObs)
-
+Col2FS <- as.integer(ColObs$FS)
+nLstCol <- nrow(filter(ColObs, grepl("List", ColObs$FS)))
+nNewCol <- nrow(filter(ColObs, grepl("Area", ColObs$FS)))
+nCol <- nrow(ColObs)
+ 
 ```
+
 ## Area Sample
 
-```{r NewSample}   
-# Area sample
-# We need the sample area for all area plot
-NewSmp <- left_join(
-  inner_join(
-    GRTSLoc %>%
-      filter(SmpType != "List" & Smpd) %>%
-      select(Year, Str, PlotID),
-    Plot %>%
-      select(Year, Str, PlotID, KMSq),
-    by = c("Year", "Str", "PlotID")
-  ),
-  RecObsArea %>%
-    group_by(Year, Str, PlotID) %>%
-    summarise(nColony = n()),
-  by = c("Year", "Str", "PlotID")
-) %>%
-  mutate(nColony = ifelse(is.na(nColony), 0, nColony))
+List of colonies by `FS`, list and new.
+
+```{r NewColonies}
+# Number of new colonies by year and stratum: NewSmry
+# NewColSmp <- NewSmry$SmpCol # and isn't used.
+
+# Make factor indices for `FS`: year-frame-stratum and `Str`
+All2FS <- as.numeric(AllCol$FS)
+All2Str <- as.numeric(factor(AllCol$Str, cStr[1:nStr]))
 
 ```
 
-```{r NewColonies}   
- # Number of new colonies by stratum  
-  tNewColStr<-NewSmp%>%
-   group_by(AreaStr)%>%
-   summarize(nColony=sum(nColony))
-  NewColSmp<-tNewColStr$nColony
-  names(NewColSmp)<-tNewColStr$AreaStr
+## JAGS Data
+
+```{r JAGSData}
+# Model data
+Data <- list(
+  nStr = nStr,
+  nYrStr = nYrStr,
+  nFS = nFS,
+  nNewCol = nNewCol,
+  nObsr = nObsr,
+  nColObs = nrow(SmpColObs), # nLstCol + nNewCol + nACH
+  nest = SmpColObs$Nest,
+  act = SmpColObs$Act,
+  Obs2Col = Obs2Col,
+  Obs2Obsr = Obs2Obsr,
+  ToStr = ToStr,
+  nCH = nCH,
+  Cmb2Col = Cmb2Col,
+  nCmb = nrow(tMltObsr),
+  xCH = t(tMltObsr),
+  Grp = Grp,
+  # Nest and active nests per colony
+  nACH = nACH,
+  nLstCol = nLstCol,
+  All2FS = All2FS,
+  All2Str = All2Str,
   
-# New colony per full plot model
-  newcolmdl<-glm(nColony~AreaStr-1,data=NewSmp,
-                 family=poisson,offset=log(KMSq/100)
-  )
-  summary(newcolmdl)
-  NCEst<-coefficients(newcolmdl)
-  NCEst[3]<- -5
-  NCSD<-sqrt(diag(vcov(newcolmdl)))
-  NCSD[3]<-10 * NCSD[2]
-
- # List for all colonies, new colonies, and augmented colonies
- AllCol<-rbind(
-   data.frame(Nest%>%
-   mutate(
-     ColID=FWSNestID,
-     Str=LstStr,
-     FS=factor(paste("List",Str,sep="."),cFS)
-   )%>%
-   select(ColID,FS,Str)
-  ),
-  data.frame(OSCmb%>%
-   filter(!grepl("ME",ColID))%>%
-   mutate(
-     FS=factor(paste("Area",Str,sep="."),cFS)
-   )%>%
-   select(ColID,FS,Str)
- ))
- All2FS<-as.numeric(AllCol$FS)
- All2Str<-as.numeric(factor(AllCol$Str,cStr[1:nStr]))
-
-```
-
-```{r xxx}   
- 
- 
-# Model data 
- Data<-list(
-   nStr=nStr,
-   nFS=ncol(ToStr),
-   nNewCol=nNewCol,
-   nObsr=nObsr,
-#   nLstColObs=sum(SmpColObs$Frame=="List"),
-   nColObs=nrow(SmpColObs),
-#   nAreaPlot=nAreaPlot,
-#   occ=ifelse(SmpColObs[SmpColObs$Frame=="List","Nest"]>0,1,0),
-   nest=SmpColObs$Nest,
-#   MxNest=ColObs$Nest,
-#   MxAct=ColObs$Act,
-   act=SmpColObs$Act,
-#   newcol=tNewSmpObs$nColony,
-   Obs2Col=Obs2Col,
-   Obs2Obsr=Obs2Obsr,
-#   Obs2Str=Obs2Str,
-   ToStr=ToStr,
-#   Col2FS=Col2FS,
-#   Col2Str=as.integer(ColObs$Str),
-#   Plot2Str=Plot2Str,
-# Add CapHist analysis
-   nCH=nCH,
-   Cmb2Col=Cmb2Col,
-#   Cmb2FS=Cmb2FS,
-   nCmb=nrow(tMltObsr),
-   xCH=t(tMltObsr),
-#   CHCoef=CHCoef,
-   Grp=Grp,
-# All nest and active
-   nACH=nACH,
-   NLstCol=NLstCol,
-   All2FS=All2FS,
-   All2Str=All2Str,
-
-# Estimates
-   ExpFac=ExpFac
- )
-
-```
-
-```{r xxx}   
- 
-# Initial values
-# Need to make the nests that have ground observations
-# that value of the ground observations.
- 
- InitFcn<-function(iChain){
-  lnNpCFS=mvrnorm(n = 1, mu=FSEst, Sigma=FSVar)
-  NestEV<-exp(ToStr%*%lnNpCFS)[Col2FS]
-#  Nest<-ifelse(!is.na(ColObs$GndNest),
-#               pmax(ColObs$Nest,ColObs$GndNest,1),
-#               pmax(ColObs$Nest,rpois(nCol,NestEV),1)
-#  )
-  Nest<-pmax(ColObs$Nest,ColObs$GndNest,rpois(nCol,NestEV),na.rm=TRUE)
-  pAct<-expit(rnorm(nStr,ActEst,ActSD))
-  Act<-pmax(ColObs$Act,rbinom(nrow(ColObs),Nest,pAct),na.rm = TRUE)
-
-  list(
-    ColPsi= expit(rnorm(nStr*2,OccEst,OccSD)),
-#    ColZ=rep(1,NLstCol+nNewCol+nACH),
-    lnNpCFS=lnNpCFS,
-#    Nest=Nest,
-    pAct= pAct,
-#    Act=Act,
-    lgtObsr=rnorm(nObsr-1,0.89,0.5)
-#    lnCpA=rnorm(nStr,NCEst,NCSD)
-#    ,pObsr=c(rbeta(nObsr-1,0.8*2,0.2*2),NA)
-#    ,pObsr=c(rbeta(nObsr,0.8*2,0.2*2))
-  )
- }
-
-```
-
-```{r xxx}   
-# Monitored parameters
- Parm<-c("LstColTot","LstActColTot","LstNestTot","LstActTot",
-         "NewColTot","NewActColTot","NewNestTot","NewActTot",
-         "NpC", "pAct","pObsr",# "pActObsr",
-         "pNest2Col","ObsrMu","ObsrSD",# "logitDD",  # Nest 2 Colony detection
- "dic" #,"loglik"
+  # Estimates
+  ExpFac = ExpFac
 )
- 
- cParm<-c(
-#   sub("new","n",sub("ME","N",ColObs$ColID)),
-   paste("LCT",cDFStr,sep=""),  #  list occupied colonies
-   paste("LAC",cDFStr,sep=""),  #  list active colonies
-   paste("LNT",cDFStr,sep=""),  #  list nests
-   paste("LAT",cDFStr,sep=""),  #  list active nests
-   paste("NCT",cDFStr,sep=""),  #  new occupied colonies
-   paste("NAC",cDFStr,sep=""),  #  new active colonies
-   paste("NNT",cDFStr,sep=""),  #  new nests
-   paste("NAT",cDFStr,sep=""),  #  new active nests
-   paste("NpC",sub("Area","A",sub("List","L",cFS)),sep="."),
-   paste("pA",cDFStr,sep="."),
-#   paste("CpA",cDFStr,sep="."),
-   paste("pO",cObsr,sep="."),
-#   paste("pOA",cObsr,sep="."),
-   "pNest2Col",
-   "ObsrMu",
-   "ObsrSD",
-#   "logitDD",
-   "Dev"
-#    ,paste("ll",nObs,sep=".")
- )
- nParm<-length(cParm)
 
 ```
- 
+
+## Initial value function
+
+```{r InitialValueFunction}
+InitFcn <- function(iChain) {
+  # Colony occupancy proportion random effect Beta parameters
+  ColPsiNu <- rnorm(n = 1, mean = OccBeta$nu, sd = OccBeta$nu / 10)
+  ColPsiNup <- rnorm(1, OccBeta$nup, OccBeta$nup / 10)
+  
+  # Nest per colony stratum + year model
+  lnNpCFS <- mvrnorm(n = 1, mu = NpCEst, Sigma = NpCVar)
+  
+  # Colony nestws proportion active random effect Beta parameters
+  pActNu <- rnorm(1, pActBeta$nu, pActBeta$nu / 10)
+  pActNup <- rnorm(1, pActBeta$nup, pActBeta$nup / 10)
+  
+  list(
+    ColPsiNu = ColPsiNu,
+    ColPsiNup = ColPsiNup,
+    lnNpCFS = lnNpCFS,
+    pActNu = pActNu,
+    pActNup = pActNup,
+    lgtObsr = rnorm(nObsr - 1, 0.89, 0.5)
+  )
+}
+
+```
+
+## Monitored Parameters
+
+```{r ParmMonitor}
+Parm <- c(
+  "LstColTot",
+  "LstActColTot",
+  "LstNestTot",
+  "LstActTot",
+  "NewColTot",
+  "NewActColTot",
+  "NewNestTot",
+  "NewActTot",
+  "NpC",
+  "pAct",
+  "pObsr",
+  "pNest2Col",
+  "ObsrMu",
+  "ObsrSD",
+  "dic"
+)
+cParm <- c(
+  #   sub("new","n",sub("ME","N",ColObs$FWSColonyID)),
+  #  list occupied colonies
+  paste("LCT", cYrStr, sep = ""),
+  #  list active colonies
+  paste("LAC", cYrStr, sep = ""),
+  #  list nests
+  paste("LNT", cYrStr, sep = ""),
+  #  list active nests
+  paste("LAT", cYrStr, sep = ""),
+  #  new occupied colonies
+  paste("NCT", cYrStr, sep = ""),
+  #  new active colonies
+  paste("NAC", cYrStr, sep = ""),
+  #  new nests
+  paste("NNT", cYrStr, sep = ""),
+  #  new active nests
+  paste("NAT", cYrStr, sep = ""),
+  # Nests per Colony
+  paste("NpC", sub(
+    "\\.Area\\.", "a", sub("\\.List\\.", "l", cFS)
+  ), sep = ""),
+  # Proportion active nests per colony
+  paste("pA", cFS, sep = ""),
+  # Observer detection rates
+  paste("pO", cObsr, sep = "."),
+  # Extra difficuly to detect colonies over nests in colonies
+  "pNest2Col",
+  # Observer detection random effect parmeters.
+  "ObsrMu",
+  "ObsrSD",
+  # Model deviance (could not monitor DIC)
+  "Dev"
+)
+nParm <- length(cParm)
+
+```
+
 ## Simulation and Initialization Parameters
 
 ```{r SimInitParms}
- nChain<-4
- nSim <- 50000    # Number of simulations desired
- setnsims(nSim)
- getnsims()
- nThin <- 1
- pctBurn <- 50
- nBurn <- floor(nThin * nSim * pctBurn / (100 - pctBurn))
- DebugMe <- FALSE
- 
+nChain <- 4
+nSim <- 50000    # Number of simulations desired
+setnsims(nSim)
+getnsims()
+nThin <- 1
+pctBurn <- 50
+nBurn <- floor(nThin * nSim * pctBurn / (100 - pctBurn))
+DebugMe <- FALSE
+
  # set.seed(Save.Seed)
  Inits <- sapply(1:nChain, InitFcn, simplify = FALSE)
  
  # JAGS model
  BUGSMdl <-
-   paste(readLines(paste("extdata/Models/", cMdl, ".mdl", sep =
-                           "")),
-         collapse = "\n")
-
+   paste(readLines(here::here(
+     paste("extdata/Models/", cMdl, ".mdl", sep =
+             "")
+   )), collapse = "\n")
+ 
 ```
 
 ## Save JAGS Model Setup
@@ -363,6 +448,7 @@ NewSmp <- left_join(
  )
 
 ```
+
 ## Run JAGS Bayesian Estimation
 
 ```{r RunJAGS}
@@ -398,6 +484,7 @@ NewSmp <- left_join(
  # iObsr<-Obs2Obsr[iObs];sapply(1:4,function(i)Inits[[i]]$lgtObsr[iCol])
  
 ```
+
 ## Combine Chain Simulations
 
 ```{r CombineChains}
@@ -428,6 +515,7 @@ NewSmp <- left_join(
  rownames(PostStat) <- cParm
  
 ```
+
 ## Print JAGS Estimates
 
 ```{r PrintJAGS}
@@ -448,6 +536,7 @@ NewSmp <- left_join(
  sink()
 
 ```
+
 ## Save JAGS Summaries
 
 ```{r JAGSSave}
@@ -464,8 +553,8 @@ NewSmp <- left_join(
  )
 
 ```
-## Simulate the Estimates
 
+## Simulate the Estimates
 
 ```{r SimEsts}
  # load(paste("TmpData/",cMdl,".PS.RData",sep=""))
@@ -496,6 +585,7 @@ NewSmp <- left_join(
  }
 
 ```
+
 ## Make Output Tables
 
 ```{r MakeTables}
@@ -582,6 +672,7 @@ PctObsrDetSmry,3,3,Obsr Det
  PctObsrDetSmry<-PctObsrDetSmry[c(4,1:3,5:nObsr),]
 
 ```
+
 ## Write the Tables
 
 ```{r WriteTables}
@@ -605,7 +696,6 @@ PctObsrDetSmry,3,3,Obsr Det
 
 ## Save the Data
 
-
 ```{r SaveData}
  saveWorkbook(wb=WorkBook, file=SmryFile) 
  
@@ -616,6 +706,3 @@ PctObsrDetSmry,3,3,Obsr Det
 # load(paste("TmpData/",cMdl,".Image.RData",sep="")) 
  
 ```
-
-
-
