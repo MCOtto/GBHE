@@ -71,16 +71,19 @@ OccBeta <- Beta(Mean = OccEst, SD = OccSD)
 
 ## Poisson GLM New Colony Model
 
-New colony per full plot GLM model with year-stratum effects
+New colony per full plot GLM model with year-stratum effects. Make the independent variables factors for models.
 
 ```{r GLMNewCol}
 tSmpColObs <- SmpColObs %>%
   mutate(
-    Year = factor(Year, cYear)
+    Year = factor(Year, cYear),
+    Str = factor(Str, cStr),
+    FS = factor(paste(Year, Frame, Str, sep = "."), cFS)
   )
+
 NpCGLM <- glm(
   Nest ~ FS - 1,
-  data = SmpColObs,
+  data = tSmpColObs,
   family = poisson
 #  ,offset = log(KMSq / 100)
 )
@@ -102,7 +105,7 @@ summary(NpCYrGLM)
 
 NpCLME <- glmer(
   Nest ~ 1 + (1|FS),
-  data = SmpColObs,
+  data = tSmpColObs,
   family = poisson
 #  ,offset = log(KMSq / 100)
 )
@@ -137,10 +140,10 @@ NpCVar <- vcov(NpCYrpStrGLM)
 ```{r ActiveNests}
 # Dropping `Frame` lowered the AIC.
 ActGLM <- glm(cbind(Act, Nest - Act) ~ FS - 1, 
-              data = SmpColObs, family = binomial)
+              data = tSmpColObs, family = binomial)
 summary(ActGLM)
 ActLME <- glmer(cbind(Act, Nest - Act) ~ 1 + (1 | FS),
-                data = SmpColObs,
+                data = tSmpColObs,
                 family = binomial)
 summary(ActLME)
 AIC(ActGLM, ActLME)
@@ -177,6 +180,7 @@ Keep the rear observer initials for a more complicated analysis.
 nAug <- 50
 tmp <- expand_grid(
   Year = cYear,
+  Frame = cFrame,
   Str = cDFStr,
   inCNA = TRUE,
   CapHist = paste("DD", "RR", sep = "."),
@@ -194,6 +198,7 @@ tmp <- expand_grid(
   ) %>%
   select(
     Year,
+    Frame,
     Str,
     inCNA,
     Front,
@@ -213,12 +218,15 @@ tmp$FWSColonyID <- cDAFWSColonyID
 # The observed capture histories had to have some sighting.
 # They could have missed it in the area search but found in the
 # list check.
-CapHistAug <- bind_rows(CapHist, tmp) %>%
+CapHistAug <- bind_rows(CapHist %>% 
+                          filter(`00` == 0), 
+                        tmp) %>%
   mutate(
     CapHist2Year = factor(Year, cYear),
     CapHist2Str = factor(Str, cDFStr),
-    CapHist2YrStr = factor(paste(Year, Str, sep = "."), cYrStr)
+    CapHist2FS = factor(paste(Year, Frame, Str, sep = "."), cFS)
   )
+nCapHistAug <- nrow(CapHistAug)
 rm(tmp)
 
 ```
@@ -229,7 +237,7 @@ Not sure how this relates.
 ```{r AugmentedColonies}
 cFWSColonyID <- sort(unique(c(RecObs$FWSColonyID, Colony$FWSColonyID)))
 cColLvl <- sort(unique(c(cFWSColonyID, cDAFWSColonyID)))
-Cmb2Col <- as.numeric(factor(CapHistAug$FWSColonyID, cColLvl))
+CapHist2Col <- as.numeric(factor(CapHistAug$FWSColonyID, cColLvl))
 sum(duplicated(CapHistAug$FWSColonyID)) # the new colonies
 
 # Only used for observer detection, not seat detection.
@@ -256,9 +264,9 @@ MltObsr[, ] <- as.matrix(CapHistAug[, c("01", "10", "11", "00")])
 dimnames(MltObsr) <- NULL
 
 # Colony indicator to match number of nests in colonies
-Obs2Col <- as.numeric(SmpColObs$FWSColonyID)
-Obs2Obsr <- as.numeric(SmpColObs$Obsr)
-Obs2Str <- as.numeric(SmpColObs$Str)
+Obs2Col <- as.numeric(tSmpColObs$FWSColonyID)
+Obs2Obsr <- as.numeric(tSmpColObs$Obsr)
+Obs2Str <- as.numeric(tSmpColObs$Str)
 
 ```
 
@@ -281,30 +289,20 @@ List of colonies by `FS`, list and new.
 ```{r JAGSData}
 # Model data
 Data <- list(
-  nStr = nStr,
   nYrStr = nYrStr,
   nFS = nFS,
-  nNewCol = nNewCol,
   nObsr = nObsr,
   nColObs = nrow(SmpColObs),
   nest = SmpColObs$Nest,
   act = SmpColObs$Act,
   Obs2Col = Obs2Col,
   Obs2Obsr = Obs2Obsr,
+  CapHist2FS = as.numeric(CapHistAug$CapHist2FS),
   ToStr = ToStr,
   nCH = nCH,
-  nAugCol =
-  Cmb2Col = Cmb2Col,
-  nCmb = nrow(MltObsr),
+  nCapHistAug = nCapHistAug,
   xCH = t(MltObsr),
   Grp = Grp,
-  # Nest and active nests per colony
-  nACH = nACH,
-  nLstCol = nLstCol,
-  #,All2FS = All2FS,
-  # All2Str = All2Str,
-  
-  # Estimates
   ExpFac = ExpFac$ExpFac
 )
 
@@ -326,6 +324,7 @@ InitFcn <- function(iChain) {
   pActNup <- rnorm(1, pActBeta$nup, pActBeta$nup / 10)
   
   list(
+#    ColZ = rep(1, length = nCapHistAug),
     ColPsiNu = ColPsiNu,
     ColPsiNup = ColPsiNup,
     lnNpCFS = lnNpCFS,
@@ -360,19 +359,19 @@ Parm <- c(
 cParm <- c(
   #   sub("new","n",sub("ME","N",ColObs$FWSColonyID)),
   #  list occupied colonies
-  paste("LCT", cYrStr, sep = ""),
+  paste("LCT", cFS, sep = ""),
   #  list active colonies
-  paste("LAC", cYrStr, sep = ""),
+  paste("LAC", cFS, sep = ""),
   #  list nests
-  paste("LNT", cYrStr, sep = ""),
+  paste("LNT", cFS, sep = ""),
   #  list active nests
-  paste("LAT", cYrStr, sep = ""),
+  paste("LAT", cFS, sep = ""),
   #  new occupied colonies
-  paste("NCT", cYrStr, sep = ""),
+  paste("NCT", cFS, sep = ""),
   #  new active colonies
-  paste("NAC", cYrStr, sep = ""),
+  paste("NAC", cFS, sep = ""),
   #  new nests
-  paste("NNT", cYrStr, sep = ""),
+  paste("NNT", cFS, sep = ""),
   #  new active nests
   paste("NAT", cYrStr, sep = ""),
   # Nests per Colony
