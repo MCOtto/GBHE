@@ -716,8 +716,7 @@ Extract capture histories
 ```{r CaptureHistories}
 CapHist <- tRecObs %>%
   filter(!is.na(CapHist)) %>%
-  select(Year, Str, PlotID, FWSColonyID, Front, Rear,
-         CapHist) %>%
+  select(Year, Str, PlotID, FWSColonyID, Front, Rear, CapHist) %>%
   mutate(
     Str = as.character(Str),
     inCNA = !grepl("ME", FWSColonyID),
@@ -734,13 +733,22 @@ CapHist <- tRecObs %>%
     values_fill = 0,
     names_repair = "minimal"
   ) %>%
-  mutate(
-    `01` = 0
-  ) %>%
+  mutate(`01` = 0) %>%
   # Could just set to zero
   mutate(`00` = ifelse(`01` > 0 |
-                       `10` > 0 | 
-                       `11` > 0, 0, 1))
+                         `10` > 0 |
+                         `11` > 0, 0, 1)) %>%
+  select(Year,
+         Str,
+         inCNA,
+         Front,
+         Rear,
+         FWSColonyID,
+         FRObsr,
+         `01`,
+         `10`,
+         `11`,
+         `00`)
 
 ```
 
