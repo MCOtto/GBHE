@@ -6,7 +6,7 @@
 # 3. Random effect for observer detection and including the ground truth (GT) observations
 # 4. Also has the extra difficulty to first detect colonies.
 # nCoef = (nYear - 1) + (nFrame - 1) + nStr = 5
-var ColZ[nAugCol], Nest[nAugCol], Act[nAugCol], xCH[nCH, nCapHist], pCH[nCH, nCapHist], ToStr[5, nFS], pObsr[nObsr]
+var ColZ[nCapHistAug], Nest[nCapHistAug], Act[nCapHistAug], xCH[nCH, nCapHistAug], pCH[nCH, nCapHistAug], ToStr[4, nFS], pObsr[nObsr]
 
 model {
   # Observer counts, including ground counts.
@@ -25,44 +25,44 @@ model {
   # histories may not reflect the number of observed, new colonies:
   # The detection protocol may not have been used on all the observed and
   # extra capture histories may have been done in the non-sample plots.
-  for (iCapHist in 1:nCapHist) {
+  for (iCapHist in 1:nCapHistAug) {
     # number of augmented capture histories
     # Capture history probability
     xCH[1:nCH, iCapHist] ~ dmulti(pCH[1:nCH, iCapHist], 1)
     
     # Calculate the new colony detection for each observer given colony size
     pCO[1, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[1, iCapHist]]) ^ 
-                         sqrt(Nest[CapHist2Col[iCapHist]]))
+                         sqrt(Nest[iCapHist]))
     pCO[2, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[2, iCapHist]]) ^ 
-                         sqrt(Nest[CapHist2Col[iCapHist]]))
+                         sqrt(Nest[iCapHist]))
     
     # Calculate the detection of combinations of different capture histories
-    pCH[1, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+    pCH[1, iCapHist] <- ColZ[iCapHist] * 
                          (1 - pCO[1, iCapHist]) * pCO[2, iCapHist]
-    pCH[2, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+    pCH[2, iCapHist] <- ColZ[iCapHist] * 
                          pCO[1, iCapHist] * (1 - pCO[2, iCapHist])
-    pCH[3, iCapHist] <- ColZ[CapHist2Col[iCapHist]] *   
+    pCH[3, iCapHist] <- ColZ[iCapHist] *   
                          pCO[1, iCapHist] * pCO[2, iCapHist]
     # Missed both didn't see or not there
-    pCH[4, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+    pCH[4, iCapHist] <- ColZ[iCapHist] * 
                          (1 - pCO[1, iCapHist]) * (1 - pCO[2, iCapHist]) +
-                         (1 - ColZ[CapHist2Col[iCapHist]])  
+                         (1 - ColZ[iCapHist])  
   }
   
   # True colonies and true nests, and active in colonies.
   # There is an estimate for each list, new, and augmented colony
-  for (iCol in 1:nAugCol) {
-    ColZ[iCol] ~ dbern(ColPsi[Aug2FS[iCol]])
-    Nest[iCol] ~ dpois(ColZ[iCol] * NpC[Aug2FS[iCol]])
-    Act[iCol] ~ dbin(pAct[Aug2FS[iCol]], Nest[iCol])
+  for (iCol in 1:nCapHistAug) {
+    ColZ[iCol] ~ dbern(ColPsi[CapHist2FS[iCol]])
+    Nest[iCol] ~ dpois(ColZ[iCol] * NpC[CapHist2FS[iCol]])
+    Act[iCol] ~ dbin(pAct[CapHist2FS[iCol]], Nest[iCol])
   }
   
   # Occupancy of active colonies
   for (iFS in 1:nFS) {
-    OccCol[iFS] = sum(ifelse(Aug2FS == iFS, Nest > 0, 0))
-    ActCol[iFS] = sum(ifelse(Aug2FS == iFS, Act > 0, 0))
-    NestTot[iFS] = sum(ifelse(Aug2FS == iFS, Nest, 0))
-    ActTot[iFS] = sum(ifelse(Aug2FS == iFS, Act, 0))
+    OccCol[iFS] = sum(ifelse(CapHist2FS == iFS, Nest > 0, 0))
+    ActCol[iFS] = sum(ifelse(CapHist2FS == iFS, Act > 0, 0))
+    NestTot[iFS] = sum(ifelse(CapHist2FS == iFS, Nest, 0))
+    ActTot[iFS] = sum(ifelse(CapHist2FS == iFS, Act, 0))
   }
   
   # Area expansion for the area frame
@@ -83,8 +83,8 @@ model {
   
   # Year-Frame-Stratum Occupancy rate random effect
   # where area frame includes data augmentation.
-  ColPsiNu ~ dunif(0.5, 100)
-  ColPsiNup ~ dunif(0.5, 100)
+  ColPsiNu ~ dunif(0.5, 1000)
+  ColPsiNup ~ dunif(0.5, 1000)
   for (iFS in 1:nFS) {
     ColPsi[iFS] ~ dbeta(ColPsiNu, ColPsiNup)
   }
@@ -94,7 +94,7 @@ model {
     NpC[iFS] <- exp(lnNpC[iFS])
   }
   
-  for (iFS in 1:nFS) {
+  for (iFS in 1:4) {
     lnNpCFS[iFS] ~ dnorm(0, 0.01) # dunif(-10,10);
   }
   
@@ -102,8 +102,8 @@ model {
   # does not change between list and area frames
   pActNu  ~ dunif(0.5, 100)
   pActNup  ~ dunif(0.5, 100)
-  for (iYrStr in 1:nYrStr) {
-    pAct[iYrStr] ~ dbeta(pActNu, pActNup)
+  for (iFS in 1:nFS) {
+    pAct[iFS] ~ dbeta(pActNu, pActNup)
   }
   
   # Observer random effects
