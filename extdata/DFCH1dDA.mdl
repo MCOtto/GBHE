@@ -1,0 +1,123 @@
+# Made from DFCH1dNP.  Found the imperfect detection is not used
+# 1. No capture histories detected for the list, so no imperfect detection estimation
+#    for the list frame
+# 2. Uses individual covariances (colony size) and data augmentation for the
+#    new colony estimation.
+# 3. Random effect for observer detection and including the ground truth (GT) observations
+# 4. Also has the extra difficulty to first detect colonies.
+# nCoef = (nYear - 1) + (nFrame - 1) + nStr = 5
+var ColZ[nAugCol], Nest[nAugCol], Act[nAugCol], xCH[nCH, nCapHist], pCH[nCH, nCapHist], ToStr[5, nFS], pObsr[nObsr]
+
+model {
+  # Observer counts, including ground counts.
+  # Some aerial counts may be higher than the ground truth
+  # These are the observations by the front, rear, and ground
+  # observers.
+  for (iObs in 1:nColObs) {
+    # nest[iObs]~dbin(pObsr[Obs2Obsr[iObs]],Nest[Obs2Col[iObs]]);
+    nest[iObs] ~ dpois(pObsr[Obs2Obsr[iObs]] * Nest[Obs2Col[iObs]])
+    
+    # act[iObs]~ dbin(pObsr[Obs2Obsr[iObs]], Act[Obs2Col[iObs]]);
+    act[iObs] ~ dpois(pObsr[Obs2Obsr[iObs]] * Act[Obs2Col[iObs]])
+  }
+  
+  # Colony detection from few capture histories.  The number of capture
+  # histories may not reflect the number of observed, new colonies:
+  # The detection protocol may not have been used on all the observed and
+  # extra capture histories may have been done in the non-sample plots.
+  for (iCapHist in 1:nCapHist) {
+    # number of augmented capture histories
+    # Capture history probability
+    xCH[1:nCH, iCapHist] ~ dmulti(pCH[1:nCH, iCapHist], 1)
+    
+    # Calculate the new colony detection for each observer given colony size
+    pCO[1, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[1, iCapHist]]) ^ 
+                         sqrt(Nest[CapHist2Col[iCapHist]]))
+    pCO[2, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[2, iCapHist]]) ^ 
+                         sqrt(Nest[CapHist2Col[iCapHist]]))
+    
+    # Calculate the detection of combinations of different capture histories
+    pCH[1, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+                         (1 - pCO[1, iCapHist]) * pCO[2, iCapHist]
+    pCH[2, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+                         pCO[1, iCapHist] * (1 - pCO[2, iCapHist])
+    pCH[3, iCapHist] <- ColZ[CapHist2Col[iCapHist]] *   
+                         pCO[1, iCapHist] * pCO[2, iCapHist]
+    # Missed both didn't see or not there
+    pCH[4, iCapHist] <- ColZ[CapHist2Col[iCapHist]] * 
+                         (1 - pCO[1, iCapHist]) * (1 - pCO[2, iCapHist]) +
+                         (1 - ColZ[CapHist2Col[iCapHist]])  
+  }
+  
+  # True colonies and true nests, and active in colonies.
+  # There is an estimate for each list, new, and augmented colony
+  for (iCol in 1:nAugCol) {
+    ColZ[iCol] ~ dbern(ColPsi[Aug2FS[iCol]])
+    Nest[iCol] ~ dpois(ColZ[iCol] * NpC[Aug2FS[iCol]])
+    Act[iCol] ~ dbin(pAct[Aug2FS[iCol]], Nest[iCol])
+  }
+  
+  # Occupancy of active colonies
+  for (iFS in 1:nFS) {
+    OccCol[iFS] = sum(ifelse(Aug2FS == iFS, Nest > 0, 0))
+    ActCol[iFS] = sum(ifelse(Aug2FS == iFS, Act > 0, 0))
+    NestTot[iFS] = sum(ifelse(Aug2FS == iFS, Nest, 0))
+    ActTot[iFS] = sum(ifelse(Aug2FS == iFS, Act, 0))
+  }
+  
+  # Area expansion for the area frame
+  for (iYrStr in 1:nYrStr) {
+    LstColTot[iYrStr] = OccCol[iYrStr]
+    LstActColTot[iYrStr] = ActCol[iYrStr]
+    LstNestTot[iYrStr] = NestTot[iYrStr]
+    LstActTot[iYrStr] = ActTot[iYrStr]
+    
+    NewColTot[iYrStr] ~ dpois(ExpFac[iYrStr] * OccCol[nYrStr + iYrStr])
+    NewActColTot[iYrStr] ~ dpois(ExpFac[iYrStr] * ActCol[nYrStr + iYrStr])
+    NewNestTot[iYrStr] ~ dpois(ExpFac[iYrStr] * NestTot[nYrStr + iYrStr])
+    NewActTot[iYrStr] ~ dpois(ExpFac[iYrStr] * ActTot[nYrStr + iYrStr])
+  }
+  
+  # Factor between nest and colony detection
+  pNest2Col ~ dbeta(1, 1)
+  
+  # Year-Frame-Stratum Occupancy rate random effect
+  # where area frame includes data augmentation.
+  ColPsiNu ~ dunif(0.5, 100)
+  ColPsiNup ~ dunif(0.5, 100)
+  for (iFS in 1:nFS) {
+    ColPsi[iFS] ~ dbeta(ColPsiNu, ColPsiNup)
+  }
+  
+  lnNpC <- ToStr %*% lnNpCFS
+  for (iFS in 1:(2 * nYrStr)) {
+    NpC[iFS] <- exp(lnNpC[iFS])
+  }
+  
+  for (iFS in 1:nFS) {
+    lnNpCFS[iFS] ~ dnorm(0, 0.01) # dunif(-10,10);
+  }
+  
+  # Assume proportion active random effect
+  # does not change between list and area frames
+  pActNu  ~ dunif(0.5, 100)
+  pActNup  ~ dunif(0.5, 100)
+  for (iYrStr in 1:nYrStr) {
+    pAct[iYrStr] ~ dbeta(pActNu, pActNup)
+  }
+  
+  # Observer random effects
+  #  logitDD~dunif(-1,1)  # Differential for detecting active nests if any
+  tau0 ~ dgamma(3.2890, 7.8014)
+  p0 ~ dbeta(1, 1)
+  
+  ObsrMu ~ dnorm(0, tau0 / p0)
+  ObsrSD <- tau0 / (1 - p0)
+  
+  for (iObsr in 1:(nObsr - 1)) {
+    # Last is the ground observations
+    lgtObsr[iObsr] ~ dnorm(ObsrMu, ObsrSD)
+    logit(pObsr[iObsr]) <- lgtObsr[iObsr]
+  }
+  pObsr[nObsr] <- 1.0  # Ground truth
+}
