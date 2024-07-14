@@ -168,7 +168,8 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
 ```
 
 ## Create Augmented Data
-
+Create augmented data for each combination of year and stratum.
+`inCNA`\ seems to be augmented or not.  It is not used.
 Keep the rear observer initials for a more complicated analysis.
 
 ```{r AugmentedData}
@@ -186,19 +187,38 @@ tmp <- expand_grid(
   `10` = 0,
   `11` = 0,
   `00` = 1
-)
-tmp$CapHist <- with(tmp, paste("DD", Rear, sep = "."))
+) %>%
+  mutate(
+    FRObsr = paste("DD", Rear, sep = "."),
+    sprintf("DA.%04d", row_number())
+  ) %>%
+  select(
+    Year,
+    Str,
+    inCNA,
+    Front,
+    Rear,
+    FWSColonyID,
+    FRObsr,
+    `01`,
+    `10`,
+    `11`,
+    `00`)
 nACH <- nrow(tmp)
 cDAFWSColonyID <- sprintf("DA.%04d", 1:nACH)
 tmp$FWSColonyID <- cDAFWSColonyID
-tCapHist <- data.frame(CapHist %>%
-                       select(-CapHist))
-colnames(tCapHist) <- colnames(tmp)
 
-CapHistAug <- bind_rows(tCapHist, tmp)
-CapHistAug$Year <- factor(CapHistAug$Year, cYear)
-CapHistAug$Str <- factor(CapHistAug$Str, cDFStr)
-Cmb2FS <- nStr + as.numeric(CapHistAug$Str)
+# Combine the observed capture histories with the augmented data
+# The augmented capture histories are not seen by both, CH = `00`.
+# The observed capture histories had to have some sighting.
+# They could have missed it in the area search but found in the
+# list check.
+CapHistAug <- bind_rows(CapHist, tmp) %>%
+  mutate(
+    CapHist2Year = factor(Year, cYear),
+    CapHist2Str = factor(Str, cDFStr),
+    CapHist2YrStr = factor(paste(Year, Str, sep = "."), cYrStr)
+  )
 rm(tmp)
 
 ```
@@ -218,54 +238,28 @@ Grp <- rbind(match(CapHistAug$Front, cObsr), match(CapHistAug$Rear, cObsr))
 ```
 
 ## Observer Detection
+`CapHist`\ is the list of capture histories.  These determine the observer probabilities.  For each colony the detection is determined by the size of the colony, the observer detection, and the seat.  Observer and seat are confounded because Danielle D'Auria was always in the front seat and the other observers in the rear.  The ground detection was assumed to be 1.
 
 Coefficient matrix for 0O, P0, and PO
 
 ```{r ObsMtx}
 nObsrs <- 2
+# nCH are all possible combination of two observers seeing of not seeing the colony or the nest.
 nCH <- 2 ^ nObsrs
-tMltObsr <- matrix(
+MltObsr <- matrix(
   0,
   nrow = nrow(CapHistAug),
   ncol = length(cCHCol),
-  dimnames = list(CapHistAug$CapHist, cCHCol)
+  dimnames = list(CapHistAug$FWSColonyID, cCHCol)
 )
-tMltObsr[, ] <- as.matrix(CapHistAug[, c("01", "10", "11", "00")])
-dimnames(tMltObsr) <- NULL
+MltObsr[, ] <- as.matrix(CapHistAug[, c("01", "10", "11", "00")])
+dimnames(MltObsr) <- NULL
 
 # Colony indicator to match number of nests in colonies
 Obs2Col <- as.numeric(SmpColObs$FWSColonyID)
 Obs2Obsr <- as.numeric(SmpColObs$Obsr)
 Obs2Str <- as.numeric(SmpColObs$Str)
 
-# Z[FWSColonyID]~bernoulli(1|Str);
-ColObs <- SmpColObs %>%
-  mutate(FS = factor(paste(Year, Frame, Str, sep = "."), cFS),
-         GndNest = ifelse(Obsr == "Gnd", Nest, NA)) %>%
-  group_by(FWSColonyID, FS) %>%
-  summarize(
-    Nest = pmax(0, max(Nest, na.rm = TRUE)),
-    Act = pmax(0, max(Act, na.rm = TRUE)),
-    GndNest = sum(GndNest, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  arrange(FWSColonyID)
-
-# If not in the sample estimate the ground?
-# For now all the ground were in sample for some reason.
-# Idx <- SmpColObs[SmpColObs$FWSColonyID %in% GroundObs[GroundObs$InSmp, "FWSColonyID"], "FWSColonyID"]
-# Now none of the ground IDs match the sample IDs.  Why?!
-# Idx <- SmpColObs[SmpColObs$FWSColonyID %in% GroundObs[, "FWSColonyID"], "FWSColonyID"]
-# ColObs[!ColObs$FWSColonyID %in% Idx, "GndNest"] <- NA
-
-# Could get the nest that had "Dirt"
-ColObs[ColObs$GndNest == 0, "GndNest"] <- NA
-
-Col2FS <- as.integer(ColObs$FS)
-nLstCol <- nrow(filter(ColObs, grepl("List", ColObs$FS)))
-nNewCol <- nrow(filter(ColObs, grepl("Area", ColObs$FS)))
-nCol <- nrow(ColObs)
- 
 ```
 
 ## Area Sample
@@ -277,8 +271,8 @@ List of colonies by `FS`, list and new.
 # NewColSmp <- NewSmry$SmpCol # and isn't used.
 
 # Make factor indices for `FS`: year-frame-stratum and `Str`
-All2FS <- as.numeric(AllCol$FS)
-All2Str <- as.numeric(factor(AllCol$Str, cStr[1:nStr]))
+# All2FS <- as.numeric(AllCol$FS)
+# All2Str <- as.numeric(factor(AllCol$Str, cStr[1:nStr]))
 
 ```
 
@@ -292,25 +286,26 @@ Data <- list(
   nFS = nFS,
   nNewCol = nNewCol,
   nObsr = nObsr,
-  nColObs = nrow(SmpColObs), # nLstCol + nNewCol + nACH
+  nColObs = nrow(SmpColObs),
   nest = SmpColObs$Nest,
   act = SmpColObs$Act,
   Obs2Col = Obs2Col,
   Obs2Obsr = Obs2Obsr,
   ToStr = ToStr,
   nCH = nCH,
+  nAugCol =
   Cmb2Col = Cmb2Col,
-  nCmb = nrow(tMltObsr),
-  xCH = t(tMltObsr),
+  nCmb = nrow(MltObsr),
+  xCH = t(MltObsr),
   Grp = Grp,
   # Nest and active nests per colony
   nACH = nACH,
   nLstCol = nLstCol,
-  All2FS = All2FS,
-  All2Str = All2Str,
+  #,All2FS = All2FS,
+  # All2Str = All2Str,
   
   # Estimates
-  ExpFac = ExpFac
+  ExpFac = ExpFac$ExpFac
 )
 
 ```
@@ -412,76 +407,75 @@ pctBurn <- 50
 nBurn <- floor(nThin * nSim * pctBurn / (100 - pctBurn))
 DebugMe <- FALSE
 
- # set.seed(Save.Seed)
- Inits <- sapply(1:nChain, InitFcn, simplify = FALSE)
- 
- # JAGS model
- BUGSMdl <-
-   paste(readLines(here::here(
-     paste("extdata/Models/", cMdl, ".mdl", sep =
-             "")
-   )), collapse = "\n")
- 
+# set.seed(Save.Seed)
+Inits <- sapply(1:nChain, InitFcn, simplify = FALSE)
+
+# JAGS model
+BUGSMdl <-
+  paste(readLines(here::here(paste(
+    "extdata/", cMdl, ".mdl", sep =
+      ""
+  ))), collapse = "\n")
+
 ```
 
 ## Save JAGS Model Setup
 
 ```{r SaveSetUp}
  # Run JAGS
- unlink("runjagsfiles")
- save(
-   cMdl,
-   nChain,
-   nSim,
-   nThin,
-   pctBurn,
-   nBurn,
-   DebugMe,
-   Data,
-   Inits,
-   InitFcn,
-   Parm,
-   cParm,
-   nParm,
-   BUGSMdl,
-   file = paste("TmpData/", cMdl, ".RData", sep = "")
- )
+unlink("runjagsfiles")
+save(
+  cMdl,
+  nChain,
+  nSim,
+  nThin,
+  pctBurn,
+  nBurn,
+  DebugMe,
+  Data,
+  Inits,
+  InitFcn,
+  Parm,
+  cParm,
+  nParm,
+  BUGSMdl,
+  file = here::here(paste("TmpData/", cMdl, ".RData", sep = ""))
+)
 
 ```
 
 ## Run JAGS Bayesian Estimation
 
 ```{r RunJAGS}
- 
- if (exists("MCMC"))
-   rm(MCMC)
- runjags.options(force.summary = TRUE)
- runjags.getOption("force.summary")
- MCMC <- run.jags(
-   model = BUGSMdl,
-   monitor = c(Parm, "deviance", "pd"),
-   data = Data,
-   n.chains = nChain,
-   inits = Inits,
-   jags = findjags(look_in = if (file.exists("M:/"))
-     "C:/Workspace/JAGS"
-     else
-       NA),
-   method = "interruptible",
-   burnin = nBurn,
-   sample = nSim * nThin,
-   thin = nThin,
-   modules = "dic",
-   plots = FALSE,
-   keep.jags.files = TRUE,
-   tempdir = TRUE
- )
- 
- # MCMC<-extend.jags(MCMC,sample=50000)
- plot(MCMC, plot.type = "trace", vars = "NewActColTot")
- 
- # iObs<-159;Data$act[iObs];iCol<-Obs2Col[iObs];sapply(1:4,function(i)Inits[[i]]$Act[iCol])
- # iObsr<-Obs2Obsr[iObs];sapply(1:4,function(i)Inits[[i]]$lgtObsr[iCol])
+if (exists("MCMC"))
+  rm(MCMC)
+runjags.options(force.summary = TRUE)
+runjags.getOption("force.summary")
+MCMC <- run.jags(
+  model = BUGSMdl,
+  monitor = c(Parm, "deviance", "pd"),
+  data = Data,
+  n.chains = nChain,
+  inits = Inits,
+  jags = findjags(look_in = if (file.exists("M:/"))
+    "C:/Workspace/JAGS"
+    else
+      NA),
+  method = "interruptible",
+  burnin = nBurn,
+  sample = nSim * nThin,
+  thin = nThin,
+  modules = "dic",
+  plots = FALSE,
+  keep.jags.files = TRUE,
+  tempdir = TRUE
+)
+
+# MCMC<-extend.jags(MCMC,sample=50000)
+plot(MCMC, plot.type = "trace", vars = "NewActColTot")
+
+# iObs<-159;Data$act[iObs];iCol<-Obs2Col[iObs];sapply(1:4,function(i)Inits[[i]]$Act[iCol])
+# iObsr<-Obs2Obsr[iObs];sapply(1:4,function(i)Inits[[i]]$lgtObsr[iCol])
  
 ```
 
@@ -519,21 +513,21 @@ DebugMe <- FALSE
 ## Print JAGS Estimates
 
 ```{r PrintJAGS}
- sink(sub("xlsx", "txt", File), append = FALSE)
- cat("Posteriors\n")
- cat("List and List: Colony Total and Active and Nest Total and Active by Stratum\n")
- print(PostStat[1:(8 * nStr), ], digits = 3)
- cat("Nest per Colony\n")
- print(PostStat[8 * nStr + 1:(2 * nStr), ], digits = 4)
- cat("Proportion Active\n")
- print(100 * PostStat[10 * nStr + 1:nStr, ], digits = 2)
- cat("Observer Detection Probabilities\n")
- print(100 * PostStat[11 * nStr + 1:nObsr, ], digits = 2)
- cat("pNest2Col,Detection RE Mean and SD\n")
- print(PostStat[nParm+-3:-1, ], digits = 3)
- cat("Deviance\n")
- print(PostStat[nParm, ], digits = 3)
- sink()
+sink(here::here(sub("xlsx", "txt", File)), append = FALSE)
+cat("Posteriors\n")
+cat("List and List: Colony Total and Active and Nest Total and Active by Stratum\n")
+print(PostStat[1:(8 * nStr), ], digits = 3)
+cat("Nest per Colony\n")
+print(PostStat[8 * nStr + 1:(2 * nStr), ], digits = 4)
+cat("Proportion Active\n")
+print(100 * PostStat[10 * nStr + 1:nStr, ], digits = 2)
+cat("Observer Detection Probabilities\n")
+print(100 * PostStat[11 * nStr + 1:nObsr, ], digits = 2)
+cat("pNest2Col,Detection RE Mean and SD\n")
+print(PostStat[nParm+-3:-1, ], digits = 3)
+cat("Deviance\n")
+print(PostStat[nParm, ], digits = 3)
+sink()
 
 ```
 
@@ -591,25 +585,25 @@ DebugMe <- FALSE
 ```{r MakeTables}
 
  TblLoc<-read.table(
-   textConnection("Table,Row,Col,Sheet
-PostStat,3,1,MdlParm
-LstColSmry,4,3,Estimates
-LstActColSmry,9,3,Estimates
-LstNestSmry,14,3,Estimates
-LstActSmry,19,3,Estimates
-NewColSmry,4,9,Estimates
-NewActColSmry,9,9,Estimates
-NewNestSmry,14,9,Estimates
-NewActSmry,19,9,Estimates
-DFColSmry,4,15,Estimates
-DFActColSmry,9,15,Estimates
-DFNestSmry,14,15,Estimates
-DFActSmry,19,15,Estimates
-DFMean,4,23,Estimates
-DFSD,9,23,Estimates
-CVSmry,14,23,Estimates
-PctLstCovSmry,24,3,Estimates
-PctObsrDetSmry,3,3,Obsr Det
+   textConnection("Table,Row,Col,Sheet,Title
+PostStat,3,1,MdlParm,'Model Parmeters'
+LstColSmry,4,3,Estimates,'List Colonies'
+LstActColSmry,9,3,Estimates,'Active List Colonies'
+LstNestSmry,14,3,Estimates,'List Nest per Colony'
+LstActSmry,19,3,Estimates,'Active per Colony'
+NewColSmry,4,9,Estimates,'New Colonies'
+NewActColSmry,9,9,Estimates,'New Active Colonies'
+NewNestSmry,14,9,Estimates,'New Nests'
+NewActSmry,19,9,Estimates,'New Active Nests'
+DFColSmry,4,15,Estimates,'Dual-Frame Colonies'
+DFActColSmry,9,15,Estimates,'Dual-Frame Colonies'
+DFNestSmry,14,15,Estimates,'Dual-Frame Colonies'
+DFActSmry,19,15,Estimates,'Dual-Frame Active Colonies'
+DFMean,4,23,Estimates,'Dual-Frame Means'
+DFSD,9,23,Estimates,'Dual-Frame SDs'
+CVSmry,14,23,Estimates,'Coefficients of Variation'
+PctLstCovSmry,24,3,Estimates,'Percent List Coverage'
+PctObsrDetSmry,3,3,'Obsr Det','Percent Observer Detection'
 "),sep=",",header=TRUE,stringsAsFactors=FALSE)
  
 # Dual-Frame Estimates
@@ -676,21 +670,31 @@ PctObsrDetSmry,3,3,Obsr Det
 ## Write the Tables
 
 ```{r WriteTables}
-# Open workbook and get sheets 
- SmryFile<-sub("xlsx","Smry.xlsx",File)
- if(file.exists(SmryFile){
-   
- }
- WorkBook <- loadWorkbook(SmryFile)  
- Sheet <- getSheets(WorkBook)
+# Open workbook and get sheets
+SmryFile <- str_sub(File, "xlsx", "Smry.xlsx")
+if (file.exists(SmryFile)) {
+  file.remove(SmryFile)
+}
+WorkBook <- loadWorkbook(SmryFile)
+Sheet <- getSheets(WorkBook)
 
- for(iTbl in 1:nrow(TblLoc)) {
-# iTbl<-1
-   addDataFrame(eval(parse(text=TblLoc[iTbl,"Table"])), 
-                sheet=Sheet[[TblLoc[iTbl,"Sheet"]]], 
-                startRow=TblLoc[iTbl,"Row"], startColumn=TblLoc[iTbl,"Col"], 
-                col.names=FALSE, row.names=iTbl==1, showNA=FALSE)
- } 
+for (iTbl in 1:nrow(TblLoc)) {
+  # iTbl<-1
+  addDataFrame(
+    eval(parse(text = TblLoc[iTbl, "Table"])),
+    sheet = Sheet[[TblLoc[iTbl, "Sheet"]]],
+    startRow = TblLoc[iTbl, "Row"],
+    startColumn = TblLoc[iTbl, "Col"],
+    col.names = FALSE,
+    row.names = iTbl == 1,
+    showNA = FALSE
+  )
+  # Title over the table
+  setCellValue(cell = c(TableLoc[iTbl, "Row", ] - 1, 
+                        TableLoc[iTbl, "Col"]), 
+               value = TableLoc[iTbl, "Title"])
+  
+}
 
 ```
 
