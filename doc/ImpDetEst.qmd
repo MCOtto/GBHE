@@ -265,7 +265,8 @@ dimnames(MltObsr) <- NULL
 
 # Colony indicator to match number of nests in colonies
 Obs2Col <- as.numeric(tSmpColObs$FWSColonyID)
-Obs2Obsr <- as.numeric(tSmpColObs$Obsr)
+# Reduce the observers to seat where dirt is ground
+Obs2Obsr <- as.numeric(tSmpColObs$fSeat)
 Obs2Str <- as.numeric(tSmpColObs$Str)
 
 ```
@@ -291,7 +292,6 @@ List of colonies by `FS`, list and new.
 Data <- list(
   nYrStr = nYrStr,
   nFS = nFS,
-  nObsr = nObsr,
   nColObs = nrow(SmpColObs),
   nest = SmpColObs$Nest,
   act = SmpColObs$Act,
@@ -302,7 +302,7 @@ Data <- list(
   nCH = nCH,
   nCapHistAug = nCapHistAug,
   xCH = t(MltObsr),
-  Grp = Grp,
+  xCHTot = as.integer(apply(MltObsr, 1, sum)),
   ExpFac = ExpFac$ExpFac
 )
 
@@ -313,8 +313,38 @@ Data <- list(
 ```{r InitialValueFunction}
 InitFcn <- function(iChain) {
   # Colony occupancy proportion random effect Beta parameters
-  ColPsiNu <- rnorm(n = 1, mean = OccBeta$nu, sd = OccBeta$nu / 10)
-  ColPsiNup <- rnorm(1, OccBeta$nup, OccBeta$nup / 10)
+  ColPsiNu <- pmax(0.6, pmin(100, rnorm(
+    n = 1,
+    mean = OccBeta$nu,
+    sd = OccBeta$nu / 10
+  )))
+  ColPsiNup <- pmax(0.6, pmin(100, rnorm(
+    n = 1,
+    mean = OccBeta$nup,
+    sd = OccBeta$nup / 10
+  )))
+  
+  # The observed colonies require ColZ = 
+  nCHSeen <- 39
+  ColPsi0 <- rbeta(1, ColPsiNu, ColPsiNup)
+  
+  # Any colony that is positive needs a ColZ of 1.  
+  # MaxCol <- left_join(
+  #   CapHistAug %>%
+  #     mutate(
+  #       ID = row_number()
+  #     ) %>%
+  #     select(ID, FWSColonyID),
+  #   SmpColObs %>%
+  #     group_by(FWSColonyID) %>%
+  #     summarize(PosCol = as.integer(max(Nest, Act) > 0)),
+  #   by = "FWSColonyID"
+  # )
+  ColZ <- c(rep(1, length = nCHSeen),
+            rep(1, length = nCapHistAug - nCHSeen)
+            # rbinom(nCapHistAug - nCHSeen, size = 1, prob = ColPsi0)
+            )
+  pNest2Col <- rbeta(1, 9, 1)
   
   # Nest per colony stratum + year model
   lnNpCFS <- mvrnorm(n = 1, mu = NpCEst, Sigma = NpCVar)
@@ -322,15 +352,20 @@ InitFcn <- function(iChain) {
   # Colony nestws proportion active random effect Beta parameters
   pActNu <- rnorm(1, pActBeta$nu, pActBeta$nu / 10)
   pActNup <- rnorm(1, pActBeta$nup, pActBeta$nup / 10)
+
+  
+  # Observer detections but ground = 3 is fixed
+  # pObsr <- rbeta(2)
   
   list(
-#    ColZ = rep(1, length = nCapHistAug),
+    #    ColZ = rep(1, length = nCapHistAug),
+    ColZ = ColZ,
     ColPsiNu = ColPsiNu,
     ColPsiNup = ColPsiNup,
     lnNpCFS = lnNpCFS,
+    pNest2Col = pNest2Col,
     pActNu = pActNu,
-    pActNup = pActNup,
-    lgtObsr = rnorm(nObsr - 1, 0.89, 0.5)
+    pActNup = pActNup
   )
 }
 
@@ -352,8 +387,6 @@ Parm <- c(
   "pAct",
   "pObsr",
   "pNest2Col",
-  "ObsrMu",
-  "ObsrSD",
   "dic"
 )
 cParm <- c(
@@ -385,8 +418,7 @@ cParm <- c(
   # Extra difficuly to detect colonies over nests in colonies
   "pNest2Col",
   # Observer detection random effect parmeters.
-  "ObsrMu",
-  "ObsrSD",
+  "pObsr",
   # Model deviance (could not monitor DIC)
   "Dev"
 )
