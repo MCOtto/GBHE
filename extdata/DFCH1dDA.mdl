@@ -7,6 +7,12 @@
 # 4. Also has the extra difficulty to first detect colonies.
 # nCoef = (nYear - 1) + (nFrame - 1) + nStr = 5
 var ColZ[nCapHistAug], Nest[nCapHistAug], Act[nCapHistAug], xCH[nCH, nCapHistAug], pCH[nCH, nCapHistAug], ToStr[4, nFS], pObsr[nObsr]
+data{
+  # Front observer = 1, Rear = 2, Ground = 3
+  Front <- 1
+  Rear <- 2
+  Ground <- 3
+}
 
 model {
   # Observer counts, including ground counts.
@@ -28,12 +34,12 @@ model {
   for (iCapHist in 1:nCapHistAug) {
     # number of augmented capture histories
     # Capture history probability
-    xCH[1:nCH, iCapHist] ~ dmulti(pCH[1:nCH, iCapHist], 1)
+    xCH[1:nCH, iCapHist] ~ dmulti(pCH[1:nCH, iCapHist], xCHTot[iCapHist])
     
     # Calculate the new colony detection for each observer given colony size
-    pCO[1, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[1, iCapHist]]) ^ 
+    pCO[1, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Front]) ^ 
                          sqrt(Nest[iCapHist]))
-    pCO[2, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Grp[2, iCapHist]]) ^ 
+    pCO[2, iCapHist] <- (1 - (1 - pNest2Col * pObsr[Rear]) ^ 
                          sqrt(Nest[iCapHist]))
     
     # Calculate the detection of combinations of different capture histories
@@ -107,17 +113,9 @@ model {
   }
   
   # Observer random effects
-  #  logitDD~dunif(-1,1)  # Differential for detecting active nests if any
-  tau0 ~ dgamma(3.2890, 7.8014)
-  p0 ~ dbeta(1, 1)
-  
-  ObsrMu ~ dnorm(0, tau0 / p0)
-  ObsrSD <- tau0 / (1 - p0)
-  
-  for (iObsr in 1:(nObsr - 1)) {
-    # Last is the ground observations
-    lgtObsr[iObsr] ~ dnorm(ObsrMu, ObsrSD)
-    logit(pObsr[iObsr]) <- lgtObsr[iObsr]
-  }
-  pObsr[nObsr] <- 1.0  # Ground truth
+  # Front = 1, Rear = 2, Ground = 3
+  # We have more informed priors from last year.
+  pObsr[Front] ~ dbeta(2 * 0.98, 2 * 0.02)
+  pObsr[Rear] ~ dbeta(2 * 0.85, 2 * 0.15)
+  pObsr[Ground] <- 1.0  # Ground truth
 }
