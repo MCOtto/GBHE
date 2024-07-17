@@ -335,9 +335,11 @@ Simple means and SDs for colony occupancy, and nest and active nests per colony.
 Could use the counts in a random effects Poisson model to estimate the stratum rates. Let the proportion of active colonies be Act\[s,o\] == 0.
 
 ```{r ListEst}
+cSeat <- c("Front", "Rear", "Dirt")
+
 LstData <- SmpColObs %>%
   filter(Frame == "List") %>%
-  mutate(Seat = factor(Seat, c("Dirt", "Front", "Rear")),
+  mutate(Seat = factor(Seat, cSeat),
          fSeat = relevel(Seat, "Front"))
 LstEst <- LstData %>%
   mutate(
@@ -817,6 +819,7 @@ save(
   NestSmry,
   ActSmry,
   ObsrSeat,
+  cSeat,
   cObsr,
   nObsr,
   RearAreaObsr,
