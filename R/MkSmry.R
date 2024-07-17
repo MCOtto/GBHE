@@ -11,17 +11,34 @@
 #'
 MkSmry <- function(Smry) {
   if (class(Smry) == "rv") {
-    Tot <- sum(Smry)
-    Sim <- c(Smry, Tot)
-    Smry <- RVSmry(Names = cStr, Sim, probs = Probs)
-    Smry <- data.frame(Smry, row.names = 1)
+    Tot1 <- sum(Smry[1:nStr])
+    Tot2 <- sum(Smry[nStr + 1:nStr])
+    Sim <- c(Smry[1:nStr], Tot1, Smry[nStr + 1:nStr], Tot2)
+    Smry <- RVSmry(Series = Sim, probs = Probs)
+    Smry <- bind_cols(YrStrNames, Smry)
   } else {
-    Tot <- c(sum(Smry$Mean), sqrt(sum(Smry$SD ^ 2)))
-    Smry <- rbind(Smry, Tot)
-    Q <- t(apply(Smry, 1, function(x)
-      qnorm(Probs, x[1], x[2])))
-    Smry <- data.frame(Smry, Q, row.names = cStr)
+    Tot1 <- c(sum(Smry[1:nStr, "Mean"]), sqrt(sum(Smry[1:nStr, "SD"] ^ 2)))
+    Tot2 <- c(sum(Smry[nStr + 1:nStr, "Mean"]), sqrt(sum(Smry[nStr + 1:nStr, "SD"] ^ 2)))
+    # We assume the quantiles are gamma, more realistic than normal
+    TotGamma1 <- Gamma(Mean = Tot1[1], SD = Tot1[2])
+    TotGamma2 <- Gamma(Mean = Tot2[1], SD = Tot2[2])
+    
+    Smry <- bind_cols(YrStrNames, bind_rows(Smry[1:nStr, ], c(
+      TotGamma1,
+      qgamma(
+        p = Probs,
+        shape = TotGamma1[1, 1],
+        rate = TotGamma1[1, 2]
+      )
+    ), Smry[nStr + 1:nStr], c(
+      TotGamma2,
+      qgamma(
+        p = Probs,
+        shape = TotGamma2[1, 1],
+        rate = TotGamma2[1, 2]
+      )
+    )))
   }
-  colnames(Smry) <- c("Mean", "SD", "Median", "LC95", "UC95")
+  colnames(Smry) <- c("Year", "Stratum", "Mean", "SD", "Median", "LC95", "UC95")
   return(Smry)
 }
