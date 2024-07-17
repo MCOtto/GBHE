@@ -115,7 +115,7 @@ model {
   # Observer random effects
   # Front = 1, Rear = 2, Ground = 3
   # We have more informed priors from last year.
-  pObsr[Front] ~ dbeta(2 * 0.98, 2 * 0.02)
-  pObsr[Rear] ~ dbeta(2 * 0.85, 2 * 0.15)
+  pObsr[Front] ~ dbeta(1, 1)
+  pObsr[Rear] ~ dbeta(1, 1)
   pObsr[Ground] <- 1.0  # Ground truth
 }
