@@ -38,20 +38,20 @@ load(file = here::here("output/GBHE.RData"))
 load(file =here::here("output/CochranEst.RData"))
 Probs<-c(0.5,0.05,0.95)
 cMdl <- "DFCH1dDA" 
-File<-paste("Doc/Notes/",cMdl,".xlsx",sep="")
+File<-paste("doc/Notes/",cMdl,".xlsx",sep="")
 
 ```
 
 ## Loaded Data
+Use the seat for observers, since we only have 39 capture histories.
 
 ```{r LoadedData}
-
-# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GrndObs -> GroundObs, cFS, AllCol -> AllColonies, 
-#  
+# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GrndObs -> GroundObs, cFS, AllCol -> AllColonies,
+#
 #  List nests per colony model: only stratum and frame effects
 # FSEst, FSVar
-# LastFirst, cObsr, nObsr, ObsrSeat
-# RearAreaObsr, nRearAreaObsr, cCHCol 
+# LastFirst, cObsr, nObsr, ObsrSeat cSeat
+# RearAreaObsr, nRearAreaObsr, cCHCol
 
 ```
 
@@ -251,6 +251,8 @@ Grp <- rbind(match(CapHistAug$Front, cObsr), match(CapHistAug$Rear, cObsr))
 Coefficient matrix for 0O, P0, and PO
 
 ```{r ObsMtx}
+
+# Number of observers watching at a time, two, front and rear.
 nObsrs <- 2
 # nCH are all possible combination of two observers seeing of not seeing the colony or the nest.
 nCH <- 2 ^ nObsrs
@@ -392,19 +394,19 @@ Parm <- c(
 cParm <- c(
   #   sub("new","n",sub("ME","N",ColObs$FWSColonyID)),
   #  list occupied colonies
-  paste("LCT", cFS, sep = ""),
+  paste("LCT", cYrStr, sep = ""),
   #  list active colonies
-  paste("LAC", cFS, sep = ""),
+  paste("LAC", cYrStr, sep = ""),
   #  list nests
-  paste("LNT", cFS, sep = ""),
+  paste("LNT", cYrStr, sep = ""),
   #  list active nests
-  paste("LAT", cFS, sep = ""),
+  paste("LAT", cYrStr, sep = ""),
   #  new occupied colonies
-  paste("NCT", cFS, sep = ""),
+  paste("NCT", cYrStr, sep = ""),
   #  new active colonies
-  paste("NAC", cFS, sep = ""),
+  paste("NAC", cYrStr, sep = ""),
   #  new nests
-  paste("NNT", cFS, sep = ""),
+  paste("NNT", cYrStr, sep = ""),
   #  new active nests
   paste("NAT", cYrStr, sep = ""),
   # Nests per Colony
@@ -414,11 +416,9 @@ cParm <- c(
   # Proportion active nests per colony
   paste("pA", cFS, sep = ""),
   # Observer detection rates
-  paste("pO", cObsr, sep = "."),
+  paste("p", cSeat, sep = ""),
   # Extra difficuly to detect colonies over nests in colonies
   "pNest2Col",
-  # Observer detection random effect parmeters.
-  "pObsr",
   # Model deviance (could not monitor DIC)
   "Dev"
 )
@@ -547,15 +547,13 @@ plot(MCMC, plot.type = "trace", vars = "NewActColTot")
 sink(here::here(sub("xlsx", "txt", File)), append = FALSE)
 cat("Posteriors\n")
 cat("List and List: Colony Total and Active and Nest Total and Active by Stratum\n")
-print(PostStat[1:(8 * nStr), ], digits = 3)
+print(PostStat[grepl("[LN][CAN][TC]", cParm), ], digits = 3)
 cat("Nest per Colony\n")
-print(PostStat[8 * nStr + 1:(2 * nStr), ], digits = 4)
+print(PostStat[grepl("NpC", cParm), ], digits = 4)
 cat("Proportion Active\n")
-print(100 * PostStat[10 * nStr + 1:nStr, ], digits = 2)
-cat("Observer Detection Probabilities\n")
-print(100 * PostStat[11 * nStr + 1:nObsr, ], digits = 2)
-cat("pNest2Col,Detection RE Mean and SD\n")
-print(PostStat[nParm+-3:-1, ], digits = 3)
+print(PostStat[grepl("pA", cParm), ], digits = 2)
+cat("Detection Mean and SD\n")
+print(PostStat[73:76, ], digits = 3)
 cat("Deviance\n")
 print(PostStat[nParm, ], digits = 3)
 sink()
@@ -574,7 +572,7 @@ sink()
    nBurn,
    MCMC,
    PostStat,
-   file = paste("TmpData/", cMdl, ".PS.RData", sep = "")
+   file = here::here(paste("TmpData/", cMdl, ".PS.RData", sep = ""))
  )
 
 ```
@@ -582,7 +580,7 @@ sink()
 ## Simulate the Estimates
 
 ```{r SimEsts}
- # load(paste("TmpData/",cMdl,".PS.RData",sep=""))
+ # load(here::here(paste("TmpData/",cMdl,".PS.RData",sep="")))
  # Extract the 
 # tmp4<-tMCMC
  nSim<-dim(MCMC$mcmc[[1]])[1]
@@ -614,87 +612,89 @@ sink()
 ## Make Output Tables
 
 ```{r MakeTables}
+YrStrNames <- expand_grid(Year = cYear, Stratum = cStr)
 
- TblLoc<-read.table(
-   textConnection("Table,Row,Col,Sheet,Title
+TblLoc <- read.table(
+  textConnection(
+    "Table,Row,Col,Sheet,Title
 PostStat,3,1,MdlParm,'Model Parmeters'
 LstColSmry,4,3,Estimates,'List Colonies'
-LstActColSmry,9,3,Estimates,'Active List Colonies'
-LstNestSmry,14,3,Estimates,'List Nest per Colony'
-LstActSmry,19,3,Estimates,'Active per Colony'
-NewColSmry,4,9,Estimates,'New Colonies'
-NewActColSmry,9,9,Estimates,'New Active Colonies'
-NewNestSmry,14,9,Estimates,'New Nests'
-NewActSmry,19,9,Estimates,'New Active Nests'
-DFColSmry,4,15,Estimates,'Dual-Frame Colonies'
-DFActColSmry,9,15,Estimates,'Dual-Frame Colonies'
-DFNestSmry,14,15,Estimates,'Dual-Frame Colonies'
-DFActSmry,19,15,Estimates,'Dual-Frame Active Colonies'
-DFMean,4,23,Estimates,'Dual-Frame Means'
-DFSD,9,23,Estimates,'Dual-Frame SDs'
-CVSmry,14,23,Estimates,'Coefficients of Variation'
-PctLstCovSmry,24,3,Estimates,'Percent List Coverage'
+LstActColSmry,15,3,Estimates,'Active List Colonies'
+LstNestSmry,26,3,Estimates,'List Nest per Colony'
+LstActSmry,37,3,Estimates,'Active per Colony'
+NewColSmry,4,11,Estimates,'New Colonies'
+NewActColSmry,15,11,Estimates,'New Active Colonies'
+NewNestSmry,26,11,Estimates,'New Nests'
+NewActSmry,37,11,Estimates,'New Active Nests'
+DFColSmry,4,19,Estimates,'Dual-Frame Colonies'
+DFActColSmry,15,19,Estimates,'Dual-Frame Colonies'
+DFNestSmry,26,19,Estimates,'Dual-Frame Colonies'
+DFActSmry,37,19,Estimates,'Dual-Frame Active Colonies'
+DFMean,4,27,Estimates,'Dual-Frame Means'
+DFSD,15,27,Estimates,'Dual-Frame SDs'
+CVSmry,26,27,Estimates,'Coefficients of Variation'
+PctLstCovSmry,37,27,Estimates,'Percent List Coverage'
 PctObsrDetSmry,3,3,'Obsr Det','Percent Observer Detection'
-"),sep=",",header=TRUE,stringsAsFactors=FALSE)
- 
-# Dual-Frame Estimates
- # Colonies
- DFColTot<-LstColTot+NewColTot
- DFActColTot<-LstActColTot+NewActColTot
- DFNestTot<-LstNestTot+NewNestTot
- DFActTot<-LstActTot+NewActTot
+"),
+sep = ",",
+header = TRUE,
+stringsAsFactors = FALSE
+)
 
- for(iTbl in TblLoc[c(2:9,10:13),"Table"]){
-# iTbl<-TblLoc[13,"Table"]
-   iTot<-sub("Smry","Tot",iTbl)
-   assign(iTbl,eval(parse(text=paste("MkSmry(",iTot,")"))))
-#   assign(iTbl,eval(parse(text=paste("RVSmry(Series=",iTot,",probs=Probs)"))))
- }
+# Dual-Frame Estimates
+# Colonies
+DFColTot <- LstColTot + NewColTot
+DFActColTot <- LstActColTot + NewActColTot
+DFNestTot <- LstNestTot + NewNestTot
+DFActTot <- LstActTot + NewActTot
 
 # List coverage
- PctLstCovTot<-c(100*LstColTot/DFColTot,100*sum(LstColTot)/sum(DFColTot))
+tPctLstCovTot <- 100 * LstColTot / DFColTot
+Tot1 <- 100 * sum(LstColTot[1:nStr]) / sum(DFColTot[1:nStr])
+Tot2 <- 100 * sum(LstColTot[nStr + 1:nStr]) / sum(DFColTot[nStr + 1:nStr])
+Sim <- c(tPctLstCovTot[1:nStr], Tot1, tPctLstCovTot[nStr + 1:nStr], Tot2)
+Smry <- RVSmry(Series = Sim, probs = Probs)
+PctLstCovSmry <- bind_cols(YrStrNames, Smry)
+rm(tPctLstCovTot, Tot1, Tot2, Sim, Smry)
+
+for (iTbl in TblLoc[c(2:9, 10:13), "Table"]) {
+  # iTbl<-TblLoc[2,"Table"]
+  iTot <- sub("Smry", "Tot", iTbl)
+  assign(iTbl, eval(parse(text = paste(
+    "MkSmry(", iTot, ")"
+  ))))
+  #   assign(iTbl,eval(parse(text=paste("RVSmry(Series=",iTot,",probs=Probs)"))))
+}
 
 # Estimates summary in terms of active nests
- DFMean<-data.frame(
-   List=LstActSmry$Mean,
-   New=NewActSmry$Mean,
-   DF=DFActSmry$Mean,
-   row.names=cStr
- )
- 
-# SD's    
- DFSD<-data.frame(
-   List=LstActSmry$SD,
-   New=NewActSmry$SD,
-   DF=DFActSmry$SD,
-   row.names=cStr
- )
- 
+DFMean <- bind_cols(
+  YrStrNames,
+  List = LstActSmry$Mean,
+  New = NewActSmry$Mean,
+  DF = DFActSmry$Mean,
+)
+
+# SD's
+DFSD <- bind_cols(YrStrNames,
+                  List = LstActSmry$SD,
+                  New = NewActSmry$SD,
+                  DF = DFActSmry$SD)
 # Coefficient of Variation
- tLstCV<-LstActSmry%>%
-   mutate(
-     PctCV=100*SD/Mean
-   )
- 
- tNewCV<-NewActSmry%>%
-   mutate(
-     PctCV=100*SD/Mean
-   )
- 
- tDFCV<-DFActSmry%>%
-   mutate(
-     PctCV=100*SD/Mean
-   )
- 
- CVSmry<-data.frame(
-   tLstCV$PctCV,tNewCV$PctCV,tDFCV$PctCV,
-   row.names=cStr
- )
- colnames(CVSmry)<-c("List","New","DF")
+tLstCV <- LstActSmry %>%
+  mutate(PctCV = 100 * SD / Mean)
+
+tNewCV <- NewActSmry %>%
+  mutate(PctCV = 100 * SD / Mean)
+
+tDFCV <- DFActSmry %>%
+  mutate(PctCV = 100 * SD / Mean)
+
+CVSmry <- bind_cols(YrStrNames, tLstCV$PctCV, tNewCV$PctCV, tDFCV$PctCV)
+colnames(CVSmry) <- c("Year", "Stratum", "List", "New", "DF")
 
 # Percent Observer Detection
- PctObsrDetSmry<-RVSmry(Series=100*pObsr,probs=Probs)
- PctObsrDetSmry<-PctObsrDetSmry[c(4,1:3,5:nObsr),]
+# Only have
+PctObsrDetSmry <- bind_cols(Seat = cSeat, RVSmry(Series = 100 * pObsr, probs = Probs))
 
 ```
 
@@ -702,29 +702,36 @@ PctObsrDetSmry,3,3,'Obsr Det','Percent Observer Detection'
 
 ```{r WriteTables}
 # Open workbook and get sheets
-SmryFile <- str_sub(File, "xlsx", "Smry.xlsx")
+SmryFile <- here::here(stringr::str_replace(File, "xlsx", "Smry.xlsx"))
 if (file.exists(SmryFile)) {
-  file.remove(SmryFile)
+  WorkBook <- loadWorkbook(file = SmryFile)
+} else {
+  WorkBook <- createWorkbook(type = "xlsx")
+  for (iSheet in c("MdlParm", "Estimates", "Obsr Det")) {
+    createSheet(WorkBook, sheetName = iSheet)
+  }
 }
-WorkBook <- loadWorkbook(SmryFile)
 Sheet <- getSheets(WorkBook)
+
+# Try making a rows and columns of the table that I fill
+Rows <- createRow(sheet = Sheet[["Estimates"]], rowIndex = 1:45)
+Cell <- createCell(Rows, colIndex = 1:33)
 
 for (iTbl in 1:nrow(TblLoc)) {
   # iTbl<-1
   addDataFrame(
-    eval(parse(text = TblLoc[iTbl, "Table"])),
+    x = as.data.frame(eval(parse(text = TblLoc[iTbl, "Table"]))),
     sheet = Sheet[[TblLoc[iTbl, "Sheet"]]],
     startRow = TblLoc[iTbl, "Row"],
     startColumn = TblLoc[iTbl, "Col"],
-    col.names = FALSE,
+    col.names = TRUE,
     row.names = iTbl == 1,
     showNA = FALSE
   )
   # Title over the table
-  setCellValue(cell = c(TableLoc[iTbl, "Row", ] - 1, 
-                        TableLoc[iTbl, "Col"]), 
-               value = TableLoc[iTbl, "Title"])
-  
+  setCellValue(cell = Cell[[TblLoc[iTbl, "Row"] - 1, 
+                            TblLoc[iTbl, "Col"]]], 
+               value = as.character(TblLoc[iTbl, "Title"]))
 }
 
 ```
@@ -732,12 +739,12 @@ for (iTbl in 1:nrow(TblLoc)) {
 ## Save the Data
 
 ```{r SaveData}
- saveWorkbook(wb=WorkBook, file=SmryFile) 
- 
+saveWorkbook(wb = WorkBook, file = SmryFile)
+
  rm(tmp,tmp2,tmp3,tmp4)
  
  rm(MCMC)
- save.image(paste("TmpData/",cMdl,".Image.RData",sep="")) 
+ save.image(here::here(paste("TmpData/",cMdl,".Image.RData",sep=""))) 
 # load(paste("TmpData/",cMdl,".Image.RData",sep="")) 
  
 ```
