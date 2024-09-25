@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey 2015 and 2023"
 author: "Mark C. Otto"
-date: "10 July 2024"
+date: "18 July 2024"
 echo: false
 format: docx
 editor: source
@@ -27,6 +27,7 @@ library(runjags)
 library(modeest)
 library(R2WinBUGS)
 library(xlsx)
+library(ggplot2)
 
 source("/Users/MOtto/Ref/RLib/logit.R")
 source("/Users/MOtto/Ref/RLib/expit.R")
@@ -35,10 +36,11 @@ source(here::here("R/MkSmry.R"))
 
 # Load the data
 load(file = here::here("output/GBHE.RData"))
-load(file =here::here("output/CochranEst.RData"))
-Probs<-c(0.5,0.05,0.95)
-cMdl <- "DFCH1dDA" 
-File<-paste("doc/Notes/",cMdl,".xlsx",sep="")
+load(file = here::here("output/CochranEst.RData"))
+Probs <- c(0.5, 0.05, 0.95)
+cMdl <- "DFCH1dDA"
+File <- paste("doc/Notes/", cMdl, ".xlsx", sep = "")
+lEst <- FALSE
 
 ```
 
@@ -417,7 +419,7 @@ cParm <- c(
   paste("pA", cFS, sep = ""),
   # Observer detection rates
   paste("p", cSeat, sep = ""),
-  # Extra difficuly to detect colonies over nests in colonies
+  # Extra difficulty to detect colonies over nests in colonies
   "pNest2Col",
   # Model deviance (could not monitor DIC)
   "Dev"
@@ -478,36 +480,40 @@ save(
 ## Run JAGS Bayesian Estimation
 
 ```{r RunJAGS}
-if (exists("MCMC"))
-  rm(MCMC)
-runjags.options(force.summary = TRUE)
-runjags.getOption("force.summary")
-MCMC <- run.jags(
-  model = BUGSMdl,
-  monitor = c(Parm, "deviance", "pd"),
-  data = Data,
-  n.chains = nChain,
-  inits = Inits,
-  jags = findjags(look_in = if (file.exists("M:/"))
-    "C:/Workspace/JAGS"
-    else
-      NA),
-  method = "interruptible",
-  burnin = nBurn,
-  sample = nSim * nThin,
-  thin = nThin,
-  modules = "dic",
-  plots = FALSE,
-  keep.jags.files = TRUE,
-  tempdir = TRUE
-)
+if(lEst) {
+  if (exists("MCMC"))
+    rm(MCMC)
+  runjags.options(force.summary = TRUE)
+  runjags.getOption("force.summary")
+  MCMC <- run.jags(
+    model = BUGSMdl,
+    monitor = c(Parm, "deviance", "pd"),
+    data = Data,
+    n.chains = nChain,
+    inits = Inits,
+    jags = findjags(look_in = if (file.exists("M:/"))
+      "C:/Workspace/JAGS"
+      else
+        NA),
+    method = "interruptible",
+    burnin = nBurn,
+    sample = nSim * nThin,
+    thin = nThin,
+    modules = "dic",
+    plots = FALSE,
+    keep.jags.files = TRUE,
+    tempdir = TRUE
+  )
+} else {
+  load(file = here::here(paste("TmpData/", cMdl, ".PS.RData", sep = "")))
+}
 
 # MCMC<-extend.jags(MCMC,sample=50000)
 plot(MCMC, plot.type = "trace", vars = "NewActColTot")
 
 # iObs<-159;Data$act[iObs];iCol<-Obs2Col[iObs];sapply(1:4,function(i)Inits[[i]]$Act[iCol])
 # iObsr<-Obs2Obsr[iObs];sapply(1:4,function(i)Inits[[i]]$lgtObsr[iCol])
- 
+
 ```
 
 ## Combine Chain Simulations
@@ -561,19 +567,20 @@ sink()
 ```
 
 ## Save JAGS Summaries
+If already estimated these summaries were loaded above.
 
 ```{r JAGSSave}
- save(
-   Data,
-   nChain,
-   nSim,
-   nThin,
-   pctBurn,
-   nBurn,
-   MCMC,
-   PostStat,
-   file = here::here(paste("TmpData/", cMdl, ".PS.RData", sep = ""))
- )
+if(lEst) {
+  save(Data,
+       nChain,
+       nSim,
+       nThin,
+       pctBurn,
+       nBurn,
+       MCMC,
+       PostStat,
+       file = here::here(paste("TmpData/", cMdl, ".PS.RData", sep = "")))
+}
 
 ```
 
@@ -740,12 +747,26 @@ for (iTbl in 1:nrow(TblLoc)) {
 
 ```{r SaveData}
 saveWorkbook(wb = WorkBook, file = SmryFile)
+rm(tmp, tmp2, tmp3, tmp4)
+rm(MCMC)
+save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
+# load(paste("TmpData/",cMdl,".Image.RData",sep=""))
 
- rm(tmp,tmp2,tmp3,tmp4)
- 
- rm(MCMC)
- save.image(here::here(paste("TmpData/",cMdl,".Image.RData",sep=""))) 
-# load(paste("TmpData/",cMdl,".Image.RData",sep="")) 
- 
 ```
+
+## Colony Detection by Size
+Detection is low and 
+
+```{r ColonyDetection}
+pColSeen %>%
+  ggplot(aes(Nest, Median)) +
+  geom_line() +
+  geom_ribbon(
+    aes(ymin = C0.05, ymax = C0.95),
+    fill = "light green",
+    color = NA,
+    alpha = 0.2
+  ) +
+  geom_rug(data = SmpColObs, aes(x = Nest, y = 0.1), 
+    alpha = 1 / 2, sides = "b", position = "jitter")
 
