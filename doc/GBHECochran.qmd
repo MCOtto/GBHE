@@ -9,8 +9,6 @@ editor: visual
 
 The Great Blue Heron (Ardea herodias) is still a species of Special Concern in the State of Maine, USA as it continues its decline beginning in 1995 (D'Auria 2010). We follow D'Auria and Otto 2017
 
-
-
 Use simple dual-frame analysis for the Great Blue Heron Dual-frame survey 2023 Estimation. This a simple binomial estimation of the known nests per stratum and extrapolating to the number of known nests.
 
 For the detection for the many rear seat observers, there were few capture histories and no rear-seat only observations. We only assume front- and rear-seat probabilities and use non-linear optimization routine to calculate the observer probabilities and the number that both observers missed. The last is a nuisance parameters because capture histories were not taken on all the colony observations.

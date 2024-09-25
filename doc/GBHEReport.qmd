@@ -1,6 +1,6 @@
 ---
 title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
-author: "Mark C. Otto. 28 June 2024"
+author: "Mark C. Otto. 17 September 2024"
 echo: false
 eval: true
 warning: false
@@ -12,13 +12,13 @@ bibliography: GBHESurvey.bib
 
 ## Introduction
 
-The Great Blue Heron (Ardea herodias) is still a species of Special Concern in the State of Maine, USA as it continues its decline beginning in 1995 (D'Auria 2010). We follow @DAuriaOtto2018. Deviations will be noted. We estiamate both years of the survey together, reestimating the 2015 survey. We do expect differing results but not greatly for the 2015 survey. We do expect declines in the number of colonies and numbers per colony.
+The Great Blue Heron (Ardea herodias) is still a species of Special Concern in the State of Maine, USA as it continues its decline beginning in 1995 (D'Auria 2010). We follow @DAuriaOtto2018. Deviations will be noted. We estimate both years of the survey together, re-estimating the 2015 survey. We do expect some differing results from our 2018 article. We do expect declines in the number of colonies and numbers per colony.
 
 This report will set up analysis for the\ `JAGS`\ Bayesian estimation model will use both generalized linear and random effect mixed models methods for the initial values and for the model itself.  In the next report, they will be compared to these estimates as a check.
 
 ## Data and Program Set Up
 
-The original data is in the `ori` directory in the `GBHE.2015` and GBHE.2023`directories.  I pull the data and spatial shape files from them.  The lists and counts are in the`data`directory and the spatial files are stored in the`gis`directory in`.kml`files.  The`GBHER`project has both years of data.`Quarto`documentts are in the`doc`directory.  All the data can be loaded for analysis from`GBHE.RData\` in the output directory.
+The original data is in the\ `ori`\ directory in the `GBHE.2015` and GBHE.2023`directories.  I pull the data and spatial shape files from them.  The lists and counts are in the`data`directory and the spatial files are stored in the\ `gis`\ directory in\ `.kml`\ files.  The\ `GBHE`\ project has both years of data. \ `Quarto`\  documents are in the\ `doc`\ directory.  All the data can be loaded for analysis from\ `GBHE.RData`\  in the\ `output`\ directory.
 
 ```{r Setup}
 # Project directory is "/Users/MOtto/Profesional/GBHE"
@@ -34,14 +34,22 @@ library(dplyr)
 library(tidyr)
 library(rv)
 library(xlsx)
+library(here)
 
 ```
+
+To do simple checks on the estimates, we link the files for the data we are summarizing. 
+We use some personal functions to calculate the mean and standard deviation (SD) of the $Beta$ distribution, [Beta](file://`{r} here::here("R/Beta.R")`), 
+the [logit](file:///~/Ref/RLib/logit.R) function and its inverse, [expit](file:///~/Ref/RLib/expit.R), and 
+the multinomial likelihood for double-observer likelihoods, [CRC](file:///`{r} here::here("R/CRC.R")`).
+We use two-sided 95 percent confidense intervals.  
+The results are saved in the\ `doc/Notes`\ directory and simulations in \ `TmpData`\ directory.  
 
 ```{r VariableSet}
 source("~/Ref/RLib/logit.R")
 source("~/Ref/RLib/expit.R")
-source("../R/Beta.R")
-source("../R/CRC.R")
+source(here::here("R/Beta.R"))
+source(here::here("R/CRC.R"))
 cMdl <- "Cochran"
 Probs <- c(0.5, 0.05, 0.95)
 source(here::here("R/MkSmry.R"))
@@ -56,7 +64,10 @@ load(file = here::here("output/GBHE.RData"))
 
 ## Study Area
 
-The study area is the state of Maine divided in the same 10 km x 10 km grid interected by the same strata.
+The study area is the state of Maine divided in the same 10 km x 10 km grid intersected by the same strata.
+The Maine state boundary is in [MEBoundarSF.kml](file:///`{r} here::here("gis/MEBoundarySF.kml")`), 
+the stratum layer is in [StrSF.kml](file:///`{r} here::here("gis/StrSF.kml")`), and
+the stratum-plot layer is in [StrPlotSF.kml](file:///`{r} here::here("gis/StrPlotSF.kml")`).
 
 ```{r Strata}
 # Add totals for the tables
@@ -70,11 +81,20 @@ The same nest list as plus the new colonies found on in 2015 survey. The list fr
 
 ## Colonies by Year and Stratum
 Summarize the colonies by year and stratum for simple analyses.  
+The known colonies are in [Colony.csv](file:///`{r} here::here("data/Colony.csv")`).  
+The colony spatial layer is in [AllColonySF.kml](file:///`{r} here::here("gis/AllColonySF.kml")`).  
+We did use a different colony list for 2023 but should have used the 2015 list with the new
+colonies found.
 
 ```{r, KnownNestPlots}
 YrStrCol <- Colony %>%
   group_by(Year, Str) %>%
-  summarize(nColony = n(), .groups = "drop")
+  summarize(nColony = n(), .groups = "drop") %>%
+  arrange(Year, factor(Str, cDFStr))
+
+knitr::kable(YrStrCol[, c("Year",
+                         "Str",
+                         "nColony")], digits = 2, caption = "List Frame Colony Summary")
 
 ```
 
@@ -166,8 +186,7 @@ for (iYrStr in 1:nYrStr) {
   # iYrStr <- 1
   
   # Estimated proportion of occupied colony sites and the number of colonies
-  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nNestCol"], 
-                nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nNestCol"])
+  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nNestCol"], nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nNestCol"])
   LstSmry[iYrStr, "pCol"] <- attr(tBeta, "Mean")
   LstSmry[iYrStr, "pColSD"] <- attr(tBeta, "SD")
   LstSmry[iYrStr, "nLstCol"] <- LstSmry[iYrStr, "nNestCol"] +
@@ -176,18 +195,32 @@ for (iYrStr in 1:nYrStr) {
   
   # Estimated proportion of active colonies from all occupied colony sites
   # (Is this they right definition?)
-  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nActCol"], 
-                nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nActCol"])
+  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nActCol"], nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nActCol"])
   LstSmry[iYrStr, "pAct"] <- attr(tBeta, "Mean")
   LstSmry[iYrStr, "pActSD"] <- attr(tBeta, "SD")
   LstSmry[iYrStr, "nLstAct"] <- LstSmry[iYrStr, "nActCol"] +
     LstSmry[iYrStr, "pAct"] * LstSmry[iYrStr, "nColNS"]
   LstSmry[iYrStr, "nLstActSD"] <- LstSmry[iYrStr, "pActSD"] * LstSmry[iYrStr, "nColNS"]
 }
+c("Year",
+  "Str",
+  "nColony",
+  "nColSmp",
+  "nNestCol",
+  "nActCol",
+  "nColNS")
 
-knitr::kable(LstSmry[, 1:5], digits = 2, caption = "List Frame Colony Summary")
-knitr::kable(LstSmry[, c(1, 7:11)], digits = 2, caption = "List Frame Nest Summary")
-knitr::kable(LstSmry[, c(1, 12:15)], digits = 2, caption = "List Frame Active Nest Summary")
+knitr::kable(LstSmry[, c("Year",
+                         "Str",
+                         "nColony",
+                         "nColSmp",
+                         "nNestCol",
+                         "nActCol",
+                         "nColNS")], digits = 2, caption = "List Frame Colony Summary")
+
+knitr::kable(LstSmry[, c("Year", "Str", "pCol", "pColSD", "nLstCol", "nLstColSD")], digits = 2, caption = "List Frame Nest Summary")
+
+knitr::kable(LstSmry[, c("Year", "Str", "pAct", "pActSD", "nLstAct", "nLstActSD")], digits = 2, caption = "List Frame Active Nest Summary")
 rm(tLstSmry)
 
 ```
