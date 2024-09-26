@@ -1,0 +1,81 @@
+OBJECTID,Year,FWSColonyID,Frame,Svy,Str,PlotID,Lng,Lat,DatTim,Obsr,Seat,Nest,Act,Comment
+1,2015,ME.0119,List,GBHE,SC,c9.1e,-69.90265579870218,44.6084509668623,2015-05-25,Gnd,Dirt,3,2,
+2,2015,ME.0166,List,GBHE,SC,cb.1a,-69.41247837604377,44.88601514868534,2015-05-24,Gnd,Dirt,8,5,
+3,2015,ME.0604,List,GBHE,ND,c6.1j,-70.45303821570549,44.21596893774196,2015-07-05,Gnd,Dirt,13,12,
+4,2015,ME.0609,List,GBHE,ND,c2.1g,-70.7280706046304,44.618280303251495,2015-07-05,Gnd,Dirt,4,1,
+5,2015,ME.0622,List,GBHE,SC,cf.1d,-69.03950588086204,44.53033063351429,2015-06-07,Gnd,Dirt,5,5,
+6,2015,ME.0632,List,GBHE,SC,cc.1c,-69.4027290027751,44.711667484771304,2015-05-15,Gnd,Dirt,5,5,
+7,2015,ME.0646,List,GBHE,SC,c6.1w,-70.79594438643824,43.12331255568566,2015-05-29,Gnd,Dirt,18,17,
+8,2015,ME.0648,List,GBHE,SC,cb.1f,-69.65108809602624,44.4519307735552,2015-05-20,Gnd,Dirt,12,12,
+9,2015,ME.0657,List,GBHE,SC,ch.1b,-68.80182055080031,44.70320321966317,2015-06-04,Gnd,Dirt,0,0,
+10,2015,ME.0678,List,GBHE,SC,cg.1c,-68.9256857861944,44.57731603786306,2015-05-13,Gnd,Dirt,0,0,
+11,2015,ME.0687,List,GBHE,SC,c6.1m,-70.4781716040899,43.95556885198308,2015-05-18,Gnd,Dirt,7,7,
+12,2015,ME.0688,List,GBHE,SC,cf.1e,-69.09804941101503,44.460263176318904,2015-05-01,Gnd,Dirt,1,0,
+13,2015,ME.0692,List,GBHE,SC,c4.1l,-70.70977776050894,44.07838403729882,2015-06-09,Gnd,Dirt,30,29,
+15,2015,ME.0716,List,GBHE,SC,c4.1q,-70.82951659265736,43.707385499578585,2015-06-05,Gnd,Dirt,3,3,
+16,2015,ME.0717,List,GBHE,SC,c5.1r,-70.81498068290156,43.55455151317694,2015-05-23,Gnd,Dirt,2,2,
+17,2015,ME.0722,List,GBHE,ND,c4.15,-70.19744445967608,45.47125179717985,2015-06-11,Gnd,Dirt,3,0,
+18,2015,ME.0731,List,GBHE,SC,cf.1c,-69.09301773532982,44.62973246156623,2015-06-07,Gnd,Dirt,1,1,
+19,2015,ME.0742,List,GBHE,Co,cg.1d,-68.94623360541586,44.4985406130521,2015-05-15,Gnd,Dirt,8,0,
+20,2015,ME.0754,List,GBHE,SC,cb.1h,-69.68416929665666,44.26611308074811,2015-06-14,Gnd,Dirt,1,1,
+21,2015,ME.0758,List,GBHE,SC,ck.1a,-68.44471928392103,44.657676017916735,2015-05-13,Gnd,Dirt,0,0,
+22,2015,ME.0772,List,GBHE,ND,c2.1j,-70.81864530143618,44.31691171704411,2015-05-25,Gnd,Dirt,3,0,
+23,2015,ME.0773,List,GBHE,SC,ci.19,-68.58063262994897,44.845076020784646,2015-05-09,Gnd,Dirt,5,3,
+24,2015,ME.0780,List,GBHE,SC,cf.1a,-68.97778573590729,44.793104143971256,2015-05-29,Gnd,Dirt,21,17,
+25,2015,ME.0796,List,GBHE,Co,cc.1k,-69.63955430658926,44.013707788296074,2015-05-30,Gnd,Dirt,26,26,
+26,2015,ME.0799,List,GBHE,SC,cd.1i,-69.51201778931822,44.165331168269766,2015-05-05,Gnd,Dirt,6,1,
+27,2015,ME.0803,List,GBHE,SC,cd.19,-69.21450720458087,44.93775743001838,2015-05-05,Gnd,Dirt,3,2,
+28,2015,ME.0804,List,GBHE,SC,cc.1h,-69.63179425219992,44.30549846462574,2015-06-17,Gnd,Dirt,4,4,
+29,2015,ME.0810,List,GBHE,SC,c6.1r,-70.6843093191628,43.59942008236973,2015-05-02,Gnd,Dirt,4,4,
+30,2015,ME.0811,List,GBHE,SC,c5.1q,-70.78169013693197,43.627221177250426,2015-06-06,Gnd,Dirt,1,1,
+31,2015,ME.0812,List,GBHE,SC,ch.1c,-68.75868771064397,44.60651874857303,2015-06-04,Gnd,Dirt,0,0,
+32,2015,ME.0816,List,GBHE,SC,cc.1h,-69.58767138843078,44.24143747252296,2015-05-15,Gnd,Dirt,4,4,
+33,2015,ME.0817,List,GBHE,SC,ch.18,-68.70865243629603,44.90894793579184,2015-06-26,Gnd,Dirt,3,3,
+34,2015,ME.0819,List,GBHE,SC,ch.17,-68.62130175144085,45.04489857492305,2015-06-05,Gnd,Dirt,1,0,
+35,2015,ME.0820,List,GBHE,SC,c7.1n,-70.36696881239378,43.835245516675975,2015-05-18,Gnd,Dirt,6,6,
+36,2015,ME.0823,List,GBHE,ND,ch.0q,-68.05281301786896,46.50487642172575,2015-06-12,Gnd,Dirt,3,2,
+37,2015,ME.0828,List,GBHE,SC,c6.1r,-70.71070454811571,43.528867040309706,2015-05-09,Gnd,Dirt,3,1,
+38,2015,ME.0832,List,GBHE,ND,c9.17,-69.58399467674217,45.16455336893451,2015-07-11,Gnd,Dirt,5,0,
+39,2015,ME.0833,List,GBHE,Co,cl.1a,-68.31446416815403,44.62587380401542,2015-05-18,Gnd,Dirt,18,0,
+40,2015,ME.0835,List,GBHE,SC,cj.1a,-68.45732596907489,44.66156590409243,2015-06-06,Gnd,Dirt,7,7,
+41,2015,ME.0843,List,GBHE,ND,cm.17,-68.01469169633687,44.8337039589621,2015-06-14,Gnd,Dirt,1,0,
+42,2015,ME.0849,List,GBHE,SC,c6.1p,-70.6077304446915,43.72176851762712,2015-07-31,Gnd,Dirt,19,0,
+43,2015,ME.0851,List,GBHE,Co,co.1b,-67.88736686023468,44.50711902876009,2015-06-25,Gnd,Dirt,4,4,
+45,2023,ME.0754,List,GBHE,SC,cb.1h,-69.68416929665666,44.26611308074811,2023-06-20T00:00:00Z,Gnd,Dirt,1,1,"amy.mclaughlin@maine.gov;At least one young observed with down.  Probably recently hatched, as I have been keeping an eye on this nest.  The adult is brooding still.  Hasn't been any eagle activity for quite a while."
+46,2023,ME.0739,List,GBHE,Co,cd.1l,-69.59529189347096,43.89547973270698,2023-05-14T00:00:00Z,Gnd,Dirt,0,0,amyw@me.com;NA
+47,2023,ME.0677,List,GBHE,SC,cd.1d,-69.2874449076904,44.630993815184375,2023-07-03T00:00:00Z,Gnd,Dirt,0,0,beth.swartz@maine.gov;this is year four since the colony was abandoned due to complete loss of nest structures following a late spring snow storm in April 2020
+48,2023,ME.0648,List,GBHE,SC,cb.1f,-69.65108809602624,44.4519307735552,2023-05-18T00:00:00Z,Gnd,Dirt,1,0,betsypoulin@gmail.com;NA
+50,2023,ME.0717,List,GBHE,SC,c5.1r,-70.81498068290156,43.55455151317694,2023-05-06T00:00:00Z,Gnd,Dirt,1,0,bmoger@maine.rr.com;NA
+51,2023,ME.0101,List,GBHE,SC,c6.1v,-70.77946971781304,43.18680003718479,2023-07-20T00:00:00Z,Gnd,Dirt,5,5,"brittany.currier@maine.gov;Nests are in two different groups.One near 43.185546°, -70.777066°The other closer to 43.186598°, -70.780345°Both of these areas can be accessed by driving to the end of Punkintown Rd and walking down the trail to the wetland."
+52,2023,ME.0792,List,GBHE,SC,ce.1g,-69.32127800466884,44.35705090697935,2023-06-21T00:00:00Z,Gnd,Dirt,0,0,brittany.currier@maine.gov;No GBHE observed and no sign of GBHE activity seen
+54,2023,ME.0851,List,GBHE,Co,co.1b,-67.88736686023468,44.50711902876009,2023-06-21T00:00:00Z,Gnd,Dirt,7,5,brutreehopper@gmail.com;Turkey vultures were also circling and baby Herons were very alert to that activity.  We also observed lots of feathers and bones from what seemed to be Herons near a whole in close proximity to a beaver lodge.  It is not clear what had attacted them
+55,2023,ME.0622,List,GBHE,SC,cf.1d,-69.03950588086204,44.53033063351429,2023-08-10T00:00:00Z,Gnd,Dirt,1,0,"Bythesea584@gmail.com;There was only one nest left, and it was empty. No sign of any bird activity while I was there."
+56,2023,ME.0773,List,GBHE,SC,ci.19,-68.58063262994897,44.845076020784646,2023-05-14T00:00:00Z,Gnd,Dirt,2,0,Carmillr@live.com;Only 2 unkept nests. Wind damage to lots of trees. Third nest from last year was gone.
+58,2023,ME.0646,List,GBHE,SC,c6.1w,-70.79594438643824,43.12331255568566,2023-06-08T00:00:00Z,Gnd,Dirt,4,3,"ddutton22467@gmail.com;we were able to see three nests in one pine tree at the northwest corner of the bog. A homeowner on Adlington Road let us access the bog through his property. The nest behind his house that was active last year, appeared to be inactive this time."
+60,2023,ME.0775,List,GBHE,SC,cd.19,-69.20319082239952,44.94276795632044,2023-05-09T00:00:00Z,Gnd,Dirt,0,0,e_yahn@hotmail.com;No nesta visible at this site. Including remains of old nests
+61,2023,ME.0805,List,GBHE,SC,c8.1c,-69.91247672813996,44.82935395629793,2023-06-30T00:00:00Z,Gnd,Dirt,23,21,"fernguly@tdstelme.net;Access route is old, overgrown snowmobile trail , that leads by wet beaver dam area to an old snowmobile bridge, where best observation is done. Wearing waders is recommended!"
+62,2023,ME.0846,List,GBHE,ND,c9.19,-69.63603314570655,44.98379749503825,2023-06-30T00:00:00Z,Gnd,Dirt,3,0,"fernguly@tdstelme.net;The large beaver dam that creates the wetland was breached, likely due to recent very heavy rains. So water was drained, and mostly mud with pockets of standing water."
+63,2023,ME.0608,List,GBHE,Co,ck.1g,-68.57986044952459,44.16823125349513,2023-07-26T00:00:00Z,Gnd,Dirt,0,0,grusss@roadrunner.com;Observations made from boat.  No nests or herons observed.
+64,2023,ME.0835,List,GBHE,SC,cj.1a,-68.45732596907489,44.66156590409243,2023-05-17T00:00:00Z,Gnd,Dirt,14,14,grusss@roadrunner.com;NA
+65,2023,ME.0780,List,GBHE,SC,cf.1a,-68.97778573590729,44.793104143971256,2023-06-14T00:00:00Z,Gnd,Dirt,33,31,"gsmith1955@spectrum.net;I was very happy to see so many nests this year, it's been steadily climbing back each of the last several years.  27 last year. I think it was down to 5 a few years ago, but not sure."
+68,2023,ME.0820,List,GBHE,SC,c7.1n,-70.36696881239378,43.835245516675975,2023-05-29T00:00:00Z,Gnd,Dirt,1,0,hubermargaret7@gmail.com;NA
+70,2023,ME.0844,List,GBHE,SC,cd.1e,-69.37496946401049,44.55001402201978,2023-05-30T00:00:00Z,Gnd,Dirt,4,3,jmcolemanphotos@live.com;NA
+71,2023,ME.0811,List,GBHE,SC,c5.1q,-70.78169013693197,43.627221177250426,2023-05-07T00:00:00Z,Gnd,Dirt,0,0,JTMCMNO@AOL.COM;NA
+72,2023,ME.0827,List,GBHE,SC,c6.1r,-70.62410662246492,43.53565819507767,2023-05-07T00:00:00Z,Gnd,Dirt,3,3,JTMCMNO@AOL.COM;NA
+73,2023,ME.0828,List,GBHE,SC,c6.1r,-70.71070454811571,43.528867040309706,2023-05-07T00:00:00Z,Gnd,Dirt,0,0,JTMCMNO@AOL.COM;NA
+75,2023,ME.0849,List,GBHE,SC,c6.1p,-70.6077304446915,43.72176851762712,2023-05-06T00:00:00Z,Gnd,Dirt,8,1,kalipbt@icloud.com;NA
+76,2023,ME.0656,List,GBHE,SC,ca.1g,-69.85230847901167,44.3760997227829,2023-06-14T00:00:00Z,Gnd,Dirt,15,11,"kawwilkins@yahoo.com;Over cast day, many swallows flying about. Visit in evening."
+78,2023,ME.0776,List,GBHE,SC,cd.19,-69.2069070057748,44.923078450942164,2023-06-07T00:00:00Z,Gnd,Dirt,2,2,"kit_pfeiffer@yahoo.com;A Broad Wing Hawk flew over twice, chased by a Kingbird. No apparent disturbance to the adult herons on the nests."
+79,2023,ME.0816,List,GBHE,SC,cc.1h,-69.58767138843078,44.24143747252296,2023-05-01T00:00:00Z,Gnd,Dirt,1,0,"kit_pfeiffer@yahoo.com;Someone drained the swamp, so to speak! The large historic beaver dam at the outlet of the wetlands must have blown out in one of the storms this winter. There is no water in the wetland. It is not a wetland anymore."
+80,2023,ME.0102,List,GBHE,SC,c6.1u,-70.70811866718986,43.27706813781594,2023-05-10T00:00:00Z,Gnd,Dirt,0,0,"lauramerrill3@gmail.com;An abutter has built a house at the edge of the wetland. This year, he has cut trees, trucked in fill, and has been constructing new buildings. In late winter/early spring, he began pounding/blasting ledge. It has been very noisy with lots of commotion."
+81,2023,ME.0119,List,GBHE,SC,c9.1e,-69.90265579870218,44.6084509668623,2023-06-15T00:00:00Z,Gnd,Dirt,0,0,learamirez74@gmail.com;NA
+82,2023,ME.0166,List,GBHE,SC,cb.1a,-69.41247837604377,44.88601514868534,2023-05-16T00:00:00Z,Gnd,Dirt,0,0,lindaleehunter@hotmail.com;There were no nests visible. The tree that was used last year is also gone.
+84,2023,ME.0632,List,GBHE,SC,cc.1c,-69.4027290027751,44.711667484771304,2023-06-22T00:00:00Z,Gnd,Dirt,0,0,llfsculptor@gmail.com;NA
+85,2023,ME.0692,List,GBHE,SC,c4.1l,-70.70977776050894,44.07838403729882,2023-06-07T00:00:00Z,Gnd,Dirt,14,13,lmachayes@gmail.com;NA
+89,2023,ME.0628,List,GBHE,SC,cj.18,-68.46473266121353,44.84615731041577,2023-06-08T00:00:00Z,Gnd,Dirt,0,0,"mhunter@maine.edu;No herons, no raptors, no waterfowl"
+91,2023,ME.0810,List,GBHE,SC,c6.1r,-70.6843093191628,43.59942008236973,2023-05-30T00:00:00Z,Gnd,Dirt,3,3,mjnation1@gmail.com;Observed an adult heron feeding her young in the lower nest on the tall tree. Was able to hear the calls of the young and then observed an adult heron land on the upper nest of the tall tree.
+93,2023,ME.0760,List,GBHE,SC,cd.1c,-69.34582490310346,44.66806687519139,2023-06-22T00:00:00Z,Gnd,Dirt,1,1,"rsburke87@gmail.com;The private land that I walked across to get to the site was posted ""NO TRESPASSING"",which made me question whether I should be crossing it. I didn't see anybody and was not sure who to ask for permission. I noticed two houses near the road where I parked"
+96,2023,ME.0684,List,GBHE,SC,ci.19,-68.56397419484446,44.7745615332082,2023-05-21T00:00:00Z,Gnd,Dirt,0,0,"smduchesne@roadrunner.com;One heron pair has historically nested (or renested) very late at this location, so I plan to go back and check one more time in June for nesting activity."
+97,2023,ME.0830,List,GBHE,SC,c7.1n,-70.36419981837075,43.89588713423038,2023-06-29T00:00:00Z,Gnd,Dirt,36,34,"stevemcpike@gmail.com;34 nests (6 more since May), 14 adults, 84 chicks. Two nests had recently hatched chicks with down, many nests with chicks about ready to fledge. Red shouldered hawk flew south and west of marsh but not over it. Bobcat seen near eastern shore."
+99,2023,ME.0623,List,GBHE,Co,cd.1j,-69.55627949494713,44.059024443595746,2023-05-14T00:00:00Z,Gnd,Dirt,1,0,thealy@tidewater.net;NA
+101,2023,ME.0801,List,GBHE,ND,ca.19,-69.61174214799335,44.98195302692541,2023-05-21T00:00:00Z,Gnd,Dirt,4,4,vicmorin1@outlook.com;Three nests low and at an intersection of two leaning snags. Stage of nests and exact number of adults unknown. Reported 4 active nests.
