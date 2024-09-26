@@ -1,6 +1,6 @@
 ---
 title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
-author: "Mark C. Otto. 17 September 2024"
+author: "Mark C. Otto. 25 September 2024"
 echo: false
 eval: true
 warning: false
@@ -83,8 +83,20 @@ The same nest list as plus the new colonies found on in 2015 survey. The list fr
 Summarize the colonies by year and stratum for simple analyses.  
 The known colonies are in [Colony.csv](file:///`{r} here::here("data/Colony.csv")`).  
 The colony spatial layer is in [AllColonySF.kml](file:///`{r} here::here("gis/AllColonySF.kml")`).  
-We did use a different colony list for 2023 but should have used the 2015 list with the new
+We did use a different colony list for 2023 but should use the 2015 list with the new
 colonies found.
+
+```{r New2015Colonies}
+New2015 <- RecObs %>%
+  filter(Year == 2015 & stringr::str_detect(FWSColonyID, "new")) %>%
+  mutate(nNest = pmax(fNest, rNest, na.rm = TRUE),
+         nActive = pmax(fAct, rAct, na.rm = TRUE)) %>%
+  select(Year, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive)
+
+write.csv(New2015, file = here::here("extdata/New2015.csv"), na = "", row.names = FALSE)
+
+
+```
 
 ```{r, KnownNestPlots}
 YrStrCol <- Colony %>%
