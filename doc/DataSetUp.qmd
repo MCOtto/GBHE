@@ -58,7 +58,7 @@ cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, functio
   paste(x[1], x[2], x[3], sep = "."))
 nFS <- length(cFS)
 
-lWrite <- TRUE
+lWrite <- FALSE
 
 ```
 
@@ -162,35 +162,52 @@ tColony2015 <- RDB2Data(Tbl = "Nest",
 
 # These are all the colonies.  445 of them so select from the last list
 # Where are the new colonies found in the last survey.
-tColony2023 <- inner_join(
-  RDB2Data(
-    Tbl = "Nest",
-    RowNames = "FWSNestID",
-    RDB =  "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3"
+# Is in UTM 19N
+RC2XY <- read_csv("~/Profesional/GBHE.2015/ExtData/RC2XY.csv", col_types = "c-ii---")
+tCol2023SF <- inner_join(
+  st_read("~/Profesional/GBHE.2023/GIS/2023/ListFrameNewPlots.shp") %>%
+    mutate(
+      FWSColonyID_PK = sprintf("ME.%04d", COLONYNO),
+      Str_FK = c(
+        "South Central" = "SC",
+        "Coastal" = "Co",
+        "North and Downeast" = "ND"
+      )[NAME2_],
+      nNest = AvgMaxNest
+    ),
+  RC2XY,
+  by = c("Col", "Row")
+) %>%
+  select(FWSColonyID_PK, Str_FK, PlotID_FK = PlotID, nNest)
+
+# Add the lat-longs
+LatLongSF <- st_transform(x = tCol2023SF, crs = CRS.WGS84)
+LatLong <- st_drop_geometry(LatLongSF %>%
+                              mutate(Lng = unlist(map(
+                                tCol2023SF$geometry, 1
+                              )), Lat = unlist(map(
+                                tCol2023SF$geometry, 2
+                              ))) %>%
+                              select(Lng, Lat))
+
+# Add the long-lat to the nestlist
+Col2023SF <- bind_cols(tCol2023SF, LatLong) %>%
+  mutate(
+    LastYr = NA,
+    Status = NA,
+    nActive = NA,
+    Comment = NA
   ) %>%
-    select(
-      FWSColonyID_PK = FWSNestID,
-      Str_FK = LstStr,
-      PlotID_FK = PlotID,
-      Lng,
-      Lat,
-      LastYr,
-      Status,
-      nNest,
-      nActive,
-      Comment
-    )
-  ,
-  read_csv(
-    "~/Profesional/GBHE.2023/extdata/2023/GBHE_ColonyPlotJoin.csv",
-    col_types = "------i---------"
-  ) %>%
-    mutate(FWSColonyID_PK = sprintf("ME.%04d", Colony)) %>%
-    select(FWSColonyID_PK),
-  by = "FWSColonyID_PK"
-)
-setdiff(tColony2023$FWSColonyID_PK, tColony2015$FWSColonyID_PK)
-setdiff(tColony2015$FWSColonyID_PK, tColony2023$FWSColonyID_PK)
+  select(FWSColonyID_PK,
+         Str_FK,
+         PlotID_FK,
+         Lng,
+         Lat,
+         LastYr,
+         Status,
+         nNest,
+         nActive,
+         Comment)
 
 tColony2015SF <- inner_join(
   st_read("~/Profesional/GBHE.2023/GIS/2015/GBHE_ColonyPlotJoin.shp") %>%
@@ -205,7 +222,7 @@ tColony2015SF <- inner_join(
 ColonySF <- st_as_sf(bind_rows(
   tColony2015SF %>%
     mutate(Year = 2015),
-  tColony2015SF %>%
+  Col2023SF %>%
     mutate(Year = 2023)
 ))  %>%
   select(
@@ -400,7 +417,6 @@ tColUsed <- read_csv("~/Profesional/GBHE.2023/extdata/2023/GBHE_ColonyPlotJoin.c
 # if (lWrite) {
 #   st_write(ColonySF, here::here("GIS/AllColonySF.kml"), delete_layer = TRUE)
 # }
-
 
 ```
 
