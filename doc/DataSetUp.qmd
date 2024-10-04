@@ -730,6 +730,12 @@ rm(tblObservations2015, tblObservations2023)
 
 ```
 
+## List the new colonies, since in `tblObservations` and `RecObs` the we use the new colony id instead of a code with `new.`.
+
+```{r NewColonies}
+NewColonies <- readr::read_csv(here::here("data/NewColonies.csv"), col_types = "ic")
+
+```
 ## Combine `RecObs` from `tbl*` data files
 
 ```{r CombineRecObs}
@@ -1267,6 +1273,7 @@ save(
   tblPlotDetails,
   tblObservations,
   RecObs,
+  NewColonies,
   GroundObsSF,
   GroundObs,
   file = here::here("output/GBHE.RData")
