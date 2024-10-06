@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "29 July 2024"
+date: "5 October 2024"
 format: docx
 editor: source
 ---
@@ -184,9 +184,9 @@ tCol2023SF <- inner_join(
 LatLongSF <- st_transform(x = tCol2023SF, crs = CRS.WGS84)
 LatLong <- st_drop_geometry(LatLongSF %>%
                               mutate(Lng = unlist(map(
-                                tCol2023SF$geometry, 1
+                                LatLongSF$geometry, 1
                               )), Lat = unlist(map(
-                                tCol2023SF$geometry, 2
+                                LatLongSF$geometry, 2
                               ))) %>%
                               select(Lng, Lat))
 
@@ -239,7 +239,7 @@ ColonySF <- st_as_sf(bind_rows(
     Comment
   )
 
-if(lWrite) {
+if (lWrite) {
   st_write(ColonySF,
            dsn = here::here("gis/ColonySF.kml"),
            delete_layer = TRUE)
@@ -341,9 +341,55 @@ AllColonySF <- st_intersection(
   st_transform(x = tColonySF2, crs = st_crs(StrPlotSF))
 ) %>%
   select(FWSColonyID, Year, Str, PlotID, Nest, Lng, Lat, Comment)
+
+# Colony has more colonies than AllColonies
+PickOne <- function(x){
+  idx <- !is.na(x)
+  return(x[idx][1])
+}
+
+tAllCol <- bind_rows(
+  st_transform(AllColonySF, crs = CRS.UTM19N),
+  #  st_drop_geometry(ColonySF) %>%
+  st_transform(ColonySF, crs = CRS.UTM19N) %>%
+    mutate(
+      FWSColonyID = FWSColonyID_PK,
+      Str = Str_FK,
+      PlotID = PlotID_FK,
+    ) %>%
+    group_by(FWSColonyID, Year, Str, PlotID) %>%
+    summarize(
+      Year = min(Year, 2009),
+      Nest = max(nNest, 0, na.rm = TRUE),
+      Lng = mean(Lng, na.rm = TRUE),
+      Lat = mean(Lat, na.rm = TRUE),
+      Comment = PickOne(Comment),
+      .groups = "drop"
+    ) %>%
+    mutate(Year = as.character(Year), ) %>%
+    dplyr::select(FWSColonyID, Year, Str, PlotID, Nest, Lng, Lat, Comment)
+) %>%
+  distinct() %>%
+  group_by(FWSColonyID, Year, Str, PlotID) %>%
+  summarize(
+    Year = min(Year, 2009),
+    Nest = as.integer(max(Nest, 0, na.rm = TRUE)),
+    # Del = "",
+    Lng = mean(Lng, na.rm = TRUE),
+    Lat = mean(Lat, na.rm = TRUE),
+    Comment = PickOne(Comment),
+    .groups = "drop"
+  ) %>%
+  arrange(FWSColonyID, desc(Nest)) %>%
+  filter(!(duplicated(FWSColonyID)
+           #&(is.na(Comment)|grepl("count", Comment))
+           ))
+AllColonySF <- tAllCol           
+
 if (lWrite) {
+  write_csv(st_drop_geometry(AllColonySF), here::here("data/AllColony.csv"), na = "")
   st_write(AllColonySF,
-           here::here("GIS/AllColonySF.kml"),
+           here::here("gis/AllColonySF.kml"),
            delete_layer = TRUE)
 }
 rm(tColonySF, tColonySF2, tLatLong, LatLong)
@@ -793,8 +839,10 @@ tRecObs2 <- left_join(
 tRecObs3 <- inner_join(tRecObs2,
                        tblObservations,
                        by = c(PlotDetails_PK = "PlotDetails_FK", "Year")) %>%
-  mutate(AOU = "GBHE",
-         Comment = paste(Comment.x, Comment.y, sep = ";")) %>%
+  mutate(
+    FWSColonyID = sub("new", "ME", FWSColonyID),
+    Comment = paste(Comment.x, Comment.y, sep = ";")
+  ) %>%
   select(
     Obs_PK,
     Year,
@@ -818,13 +866,17 @@ tRecObs3 <- inner_join(tRecObs2,
     Comment,
     Flight_PK,
     PlotDetails_PK
-  )
+  ) %>%
+  distinct()
 
+# Obs_PK = 151 was duplicated.  Find why.
 tRecObs4 <- left_join(
   tRecObs3,
-  ColonySF %>%
+  AllColonySF %>%
     select(
-      FWSColonyID = FWSColonyID_PK,
+      FWSColonyID,
+      tStr = Str,
+      tPlotID = PlotID,
       Lng,
       Lat #,
       # Str = Str_FK,
@@ -832,8 +884,9 @@ tRecObs4 <- left_join(
     ),
   by = "FWSColonyID"
 )  %>%
-  distinct() %>%
   mutate(
+    Str = ifelse(is.na(Str), tStr, Str),
+    PlotID = ifelse(is.na(PlotID), tPlotID, PlotID),
     Lng = ifelse(is.na(Lng.x), Lng.y, Lng.x),
     Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x) #,
     # Str = ifelse(is.na(Str.x), Str.y, ifelse(
@@ -877,8 +930,9 @@ tRecObs4 <- left_join(
 
 RecObs <- st_drop_geometry(tRecObs4)
 
+
 if (lWrite) {
-  readr::write_csv(RecObs, here::here("data/RecObs.csv"), na = "")
+  readr::write_csv(RecObs, here::here("data/RecObs.MCO.csv"), na = "")
 }
 
 rm(tRecObs, tRecObs2, tRecObs3)
