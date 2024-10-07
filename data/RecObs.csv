@@ -1,15 +1,15 @@
 Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,fAct,rAct,Comment,Flight_PK,PlotDetails_PK
-1,2015,SC,L05,cg.18,2015-05-01,CL,DD,CT,-68.83060261929043,44.92492745377777,GBHE,,Wetland,ME.0822,2,2,2,2,"Clear, light wind; ;;",1,1
-2,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.20319082237668,44.94276795637748,GBHE,,Wetland,ME.0775,2,1,0,0,"Clear, light wind; ;;Plus one active OSPR nest (not incl in obs totals)",1,2
-3,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.21450720460034,44.93775742999725,GBHE,,Split: upland and wetland,ME.0803,3,0,2,0,"Clear, light wind; ;;2 or 3 nests in pines on edge plus 1 pair in snag in wetland.",1,2
-4,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.20690700572456,44.92307845091591,GBHE,,Wetland,ME.0776,2,2,2,2,"Clear, light wind; ;;",1,2
+1,2015,SC,L05,cg.18,2015-05-01,CL,DD,CT,-68.83060261929043,44.92492745377777,GBHE,,Wetland,ME.0822,2,2,2,2,"Clear, light wind;;;",1,1
+2,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.20319082237668,44.94276795637748,GBHE,,Wetland,ME.0775,2,1,0,0,"Clear, light wind;;;Plus one active OSPR nest (not incl in obs totals)",1,2
+3,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.21450720460034,44.93775742999725,GBHE,,Split: upland and wetland,ME.0803,3,0,2,0,"Clear, light wind;;;2 or 3 nests in pines on edge plus 1 pair in snag in wetland.",1,2
+4,2015,SC,L27,cd.19,2015-05-01,CL,DD,CT,-69.20690700572456,44.92307845091591,GBHE,,Wetland,ME.0776,2,2,2,2,"Clear, light wind;;;",1,2
 5,2015,SC,A06,cc.1a,2015-05-01,CL,DD,CT,-69.29718058070267,44.88053011430662,GBHE,111,Upland,ME.0738,35,55,30,50,"Clear, light wind; ;Combined. ;Flew right over it.",1,3
 6,2015,SC,A06,cc.1a,2015-05-01,CL,DD,CT,-69.40974748671265,44.88727965942147,GBHE,x11,Wetland,ME.0166,6,7,5,6,"Clear, light wind; ;Combined. ;Osprey perched.",1,3
-7,2015,SC,L13,cd.1b,2015-05-01,CL,DD,CT,-69.25824342820218,44.7633111520193,GBHE,,Wetland,ME.0821,2,2,2,2,"Clear, light wind; ;;",1,4
-8,2015,SC,L13,cd.1b,2015-05-01,CL,DD,CT,-69.25844022750216,44.75120936023771,GBHE,,Wetland,ME.0177,0,0,0,0,"Clear, light wind; ;;Nothing found.",1,4
-9,2015,SC,L33,cd.1c,2015-05-01,CL,DD,CT,-69.28756127147899,44.63164308931108,GBHE,,Split: upland and wetland,ME.0677,7,0,6,0,"Clear, light wind; ;;Plus 1 (DD) or 2 (CT) active OSPR nests.",1,5
-10,2015,SC,L33,cd.1c,2015-05-01,CL,DD,CT,-69.34582490310157,44.66806687520649,GBHE,,Wetland,ME.0760,5,5,4,4,"Clear, light wind; ;;Nests spread out: 3 north, 2 south",1,5
-11,2015,SC,L35,cc.1c,2015-05-01,CL,DD,CT,-69.40302836450395,44.71153631140563,GBHE,,Wetland,ME.0632,5,6,5,6,"Clear, light wind; ;;",1,6
+7,2015,SC,L13,cd.1b,2015-05-01,CL,DD,CT,-69.25824342820218,44.7633111520193,GBHE,,Wetland,ME.0821,2,2,2,2,"Clear, light wind;;;",1,4
+8,2015,SC,L13,cd.1b,2015-05-01,CL,DD,CT,-69.25844022750216,44.75120936023771,GBHE,,Wetland,ME.0177,0,0,0,0,"Clear, light wind;;;Nothing found.",1,4
+9,2015,SC,L33,cd.1c,2015-05-01,CL,DD,CT,-69.28756127147899,44.63164308931108,GBHE,,Split: upland and wetland,ME.0677,7,0,6,0,"Clear, light wind;;;Plus 1 (DD) or 2 (CT) active OSPR nests.",1,5
+10,2015,SC,L33,cd.1c,2015-05-01,CL,DD,CT,-69.34582490310157,44.66806687520649,GBHE,,Wetland,ME.0760,5,5,4,4,"Clear, light wind;;;Nests spread out: 3 north, 2 south",1,5
+11,2015,SC,L35,cc.1c,2015-05-01,CL,DD,CT,-69.40302836450395,44.71153631140563,GBHE,,Wetland,ME.0632,5,6,5,6,"Clear, light wind;;;",1,6
 12,2015,ND,OOS,c9.19,2015-05-06,CL,DD,KM,-69.63603314564779,44.98379749501097,GBHE,,Wetland,ME.0846,2,,2,,"Clear, light winds to start; 60 deg F; gusty at end.; Break from 12:30-13:20;;Found while looking for colony #801.",2,7
 13,2015,ND,L54,ca.19,2015-05-06,CL,DD,KM,-69.61174214798484,44.98195302691823,GBHE,,Wetland,ME.0801,13,10,13,9,"Clear, light winds to start; 60 deg F; gusty at end.; Break from 12:30-13:20;;",2,8
 14,2015,SC,L04,c8.1c,2015-05-06,CL,DD,KM,-69.91247672810084,44.82935395629522,GBHE,,Wetland,ME.0805,21,22,21,22,"Clear, light winds to start; 60 deg F; gusty at end.; Break from 12:30-13:20;;",2,9
@@ -66,19 +66,19 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 65,2015,SC,L17,cg.1c,2015-05-15,JB,DD,KM,-68.92576253212874,44.577050582566926,GBHE,,Wetland,ME.0678,0,0,0,0,Calm and clear to start; a little windy at mid and end of day.; Stop in Belfast 13:30-13:55.;;No nests seen.,4,39
 66,2015,SC,L17,cg.1c,2015-05-15,JB,DD,KM,-68.96675170578311,44.65835816322019,GBHE,,Wetland,ME.0612,9,8,9,8,Calm and clear to start; a little windy at mid and end of day.; Stop in Belfast 13:30-13:55.;;,4,39
 67,2015,SC,L02,cf.1c,2015-05-15,JB,DD,KM,-69.09301773538002,44.629732461585235,GBHE,,Wetland,ME.0731,1,1,1,1,Calm and clear to start; a little windy at mid and end of day.; Stop in Belfast 13:30-13:55.;;,4,40
-68,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.04722641718865,43.78768710350563,GBHE,,Upland,ME.0757,0,0,0,0,"Overcast, ~50 deg F.; ;;Island; no nests found.",5,42
-69,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.07223308180187,43.78183797049478,GBHE,,Upland,ME.0756,12,26,12,26,"Overcast, ~50 deg F.; ;;Island; eagle nest looks active (adult present); BZ saw second bunch of nests that DD missed.",5,42
-70,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.0559261451,43.7668259725,GBHE,,Upland,ME.0026,0,0,0,0,"Overcast, ~50 deg F.; ;;No nests found.",5,42
-71,2015,Co,L45,ca.1o,2015-05-18,JB,DD,BZ,-70.05283470288063,43.71096757720914,GBHE,,Upland,ME.0004,8,7,8,7,"Overcast, ~50 deg F.; ;;Island; Nests in middle of island and south; BZ thought he may have seen a BCNH nest just south of active OSPR nest.",5,43
-72,2015,Co,L40,cb.1o,2015-05-18,JB,DD,BZ,-69.93679706849618,43.72660090888783,GBHE,,Upland,ME.0774,25,25,25,25,"Overcast, ~50 deg F.; ;;Island; south central part of island.",5,44
-73,2015,Co,L40,cb.1o,2015-05-18,JB,DD,BZ,-69.89935976618216,43.72144426670675,GBHE,,Upland,ME.0023,0,0,0,0,"Overcast, ~50 deg F.; ;;Island; no nests found. Active eagle nest w/2 adults.",5,44
-74,2015,Co,L49,cb.1n,2015-05-18,JB,DD,BZ,-69.89143164797669,43.75107510860222,GBHE,,Upland,ME.0025,70,50,60,50,"Overcast, ~50 deg F.; ;;Island",5,45
-75,2015,SC,OOS,c7.1l,2015-05-18,JB,DD,CS,-70.32836984057094,44.01409453297802,GBHE,,Wetland,ME.0847,1,1,1,1,Overcast; ;;1 active nest in NW lobe of wetland.,6,47
-76,2015,SC,L26,c6.1m,2015-05-18,JB,DD,CS,-70.51249211169461,43.97505183721337,GBHE,,Wetland,ME.0601,0,0,0,0,Overcast; ;;No nests seen.,6,48
-77,2015,SC,L26,c6.1m,2015-05-18,JB,DD,CS,-70.47941928868157,43.956046643396434,GBHE,,Wetland,ME.0687,6,6,6,6,Overcast; ;;All nests just to east of island with live trees.,6,48
-78,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.36419981838574,43.895887134281615,GBHE,,Wetland,ME.0830,27,20,27,20,Overcast; ;;,6,49
-79,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.38015764622051,43.87201559811639,GBHE,,Wetland,ME.0670,1,1,0,0,Overcast; ;;1 sparse nest.,6,49
-80,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.3669688124026,43.835245516675485,GBHE,,Wetland,ME.0820,6,5,6,5,Overcast; ;;1 nest by itself at NE end.,6,49
+68,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.04722641718865,43.78768710350563,GBHE,,Upland,ME.0757,0,0,0,0,"Overcast, ~50 deg F.;;;Island; no nests found.",5,42
+69,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.07223308180187,43.78183797049478,GBHE,,Upland,ME.0756,12,26,12,26,"Overcast, ~50 deg F.;;;Island; eagle nest looks active (adult present); BZ saw second bunch of nests that DD missed.",5,42
+70,2015,Co,L39,ca.1n,2015-05-18,JB,DD,BZ,-70.0559261451,43.7668259725,GBHE,,Upland,ME.0026,0,0,0,0,"Overcast, ~50 deg F.;;;No nests found.",5,42
+71,2015,Co,L45,ca.1o,2015-05-18,JB,DD,BZ,-70.05283470288063,43.71096757720914,GBHE,,Upland,ME.0004,8,7,8,7,"Overcast, ~50 deg F.;;;Island; Nests in middle of island and south; BZ thought he may have seen a BCNH nest just south of active OSPR nest.",5,43
+72,2015,Co,L40,cb.1o,2015-05-18,JB,DD,BZ,-69.93679706849618,43.72660090888783,GBHE,,Upland,ME.0774,25,25,25,25,"Overcast, ~50 deg F.;;;Island; south central part of island.",5,44
+73,2015,Co,L40,cb.1o,2015-05-18,JB,DD,BZ,-69.89935976618216,43.72144426670675,GBHE,,Upland,ME.0023,0,0,0,0,"Overcast, ~50 deg F.;;;Island; no nests found. Active eagle nest w/2 adults.",5,44
+74,2015,Co,L49,cb.1n,2015-05-18,JB,DD,BZ,-69.89143164797669,43.75107510860222,GBHE,,Upland,ME.0025,70,50,60,50,"Overcast, ~50 deg F.;;;Island",5,45
+75,2015,SC,OOS,c7.1l,2015-05-18,JB,DD,CS,-70.32836984057094,44.01409453297802,GBHE,,Wetland,ME.0847,1,1,1,1,Overcast;;;1 active nest in NW lobe of wetland.,6,47
+76,2015,SC,L26,c6.1m,2015-05-18,JB,DD,CS,-70.51249211169461,43.97505183721337,GBHE,,Wetland,ME.0601,0,0,0,0,Overcast;;;No nests seen.,6,48
+77,2015,SC,L26,c6.1m,2015-05-18,JB,DD,CS,-70.47941928868157,43.956046643396434,GBHE,,Wetland,ME.0687,6,6,6,6,Overcast;;;All nests just to east of island with live trees.,6,48
+78,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.36419981838574,43.895887134281615,GBHE,,Wetland,ME.0830,27,20,27,20,Overcast;;;,6,49
+79,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.38015764622051,43.87201559811639,GBHE,,Wetland,ME.0670,1,1,0,0,Overcast;;;1 sparse nest.,6,49
+80,2015,SC,L14,c7.1n,2015-05-18,JB,DD,CS,-70.3669688124026,43.835245516675485,GBHE,,Wetland,ME.0820,6,5,6,5,Overcast;;;1 nest by itself at NE end.,6,49
 81,2015,Co,A24,ch.1d,2015-05-22,JB,DD,KM,-68.87139373022067,44.518725490297264,GBHE,xx1,Wetland,ME.0765,11,11,11,11,"Coastal fog, low clouds; rain showers scattered across state.; Attempted to check coastal colonies and Area Plots, but got turned away due to low clouds.;Combined. ;Right under plane on both passes, KM saw it out his left window.",7,51
 82,2015,SC,L19,cf.1a,2015-05-22,JB,DD,KM,-68.97778573587905,44.79310414398215,GBHE,,Wetland,ME.0780,14,16,14,16,"Coastal fog, low clouds; rain showers scattered across state.; Attempted to check coastal colonies and Area Plots, but got turned away due to low clouds.;;",7,53
 83,2015,SC,L19,cf.1a,2015-05-22,JB,DD,KM,-68.92132793719472,44.82169110528761,GBHE,,Wetland,ME.0635,8,9,8,9,"Coastal fog, low clouds; rain showers scattered across state.; Attempted to check coastal colonies and Area Plots, but got turned away due to low clouds.;;",7,53
@@ -100,31 +100,31 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 99,2015,Co,L46,cl.1a,2015-05-30,CL,DD,SS,-68.31119838069361,44.616106798976794,GBHE,,Wetland,ME.0669,35,38,30,16,"Clear but windy; SS got sick after colony #16, so we landed on Georges Pond in Franklin for a 15 min. break.;;2 separate lobes contain nests.",9,63
 100,2015,Co,L41,cl.1b,2015-05-30,CL,DD,SS,-68.2636641699461,44.5490210508563,GBHE,,Upland,ME.0016,0,0,0,0,"Clear but windy; SS got sick after colony #16, so we landed on Georges Pond in Franklin for a 15 min. break.;;No nests found.",9,64
 101,2015,Co,L41,cl.1b,2015-05-30,CL,DD,SS,-68.34338373398178,44.54706359913699,GBHE,,Wetland,ME.0701,1,1,1,1,"Clear but windy; SS got sick after colony #16, so we landed on Georges Pond in Franklin for a 15 min. break.;;Plus 1 active GHOW nest with 2 owlets.",9,64
-102,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.41257849718683,44.27800974953268,GBHE,,Wetland,ME.0714,0,0,0,0,Overcast; winds ~10 mph.; ;;,10,66
-103,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.4042533150137,44.27833610081046,GBHE,,Wetland,ME.0840,1,1,1,1,Overcast; winds ~10 mph.; ;;,10,66
-104,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.45531313299102,44.220384915884495,GBHE,,Upland,ME.0604,13,13,11,13,Overcast; winds ~10 mph.; ;;,10,66
-105,2015,SC,L03,c4.1l,2015-06-03,JB,DD,AM,-70.71043505642325,44.078417017085215,GBHE,,Wetland,ME.0692,29,24,29,24,Overcast; winds ~10 mph.; ;;,10,68
+102,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.41257849718683,44.27800974953268,GBHE,,Wetland,ME.0714,0,0,0,0,Overcast; winds ~10 mph.;;;,10,66
+103,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.4042533150137,44.27833610081046,GBHE,,Wetland,ME.0840,1,1,1,1,Overcast; winds ~10 mph.;;;,10,66
+104,2015,ND,L60,c6.1j,2015-06-03,JB,DD,AM,-70.45531313299102,44.220384915884495,GBHE,,Upland,ME.0604,13,13,11,13,Overcast; winds ~10 mph.;;;,10,66
+105,2015,SC,L03,c4.1l,2015-06-03,JB,DD,AM,-70.71043505642325,44.078417017085215,GBHE,,Wetland,ME.0692,29,24,29,24,Overcast; winds ~10 mph.;;;,10,68
 106,2015,SC,A04,c6.1o,2015-05-18,JB,DD,CS,-70.57556492298738,43.791303437300584,GBHE,x11,Upland,ME.0679,14,11,14,11,Overcast; ;Combined. Rob got sick. Aborted at 14:30. Will finish plot on another date.;3 active GBHE nests on shore of point to west of island. 11 active nests on island.,6,50
-107,2015,SC,L37,c6.1r,2015-06-03,JB,DD,AM,-70.68430931919534,43.59942008240304,GBHE,,Wetland,ME.0810,4,4,4,4,Overcast; winds ~10 mph.; ;;We forgot to check this colony when we did rest of L37 on earlier date.,10,70
-108,2015,SC,OOS,c6.1p,2015-06-03,JB,DD,AM,-70.6076407684159,43.72165301123309,GBHE,,Wetland,ME.0849,19,,17,,Overcast; winds ~10 mph.; ;;Most of nests in pines (live & dead) on peninsula. 4 nests in 1 tree northwest of peninsula.,10,71
-109,2015,SC,L11,c9.1j,2015-06-03,JB,DD,AM,-70.03594295729035,44.19555884311643,GBHE,,Wetland,ME.0744,0,0,0,0,Overcast; winds ~10 mph.; ;;One heron seen foraging at south end.,10,72
+107,2015,SC,L37,c6.1r,2015-06-03,JB,DD,AM,-70.68430931919534,43.59942008240304,GBHE,,Wetland,ME.0810,4,4,4,4,Overcast; winds ~10 mph.;;;We forgot to check this colony when we did rest of L37 on earlier date.,10,70
+108,2015,SC,OOS,c6.1p,2015-06-03,JB,DD,AM,-70.6076407684159,43.72165301123309,GBHE,,Wetland,ME.0849,19,,17,,Overcast; winds ~10 mph.;;;Most of nests in pines (live & dead) on peninsula. 4 nests in 1 tree northwest of peninsula.,10,71
+109,2015,SC,L11,c9.1j,2015-06-03,JB,DD,AM,-70.03594295729035,44.19555884311643,GBHE,,Wetland,ME.0744,0,0,0,0,Overcast; winds ~10 mph.;;;One heron seen foraging at south end.,10,72
 110,2015,SC,L25,ch.17,2015-06-08,JB,DD,MC,-68.62130175140246,45.04489857491692,GBHE,,Wetland,ME.0819,1,1,1,0,Rain showers; Break in Millinocket for 25 min.;;Very dry; hard to tell if active - looked like bird incubating.,11,73
 111,2015,SC,L01,ch.16,2015-06-08,JB,DD,MC,-68.55810162539208,45.08434132449793,GBHE,,Wetland,ME.0740,0,0,0,0,Rain showers; Break in Millinocket for 25 min.;;,11,74
 112,2015,SC,L01,ch.16,2015-06-08,JB,DD,MC,-68.63263261418777,45.090650698091316,GBHE,,Wetland,ME.0763,7,2,6,1,Rain showers; Break in Millinocket for 25 min.;;,11,74
 113,2015,ND,L65,cf.16,2015-06-08,JB,DD,MC,-68.85907254881086,45.15320184722283,GBHE,,Wetland,ME.0746,9,4,1,0,Rain showers; Break in Millinocket for 25 min.;;,11,75
 114,2015,ND,L65,cf.16,2015-06-08,JB,DD,MC,-68.88643782830674,45.165152611692946,GBHE,,Wetland,ME.0675,1,0,1,0,Rain showers; Break in Millinocket for 25 min.;;,11,75
 115,2015,ND,A37,cf.15,2015-06-08,JB,DD,MC,-68.8684732339391,45.23421799840678,GBHE,x10,Wetland,ME.0850,2,2,0,0,Rain showers; Break in Millinocket for 25 min.;;Moose in wetland.,11,76
-116,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.34892377047736,45.10505709527638,OSPR,x01,,,1,1,0,0,"Breezy, partly sunny, ~70 deg F.; ;;1 empty nest looked like OSPR.",12,78
-117,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.36318012476353,45.07945423663581,BAEA,x10,Upland,,1,1,0,0,"Breezy, partly sunny, ~70 deg F.; ;;Empty BAEA nest in prominent pine just north of house.",12,78
-118,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.4523773932786,45.13712113862388,OSPR,x10,Wetland,,1,0,0,0,"Breezy, partly sunny, ~70 deg F.; ;;OSPR nest low in tree, empty.",12,78
-119,2015,Co,A17,cs.15,2015-06-10,CB,DD,DK,-67.23146819194109,44.86889662222928,OSPR,x11,Wetland,,2,2,1,1,"Breezy, partly sunny, ~70 deg F.; ;;West nest was active.",12,79
-120,2015,Co,A17,cs.15,2015-06-10,CB,DD,DK,-67.2439450228121,44.9077531491734,OSPR,x01,,,1,1,1,1,"Breezy, partly sunny, ~70 deg F.; ;;Active OSPR nest.",12,79
-121,2015,,OOS,,2015-06-11,CL,DD,KM,-69.41337924646953,44.07777267427577,OSPR,,Wetland,,1,1,0,0,"~70 deg F, clear, light wind.; ;;Empty nest looks like OSPR.",13,80
-122,2015,Co,L42,cf.1k,2015-06-11,CL,DD,KM,-69.40058661862221,43.91036194211134,GBHE,,Upland,ME.0007,100,80,70,60,"~70 deg F, clear, light wind.; ;;Island.",13,81
-123,2015,Co,L48,ch.1j,2015-06-11,CL,DD,KM,-69.09553531211805,43.98135351191638,GBHE,,Upland,ME.0008,65,75,60,70,"~70 deg F, clear, light wind.; ;;Island.",13,83
-124,2015,Co,L43,ck.1g,2015-06-11,CL,DD,KM,-68.57903909818506,44.16822313810212,GBHE,,Upland,ME.0608,25,30,23,27,"~70 deg F, clear, light wind.; ;;Island.",13,84
-125,2015,Co,L52,cn.1c,2015-06-11,CL,DD,KM,-68.02229135983274,44.43707380124838,GBHE,,Wetland,ME.0707,7,6,0,0,"~70 deg F, clear, light wind.; ;;1 nest was active OSPR.",13,86
-126,2015,Co,A18,co.1b,2015-06-11,CL,DD,KM,-67.8873814268302,44.507128653644074,GBHE,x10,Wetland,ME.0851,4,4,4,4,"~70 deg F, clear, light wind.; ;;Plus 1 active OSPR, 1 inactive OSPR",13,87
+116,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.34892377047736,45.10505709527638,OSPR,x01,,,1,1,0,0,"Breezy, partly sunny, ~70 deg F.;;;1 empty nest looked like OSPR.",12,78
+117,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.36318012476353,45.07945423663581,BAEA,x10,Upland,,1,1,0,0,"Breezy, partly sunny, ~70 deg F.;;;Empty BAEA nest in prominent pine just north of house.",12,78
+118,2015,ND,A29,cq.13,2015-06-10,CB,DD,DK,-67.4523773932786,45.13712113862388,OSPR,x10,Wetland,,1,0,0,0,"Breezy, partly sunny, ~70 deg F.;;;OSPR nest low in tree, empty.",12,78
+119,2015,Co,A17,cs.15,2015-06-10,CB,DD,DK,-67.23146819194109,44.86889662222928,OSPR,x11,Wetland,,2,2,1,1,"Breezy, partly sunny, ~70 deg F.;;;West nest was active.",12,79
+120,2015,Co,A17,cs.15,2015-06-10,CB,DD,DK,-67.2439450228121,44.9077531491734,OSPR,x01,,,1,1,1,1,"Breezy, partly sunny, ~70 deg F.;;;Active OSPR nest.",12,79
+121,2015,,OOS,,2015-06-11,CL,DD,KM,-69.41337924646953,44.07777267427577,OSPR,,Wetland,,1,1,0,0,"~70 deg F, clear, light wind.;;;Empty nest looks like OSPR.",13,80
+122,2015,Co,L42,cf.1k,2015-06-11,CL,DD,KM,-69.40058661862221,43.91036194211134,GBHE,,Upland,ME.0007,100,80,70,60,"~70 deg F, clear, light wind.;;;Island.",13,81
+123,2015,Co,L48,ch.1j,2015-06-11,CL,DD,KM,-69.09553531211805,43.98135351191638,GBHE,,Upland,ME.0008,65,75,60,70,"~70 deg F, clear, light wind.;;;Island.",13,83
+124,2015,Co,L43,ck.1g,2015-06-11,CL,DD,KM,-68.57903909818506,44.16822313810212,GBHE,,Upland,ME.0608,25,30,23,27,"~70 deg F, clear, light wind.;;;Island.",13,84
+125,2015,Co,L52,cn.1c,2015-06-11,CL,DD,KM,-68.02229135983274,44.43707380124838,GBHE,,Wetland,ME.0707,7,6,0,0,"~70 deg F, clear, light wind.;;;1 nest was active OSPR.",13,86
+126,2015,Co,A18,co.1b,2015-06-11,CL,DD,KM,-67.8873814268302,44.507128653644074,GBHE,x10,Wetland,ME.0851,4,4,4,4,"~70 deg F, clear, light wind.;;;Plus 1 active OSPR, 1 inactive OSPR",13,87
 127,2015,ND,OOS,ch.0p,2015-06-12,JB,DD,AD,-67.98936012528873,46.541366098085504,GBHE,,Upland,ME.0510,0,0,0,0,"; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;No nests seen, but did see prominent pine where DD recalls an old nest had been.",14,88
 128,2015,ND,L62,ch.0q,2015-06-12,JB,DD,AD,-68.0528130178204,46.50487642178368,GBHE,,Wetland,ME.0823,3,3,3,2,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;Hard to tell if 3rd nest active.,14,89
 129,2015,ND,L58,ci.0n,2015-06-12,JB,DD,AD,-67.7898229381867,46.66779554247884,GBHE,,Wetland,ME.0712,0,0,0,0,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;,14,90
@@ -148,48 +148,48 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 147,2015,ND,OOS,ca.17,2015-06-19,JB,DD,BC,-69.49578401577793,45.17917118458725,GBHE,,Wetland,ME.0709,0,0,0,0,Cloudy; variable amounts of clouds/sun and variable winds.; Started and ended in Norridgewock.;;Dry; no nests on either side of road.,18,112
 148,2015,ND,A33,c9.15,2015-06-19,JB,DD,BC,-69.50856664980589,45.39281090222139,GBHE,x10,Upland,,9,9,0,1,"Cloudy; variable amounts of clouds/sun and variable winds.; Started and ended in Norridgewock.;;Live pines on low area on ridge. Another waypoint taken: 460503 E, 5026711 N. One that looked active had something bright white init, but too large for egg.",18,113
 149,2015,ND,L59,c4.15,2015-06-19,JB,DD,BC,-70.19730525391482,45.46900716437989,GBHE,,Upland,ME.0722,0,0,0,0,Cloudy; variable amounts of clouds/sun and variable winds.; Started and ended in Norridgewock.;;Could not see any nests.,18,114
-150,2023,SC,OOS,c6.1l,2023-05-05,JS,DD,BZ,-70.41950739386903,44.03643824397015,,,Wetland,ME.0907,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,121
-151,2023,,OOS,,2023-05-05,JS,DD,BZ,,,,111,Wetland,ME.0910,1,1,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;1 inactive nest in wetland just south of 907.",19,121
-152,2023,SC,OOS,c6.1p,2023-05-05,JS,DD,BZ,-70.60773044465333,43.721768517659044,GBHE,x11,Split: upland and wetland,ME.0849,9,10,2,2,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;Mix oflive and dead trees. One of active nests may have been an osprey nest.",19,121
-153,2023,SC,L01,c6.1w,2023-05-05,JS,DD,BZ,-70.79496256079821,43.13933812348343,,,Wetland,ME.0100,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,117
-154,2023,SC,L01,c6.1w,2023-05-05,JS,DD,BZ,-70.79594438641911,43.12331255569283,GBHE,x11,Upland,ME.0646,11,16,11,16,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;All nests in live pines on NW edge of wetland; osprey nest in snag in middle of wetland.",19,117
-155,2023,SC,OOS,c4.1r,2023-05-05,JS,DD,BZ,-70.82678590794117,43.61651127762833,,,,ME.0105,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;unknown habitat of original colony",19,121
-156,2023,SC,OOS,c6.1v,2023-05-05,JS,DD,BZ,-70.77946971780652,43.1868000371924,GBHE,x11,Wetland,ME.0101,8,8,8,8,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;Cluster of 5 nests, then 3 more scattered more south/east; 1 osprey nest",19,121
-157,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.70852746052502,43.27663661027783,,,Wetland,ME.0102,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,118
-158,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,,,GBHE,x11,Wetland,ME.0911,3,3,3,3,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;New nearby colony found.",19,118
-159,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.74841321310139,43.336837639023074,,,Wetland,ME.0771,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,118
-160,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.70238188446622,43.29387267746937,,,Wetland,ME.0902,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,118
-161,2023,SC,L49,c7.1t,2023-05-05,JS,DD,BZ,-70.61688565213402,43.37461651430436,GBHE,x11,Wetland,ME.0890,6,7,6,6,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;The additional empty nest seen by Robs may not be a nest?",19,119
-162,2023,SC,L49,c7.1t,2023-05-05,JS,DD,BZ,-70.56129461939074,43.36240424353678,GBHE,x11,Wetland,ME.0868,6,6,6,6,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,119
-163,2023,SC,L19,c6.1s,2023-05-05,JS,DD,BZ,-70.66813433421254,43.451084596215,,,Wetland,ME.0103,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph; ;;",19,120
-164,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.68430931919534,43.59942008240304,GBHE,x11,Wetland,ME.0810,2,2,1,2,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;",20,123
-165,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.6582137962896,43.54717870037649,,,Wetland,ME.0826,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;Checked snags in flowage to SE of 826, too.",20,123
-166,2023,SC,OOS,c6.1r,2023-05-06,CH,DD,LM,-70.62410662241521,43.53565819508427,GBHE,,Wetland,ME.0827,3,3,3,3,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;3 single nests in snags in middle of deeper water",20,122
-167,2023,SC,OOS,c6.1r,2023-05-06,CH,DD,LM,-70.61823617259552,43.531455875091964,,,Wetland,ME.0704,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;",20,122
-168,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.71070454818647,43.528867040320854,,,Wetland,ME.0828,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;",20,123
-169,2023,SC,L41,c5.1r,2023-05-06,CH,DD,LM,-70.81520106655583,43.5528493689099,,,Wetland,ME.0717,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;",20,237
-170,2023,SC,OOS,c5.1q,2023-05-06,CH,DD,LM,-70.78169013698258,43.62722117720726,,,Wetland,ME.0811,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;",20,122
-171,2023,SC,OOS,c4.1r,2023-05-06,CH,DD,LM,-70.89849886051994,43.593266238184704,,,Upland,ME.0831,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;;Made sure to check live trees and snags; no sign of herons or nests.",20,122
+150,2023,SC,OOS,c6.1l,2023-05-05,JS,DD,BZ,-70.41950739386903,44.03643824397015,,,Wetland,ME.0907,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,121
+151,2023,SC,OOS,,2023-05-05,JS,DD,BZ,,, GBHE,111,Wetland,ME.0910,1,1,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;1 inactive nest in a wetland just south of 907.",19,121
+152,2023,SC,OOS,c6.1p,2023-05-05,JS,DD,BZ,-70.60773044465333,43.721768517659044,GBHE,x11,Split: upland and wetland,ME.0849,9,10,2,2,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;Mix of live and dead trees. One of the active nests may have been an osprey nest.",19,121
+153,2023,SC,L01,c6.1w,2023-05-05,JS,DD,BZ,-70.79496256079821,43.13933812348343,,,Wetland,ME.0100,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,117
+154,2023,SC,L01,c6.1w,2023-05-05,JS,DD,BZ,-70.79594438641911,43.12331255569283,GBHE,x11,Upland,ME.0646,11,16,11,16,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;All nests in live pines on NW edge of wetland; osprey nest in snag in middle of wetland.",19,117
+155,2023,SC,OOS,c4.1r,2023-05-05,JS,DD,BZ,-70.82678590794117,43.61651127762833,,,,ME.0105,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;unknown habitat of original colony",19,121
+156,2023,SC,OOS,c6.1v,2023-05-05,JS,DD,BZ,-70.77946971780652,43.1868000371924,GBHE,x11,Wetland,ME.0101,8,8,8,8,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;Cluster of 5 nests, then 3 more scattered more south/east; 1 osprey nest",19,121
+157,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.70852746052502,43.27663661027783,,,Wetland,ME.0102,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,118
+158,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,,,GBHE,x11,Wetland,ME.0911,3,3,3,3,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;New nearby colony found.",19,118
+159,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.74841321310139,43.336837639023074,,,Wetland,ME.0771,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,118
+160,2023,SC,L40,c6.1u,2023-05-05,JS,DD,BZ,-70.70238188446622,43.29387267746937,,,Wetland,ME.0902,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,118
+161,2023,SC,L49,c7.1t,2023-05-05,JS,DD,BZ,-70.61688565213402,43.37461651430436,GBHE,x11,Wetland,ME.0890,6,7,6,6,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;The additional empty nest seen by Robs may not be a nest?",19,119
+162,2023,SC,L49,c7.1t,2023-05-05,JS,DD,BZ,-70.56129461939074,43.36240424353678,GBHE,x11,Wetland,ME.0868,6,6,6,6,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,119
+163,2023,SC,L19,c6.1s,2023-05-05,JS,DD,BZ,-70.66813433421254,43.451084596215,,,Wetland,ME.0103,0,0,0,0,"mostly sunny, some clouds, 48-61 deg F, winds 10-15 mph;;;",19,120
+164,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.68430931919534,43.59942008240304,GBHE,x11,Wetland,ME.0810,2,2,1,2,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;",20,123
+165,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.6582137962896,43.54717870037649,,,Wetland,ME.0826,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;Checked snags in flowage to SE of 826, too.",20,123
+166,2023,SC,OOS,c6.1r,2023-05-06,CH,DD,LM,-70.62410662241521,43.53565819508427,GBHE,,Wetland,ME.0827,3,3,3,3,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;3 single nests in snags in middle of deeper water",20,122
+167,2023,SC,OOS,c6.1r,2023-05-06,CH,DD,LM,-70.61823617259552,43.531455875091964,,,Wetland,ME.0704,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;",20,122
+168,2023,SC,L35,c6.1r,2023-05-06,CH,DD,LM,-70.71070454818647,43.528867040320854,,,Wetland,ME.0828,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;",20,123
+169,2023,SC,L41,c5.1r,2023-05-06,CH,DD,LM,-70.81520106655583,43.5528493689099,,,Wetland,ME.0717,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;",20,237
+170,2023,SC,OOS,c5.1q,2023-05-06,CH,DD,LM,-70.78169013698258,43.62722117720726,,,Wetland,ME.0811,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;",20,122
+171,2023,SC,OOS,c4.1r,2023-05-06,CH,DD,LM,-70.89849886051994,43.593266238184704,,,Upland,ME.0831,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.;;;Made sure to check live trees and snags; no sign of herons or nests.",20,122
 172,2023,SC,L63,c4.1r,2023-05-06,CH,DD,LM,,,GBHE,x11,Wetland,ME.0913,3,3,1,1,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;Combined. Replaced A12 which was a combined plot b/c A12 is in Portland airspace.;Nests in snags in flowage just NE of 703. Found during search.",20,124
 173,2023,SC,L63,c4.1r,2023-05-06,CH,DD,LM,-70.83576430437759,43.585584670873956,,,Wetland,ME.0703,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;Combined. Replaced A12 which was a combined plot b/c A12 is in Portland airspace.;",20,124
 174,2023,SC,L63,c4.1r,2023-05-06,CH,DD,LM,-70.78627301231913,43.17239480658522,,,Wetland,ME.0647,0,0,0,0,"clear and calm to start, increasing clouds and wind with time, low f 55 deg F, high of 73 deg F.; ;Combined. Replaced A12 which was a combined plot b/c A12 is in Portland airspace.;",20,124
-175,2023,SC,L11,cf.1a,2023-05-09,NM,DD,BCU,-68.92132793719472,44.82169110528761,,,Wetland,ME.0635,0,0,0,0,"clear and calm to start, inceeasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;;",21,125
-176,2023,SC,L11,cf.1a,2023-05-09,NM,DD,BCU,-68.97778573587905,44.79310414398215,GBHE,x11,Wetland,ME.0780,22,14,22,14,"clear and calm to start, inceeasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;;Difficult to count.",21,125
-177,2023,SC,A02,cc.1a,2023-05-09,NM,DD,BCU,-69.29718058070267,44.88053011430662,GBHE,x11,Wetland,ME.0738,13,9,13,9,"clear and calm to start, inceeasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;Combined. Ended early due to illness;Go back to count again.",21,126
+175,2023,SC,L11,cf.1a,2023-05-09,NM,DD,BCU,-68.92132793719472,44.82169110528761,,,Wetland,ME.0635,0,0,0,0,"clear and calm to start, increasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;;",21,125
+176,2023,SC,L11,cf.1a,2023-05-09,NM,DD,BCU,-68.97778573587905,44.79310414398215,GBHE,x11,Wetland,ME.0780,22,14,22,14,"clear and calm to start, increasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;;Difficult to count.",21,125
+177,2023,SC,A02,cc.1a,2023-05-09,NM,DD,BCU,-69.29718058070267,44.88053011430662,GBHE,x11,Wetland,ME.0738,13,9,13,9,"clear and calm to start, increasing wind with time, low of 42 deg F, high of 50 deg F; ended early due to illness;Combined. Ended early due to illness;Go back to count again.",21,126
 178,2023,SC,A02,cc.1a,2023-05-10,NM,DD,KM,-69.29718058070267,44.88053011430662,GBHE,x11,Upland,ME.0738,22,18,22,18,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;Combined. Continued from 5/9;Difficult to count because some nests below canopy.",22,127
 179,2023,SC,A02,cc.1a,2023-05-10,NM,DD,KM,-69.40974748671265,44.88727965942147,,,Wetland,ME.0166,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;Combined. Continued from 5/9;",22,127
 180,2023,SC,A02,cc.1a,2023-05-10,NM,DD,KM,-69.36551297532957,44.858793831209894,,,,ME.0126,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;Combined. Continued from 5/9;unknown habitat of original colony",22,127
-181,2023,SC,L36,cc.1b,2023-05-10,NM,DD,KM,-69.36765386826613,44.74291881328281,,,Wetland,ME.0175,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,128
-182,2023,SC,L12,cc.1c,2023-05-10,NM,DD,KM,-69.3625631374,44.7288075318,,,,ME.0122,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;unknown habitat of original colony",22,129
-183,2023,SC,L12,cc.1c,2023-05-10,NM,DD,KM,-69.40302836450395,44.71153631140563,,,Wetland,ME.0632,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,129
-184,2023,SC,OOS,,2023-05-10,NM,DD,KM,,,GBHE,,Wetland,ME.0908,18,20,18,20,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,135
-185,2023,SC,OOS,cc.1d,2023-05-10,NM,DD,KM,-69.45583889918272,44.60152580849884,GBHE,x11,Wetland,ME.0685,20,20,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;Active BAEA nest in snag - 2 adults present, one above nest & one nearby.",22,135
-186,2023,SC,L09,cd.1c,2023-05-10,NM,DD,KM,-69.34582490310157,44.66806687520649,GBHE,x11,Wetland,ME.0760,1,1,1,1,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,131
-187,2023,SC,L09,cd.1c,2023-05-10,NM,DD,KM,-69.28756127147899,44.63164308931108,,,Wetland,ME.0677,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,131
-188,2023,SC,L33,ce.1d,2023-05-10,NM,DD,KM,-69.16474650812025,44.53177193950538,,,Wetland,ME.0732,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,132
-189,2023,SC,L33,ce.1d,2023-05-10,NM,DD,KM,-69.1551196560951,44.57426401873029,,,Wetland,ME.0116,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,132
-190,2023,SC,L22,cg.1d,2023-05-10,NM,DD,KM,-69.03397054652146,44.51756085468132,GBHE,x11,Wetland,ME.0622,1,1,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;RObs also saw 1/2 of an old nest.",22,134
-191,2023,Co,L25,cg.1d,2023-05-10,NM,DD,KM,-68.94623360538267,44.49854061309142,,,Wetland,ME.0742,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.; ;;",22,133
+181,2023,SC,L36,cc.1b,2023-05-10,NM,DD,KM,-69.36765386826613,44.74291881328281,,,Wetland,ME.0175,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,128
+182,2023,SC,L12,cc.1c,2023-05-10,NM,DD,KM,-69.3625631374,44.7288075318,,,,ME.0122,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;unknown habitat of original colony",22,129
+183,2023,SC,L12,cc.1c,2023-05-10,NM,DD,KM,-69.40302836450395,44.71153631140563,,,Wetland,ME.0632,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,129
+184,2023,SC,OOS,,2023-05-10,NM,DD,KM,,,GBHE,,Wetland,ME.0908,18,20,18,20,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,135
+185,2023,SC,OOS,cc.1d,2023-05-10,NM,DD,KM,-69.45583889918272,44.60152580849884,GBHE,x11,Wetland,ME.0685,20,20,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;Active BAEA nest in snag - 2 adults present, one above nest & one nearby.",22,135
+186,2023,SC,L09,cd.1c,2023-05-10,NM,DD,KM,-69.34582490310157,44.66806687520649,GBHE,x11,Wetland,ME.0760,1,1,1,1,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,131
+187,2023,SC,L09,cd.1c,2023-05-10,NM,DD,KM,-69.28756127147899,44.63164308931108,,,Wetland,ME.0677,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,131
+188,2023,SC,L33,ce.1d,2023-05-10,NM,DD,KM,-69.16474650812025,44.53177193950538,,,Wetland,ME.0732,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,132
+189,2023,SC,L33,ce.1d,2023-05-10,NM,DD,KM,-69.1551196560951,44.57426401873029,,,Wetland,ME.0116,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,132
+190,2023,SC,L22,cg.1d,2023-05-10,NM,DD,KM,-69.03397054652146,44.51756085468132,GBHE,x11,Wetland,ME.0622,1,1,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;RObs also saw 1/2 of an old nest.",22,134
+191,2023,Co,L25,cg.1d,2023-05-10,NM,DD,KM,-68.94623360538267,44.49854061309142,,,Wetland,ME.0742,0,0,0,0,"sunny, wind increased from 5 to 15 mph w/higher gusts, Temp 42-66 deg F.;;;",22,133
 192,2023,SC,L44,c7.1m,2023-05-13,NM,DD,RP,-70.33555395075658,43.97915071963661,GBHE,x11,Wetland,ME.0892,5,4,5,2,"clear but hazy; low of 52 deg F, high of 65 deg F, wind 10-20 mph with some gusts.; ended early due to illness.;;",23,136
 193,2023,SC,L08,c7.1n,2023-05-13,NM,DD,RP,-70.36419981838574,43.895887134281615,GBHE,x11,Wetland,ME.0830,38,28,38,28,"clear but hazy; low of 52 deg F, high of 65 deg F, wind 10-20 mph with some gusts.; ended early due to illness.;;",23,137
 194,2023,SC,L08,c7.1n,2023-05-13,NM,DD,RP,-70.38015764622051,43.87201559811639,,,Wetland,ME.0670,0,0,0,0,"clear but hazy; low of 52 deg F, high of 65 deg F, wind 10-20 mph with some gusts.; ended early due to illness.;;",23,137
@@ -199,63 +199,63 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 198,2023,SC,A18,c4.1o,2023-05-15,MT,DD,MT,,,GBHE,x11,Upland,ME.0915,5,5,4,4,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;Combined. ;Nests in live pines on edge of the wetland",24,140
 199,2023,SC,A18,c4.1o,2023-05-15,MT,DD,MT,-70.7599741686596,43.88156076283037,GBHE,x11,Wetland,ME.0885,5,4,5,4,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;Combined. ;",24,140
 200,2023,SC,A18,c4.1o,2023-05-15,MT,DD,MT,-70.76128422180794,43.86987366478287,,,Wetland,ME.0686,0,0,0,0,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;Combined. ;",24,140
-201,2023,SC,L47,c5.1n,2023-05-15,MT,DD,MT,-70.67737706679456,43.918530771807454,GBHE,x11,Wetland,ME.0880,6,6,3,1,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;;Hard to tell how many nests active",24,141
-202,2023,SC,L47,c5.1n,2023-05-15,MT,DD,MT,-70.68170087917898,43.97690668432096,,,Wetland,ME.0693,0,0,0,0,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;;",24,141
-203,2023,SC,L37,c5.1m,2023-05-15,MT,DD,MT,-70.53474196217537,44.02827269341146,GBHE,x11,Wetland,ME.0887,2,3,0,0,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.; ;;Robs saw 1 more nest on the edge of the wetland.",24,142
-204,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.74061155492512,44.98507813294261,,,Wetland,ME.0870,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;DRY",25,144
-205,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.83826599592312,45.00063422811347,,,Wetland,ME.0655,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;DRY",25,145
-206,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.87129725791915,44.96393165390432,,,Wetland,ME.0798,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;DRY",25,145
-207,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.83060261929043,44.92492745377777,OSPR,x11,Wetland,ME.0822,1,1,1,1,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;Active osprey nest at colony 822.",25,144
-208,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.83060261929043,44.92492745377777,,,Wetland,ME.0822,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,144
-209,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,,,GBHE,x10,Upland,ME.0916,30,15,30,2,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;Upland pine stand next to the field.",25,144
-210,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.95315271150675,44.97444285058468,OSPR,x11,Wetland,ME.0785,1,1,1,1,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;Active osprey nest at colony 785.",25,145
-211,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.95315271150675,44.97444285058468,,,Wetland,ME.0785,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,145
-212,2023,ND,L71,cf.16,2023-05-24,JS,DD,MC,-68.88643782830674,45.165152611692946,,,Wetland,ME.0675,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,146
-213,2023,ND,L71,cf.16,2023-05-24,JS,DD,MC,-68.85907254881086,45.15320184722283,GBHE,x11,Wetland,ME.0746,2,2,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,146
-214,2023,SC,L34,cg.15,2023-05-24,JS,DD,MC,-68.69787025587726,45.19930364839943,GBHE,,Wetland,ME.0727,1,1,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,147
-215,2023,SC,L34,cg.15,2023-05-24,JS,DD,MC,-68.68749035808607,45.17603988608976,,,Wetland,ME.0136,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;No obvious location for colony here.",25,147
-216,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.74406542802726,45.166647924148855,,,Wetland,ME.0617,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,148
-217,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.724022280817735,45.15407881282959,,,Wetland,ME.0695,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,148
-218,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.71204160519171,45.15563463979312,,,Wetland,ME.0135,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,148
-219,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.70837973473947,45.142502424969535,,,Wetland,ME.0723,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,148
-220,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.7098421282,45.1377190797,,,Upland,ME.0134,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;No obvious location here.",25,148
-221,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.71558391895928,45.144009351609824,,,Wetland,ME.0724,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,148
-222,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.63263261418777,45.090650698091316,GBHE,,Wetland,ME.0763,1,1,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,149
-223,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.55810162539208,45.08434132449793,,,Wetland,ME.0740,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;1 BAEA perched on east edge of wetland but no nest seen.",25,149
-224,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.54617608893273,45.07176909608473,,,Wetland,ME.0718,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,149
-225,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.46640690260341,44.85011731359446,,,Wetland,ME.0628,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,150
-226,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.45831909992536,44.859414960831636,,,Wetland,ME.0769,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,150
-227,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.42376732090922,44.83744016961267,,,Wetland,ME.0881,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;",25,150
-228,2023,ND,OOS,ck.19,2023-05-24,JS,DD,MC,-68.29845389749019,44.798921349210474,,,Wetland,ME.0770,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;;Empty BAEA(?) nest in live pine on west side of wetland. No other nests seen.",25,151
+201,2023,SC,L47,c5.1n,2023-05-15,MT,DD,MT,-70.67737706679456,43.918530771807454,GBHE,x11,Wetland,ME.0880,6,6,3,1,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.;;;Hard to tell how many nests active",24,141
+202,2023,SC,L47,c5.1n,2023-05-15,MT,DD,MT,-70.68170087917898,43.97690668432096,,,Wetland,ME.0693,0,0,0,0,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.;;;",24,141
+203,2023,SC,L37,c5.1m,2023-05-15,MT,DD,MT,-70.53474196217537,44.02827269341146,GBHE,x11,Wetland,ME.0887,2,3,0,0,"clear w/increasing clouds, 42-66 deg F, winds 5-10 pmh w/hiher gusts at end.;;;Rob saw 1 more nest on the edge of the wetland.",24,142
+204,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.74061155492512,44.98507813294261,,,Wetland,ME.0870,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;DRY",25,144
+205,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.83826599592312,45.00063422811347,,,Wetland,ME.0655,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;DRY",25,145
+206,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.87129725791915,44.96393165390432,,,Wetland,ME.0798,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;DRY",25,145
+207,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.83060261929043,44.92492745377777,OSPR,x11,Wetland,ME.0822,1,1,1,1,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;Active osprey nest at colony 822.",25,144
+208,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,-68.83060261929043,44.92492745377777,,,Wetland,ME.0822,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,144
+209,2023,SC,L16,cg.18,2023-05-24,JS,DD,MC,,,GBHE,x10,Upland,ME.0916,30,15,30,2,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;Upland pine stand next to the field.",25,144
+210,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.95315271150675,44.97444285058468,OSPR,x11,Wetland,ME.0785,1,1,1,1,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;Active osprey nest at colony 785.",25,145
+211,2023,SC,L43,cf.18,2023-05-24,JS,DD,MC,-68.95315271150675,44.97444285058468,,,Wetland,ME.0785,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,145
+212,2023,ND,L71,cf.16,2023-05-24,JS,DD,MC,-68.88643782830674,45.165152611692946,,,Wetland,ME.0675,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,146
+213,2023,ND,L71,cf.16,2023-05-24,JS,DD,MC,-68.85907254881086,45.15320184722283,GBHE,x11,Wetland,ME.0746,2,2,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,146
+214,2023,SC,L34,cg.15,2023-05-24,JS,DD,MC,-68.69787025587726,45.19930364839943,GBHE,,Wetland,ME.0727,1,1,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,147
+215,2023,SC,L34,cg.15,2023-05-24,JS,DD,MC,-68.68749035808607,45.17603988608976,,,Wetland,ME.0136,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;No obvious location for colony here.",25,147
+216,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.74406542802726,45.166647924148855,,,Wetland,ME.0617,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,148
+217,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.724022280817735,45.15407881282959,,,Wetland,ME.0695,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,148
+218,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.71204160519171,45.15563463979312,,,Wetland,ME.0135,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,148
+219,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.70837973473947,45.142502424969535,,,Wetland,ME.0723,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,148
+220,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.7098421282,45.1377190797,,,Upland,ME.0134,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;No obvious location here.",25,148
+221,2023,SC,L38,cg.16,2023-05-24,JS,DD,MC,-68.71558391895928,45.144009351609824,,,Wetland,ME.0724,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,148
+222,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.63263261418777,45.090650698091316,GBHE,,Wetland,ME.0763,1,1,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,149
+223,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.55810162539208,45.08434132449793,,,Wetland,ME.0740,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;1 BAEA perched on east edge of wetland but no nest seen.",25,149
+224,2023,SC,L48,ch.16,2023-05-24,JS,DD,MC,-68.54617608893273,45.07176909608473,,,Wetland,ME.0718,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,149
+225,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.46640690260341,44.85011731359446,,,Wetland,ME.0628,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,150
+226,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.45831909992536,44.859414960831636,,,Wetland,ME.0769,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,150
+227,2023,SC,L05,cj.18,2023-05-24,JS,DD,MC,-68.42376732090922,44.83744016961267,,,Wetland,ME.0881,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;",25,150
+228,2023,ND,OOS,ck.19,2023-05-24,JS,DD,MC,-68.29845389749019,44.798921349210474,,,Wetland,ME.0770,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed;;;Empty BAEA(?) nest in live pine on west side of wetland. No other nests seen.",25,151
 229,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,,,GBHE,x10,Wetland,ME.0917,2,2,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;Northwest corner of plot; not detected by Robs at first.",25,152
 230,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,-68.5636648947123,44.77771100568635,,,Wetland,ME.0684,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;",25,152
 231,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,-68.58063262990959,44.84507602077623,GBHE,x10,Wetland,ME.0773,1,1,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;There are 2 nests here - we each saw a different nest and realized it after that there were 2 total.",25,152
 232,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,-68.60100428554152,44.82237210398579,GBHE,x00,Upland,ME.0905,1,1,1,1,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;",25,152
 233,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,-68.64973311571148,44.80877204530431,,,Wetland,ME.0640,0,0,0,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;",25,152
 234,2023,SC,A16,ci.19,2023-05-24,JS,DD,MC,-68.60842254203091,44.78510228211305,GBHE,x00,Wetland,ME.0883,1,0,1,0,"50 deg F, wind ~10 mph, increasing clouds, showers as we landed; ;Combined. ;",25,152
-235,2023,,OOS,,2023-05-26,CH,DD,AF,,,GBHE,,Wetland,ME.0910,1,1,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;There may also be a partial old nest here.",26,153
-236,2023,SC,L18,c4.1l,2023-05-26,CH,DD,AF,-70.71043505642325,44.078417017085215,GBHE,,Wetland,ME.0692,14,13,14,13,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,154
-237,2023,SC,L18,c4.1l,2023-05-26,CH,DD,AF,-70.74334517720042,44.11048412431756,,,Wetland,ME.0877,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,154
-238,2023,SC,L13,c2.1l,2023-05-26,CH,DD,AF,-70.87586097900198,44.16812995664293,GBHE,,Wetland,ME.0888,30,33,30,33,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,155
-239,2023,SC,OOS,c2.1k,2023-05-26,CH,DD,AF,-70.87826130761763,44.20406426802195,,,Wetland,ME.0806,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,153
-240,2023,ND,L84,c2.1l,2023-05-26,CH,DD,AF,-70.9759633408732,44.20180533641056,,,Wetland,ME.0719,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,156
-241,2023,SC,L13,c2.1l,2023-05-26,CH,DD,AF,-70.96372130858865,44.135343764385645,,,Wetland,ME.0713,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,155
-242,2023,SC,L02,c9.1j,2023-05-26,CH,DD,AF,-70.03594295729035,44.19555884311643,,,Wetland,ME.0744,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,157
-243,2023,SC,L02,c9.1j,2023-05-26,CH,DD,AF,-70.05297425841913,44.224805222146955,,,Upland,ME.0108,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,157
-244,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.05276806349325,44.30659981251178,,,Upland,ME.0602,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,158
-245,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.08758360133416,44.313322935519544,,,Upland,ME.0113,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,158
-246,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.09939477651665,44.30724988698365,,,Upland,ME.0112,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,158
-247,2023,SC,OOS,c8.1h,2023-05-26,CH,DD,AF,-70.0914897564,44.3285546949,,,,ME.0178,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;unknown habitat of original colony",26,153
-248,2023,SC,L42,c8.1g,2023-05-26,CH,DD,AF,-70.04815911174936,44.50201875893526,,,Wetland,ME.0697,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,159
-249,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.81047100178398,44.41700716390176,,,Wetland,ME.0631,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,160
-250,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.7688778437857,44.38224539959191,,,Upland,ME.0605,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,160
-251,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.85210496921704,44.38048518158999,GBHE,,Wetland,ME.0656,14,14,14,14,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,160
-252,2023,SC,L04,ca.1h,2023-05-26,CH,DD,AF,-69.8783173895174,44.294985241014416,,,Wetland,ME.0691,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,161
-253,2023,SC,OOS,c9.1h,2023-05-26,CH,DD,AF,-69.9125471521752,44.30409664032294,GBHE,,Upland,ME.0636,23,29,23,29,"49-53 deg F, winds 9-12 mph, parly cloudy; ;;",26,153
-254,2023,SC,OOS,cf.1c,2023-05-27,NM,DD,KS,-68.9898477572646,44.64273952383171,GBHE,,Wetland,ME.0861,18,19,18,18,"54-75 deg F, clear and calm 5-12mph; ;;",27,162
-255,2023,SC,OOS,cg.1c,2023-05-27,NM,DD,KS,-68.96675170578311,44.65835816322019,,,Wetland,ME.0612,0,0,0,0,"54-75 deg F, clear and calm 5-12mph; ;;",27,162
-256,2023,SC,OOS,ce.1a,2023-05-27,NM,DD,KS,-69.15963170140034,44.821792074503804,,,Wetland,ME.0900,0,0,0,0,"54-75 deg F, clear and calm 5-12mph; ;;",27,162
-257,2023,SC,OOS,ce.1a,2023-05-27,NM,DD,KS,-69.13409547467708,44.8431285409383,GBHE,,Wetland,ME.0889,3,,3,,"54-75 deg F, clear and calm 5-12mph; ;;Robs did not count nests.",27,162
+235,2023,SC,OOS,,2023-05-26,CH,DD,AF,,,GBHE,,Wetland,ME.0910,1,1,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;There may also be a partial old nest here.",26,153
+236,2023,SC,L18,c4.1l,2023-05-26,CH,DD,AF,-70.71043505642325,44.078417017085215,GBHE,,Wetland,ME.0692,14,13,14,13,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,154
+237,2023,SC,L18,c4.1l,2023-05-26,CH,DD,AF,-70.74334517720042,44.11048412431756,,,Wetland,ME.0877,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,154
+238,2023,SC,L13,c2.1l,2023-05-26,CH,DD,AF,-70.87586097900198,44.16812995664293,GBHE,,Wetland,ME.0888,30,33,30,33,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,155
+239,2023,SC,OOS,c2.1k,2023-05-26,CH,DD,AF,-70.87826130761763,44.20406426802195,,,Wetland,ME.0806,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,153
+240,2023,ND,L84,c2.1l,2023-05-26,CH,DD,AF,-70.9759633408732,44.20180533641056,,,Wetland,ME.0719,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,156
+241,2023,SC,L13,c2.1l,2023-05-26,CH,DD,AF,-70.96372130858865,44.135343764385645,,,Wetland,ME.0713,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,155
+242,2023,SC,L02,c9.1j,2023-05-26,CH,DD,AF,-70.03594295729035,44.19555884311643,,,Wetland,ME.0744,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,157
+243,2023,SC,L02,c9.1j,2023-05-26,CH,DD,AF,-70.05297425841913,44.224805222146955,,,Upland,ME.0108,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,157
+244,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.05276806349325,44.30659981251178,,,Upland,ME.0602,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,158
+245,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.08758360133416,44.313322935519544,,,Upland,ME.0113,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,158
+246,2023,SC,L10,c8.1i,2023-05-26,CH,DD,AF,-70.09939477651665,44.30724988698365,,,Upland,ME.0112,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,158
+247,2023,SC,OOS,c8.1h,2023-05-26,CH,DD,AF,-70.0914897564,44.3285546949,,,,ME.0178,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;unknown habitat of original colony",26,153
+248,2023,SC,L42,c8.1g,2023-05-26,CH,DD,AF,-70.04815911174936,44.50201875893526,,,Wetland,ME.0697,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,159
+249,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.81047100178398,44.41700716390176,,,Wetland,ME.0631,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,160
+250,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.7688778437857,44.38224539959191,,,Upland,ME.0605,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,160
+251,2023,SC,L20,ca.1g,2023-05-26,CH,DD,AF,-69.85210496921704,44.38048518158999,GBHE,,Wetland,ME.0656,14,14,14,14,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,160
+252,2023,SC,L04,ca.1h,2023-05-26,CH,DD,AF,-69.8783173895174,44.294985241014416,,,Wetland,ME.0691,0,0,0,0,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,161
+253,2023,SC,OOS,c9.1h,2023-05-26,CH,DD,AF,-69.9125471521752,44.30409664032294,GBHE,,Upland,ME.0636,23,29,23,29,"49-53 deg F, winds 9-12 mph, parly cloudy;;;",26,153
+254,2023,SC,OOS,cf.1c,2023-05-27,NM,DD,KS,-68.9898477572646,44.64273952383171,GBHE,,Wetland,ME.0861,18,19,18,18,"54-75 deg F, clear and calm 5-12mph;;;",27,162
+255,2023,SC,OOS,cg.1c,2023-05-27,NM,DD,KS,-68.96675170578311,44.65835816322019,,,Wetland,ME.0612,0,0,0,0,"54-75 deg F, clear and calm 5-12mph;;;",27,162
+256,2023,SC,OOS,ce.1a,2023-05-27,NM,DD,KS,-69.15963170140034,44.821792074503804,,,Wetland,ME.0900,0,0,0,0,"54-75 deg F, clear and calm 5-12mph;;;",27,162
+257,2023,SC,OOS,ce.1a,2023-05-27,NM,DD,KS,-69.13409547467708,44.8431285409383,GBHE,,Wetland,ME.0889,3,,3,,"54-75 deg F, clear and calm 5-12mph;;;Robs did not count nests.",27,162
 258,2023,SC,A31,cd.19,2023-05-27,NM,DD,KS,,,GBHE,x11,Wetland,ME.0918,3,2,3,2,"54-75 deg F, clear and calm 5-12mph; ;Combined. Detected all sites during search;",27,164
 259,2023,SC,A31,cd.19,2023-05-27,NM,DD,KS,-69.20690700572456,44.92307845091591,GBHE,x11,Wetland,ME.0776,2,2,2,2,"54-75 deg F, clear and calm 5-12mph; ;Combined. Detected all sites during search;",27,164
 260,2023,SC,A31,cd.19,2023-05-27,NM,DD,KS,-69.20319082237668,44.94276795637748,,,Wetland,ME.0775,0,0,0,0,"54-75 deg F, clear and calm 5-12mph; ;Combined. Detected all sites during search;",27,164
@@ -263,115 +263,115 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 262,2023,SC,A13,cf.19,2023-05-27,NM,DD,KS,-69.00282176460395,44.873312577606924,,,Wetland,ME.0634,0,0,0,0,"54-75 deg F, clear and calm 5-12mph; ;Combined. ;Very dry",27,165
 263,2023,Co,A24,ca.1o,2023-05-28,NM,DD,MT,-70.05283470288063,43.71096757720914,OSPR,x11,Upland,ME.0004,2,2,2,2,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;Combined. Detected all sites during search;2 ACTIVE OSPREY NESTS; 0 HERONS",28,166
 264,2023,Co,A24,ca.1o,2023-05-28,NM,DD,MT,-70.05283470288063,43.71096757720914,,,Upland,ME.0004,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;Combined. Detected all sites during search;2 ACTIVE OSPREY NESTS; 0 HERONS",28,166
-265,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.03157698873612,43.80598071206667,,x11,Upland,ME.0005,1,1,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;1 EMPTY NEST - LOOKED LIKE OSPR OR BAEA",28,167
-266,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.0559261451,43.7668259725,,,Upland,ME.0026,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,167
-267,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.07223308180187,43.78183797049478,,,Upland,ME.0756,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,167
-268,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.04722641718865,43.78768710350563,,,Upland,ME.0757,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,167
-269,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,GBHE,,Upland,ME.0774,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,177
-270,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,BAEA,,Upland,ME.0774,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,177
-271,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,OSPR,,Upland,ME.0774,2,2,2,2,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,177
-272,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.89935976618216,43.72144426670675,,,Upland,ME.0023,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,177
-273,2023,Co,OOS,cb.1n,2023-05-28,NM,DD,MT,-69.89143164797669,43.75107510860222,GBHE,,Upland,ME.0025,30,30,30,30,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;EXTREMELY DIFFICULT TO COUNT DUE TO MIX OF SPECIES (DCCO, GREG, SNEG, GLIB)",28,177
-274,2023,Co,L55,cc.1n,2023-05-28,NM,DD,MT,-69.72333886792906,43.78410016112414,,,Upland,ME.0637,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;COULDN'T FIND ANY EVIDENCE OF HERONS",28,168
-275,2023,Co,L57,cc.1m,2023-05-28,NM,DD,MT,-69.72481107150409,43.79736679280991,,,Split: upland and wetland,ME.0752,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,169
-276,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.90639330428519,43.86251409989925,,,Upland,ME.0630,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,170
-277,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.9045812854264,43.86624121604575,,,Upland,ME.0839,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,170
-278,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.90095561328448,43.86253909433189,,,Upland,ME.0667,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,170
-279,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.73450919243226,43.88873955402514,,,Upland,ME.0711,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,171
-280,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.67110956669475,43.951204957512985,OSPR,,Upland,ME.0807,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,171
-281,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.67110956669475,43.951204957512985,,,Upland,ME.0807,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;NO HERONS, JUST 1 ACTIVE OSPR",28,171
-282,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.67753382007825,43.96981140401488,,,Upland,ME.0618,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,172
-283,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.67753382007825,43.96981140401488,BAEA,,Upland,ME.0618,1,1,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;INACTIVE EAGLE NEST",28,172
-284,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.66946854491138,43.99340314931466,,,Upland,ME.0800,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,172
-285,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.63955430657546,44.0137077883095,GBHE,,Other,ME.0796,15,14,14,14,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;HERONS NESTING ON RR TRESTLE; 1 ACTIVE OSPR; NO HERONS ON NEIGHBORING PINES.",28,172
-286,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.63955430657546,44.0137077883095,OSPR,,Other,ME.0796,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;1 ACTIVE OSPR NEST ON RR TRESTLE.",28,172
-287,2023,Co,L29,cd.1j,2023-05-28,NM,DD,MT,-69.55627949492356,44.05902444359788,,,Wetland,ME.0623,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,174
-288,2023,Co,L29,cd.1j,2023-05-28,NM,DD,MT,-69.55525048754284,44.06833427469536,GBHE,,Wetland,ME.0893,2,2,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;ONE OF NESTS MAY HAVE BEEN OSPREY?",28,174
-289,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.58767138849478,44.241437472581794,,,Wetland,ME.0816,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,175
-290,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.6032522898707,44.292515526276915,,,Wetland,ME.0702,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;DRIED UP; 1 EMPTY NEST TO NE OF THIS SITE.",28,175
-291,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.63179425220962,44.30549846468217,,,Wetland,ME.0804,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,175
-292,2023,SC,L50,cb.1h,2023-05-28,NM,DD,MT,-69.68416929668327,44.26611308070591,GBHE,,Wetland,ME.0754,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;",28,176
-293,2023,SC,L50,cb.1h,2023-05-28,NM,DD,MT,-69.720398364219,44.305604219391135,,,Wetland,ME.0755,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;VERY DRY",28,176
-294,2023,,OOS,,2023-05-28,NM,DD,MT,,,GBHE,x1x,Wetland,ME.0912,8,8,7,7,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.; ;;NEW SITE FOUND WHILE TRAVELING; 3 NESTS IN 1 TREE, 4 IN SECOND TREE, 1 SINGLE INACTIVE.",28,177
-295,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.48363048849599,44.66955679251247,GBHE,,Wetland,ME.0778,1,1,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;1 inactive heron nest + 1 active osprey nest",29,178
-296,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.48363048849599,44.66955679251247,OSPR,,Wetland,ME.0778,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;1 inactive heron nest + 1 active osprey nest",29,178
-297,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.45732596910592,44.66156590408733,GBHE,,Wetland,ME.0835,7,5,7,5,"55-63 deg F, 10-15 mph wind, clear; ;;active heron colony with 1 active osprey nest",29,178
-298,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.45732596910592,44.66156590408733,OSPR,,Wetland,ME.0835,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;active heron colony with 1 active osprey nest",29,178
-299,2023,SC,OOS,ck.1a,2023-05-29,CH,DD,CW,-68.44471928390385,44.657676017909125,,,Wetland,ME.0758,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,178
-300,2023,Co,L26,cl.1a,2023-05-29,CH,DD,CW,-68.31446416819247,44.62587380401254,,,Wetland,ME.0833,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;very dry",29,179
-301,2023,Co,L26,cl.1a,2023-05-29,CH,DD,CW,-68.31119838069361,44.616106798976794,,,Wetland,ME.0669,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;very dry",29,179
-302,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.2636641699461,44.5490210508563,OSPR,,Upland,ME.0016,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;1 active osprey nest; there may have been remnant nests as well - difficult to see.",29,180
-303,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.2636641699461,44.5490210508563,,,Upland,ME.0016,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;1 active osprey nest; there may have been remnant nests as well - difficult to see.",29,180
-304,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.34338373398178,44.54706359913699,,,Wetland,ME.0701,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,180
-305,2023,Co,OOS,cm.1c,2023-05-29,CH,DD,CW,-68.16236769662456,44.40321690907663,,,Upland,ME.0662,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,178
-306,2023,Co,OOS,cm.1c,2023-05-29,CH,DD,CW,-68.16236769662456,44.40321690907663,BAEA,,Upland,ME.0662,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;active eagl nest but no herons.",29,178
-307,2023,Co,L62,cn.1c,2023-05-29,CH,DD,CW,-68.13613086948061,44.39401862357463,,,Upland,ME.0664,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,181
-308,2023,Co,L62,cn.1c,2023-05-29,CH,DD,CW,-68.02229135983274,44.43707380124838,,,Wetland,ME.0707,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,181
-309,2023,Co,A07,co.1b,2023-05-29,CH,DD,CW,-67.88736686026823,44.50711902873598,GBHE,x11,Wetland,ME.0851,7,7,7,7,"55-63 deg F, 10-15 mph wind, clear; ;;one inactive osprey nest",29,182
-310,2023,Co,A07,co.1b,2023-05-29,CH,DD,CW,-67.88736686026823,44.50711902873598,OSPR,x11,Wetland,ME.0851,1,1,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;one inactive osprey nest",29,182
-311,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5593085687467,44.508321963749,,,Wetland,ME.0615,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear; ;;",29,184
-312,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5952487372005,44.530979416878886,GBHE,,Wetland,ME.0901,30,25,30,25,"55-63 deg F, 10-15 mph wind, clear; ;;Could even be more like 35-40 active nests - very busy site difficult to count.",29,184
-313,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5952487372005,44.530979416878886,OSPR,,Wetland,ME.0901,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;",29,184
-314,2023,SC,L51,ci.1a,2023-05-29,CH,DD,CW,-68.57321537019068,44.701672398531315,GBHE,,Wetland,ME.0747,2,2,1,1,"55-63 deg F, 10-15 mph wind, clear; ;;",29,185
-315,2023,SC,OOS,cj.1a,2023-05-30,CH,DD,VH,-68.45732596910592,44.66156590408733,GBHE,,Wetland,ME.0835,7,7,7,7,"48-70 deg F, clear, wind 5-10 mph; ;;",30,187
-316,2023,SC,OOS,cj.1a,2023-05-30,CH,DD,VH,-68.45732596910592,44.66156590408733,OSPR,,Wetland,ME.0835,1,1,1,1,"48-70 deg F, clear, wind 5-10 mph; ;;",30,187
+265,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.03157698873612,43.80598071206667,,x11,Upland,ME.0005,1,1,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;1 EMPTY NEST - LOOKED LIKE OSPR OR BAEA",28,167
+266,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.0559261451,43.7668259725,,,Upland,ME.0026,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,167
+267,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.07223308180187,43.78183797049478,,,Upland,ME.0756,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,167
+268,2023,Co,L27,ca.1n,2023-05-28,NM,DD,MT,-70.04722641718865,43.78768710350563,,,Upland,ME.0757,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,167
+269,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,GBHE,,Upland,ME.0774,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,177
+270,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,BAEA,,Upland,ME.0774,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,177
+271,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.93679706849618,43.72660090888783,OSPR,,Upland,ME.0774,2,2,2,2,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,177
+272,2023,Co,OOS,cb.1o,2023-05-28,NM,DD,MT,-69.89935976618216,43.72144426670675,,,Upland,ME.0023,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,177
+273,2023,Co,OOS,cb.1n,2023-05-28,NM,DD,MT,-69.89143164797669,43.75107510860222,GBHE,,Upland,ME.0025,30,30,30,30,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;EXTREMELY DIFFICULT TO COUNT DUE TO MIX OF SPECIES (DCCO, GREG, SNEG, GLIB)",28,177
+274,2023,Co,L55,cc.1n,2023-05-28,NM,DD,MT,-69.72333886792906,43.78410016112414,,,Upland,ME.0637,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;COULDN'T FIND ANY EVIDENCE OF HERONS",28,168
+275,2023,Co,L57,cc.1m,2023-05-28,NM,DD,MT,-69.72481107150409,43.79736679280991,,,Split: upland and wetland,ME.0752,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,169
+276,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.90639330428519,43.86251409989925,,,Upland,ME.0630,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,170
+277,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.9045812854264,43.86624121604575,,,Upland,ME.0839,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,170
+278,2023,Co,L53,cb.1m,2023-05-28,NM,DD,MT,-69.90095561328448,43.86253909433189,,,Upland,ME.0667,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,170
+279,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.73450919243226,43.88873955402514,,,Upland,ME.0711,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,171
+280,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.67110956669475,43.951204957512985,OSPR,,Upland,ME.0807,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,171
+281,2023,Co,L77,cc.1l,2023-05-28,NM,DD,MT,-69.67110956669475,43.951204957512985,,,Upland,ME.0807,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;NO HERONS, JUST 1 ACTIVE OSPR",28,171
+282,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.67753382007825,43.96981140401488,,,Upland,ME.0618,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,172
+283,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.67753382007825,43.96981140401488,BAEA,,Upland,ME.0618,1,1,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;INACTIVE EAGLE NEST",28,172
+284,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.66946854491138,43.99340314931466,,,Upland,ME.0800,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,172
+285,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.63955430657546,44.0137077883095,GBHE,,Other,ME.0796,15,14,14,14,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;HERONS NESTING ON RR TRESTLE; 1 ACTIVE OSPR; NO HERONS ON NEIGHBORING PINES.",28,172
+286,2023,Co,L61,cc.1k,2023-05-28,NM,DD,MT,-69.63955430657546,44.0137077883095,OSPR,,Other,ME.0796,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;1 ACTIVE OSPR NEST ON RR TRESTLE.",28,172
+287,2023,Co,L29,cd.1j,2023-05-28,NM,DD,MT,-69.55627949492356,44.05902444359788,,,Wetland,ME.0623,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,174
+288,2023,Co,L29,cd.1j,2023-05-28,NM,DD,MT,-69.55525048754284,44.06833427469536,GBHE,,Wetland,ME.0893,2,2,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;ONE OF NESTS MAY HAVE BEEN OSPREY?",28,174
+289,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.58767138849478,44.241437472581794,,,Wetland,ME.0816,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,175
+290,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.6032522898707,44.292515526276915,,,Wetland,ME.0702,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;DRIED UP; 1 EMPTY NEST TO NE OF THIS SITE.",28,175
+291,2023,SC,L15,cc.1h,2023-05-28,NM,DD,MT,-69.63179425220962,44.30549846468217,,,Wetland,ME.0804,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,175
+292,2023,SC,L50,cb.1h,2023-05-28,NM,DD,MT,-69.68416929668327,44.26611308070591,GBHE,,Wetland,ME.0754,1,1,1,1,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;",28,176
+293,2023,SC,L50,cb.1h,2023-05-28,NM,DD,MT,-69.720398364219,44.305604219391135,,,Wetland,ME.0755,0,0,0,0,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;VERY DRY",28,176
+294,2023,,OOS,,2023-05-28,NM,DD,MT,,,GBHE,x1x,Wetland,ME.0912,8,8,7,7,"55-89 deg F, clear, lt wind 5-10 mph up to 20-30 mph gusts at end in some areas.;;;NEW SITE FOUND WHILE TRAVELING; 3 NESTS IN 1 TREE, 4 IN SECOND TREE, 1 SINGLE INACTIVE.",28,177
+295,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.48363048849599,44.66955679251247,GBHE,,Wetland,ME.0778,1,1,0,0,"55-63 deg F, 10-15 mph wind, clear;;;1 inactive heron nest + 1 active osprey nest",29,178
+296,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.48363048849599,44.66955679251247,OSPR,,Wetland,ME.0778,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear;;;1 inactive heron nest + 1 active osprey nest",29,178
+297,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.45732596910592,44.66156590408733,GBHE,,Wetland,ME.0835,7,5,7,5,"55-63 deg F, 10-15 mph wind, clear;;;active heron colony with 1 active osprey nest",29,178
+298,2023,SC,OOS,cj.1a,2023-05-29,CH,DD,CW,-68.45732596910592,44.66156590408733,OSPR,,Wetland,ME.0835,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear;;;active heron colony with 1 active osprey nest",29,178
+299,2023,SC,OOS,ck.1a,2023-05-29,CH,DD,CW,-68.44471928390385,44.657676017909125,,,Wetland,ME.0758,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,178
+300,2023,Co,L26,cl.1a,2023-05-29,CH,DD,CW,-68.31446416819247,44.62587380401254,,,Wetland,ME.0833,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;very dry",29,179
+301,2023,Co,L26,cl.1a,2023-05-29,CH,DD,CW,-68.31119838069361,44.616106798976794,,,Wetland,ME.0669,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;very dry",29,179
+302,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.2636641699461,44.5490210508563,OSPR,,Upland,ME.0016,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear;;;1 active osprey nest; there may have been remnant nests as well - difficult to see.",29,180
+303,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.2636641699461,44.5490210508563,,,Upland,ME.0016,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;1 active osprey nest; there may have been remnant nests as well - difficult to see.",29,180
+304,2023,Co,L24,cl.1b,2023-05-29,CH,DD,CW,-68.34338373398178,44.54706359913699,,,Wetland,ME.0701,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,180
+305,2023,Co,OOS,cm.1c,2023-05-29,CH,DD,CW,-68.16236769662456,44.40321690907663,,,Upland,ME.0662,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,178
+306,2023,Co,OOS,cm.1c,2023-05-29,CH,DD,CW,-68.16236769662456,44.40321690907663,BAEA,,Upland,ME.0662,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear;;;active eagl nest but no herons.",29,178
+307,2023,Co,L62,cn.1c,2023-05-29,CH,DD,CW,-68.13613086948061,44.39401862357463,,,Upland,ME.0664,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,181
+308,2023,Co,L62,cn.1c,2023-05-29,CH,DD,CW,-68.02229135983274,44.43707380124838,,,Wetland,ME.0707,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,181
+309,2023,Co,A07,co.1b,2023-05-29,CH,DD,CW,-67.88736686026823,44.50711902873598,GBHE,x11,Wetland,ME.0851,7,7,7,7,"55-63 deg F, 10-15 mph wind, clear;;;one inactive osprey nest",29,182
+310,2023,Co,A07,co.1b,2023-05-29,CH,DD,CW,-67.88736686026823,44.50711902873598,OSPR,x11,Wetland,ME.0851,1,1,0,0,"55-63 deg F, 10-15 mph wind, clear;;;one inactive osprey nest",29,182
+311,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5593085687467,44.508321963749,,,Wetland,ME.0615,0,0,0,0,"55-63 deg F, 10-15 mph wind, clear;;;",29,184
+312,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5952487372005,44.530979416878886,GBHE,,Wetland,ME.0901,30,25,30,25,"55-63 deg F, 10-15 mph wind, clear;;;Could even be more like 35-40 active nests - very busy site difficult to count.",29,184
+313,2023,Co,L60,cj.1c,2023-05-29,CH,DD,CW,-68.5952487372005,44.530979416878886,OSPR,,Wetland,ME.0901,1,1,1,1,"55-63 deg F, 10-15 mph wind, clear;;;",29,184
+314,2023,SC,L51,ci.1a,2023-05-29,CH,DD,CW,-68.57321537019068,44.701672398531315,GBHE,,Wetland,ME.0747,2,2,1,1,"55-63 deg F, 10-15 mph wind, clear;;;",29,185
+315,2023,SC,OOS,cj.1a,2023-05-30,CH,DD,VH,-68.45732596910592,44.66156590408733,GBHE,,Wetland,ME.0835,7,7,7,7,"48-70 deg F, clear, wind 5-10 mph;;;",30,187
+316,2023,SC,OOS,cj.1a,2023-05-30,CH,DD,VH,-68.45732596910592,44.66156590408733,OSPR,,Wetland,ME.0835,1,1,1,1,"48-70 deg F, clear, wind 5-10 mph;;;",30,187
 317,2023,SC,A17,cd.1e,2023-05-30,CH,DD,VH,-69.37496946401996,44.5500140220174,GBHE,x00,Wetland,ME.0844,5,4,4,2,"48-70 deg F, clear, wind 5-10 mph; ;Combined. ;Missed during search, but both saw nests once we got to site.",30,190
 318,2023,SC,A17,cd.1e,2023-05-30,CH,DD,VH,-69.37233854029968,44.553497551984066,,x00,Wetland,ME.0115,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;Combined. ;",30,190
-319,2023,SC,L21,cb.1f,2023-05-30,CH,DD,VH,-69.65058084811275,44.45036928580596,,,Wetland,ME.0648,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,191
-320,2023,SC,L21,cb.1f,2023-05-30,CH,DD,VH,-69.65058084811275,44.45036928580596,OSPR,,Wetland,ME.0648,1,1,1,1,"48-70 deg F, clear, wind 5-10 mph; ;;",30,191
-321,2023,SC,L52,cc.1f,2023-05-30,CH,DD,VH,-69.49093456704779,44.444560337119,,,Wetland,ME.0787,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,192
-322,2023,SC,L52,cc.1f,2023-05-30,CH,DD,VH,-69.48326295912533,44.3949451666373,GBHE,,Wetland,ME.0681,5,4,4,4,"48-70 deg F, clear, wind 5-10 mph; ;;",30,192
-323,2023,SC,L45,ce.1e,2023-05-30,CH,DD,VH,-69.29514363867638,44.4673957938136,,,Wetland,ME.0690,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,193
-324,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.09746482461195,44.45721887632389,,,Wetland,ME.0688,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,194
-325,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.0829299024626,44.48084275923319,,,Wetland,ME.0824,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,194
-326,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.08500270671482,44.48835569390799,,,Wetland,ME.0783,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph; ;;",30,194
-327,2023,SC,L32,ch.1b,2023-06-12,NM,DD,BP,-68.80242860972163,44.70234282079463,,,Wetland,ME.0657,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,195
-328,2023,SC,L32,ch.1b,2023-06-12,NM,DD,BP,-68.77173746662136,44.666121040488974,,,Wetland,ME.0736,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,195
-329,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.76195776372224,44.61229120012207,,,Wetland,ME.0694,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
-330,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.75868771069008,44.60651874859731,,,Wetland,ME.0812,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
-331,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.78231227945321,44.54326407971909,,,Wetland,ME.0866,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
-332,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.4581557027366,,,Wetland,ME.0179,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;1 active OSPR  plus 1 active OSPR to northwest",31,197
-333,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.4581557027366,OSPR,,Wetland,ME.0179,1,1,1,1,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,197
+319,2023,SC,L21,cb.1f,2023-05-30,CH,DD,VH,-69.65058084811275,44.45036928580596,,,Wetland,ME.0648,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,191
+320,2023,SC,L21,cb.1f,2023-05-30,CH,DD,VH,-69.65058084811275,44.45036928580596,OSPR,,Wetland,ME.0648,1,1,1,1,"48-70 deg F, clear, wind 5-10 mph;;;",30,191
+321,2023,SC,L52,cc.1f,2023-05-30,CH,DD,VH,-69.49093456704779,44.444560337119,,,Wetland,ME.0787,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,192
+322,2023,SC,L52,cc.1f,2023-05-30,CH,DD,VH,-69.48326295912533,44.3949451666373,GBHE,,Wetland,ME.0681,5,4,4,4,"48-70 deg F, clear, wind 5-10 mph;;;",30,192
+323,2023,SC,L45,ce.1e,2023-05-30,CH,DD,VH,-69.29514363867638,44.4673957938136,,,Wetland,ME.0690,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,193
+324,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.09746482461195,44.45721887632389,,,Wetland,ME.0688,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,194
+325,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.0829299024626,44.48084275923319,,,Wetland,ME.0824,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,194
+326,2023,SC,L17,cf.1e,2023-05-30,CH,DD,VH,-69.08500270671482,44.48835569390799,,,Wetland,ME.0783,0,0,0,0,"48-70 deg F, clear, wind 5-10 mph;;;",30,194
+327,2023,SC,L32,ch.1b,2023-06-12,NM,DD,BP,-68.80242860972163,44.70234282079463,,,Wetland,ME.0657,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,195
+328,2023,SC,L32,ch.1b,2023-06-12,NM,DD,BP,-68.77173746662136,44.666121040488974,,,Wetland,ME.0736,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,195
+329,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.76195776372224,44.61229120012207,,,Wetland,ME.0694,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,196
+330,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.75868771069008,44.60651874859731,,,Wetland,ME.0812,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,196
+331,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.78231227945321,44.54326407971909,,,Wetland,ME.0866,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,196
+332,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.4581557027366,,,Wetland,ME.0179,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;1 active OSPR  plus 1 active OSPR to northwest",31,197
+333,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.4581557027366,OSPR,,Wetland,ME.0179,1,1,1,1,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,197
 334,2023,Co,A08,cl.1d,2023-06-12,NM,DD,BP,-68.40088972639568,44.38187680022572,,,Upland,ME.0034,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;Combined. ;1 inactive OSPRE or BAEA nest on east side of island.",31,198
 335,2023,Co,A23,cm.1e,2023-06-12,NM,DD,BP,-68.24751724535193,44.273700647363405,,,Upland,ME.0802,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;Combined. ;",31,199
-336,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.58299416333867,44.189579412463246,,,Upland,ME.0886,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,200
-337,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.60044287310862,44.17655205294565,,,Upland,ME.0013,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,200
-338,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.57903909818506,44.16822313810212,,,Upland,ME.0608,0,3,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;1 inactive eagle nest but eagle also perched nearby. 3 other unknown empty nests on island.",31,200
-339,2023,Co,L76,cj.1h,2023-06-12,NM,DD,BP,-68.7078939127235,44.12531561822251,,,Upland,ME.0014,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,201
-340,2023,Co,L76,cj.1h,2023-06-12,NM,DD,BP,-68.7078939127235,44.12531561822251,BAEA,,Upland,ME.0014,1,1,1,1,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;1 active BAEA nest in middle of island.",31,201
-341,2023,Co,OOS,ci.1i,2023-06-12,NM,DD,BP,-68.90834999199785,44.0482143750377,,,Upland,ME.0878,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;Near L. Garden Island: island with 1 eagle nest; 1 inactive nest.",31,202
-342,2023,Co,L28,ch.1j,2023-06-12,NM,DD,BP,-69.09553531211805,43.98135351191638,,,Upland,ME.0008,1,1,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;only 1 obvious nest",31,203
-343,2023,Co,OOS,cg.1j,2023-06-12,NM,DD,BP,-69.18369141532736,43.97110875734633,GBHE,,Upland,ME.0895,11,12,10,10,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,202
-344,2023,Co,L23,cf.1k,2023-06-12,NM,DD,BP,-69.35471848287007,43.96491328931821,,,Upland,ME.0044,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,204
-345,2023,Co,L23,cf.1k,2023-06-12,NM,DD,BP,-69.40058661862221,43.91036194211134,,,Upland,ME.0007,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,204
-346,2023,Co,L58,ce.1j,2023-06-12,NM,DD,BP,-69.42470115958088,44.067264383017125,,,Wetland,ME.0906,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,205
-347,2023,ND,L83,cd.17,2023-06-13,NM,DD,LM,-69.09832422450785,45.10441241948263,,,Wetland,ME.0666,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;,32,206
-348,2023,ND,L83,cd.17,2023-06-13,NM,DD,LM,-69.07228867107212,45.105376108460014,,,Upland,ME.0639,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;,32,206
-349,2023,,OOS,,2023-06-13,NM,DD,LM,,,GBHE,x11,Wetland,ME.0921,3,4,3,4,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;New site to southwest of 882. 1 active OSPR also seen.,32,207
-350,2023,ND,L87,cb.17,2023-06-13,NM,DD,LM,-69.33113661402831,45.111851092836254,,,Wetland,ME.0882,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;,32,208
-351,2023,ND,L85,ca.18,2023-06-13,NM,DD,LM,-69.49539797957259,45.06407175753659,,,Wetland,ME.0706,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;,32,209
-352,2023,ND,L74,c9.19,2023-06-13,NM,DD,LM,-69.63603314564779,44.98379749501097,GBHE,,Wetland,ME.0846,2,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;2 nests in same tree,32,210
-353,2023,ND,OOS,ca.19,2023-06-13,NM,DD,LM,-69.61174214798484,44.98195302691823,,,Wetland,ME.0801,1,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;unknown if ospr or gbhe,32,207
-354,2023,ND,L74,c9.19,2023-06-13,NM,DD,LM,-69.69839424258676,45.0940727616833,,,Wetland,ME.0133,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;,32,210
-355,2023,ND,L86,cd.10,2023-06-13,NM,DD,LM,-68.85525762924425,45.759935884821985,,,Wetland,ME.0872,1,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;Nest on finger that went to northeast.,32,211
-356,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.90163609498978,44.60816677871178,,,Wetland,ME.0119,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,213
-357,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.88278311799868,44.61768085431718,,,Wetland,ME.0619,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,213
-358,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.80244304740704,44.61705810781224,GBHE,,Upland,ME.0825,5,5,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,213
-359,2023,SC,L31,ca.1d,2023-06-20,NM,DD,MT,-69.69585396731912,44.67156842473249,,,Wetland,ME.0745,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,214
-360,2023,SC,L06,c8.1c,2023-06-20,NM,DD,MT,-69.93715633538329,44.80675161178054,,,Wetland,ME.0658,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,215
-361,2023,SC,L06,c8.1c,2023-06-20,NM,DD,MT,-69.91247672810084,44.82935395629522,GBHE,,Wetland,ME.0805,22,19,22,19,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,215
-362,2023,ND,L75,c6.1c,2023-06-20,NM,DD,MT,-70.12552047322458,44.81331332146162,,,Wetland,ME.0788,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,217
-363,2023,ND,L73,c4.15,2023-06-20,NM,DD,MT,-70.20239859021254,45.45574366683983,,,Upland,ME.0721,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,218
-364,2023,ND,OOS,c4.15,2023-06-20,NM,DD,MT,-70.19730525391482,45.46900716437989,,,Upland,ME.0722,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,219
-365,2023,Co,L54,cf.1g,2023-06-22,CH,DD,CK,-69.14820530895965,44.24855683863739,GBHE,,Wetland,ME.0899,5,4,5,2,"clear, calm, 60-75 deg F; ;;one nest on east side of peninsula agaist live trees.",34,221
-366,2023,Co,L56,cg.1h,2023-06-22,CH,DD,CK,-69.07563323250548,44.210833296584454,,,Wetland,ME.0749,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,222
-367,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.59529189348402,43.89547973269926,,,Wetland,ME.0739,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,225
-368,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.3212780047057,44.357050906923604,,,Wetland,ME.0792,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,225
-369,2023,ND,L72,bz.1b,2023-06-23,JS,DD,SB,-70.98856663308523,45.08161433618142,GBHE,,Upland,ME.0131,47,42,45,40,"54-87 deg F, clear, 8-15 mph wind; ;;only noticed 2 inactive",35,228
-370,2023,ND,L89,cg.0r,2023-06-30,NM,DD,JR,-68.20644315244493,46.38517834880593,,,Upland,ME.0837,0,0,0,0,"low cloud ceilings but broken, temps 60s-70s; ;;",36,232
-371,2023,ND,OOS,cb.0l,2023-06-30,NM,DD,JR,-68.58277903029024,47.053464543806484,GBHE,,Upland,ME.0860,16,16,8,8,"low cloud ceilings but broken, temps 60s-70s; ;;",36,230
-372,2023,ND,OOS,ce.0j,2023-06-30,NM,DD,JR,-68.12896052705749,47.15844819696964,,,Upland,ME.0751,1,1,0,0,"low cloud ceilings but broken, temps 60s-70s; ;;One unknown nest in live pine, looked OSPR or BAEA, saw something white in it but not a bird or egg.",36,230
-373,2023,ND,OOS,cd.0k,2023-06-30,NM,DD,JR,-68.2413660691407,47.13237026101603,,,Upland,ME.0855,0,0,0,0,"low cloud ceilings but broken, temps 60s-70s; ;;couldn't find",36,230
-374,2023,ND,L82,c8.0v,2023-07-01,NM,DD,MC,-69.28134419390167,46.26219241080915,,,,ME.0627,0,0,0,0,"temps in 80s, partly cloudy, 5-10 mph; ;;unknown habitat of original colony",37,236
-375,2023,ND,OOS,,2023-06-13,NM,DD,LM,,,OSPR,,Wetland,ME.0921,1,1,1,1,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s; ;;new heron colony also hosting osprey nest,32,207
-376,2023,SC,OOS,,2023-05-30,CH,DD,VH,,,GBHE,x11,Wetland,ME.0919,6,6,6,6,"48-70 deg F, clear, wind 5-10 mph; ;;",30,187
+336,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.58299416333867,44.189579412463246,,,Upland,ME.0886,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,200
+337,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.60044287310862,44.17655205294565,,,Upland,ME.0013,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,200
+338,2023,Co,L30,ck.1g,2023-06-12,NM,DD,BP,-68.57903909818506,44.16822313810212,,,Upland,ME.0608,0,3,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;1 inactive eagle nest but eagle also perched nearby. 3 other unknown empty nests on island.",31,200
+339,2023,Co,L76,cj.1h,2023-06-12,NM,DD,BP,-68.7078939127235,44.12531561822251,,,Upland,ME.0014,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,201
+340,2023,Co,L76,cj.1h,2023-06-12,NM,DD,BP,-68.7078939127235,44.12531561822251,BAEA,,Upland,ME.0014,1,1,1,1,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;1 active BAEA nest in middle of island.",31,201
+341,2023,Co,OOS,ci.1i,2023-06-12,NM,DD,BP,-68.90834999199785,44.0482143750377,,,Upland,ME.0878,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;Near L. Garden Island: island with 1 eagle nest; 1 inactive nest.",31,202
+342,2023,Co,L28,ch.1j,2023-06-12,NM,DD,BP,-69.09553531211805,43.98135351191638,,,Upland,ME.0008,1,1,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;only 1 obvious nest",31,203
+343,2023,Co,OOS,cg.1j,2023-06-12,NM,DD,BP,-69.18369141532736,43.97110875734633,GBHE,,Upland,ME.0895,11,12,10,10,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,202
+344,2023,Co,L23,cf.1k,2023-06-12,NM,DD,BP,-69.35471848287007,43.96491328931821,,,Upland,ME.0044,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,204
+345,2023,Co,L23,cf.1k,2023-06-12,NM,DD,BP,-69.40058661862221,43.91036194211134,,,Upland,ME.0007,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,204
+346,2023,Co,L58,ce.1j,2023-06-12,NM,DD,BP,-69.42470115958088,44.067264383017125,,,Wetland,ME.0906,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.;;;",31,205
+347,2023,ND,L83,cd.17,2023-06-13,NM,DD,LM,-69.09832422450785,45.10441241948263,,,Wetland,ME.0666,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;,32,206
+348,2023,ND,L83,cd.17,2023-06-13,NM,DD,LM,-69.07228867107212,45.105376108460014,,,Upland,ME.0639,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;,32,206
+349,2023,,OOS,,2023-06-13,NM,DD,LM,,,GBHE,x11,Wetland,ME.0921,3,4,3,4,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;New site to southwest of 882. 1 active OSPR also seen.,32,207
+350,2023,ND,L87,cb.17,2023-06-13,NM,DD,LM,-69.33113661402831,45.111851092836254,,,Wetland,ME.0882,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;,32,208
+351,2023,ND,L85,ca.18,2023-06-13,NM,DD,LM,-69.49539797957259,45.06407175753659,,,Wetland,ME.0706,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;,32,209
+352,2023,ND,L74,c9.19,2023-06-13,NM,DD,LM,-69.63603314564779,44.98379749501097,GBHE,,Wetland,ME.0846,2,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;2 nests in same tree,32,210
+353,2023,ND,OOS,ca.19,2023-06-13,NM,DD,LM,-69.61174214798484,44.98195302691823,,,Wetland,ME.0801,1,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;unknown if ospr or gbhe,32,207
+354,2023,ND,L74,c9.19,2023-06-13,NM,DD,LM,-69.69839424258676,45.0940727616833,,,Wetland,ME.0133,0,0,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;,32,210
+355,2023,ND,L86,cd.10,2023-06-13,NM,DD,LM,-68.85525762924425,45.759935884821985,,,Wetland,ME.0872,1,1,0,0,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;Nest on finger that went to northeast.,32,211
+356,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.90163609498978,44.60816677871178,,,Wetland,ME.0119,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,213
+357,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.88278311799868,44.61768085431718,,,Wetland,ME.0619,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,213
+358,2023,SC,L14,c9.1e,2023-06-20,NM,DD,MT,-69.80244304740704,44.61705810781224,GBHE,,Upland,ME.0825,5,5,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,213
+359,2023,SC,L31,ca.1d,2023-06-20,NM,DD,MT,-69.69585396731912,44.67156842473249,,,Wetland,ME.0745,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,214
+360,2023,SC,L06,c8.1c,2023-06-20,NM,DD,MT,-69.93715633538329,44.80675161178054,,,Wetland,ME.0658,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,215
+361,2023,SC,L06,c8.1c,2023-06-20,NM,DD,MT,-69.91247672810084,44.82935395629522,GBHE,,Wetland,ME.0805,22,19,22,19,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,215
+362,2023,ND,L75,c6.1c,2023-06-20,NM,DD,MT,-70.12552047322458,44.81331332146162,,,Wetland,ME.0788,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,217
+363,2023,ND,L73,c4.15,2023-06-20,NM,DD,MT,-70.20239859021254,45.45574366683983,,,Upland,ME.0721,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,218
+364,2023,ND,OOS,c4.15,2023-06-20,NM,DD,MT,-70.19730525391482,45.46900716437989,,,Upland,ME.0722,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.;;;,33,219
+365,2023,Co,L54,cf.1g,2023-06-22,CH,DD,CK,-69.14820530895965,44.24855683863739,GBHE,,Wetland,ME.0899,5,4,5,2,"clear, calm, 60-75 deg F;;;one nest on east side of peninsula agaist live trees.",34,221
+366,2023,Co,L56,cg.1h,2023-06-22,CH,DD,CK,-69.07563323250548,44.210833296584454,,,Wetland,ME.0749,0,0,0,0,"clear, calm, 60-75 deg F;;;",34,222
+367,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.59529189348402,43.89547973269926,,,Wetland,ME.0739,0,0,0,0,"clear, calm, 60-75 deg F;;;",34,225
+368,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.3212780047057,44.357050906923604,,,Wetland,ME.0792,0,0,0,0,"clear, calm, 60-75 deg F;;;",34,225
+369,2023,ND,L72,bz.1b,2023-06-23,JS,DD,SB,-70.98856663308523,45.08161433618142,GBHE,,Upland,ME.0131,47,42,45,40,"54-87 deg F, clear, 8-15 mph wind;;;only noticed 2 inactive",35,228
+370,2023,ND,L89,cg.0r,2023-06-30,NM,DD,JR,-68.20644315244493,46.38517834880593,,,Upland,ME.0837,0,0,0,0,"low cloud ceilings but broken, temps 60s-70s;;;",36,232
+371,2023,ND,OOS,cb.0l,2023-06-30,NM,DD,JR,-68.58277903029024,47.053464543806484,GBHE,,Upland,ME.0860,16,16,8,8,"low cloud ceilings but broken, temps 60s-70s;;;",36,230
+372,2023,ND,OOS,ce.0j,2023-06-30,NM,DD,JR,-68.12896052705749,47.15844819696964,,,Upland,ME.0751,1,1,0,0,"low cloud ceilings but broken, temps 60s-70s;;;One unknown nest in live pine, looked OSPR or BAEA, saw something white in it but not a bird or egg.",36,230
+373,2023,ND,OOS,cd.0k,2023-06-30,NM,DD,JR,-68.2413660691407,47.13237026101603,,,Upland,ME.0855,0,0,0,0,"low cloud ceilings but broken, temps 60s-70s;;;couldn't find",36,230
+374,2023,ND,L82,c8.0v,2023-07-01,NM,DD,MC,-69.28134419390167,46.26219241080915,,,,ME.0627,0,0,0,0,"temps in 80s, partly cloudy, 5-10 mph;;;unknown habitat of original colony",37,236
+375,2023,ND,OOS,,2023-06-13,NM,DD,LM,,,OSPR,,Wetland,ME.0921,1,1,1,1,Overcast and hazy; avoided rain as we went; wind 10-15 mph; temps 60s-70s;;;new heron colony also hosting osprey nest,32,207
+376,2023,SC,OOS,,2023-05-30,CH,DD,VH,,,GBHE,x11,Wetland,ME.0919,6,6,6,6,"48-70 deg F, clear, wind 5-10 mph;;;",30,187

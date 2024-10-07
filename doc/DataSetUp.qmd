@@ -384,10 +384,11 @@ tAllCol <- bind_rows(
   filter(!(duplicated(FWSColonyID)
            #&(is.na(Comment)|grepl("count", Comment))
            ))
-AllColonySF <- tAllCol           
+AllColonySF <- tAllCol        
+AllColony <- st_drop_geometry(AllColonySF)
 
 if (lWrite) {
-  write_csv(st_drop_geometry(AllColonySF), here::here("data/AllColony.csv"), na = "")
+  write_csv(AllColony, here::here("data/AllColony.csv"), na = "")
   st_write(AllColonySF,
            here::here("gis/AllColonySF.kml"),
            delete_layer = TRUE)
@@ -1319,6 +1320,8 @@ save(
   StrSF,
   ColonySF,
   Colony,
+  AllColonySF,
+  AllColony,
   StrPlotSF,
   List,
   Plot,
