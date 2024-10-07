@@ -1105,6 +1105,105 @@ iObs <- grep("A27", RecObs$siteID)
 # 137 A33 852
 # OOS 846
 
+# MCO 7 Oct 24: extracting data/RecObs and getting
+# dataRecObs <- read_csv(here::here("data/RecObs.csv"), col_types = "-ic-c----ddc--ciiii")
+#                       col_types = "-ic-c----ddc--ciiii") %>%
+dataRecObs <- read_csv("~/Profesional/GBHE.2023/extdata/2023/RecObs.csv",
+                       col_types = "-i------cc-dd---ciiii----") %>%
+  mutate(
+    FWSColonyID = sub("(ND|SC|Co)\\.", "", sub("new", "ME", FWSNestID)),
+    nNest = pmax(0, fNest, rNest, na.rm = TRUE),
+    nActive = pmax(0, fAct, rAct, na.rm = TRUE)
+  ) %>%
+  filter(!is.na(FWSColonyID)) %>%
+  group_by(Yr, FWSColonyID, Str, PlotID) %>%
+  summarize(
+    Lng = mean(Lng),
+    Lat = mean(Lat),
+    nNest = max(nNest, na.rm = TRUE),
+    nActive = max(nActive, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  select(Year = Yr, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive)
+
+addCol <- anti_join(dataRecObs, Colony2, by = c("Year", "FWSColonyID"))
+
+Colony2 <- bind_rows(Colony, dataRecObs) %>%
+  group_by(Year, FWSColonyID, Str, PlotID) %>%
+  summarize(
+    Lng = mean(Lng),
+    Lat = mean(Lat),
+    nNest = max(0, nNest, na.rm = TRUE),
+    nActive = max(0, nActive, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  select(Year, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive) %>%
+  arrange(Year, FWSColonyID)
+Colony <- Colony2
+if(lWrite) {
+  write_csv(Colony,
+            file = here::here("data/Colony.csv"),
+            na = "")
+}
+# Need to update ColonySF too!!
+
+# Update recobs with the colony info
+RecObs2 <- left_join(
+  RecObs,
+  Colony %>%
+    select(
+      Year,
+      FWSColonyID,
+      tStr = Str,
+      tPlotID = PlotID,
+      Lng,
+      Lat 
+    ),
+  by = c("Year","FWSColonyID")
+)  %>%
+  mutate(
+    Str = ifelse(is.na(Str), tStr, Str),
+    PlotID = ifelse(is.na(PlotID), tPlotID, PlotID),
+    Lng = ifelse(is.na(Lng.x), Lng.y, Lng.x),
+    Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x),
+    AOU = ifelse(is.na(AOU) & !is.na(FWSColonyID), "GBHE", AOU),
+    FWSColonyID = ifelse(AOU != "GBHE", NA, FWSColonyID)
+  )  %>%
+  # filter(!is.na(AOU)) %>%
+  select(
+    Obs_PK,
+    Year,
+    Str,
+    siteID,
+    PlotID,
+    DatTim,
+    Pilot,
+    Front,
+    Rear,
+    Lng,
+    Lat,
+    AOU,
+    CapHist,
+    Location,
+    FWSColonyID,
+    fNest,
+    rNest,
+    fAct,
+    rAct,
+    Comment,
+    Flight_PK,
+    PlotDetails_PK
+  ) %>%
+  arrange(Obs_PK)
+ RecObs <- RecObs2
+
+if(lWrite) {
+  write_csv(RecObs2,
+            file = here::here("data/RecObs.csv"),
+            na = "")
+}
+
+
 ```
 
 ## Spatial `RecObs`
