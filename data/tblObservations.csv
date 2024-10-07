@@ -134,7 +134,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,133,95,,,GBHE,,Upland,ME.0772,0,0,0,0,Could not find any nests.
 2015,134,96,,,GBHE,,Upland,ME.0806,14,15,13,14,All in pies on west edge in upland immediately adjacent to wetland.
 2015,135,96,,,GBHE,,,ME.0109,,,,,DID NOT SURVEY DUE TO LOW CLOUDS WHERE WE NEEDED TO FLY.
-2015,136,97,,,GBHE,,Split: upland and wetland,ME.0713,7,5,7,5,5 in area where trees' foliage sparse; 2 in trees with dense foliage. All hardwooods; floodplain. Did not see owl nest that volunteer said was there.
+2015,136,97,,,GBHE,,Split: upland and wetland,ME.0713,7,5,7,5,5 in area where trees' foliage sparse; 2 in trees with dense foliage. All hardwoods; floodplain. Did not see owl nest that volunteer said was there.
 2015,137,98,-70.79767078,44.26099499365616,GBHE,x1x,Upland,ME.0852,10,11,10,11,Island in middle of small pond.
 2015,138,100,,,GBHE,,Upland,ME.0131,40,35,40,35,Island in middle of large lake.
 2015,139,101,,,GBHE,,Wetland,ME.0843,1,1,0,0,Large nest low in tree.
@@ -363,7 +363,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,362,217,,,GBHE,,Wetland,ME.0788,0,0,0,0,
 2023,363,218,,,GBHE,,Upland,ME.0721,0,0,0,0,
 2023,364,219,,,GBHE,,Upland,ME.0722,0,0,0,0,
-2023,365,221,,,GBHE,,Wetland,ME.0899,5,4,5,2,one nest on east side of peninsula agaist live trees.
+2023,365,221,,,GBHE,,Wetland,ME.0899,5,4,5,2,One nest on the east side of peninsula against live trees.
 2023,366,222,,,GBHE,,Wetland,ME.0749,0,0,0,0,
 2023,367,225,,,GBHE,,Wetland,ME.0739,0,0,0,0,
 2023,368,225,,,GBHE,,Wetland,ME.0792,0,0,0,0,
@@ -371,7 +371,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,370,232,,,GBHE,,Upland,ME.0837,0,0,0,0,
 2023,371,230,,,GBHE,,Upland,ME.0860,16,16,8,8,
 2023,372,230,,,GBHE,,Upland,ME.0751,1,1,0,0,"One unknown nest in live pine, looked OSPR or BAEA, saw something white in it but not a bird or egg."
-2023,373,230,,,GBHE,,Upland,ME.0855,0,0,0,0,couldn't find
+2023,373,230,,,GBHE,,Upland,ME.0855,0,0,0,0,Could not find
 2023,374,236,,,GBHE,,,ME.0627,0,0,0,0,unknown habitat of original colony
 2023,375,207,,,OSPR,,Wetland,ME.0921,1,1,1,1,new heron colony also hosting osprey nest
 2023,376,187,,,GBHE,x11,Wetland,ME.0919,6,6,6,6,
