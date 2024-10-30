@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "5 October 2024"
+date: "11 October 2024"
 format: docx
 editor: source
 ---
@@ -15,11 +15,11 @@ The data files are `GRTSLoc` `tblFlightInfo` `tblPlotDetails` `tblObservations` 
 
 Reference files: `StrArea`
 
-These are combined over years. The flight, plot, and observation files combine into `RecObs`. Do I add the `begplot` and `endplot` in `r`RecObs\` when I can get that information from Danielle's tables? Why don't I use her tables and create the list, plot, and caphist files for information from them.
+These are combined over years. The flight, plot, and observation files combine into `RecObs`. I don't add the `begplot` and `endplot` in `RecObs` because the information was not collected and I can do the analysis without that information.  To more easily keep track of the original data, I copy it into the `ori` directory and record the edits that translate it to the data used in the `data` directory.  Instead of saving all the data in an `.RSave` file, read statements will retrieve each from the `data` directory.
+
+I use her tables and create the list, plot, and caphist files for information from them.
 
 I follow Danielle D'Auria's convention of using `_PK` of a primary key variable and `_FK` for a foreign key variable.
-
-The result can be an `SQLite3` database and a `R Savefile`.
 
 ```{r SetUp}
 library(readr)
@@ -57,8 +57,27 @@ nYrStr <- length(cYrStr)
 cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, function(x)
   paste(x[1], x[2], x[3], sep = "."))
 nFS <- length(cFS)
-
 lWrite <- FALSE
+lFromOri <- FALSE
+
+if(lWrite) {
+  dump(
+    list = c(
+      "CurrentYr",
+      "cYear",
+      "nYear",
+      "cFrame",
+      "nFrame" ,
+      "cDFStr",
+      "nStr",
+      "cYrStr",
+      "nYrStr",
+      "cFS"               ,
+      "nFS"
+    ),
+    file = here::here("ori/MetaVars.RDump")
+  )
+}
 
 ```
 
@@ -82,7 +101,7 @@ if (lWrite) {
 
 ## Maine State Boundary Layer
 
-The state boundary polygon, [Maine State Boundary Polygon Feature](https://maine.hub.arcgis.com/datasets/maine::maine-state-boundary-polygon-feature/explore), is `WGS 84`. This is just a reference layer, so leave the variables as is. Transform it to Alpers and save as a KML file
+The state boundary polygon, [Maine State Boundary Polygon Feature](https://maine.hub.arcgis.com/datasets/maine::maine-state-boundary-polygon-feature/explore), is `WGS 84`. This is just a reference layer, so leave the variables as is. Transform it to Alpers and save as a KML file.  We don't need to save this because we have a reference to pull it from and how to transform it.
 
 ```{r MEBoundary}
 tMEBoundarySF <- st_read("~/Profesional/GBHE.2023/GIS/Maine_State_Boundary_Polygon_Feature.shp")
@@ -110,16 +129,35 @@ StrArea <- RDB2Data(Tbl = "StrArea",
                     RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3") %>%
   select(Str_PK = DFStr, cStratum, KMSq)
 fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
+if (lWrite) {
+  dump(
+    c("StrArea", "fStr"),
+    file = here::here("ori/MetaVars.RDump") ,
+    append = TRUE
+  )
+}
 
-tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp") %>%
-  mutate(KMSq = AREA / 10 ^ 6, cStratum = NAME2_) %>%
-  select(cStratum, KMSq)
+# Use the 2023 for both stratum layers.
+tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp")
+if (lWrite) {
+  st_write(tStrSF,
+           dsn = here::here("ori/gis/StrSF.shp"),
+           delete_layer = TRUE)
+}
 
 # `dplyr` joins removes the `sf` class.
-tStrSF2 <- st_as_sf(inner_join(tibble::as_tibble(
-  x = list(Str_FK = fStr, cStratum = StrArea$cStratum)
-), tStrSF, by = "cStratum") %>%
-  arrange(Str_FK))
+tStrSF2 <- st_as_sf(
+  inner_join(
+    tibble::as_tibble(x = list(
+      Str_FK = fStr, cStratum = StrArea$cStratum
+    )),
+    tStrSF %>%
+      mutate(KMSq = AREA / 10 ^ 6, cStratum = NAME2_) %>%
+      select(cStratum, KMSq),
+    by = "cStratum"
+  ) %>%
+    arrange(Str_FK)
+)
 
 StrSF <- st_transform(x = tStrSF2, crs = CRS.Alpers)
 if (lWrite) {
@@ -144,9 +182,19 @@ To add the 2015 new colonies, use the locations and match them to the `AllColoni
 Make the spatial layer out of the `.csv` files.
 
 ```{r ListColony}
-tColony2015 <- RDB2Data(Tbl = "Nest",
-                        RowNames = "FWSNestID",
-                        RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3") %>%
+# These are all the colonies.  445 of them so select from the last list
+# Where are the new colonies found in the last survey.
+# Is in UTM 19N
+if (lFromOri) {
+  tColony2015 <- read_csv(here::here("ori/Colony2015.csv"), col_types = "c-iiidd")
+} else {
+  tColony2015 <- RDB2Data(Tbl = "Nest",
+                          RowNames = "FWSNestID",
+                          RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3")
+  readr::write_csv(tColony2015, here::here("ori/Colony2015.csv"), na = "")
+}
+
+tColony2015<-tColony2015%>%
   select(
     FWSColonyID_PK = FWSNestID,
     Str_FK = LstStr,
@@ -160,12 +208,28 @@ tColony2015 <- RDB2Data(Tbl = "Nest",
     Comment
   )
 
-# These are all the colonies.  445 of them so select from the last list
-# Where are the new colonies found in the last survey.
-# Is in UTM 19N
-RC2XY <- read_csv("~/Profesional/GBHE.2015/ExtData/RC2XY.csv", col_types = "c-ii---")
+# Save the original RC2XY, row-col to my 0-9A-Z code
+if (lFromOri) {
+  tRC2XY <- read_csv(here::here("ori/Colony.csv"), col_types = "c-iiidd")
+} else {
+  tRC2XY <- read_csv("~/Profesional/GBHE.2015/ExtData/RC2XY.csv", col_types = "c-iiidd")
+  readr::write_csv(tRC2XY, here::here("ori/RC2XY.csv"), na = "")
+}
+
+RC2XY <- tRC2XY %>%
+  select(PlotID, Col, Row)
+
+tColony2023 <-st_read("~/Profesional/GBHE.2023/GIS/2023/ListFrameNewPlots.shp")
+if (lWrite) {
+  st_write(
+    tColony2023,
+    dsn = here::here("ori/gis/Colony2023.shp"),
+    delete_layer = TRUE
+  )
+}
+
 tCol2023SF <- inner_join(
-  st_read("~/Profesional/GBHE.2023/GIS/2023/ListFrameNewPlots.shp") %>%
+  tColony2023 %>%
     mutate(
       FWSColonyID_PK = sprintf("ME.%04d", COLONYNO),
       Str_FK = c(
@@ -175,7 +239,8 @@ tCol2023SF <- inner_join(
       )[NAME2_],
       nNest = AvgMaxNest
     ),
-  RC2XY,
+  RC2XY %>%
+    select(PlotID, Col, Row),
   by = c("Col", "Row")
 ) %>%
   select(FWSColonyID_PK, Str_FK, PlotID_FK = PlotID, nNest)
@@ -209,8 +274,18 @@ Col2023SF <- bind_cols(tCol2023SF, LatLong) %>%
          nActive,
          Comment)
 
+
+tColony2023 <- st_read("~/Profesional/GBHE.2023/GIS/2023/GBHE_ColonyPlotJoin.shp")
+if (lWrite) {
+  st_write(
+    tColony2023,
+    dsn = here::here("ori/gis/Colony2023.shp"),
+    delete_layer = TRUE
+  )
+}
+
 tColony2015SF <- inner_join(
-  st_read("~/Profesional/GBHE.2023/GIS/2015/GBHE_ColonyPlotJoin.shp") %>%
+  tColony2023 %>%
     mutate(FWSColonyID_PK = sprintf("ME.%04d", COLONYNO)) %>%
     select(FWSColonyID_PK),
   tColony2015,
@@ -245,7 +320,7 @@ if (lWrite) {
            delete_layer = TRUE)
 }
 
-rm(tColony2015, tColony2023, tColony2015SF)
+rm(tRC2XY, tColony2015, tColony2023, tColony2015SF)
 
 ```
 ## Non-Spatial Colony List
@@ -1139,9 +1214,20 @@ Colony2 <- bind_rows(Colony, dataRecObs) %>%
   ) %>%
   select(Year, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive) %>%
   arrange(Year, FWSColonyID)
+
+Colony2 <- bind_rows(
+  Colony %>%
+    filter(FWSColonyID == "ME.0854") %>%
+    mutate(Year = 2015),
+  Colony
+) %>%
+  arrange(Year, FWSColonyID)
+
 Colony <- Colony2
+
+
 if(lWrite) {
-  write_csv(Colony,
+  readr::write_csv(Colony,
             file = here::here("data/Colony.csv"),
             na = "")
 }
