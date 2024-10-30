@@ -1,6 +1,6 @@
 ---
 title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
-author: "Mark C. Otto 4 October 2024"
+author: "Mark C. Otto 30 October 2024"
 echo: false
 eval: true
 warning: false
@@ -50,7 +50,7 @@ source("~/Ref/RLib/logit.R")
 source("~/Ref/RLib/expit.R")
 source(here::here("R/Beta.R"))
 source(here::here("R/CRC.R"))
-cMdl <- "Cochran"
+cMdl <- "Simple"
 Probs <- c(0.5, 0.05, 0.95)
 source(here::here("R/MkSmry.R"))
 File <- here::here(paste("doc/Notes/", cMdl, ".xlsx", sep = ""))
@@ -73,27 +73,55 @@ the stratum-plot layer is in [StrPlotSF.kml](file:///`{r} here::here("gis/StrPlo
 # Add totals for the tables
 cStr <- c(cDFStr, "Total")
 
+# Make a year-frame-stratum levels
+tYFS <- expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr) %>%
+  mutate(YFS = paste(Year, Frame, Str, sep = "."))
+cYFS <- tYFS$YFS
 ```
 
 # Sample Size Determination
 
 The same nest list as plus the new colonies found on in 2015 survey. The list frame is all the plots with at least one colony. The area frame consists of all the plots intersected by strata. The survey was designed to optimally strata and frame sample sizes to obtain a 80 percent chance of detecting a 25 percent decline at a 10 percent significance level between two survey periods. We used prior information on occupancy, colony densities, and observer detection. This requires an 8.3 percent CV.
+## Samples
 
-## Colonies by Year and Stratum
-Summarize the colonies by year and stratum for simple analyses.  
-The known colonies are in [Colony.csv](file:///`{r} here::here("data/Colony.csv")`).  These are separated by year.  The 2034 list includes the 2015 new colonies and other incidentally found colonies since 2015.
-The all colony spatial layer is in [AllColonySF.kml](file:///`{r} here::here("gis/AllColonySF.kml")`) is of all colonies found at anytime.  
+Add the combined sampled plots to both the list and area frames.
 
-```{r, KnownNestPlots}
-# I use n_distinct but the colony ids are unique.  Handles colonies observed multiple times.
-YrStrCol <- Colony %>%
-  group_by(Year, Str) %>%
-  summarize(nColony = n_distinct(FWSColonyID), .groups = "drop") %>%
-  arrange(Year, factor(Str, cDFStr))
+```{r GRTSSmp}
+# Combined plots belong in both the list and area frames.
+tGRTSSmp1 <- bind_rows(
+  GRTSSmp %>%
+    mutate(Frame = "List") %>%
+    filter(!grepl("Area", SmpType)) %>%
+    select(Year, Frame, Str, PlotID),
+  GRTSSmp %>%
+    mutate(Frame = "Area") %>%
+    filter(!grepl("List", SmpType)) %>%
+    select(Year, Frame, Str, PlotID)
+) 
+  
+# Add the colonies for
+tGRTSSmp <- left_join(
+  tGRTSSmp1,
+  anti_join(Colony, NewColonies, by = c("Year", "FWSColonyID")) %>%
+    group_by(Year, Str, PlotID) %>%
+    summarize(nListColony = n(), .groups = "drop"),
+  by = join_by(Year, Str, PlotID)
+) %>%
+  mutate(nListColony = ifelse(is.na(nListColony), 0, nListColony))
 
-knitr::kable(YrStrCol[, c("Year",
-                         "Str",
-                         "nColony")], digits = 2, caption = "List Frame Colony Summary")
+# Include the number of colonies
+GRTSSmpYFS <- tGRTSSmp %>%
+  group_by(Year, Frame, Str) %>%
+  summarize(
+    nPlot = n(),
+    nListColony = sum(nListColony),
+    .groups = "drop"
+  ) %>%
+  arrange(factor(Frame, cFrame), Year, factor(Str, cDFStr))
+
+knitr::kable(GRTSSmpYFS, digits = 0, caption = "Number of sample plots and list colonies for each year, frame, and stratum.")
+
+rm(tGRTSSmp1)
 
 ```
 
@@ -101,8 +129,12 @@ knitr::kable(YrStrCol[, c("Year",
 
 (Check with Danielle D'Auria and add stratum-plot-known nest map)
 
-## List-Frame Observations
-Get rid of the new and out-of-sample colony observations.  `NewColonies` is the list of new colonies found in each year's survey that were given colony numbers.  (All were in both 2015 and 2023.)
+## Mark List and Area Frame GBHE Observations
+Get rid of the new and out-of-sample colony observations.  `NewColonies` is the list of new colonies found in each year's survey that were given colony numbers.  (All were in both 2015 and 2023.). Mark `OOS` observations as out-of-sample.  Note that `OOS` means out-of-sample.
+
+Do we need location too?  Why are some rear counts NA? For now assume they are zero.
+
+Do these duplicate observations make sense?
 
 ```{r GetListObs}
 cFrame <- c("List", "Area")
@@ -112,12 +144,16 @@ GBHEObs <- left_join(
     filter(!(AOU != "GBHE" |
                is.na(FWSColonyID))) %>%
     mutate(Str = factor(Str, cDFStr),
-         InSmp = siteID != "OOS") %>%
+         InSmp = siteID != "OOS",
+         rNest = ifelse(is.na(rNest), 0, rNest),
+         rAct = ifelse(is.na(rAct), 0, rAct)
+         ) %>%
     dplyr::select(
       Year,
       Str,
       PlotID,
       FWSColonyID,
+      InSmp,
       Front,
       Rear,
       CapHist,
@@ -151,17 +187,10 @@ DupList <- GBHEObs %>%
   arrange(YrID) %>%
   filter(YrID %in% YrID[duplicated(YrID)]) %>%
   dplyr::select(-YrID)
-DupList
-
-# Allow duplicate observations and be sure to count distinct colonies.
-# # In the meantime take the first observation of the group.
-# RecObsList <- RecObsList %>%
-#   mutate(YrID = paste(Year, FWSColonyID, sep = ".")) %>%
-#   filter(!duplicated(YrID)) %>%
-#   dplyr::select(-YrID)
+knitr::kable(DupList, digits = 0, caption = "Duplicate observations in RecObs.")
 
 ```
-```
+
 ## Colony Observations by Observer
 Gather the observations of colony nest and active nest sizes by observer.
 The ground observations should be added to this.
@@ -171,7 +200,7 @@ Note that in both 2015 and 2023, ME.0034 was sighted in A08 or cl.1d, a list nes
 ```{r SampleColonies}
 cSeat <- c("Front", "Rear", "Dirt")
 
-SeatObs <- rbind(
+SeatObs <- bind_rows(
   GBHEObs %>%
     mutate(
       Seat = "Front",
@@ -180,7 +209,7 @@ SeatObs <- rbind(
       Act = fAct
     ) %>%
     dplyr::select(Year, Frame, Str, PlotID, FWSColonyID, InSmp, Obsr, Seat, Nest, Act),
-  tRecObs %>%
+  GBHEObs %>%
     mutate(
       Seat = "Rear",
       Obsr = Rear,
@@ -192,27 +221,32 @@ SeatObs <- rbind(
 
 ```
 ## Ground Observations
-Load the ground truth data. Some of the ground observations have NAs for active counts.  I am not sure why all the ground observations are in the sample plots.
+Load the ground truth data. Some of the ground observations have NAs for active counts.  
 
 Check the original data where the ground observations are less than the fixed wing.  The more correct way to include these are to join them with the GRTSSmp by plot, stratum, and year.
 
 ```{r GroundObservations}
-GroundObs <- st_drop_geometry(GroundObsSF) %>%
-  dplyr::select(Year, Frame, Str, PlotID, FWSColonyID, Obsr, Seat, Nest, Act)
 
-TruthLess <- inner_join(GroundObs,
-                        SeatObs,
-                        by = c("FWSColonyID", "Year", "Str", "PlotID")) %>%
+GroundObs <- left_join(
+  st_drop_geometry(GroundObsSF),
+  tGRTSSmp %>%
+    mutate(InSmp = TRUE),
+  by = c("Year", "Frame", "Str", "PlotID")
+) %>%
+  mutate(InSmp = ifelse(is.na(InSmp), FALSE, InSmp)) %>%
+  dplyr::select(Year, Frame, Str, PlotID, FWSColonyID, InSmp, Obsr, Seat, Nest, Act)
+
+TruthLess <- inner_join(GroundObs, SeatObs, by = c("FWSColonyID", "Year", "Str", "PlotID")) %>%
   filter(Nest.x < Nest.y | Act.x < Act.y) %>%
   dplyr::select(Year, Str, PlotID, FWSColonyID, Nest.x, Nest.y, Act.x, Act.y)
-TruthLess
+knitr::kable(TruthLess, digits = 0, caption = "Where fixed-wing observations are more than the ground observations.")
+
+rm(tGRTSSmp)
 
 ```
 
 ## Combine Ground Observations
 Add the ground observations. These do include ground observations less than the fix with. Some aerial counts may be higher than the ground truth, so use a Poisson rather than a binomial, so the observed `n` is not a fixed upper limit in the model.
-
-It would help if the ground observations had the siteID, plot, stratum, and KMSq.
 
 ```{r ColoniesWithGround}
 AllObs <- bind_rows(
@@ -228,7 +262,7 @@ AllObs <- bind_rows(
 
 Need to remove the training flight of `DD` and `DK` on `ME.0822`.
 
-```{r SmpColObs}
+```{r AllObs}
   AllObs %>%
     filter(Year == 2015 & FWSColonyID == "ME.0822")
   # Check.  Can't separate out DD in the two observations, so use row names
@@ -240,6 +274,44 @@ Need to remove the training flight of `DD` and `DK` on `ME.0822`.
   
 ```
 
+
+## Colonies by Year and Stratum
+Summarize the colonies by year and stratum for simple analyses.  
+The known colonies are in [Colony.csv](file:///`{r} here::here("data/Colony.csv")`).  These are separated by year.  The 2034 list includes the 2015 new colonies and other incidentally found colonies since 2015.
+The all colony spatial layer is in [AllColonySF.kml](file:///`{r} here::here("gis/AllColonySF.kml")`) is of all colonies found at anytime.  
+
+When the colony list includes all the species, then this can be simplied by removing `AllObs`.
+
+```{r, KnownNestPlots}
+# I use n_distinct but the colony ids are unique.  Handles colonies observed multiple times.
+# I do not have all the colonies in the colony list, so combine with those observed.  And remove the new colonies found.
+ListCol <- anti_join(
+  bind_rows(
+    AllObs %>%
+      filter(Frame == "List") %>%
+      select(Year, Str, FWSColonyID),
+    Colony %>%
+      select(Year, Str, FWSColonyID)
+  ) %>%
+  distinct(),
+  NewColonies,
+  by = c("Year", "FWSColonyID")
+)
+
+YrStrCol <- ListCol %>%
+  group_by(Year, Str) %>%
+  summarize(nColony = n_distinct(FWSColonyID), .groups = "drop") %>%
+  arrange(Year, factor(Str, cDFStr))
+
+# I am not sure why the above does not the same as GTRSSmpYFS
+# YrStrCol <- GRTSSmpYFS %>%
+#   filter(Frame == "List") %>%
+#   select(Year, Str, nColony = nListColony)
+
+  knitr::kable(YrStrCol, digits = 2, caption = "List Frame Colony Summary: The known colony lists for each year.")
+
+```
+
 ## Bayesian List Estimation
 
 Summary of the stratum areas, number of known colonies, colonies for strata and the Maine totals.
@@ -248,99 +320,139 @@ The proportions active have the colony sites as a denominator.  It is more certa
 
 In the Cochran survey estimation, the only error is in the prediction of the number of colonies in the non-sample.  The colonies observed in the sample are fixed, i.e., with no error.
 
-The number of colonies is right in the Colony Summary but not in the List Frame Colony Summary.
+The number of colonies is right in the Colony Summary but not in the List Frame Colony Summary. (corrected?)
 
 ```{r ListSmry}
-tLstSmry <- RecObsList %>%
-  group_by(Year, Str, FWSColonyID, ) %>%
-  summarize(
-    isNest = as.integer(any(fNest > 0, rNest > 0, na.rm = TRUE)),
-    isAct = as.integer(any(fAct > 0, rAct > 0, na.rm = TRUE)),
-    .groups = "drop"
-  ) %>%
-  group_by(Year, Str) %>%
+
+tLstSmry <- AllObs %>%
+  filter(Frame == "List") %>%
+  group_by(Year, Str, FWSColonyID, InSmp) %>%
+  summarize(isNest = as.integer(any(Nest > 0, na.rm = TRUE)),
+            isAct = as.integer(any(Act > 0, na.rm = TRUE)),
+            .groups = "drop") %>%
+  group_by(Year, Str, InSmp) %>%
   summarize(
     # Need to fix the list because it should not be larger than the colonies
     # sampled.
-    nColSmp = n_distinct(FWSColonyID),  # Already grouped by FWSColonyID
+    nSmpCol = n_distinct(FWSColonyID),
+    # Already grouped by FWSColonyID
     nNestCol = sum(isNest),
     nActCol = sum(isAct),
     .groups = "drop"
+  ) %>%
+  pivot_wider(
+    id_cols = c("Year", "Str"),
+    names_from = "InSmp",
+    values_from = c("nSmpCol", "nNestCol", "nActCol"),
+    values_fill = 0
+  ) %>%
+  select(
+    Year,
+    Str,
+    nSmpCol = nSmpCol_TRUE,
+    nNSCol = nSmpCol_FALSE,
+    nNestCol = nNestCol_TRUE,
+    nNestNSCol = nNestCol_FALSE,
+    nActCol = nActCol_TRUE,
+    nActNSCol = nActCol_FALSE
   )
 
 LstSmry <- inner_join(tLstSmry, YrStrCol, by = c("Year", "Str")) %>%
   mutate(
     # Need to fix the list because it should not be larger than the colonies
     # sampled.
-    nColony = nColony,
-    nColNS = nColony - nColSmp,
-    pCol = NA,
-    pColSD = NA,
-    nLstCol = NA,
-    nLstColSD = NA,
-    pAct = NA,
-    pActSD = NA,
-    nLstAct = NA,
-    nLstActSD = NA
+    # Remove colonies were nonsample observations have been made.
+    nColonyPred = nColony - nSmpCol - nNSCol,
+    pNestCol = NA,
+    pNestColSD = NA,
+    nEstNestCol = NA,
+    nEstNestColSD = NA,
+    pActCol = NA,
+    pActColSD = NA,
+    nEstActCol = NA,
+    nEstActColSD = NA
   ) %>%
   dplyr::select(
     Year,
     Str,
     nColony,
-    nColSmp,
+    nColonyPred,
+    nSmpCol,
+    nNSCol,
     nNestCol,
+    nNestNSCol,
     nActCol,
-    nColNS,
-    pCol,
-    pColSD,
-    nLstCol,
-    nLstColSD,
-    pAct,
-    pActSD,
-    nLstAct,
-    nLstActSD
-  )
-nYrStr <- nrow(LstSmry)
+    nActNSCol,
+    nNSCol,
+    pNestCol,
+    pNestColSD,
+    nEstNestCol,
+    nEstNestColSD,
+    pActCol,
+    pActColSD,
+    nEstActCol,
+    nEstActColSD
+  ) %>%
+  arrange(Year, factor(Str, cDFStr))
+
 # Arrrrgh will not let Beta work on vectors.
-for (iYrStr in 1:nYrStr) {
+for (iYrStr in 1:nrow(LstSmry)) {
   # iYrStr <- 1
   
   # Estimated proportion of occupied colony sites and the number of colonies
-  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nNestCol"], nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nNestCol"])
-  LstSmry[iYrStr, "pCol"] <- attr(tBeta, "Mean")
-  LstSmry[iYrStr, "pColSD"] <- attr(tBeta, "SD")
-  LstSmry[iYrStr, "nLstCol"] <- LstSmry[iYrStr, "nNestCol"] +
-    LstSmry[iYrStr, "pCol"] * LstSmry[iYrStr, "nColNS"]
-  LstSmry[iYrStr, "nLstColSD"] <- LstSmry[iYrStr, "pColSD"] * LstSmry[iYrStr, "nColNS"]
+  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nNestCol"], nup = 1 + LstSmry[iYrStr, "nSmpCol"] - LstSmry[iYrStr, "nNestCol"])
+  LstSmry[iYrStr, "pNestCol"] <- attr(tBeta, "Mean")
+  LstSmry[iYrStr, "pNestColSD"] <- attr(tBeta, "SD")
+  LstSmry[iYrStr, "nEstNestCol"] <- LstSmry[iYrStr, "nNestCol"] + LstSmry[iYrStr, "nNestNSCol"] +
+    LstSmry[iYrStr, "pNestCol"] * LstSmry[iYrStr, "nColonyPred"]
+  LstSmry[iYrStr, "nEstNestColSD"] <- LstSmry[iYrStr, "pNestColSD"] * LstSmry[iYrStr, "nColonyPred"]
   
   # Estimated proportion of active colonies from all occupied colony sites
   # (Is this they right definition?)
-  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nActCol"], nup = 1 + LstSmry[iYrStr, "nColSmp"] - LstSmry[iYrStr, "nActCol"])
-  LstSmry[iYrStr, "pAct"] <- attr(tBeta, "Mean")
-  LstSmry[iYrStr, "pActSD"] <- attr(tBeta, "SD")
-  LstSmry[iYrStr, "nLstAct"] <- LstSmry[iYrStr, "nActCol"] +
-    LstSmry[iYrStr, "pAct"] * LstSmry[iYrStr, "nColNS"]
-  LstSmry[iYrStr, "nLstActSD"] <- LstSmry[iYrStr, "pActSD"] * LstSmry[iYrStr, "nColNS"]
+  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nActCol"], nup = 1 + LstSmry[iYrStr, "nSmpCol"] - LstSmry[iYrStr, "nActCol"])
+  LstSmry[iYrStr, "pActCol"] <- attr(tBeta, "Mean")
+  LstSmry[iYrStr, "pActColSD"] <- attr(tBeta, "SD")
+  LstSmry[iYrStr, "nEstActCol"] <- LstSmry[iYrStr, "nActCol"] + LstSmry[iYrStr, "nActNSCol"] +
+    LstSmry[iYrStr, "pActCol"] * LstSmry[iYrStr, "nColonyPred"]
+  LstSmry[iYrStr, "nEstActColSD"] <- LstSmry[iYrStr, "pActColSD"] * LstSmry[iYrStr, "nColonyPred"]
 }
-c("Year",
+
+knitr::kable(LstSmry[, c(
+  "Year",
   "Str",
   "nColony",
-  "nColSmp",
+  "nColonyPred",
+  "nSmpCol",
+  "nNSCol",
   "nNestCol",
+  "nNestNSCol",
   "nActCol",
-  "nColNS")
+  "nActNSCol"
+)], digits = 2, caption = "List Frame Colony Summary:  The colonies to predict are the number of colonies les the sample and non-sample observations, nColonyPred = nColony - nSmpCol - nNsCol.")
 
+```
+## Nests in colony summaries
+Note how much lower the proportion of nest colonies there are in 2023 than 2015
+
+```{r NestColonySummary}
 knitr::kable(LstSmry[, c("Year",
                          "Str",
-                         "nColony",
-                         "nColSmp",
-                         "nNestCol",
-                         "nActCol",
-                         "nColNS")], digits = 2, caption = "List Frame Colony Summary")
+                         "pNestCol",
+                         "pNestColSD",
+                         "nEstNestCol",
+                         "nEstNestColSD")], digits = 2, caption = "List Frame Nest Summary")
 
-knitr::kable(LstSmry[, c("Year", "Str", "pCol", "pColSD", "nLstCol", "nLstColSD")], digits = 2, caption = "List Frame Nest Summary")
+```
+## Active Nests in colony summaries
+The `pActCol` is the ratio from the number of list nests not the number of nest colonies.
 
-knitr::kable(LstSmry[, c("Year", "Str", "pAct", "pActSD", "nLstAct", "nLstActSD")], digits = 2, caption = "List Frame Active Nest Summary")
+```{r ActiveNestColonySummary}
+knitr::kable(LstSmry[, c("Year",
+                         "Str",
+                         "pActCol",
+                         "pActColSD",
+                         "nEstActCol",
+                         "nEstActColSD")], digits = 2, caption = "List Frame Active Nest Summary")
 rm(tLstSmry)
 
 ```
@@ -349,59 +461,16 @@ rm(tLstSmry)
 
 The same model was used for the estimation for both years. Different occupancies, colony sizes, and proportion active were estimated for year and strata. We estimated only a common rear observer detection rate because of the low number of capture histories, especially in 2023. Note that there were no observer detections unless the front observer also detected them (no `01` capture histories).
 
-
-```
-
-## Estimation of Colony Occupancy, Nest and Active Nest per Colony
-
-Simple means and SDs for colony occupancy, and nest and active nests per colony.
-
-Don't use the counts in a random effects Poisson model to estimate the stratum rates. Let the proportion of active colonies be Act\[s,o\] == 0.  Note the `pAct` here has not been how I calculated the active nests, I use the number of colonies as the denominator.
-
-It is interesting that the proportion active is higher in 2023.
-
-```{r ListEst}
-
-LstData <- AllObs %>%
-  filter(Frame == "List") %>%
-  mutate(Seat = factor(Seat, cSeat), fSeat = relevel(Seat, "Front"))
-LstEst <- LstData %>%
-  mutate(Occ = Act > 0) %>%
-  group_by(Year, Str) %>%
-  summarise(
-    n = sum(!is.na(Act)),
-    pOcc = mean(Occ, na.rm = TRUE),
-    SD = sd(Occ, na.rm = TRUE),
-    NestMn = mean(Nest, na.rm = TRUE),
-    NestSD = sd(Nest, na.rm = TRUE),
-    ActMn = mean(Act, na.rm = TRUE),
-    ActSD = sd(Act, na.rm = TRUE),
-    pAct = ActMn / NestMn,
-    pActSD = sqrt(pAct * (1 - pAct) / n()),
-    .groups = "drop"
-  )
-knitr::kable(LstEst[, c("Year",
-                        "Str",
-                        "pOcc",
-                        "NestMn",
-                        "NestSD",
-                        "ActMn",
-                        "ActSD",
-                        "pAct",
-                        "pActSD")], digits = 2, caption = "Simple List Frame Summaries")
-
-```
-
-## Estimate the density and number of colonies
+## Summarize the area frame
 
 ```{r ActivePerColony}
 tGRTSArea <-  GRTSSmp %>%
   filter(SmpType != "list") %>%
   dplyr::select(Year, Str, PlotID, KMSq)
 
-NewCol <- left_join(
+NewObs <- left_join(
   tGRTSArea,
-  SmpColObs %>%
+  AllObs %>%
     filter(Frame == "Area") %>%
     group_by(Year, Str, PlotID, FWSColonyID) %>%
     summarize(
@@ -417,32 +486,59 @@ NewCol <- left_join(
   summarize(
     nNestCol = sum(nNestCol, na.rm = TRUE),
     nActCol = sum(nActCol, na.rm = TRUE),
-    KMSq = pmax(KMSq, na.rm = TRUE),
+    KMSq = max(KMSq, na.rm = TRUE),
     .groups = "drop"
   )
+knitr::kable(
+  NewObs %>%
+    group_by(Year, Str) %>%
+    summarize(
+      nNestCol = sum(nNestCol, na.rm = TRUE),
+      nActCol	 = sum(nActCol	, na.rm = TRUE),
+      KMSq = sum(KMSq, na.rm = TRUE),
+      .groups = "drop"
+    ),
+  digits = 0,
+  caption = "New colony year-stratum summaries"
+)
+rm(tGRTSArea)
 
 ```
 
 ## Estimate New Colonies
 
-Use a linear regression. The R\^2 is bad but the F-statistic is signifcant at the 0.01 level.  These are the new nest per colony estimates.  Note that the variance is $(X'X)^{-1}\sigma^{-2}$, so the the zero estimates can have a positive variance.  This also would make more sense as a log-Poisson model that has no negative estimates.
+Use a linear regression. The $R^2$ is bad but the F-statistic is significant at the 0.01 level.  These are the new nest per colony estimates.  Note that the variance is $(X'X)^{-1}\sigma^{-2}$, so the the zero estimates can have a positive variance.  This also would make more sense as a log-Poisson model that has no negative estimates.
+
+I added a Poisson regression that would not allow any negative estimates on the original scale.  We need to adjust the AIC by the log-area weights to make them comparable, but is the data the same?
+
+From spot checking the means, they come close to the ordinary regression estimates.
 
 ```{r EstNewCol}
-tNewCol <- NewCol %>%
+NewObsYS <- NewObs %>%
   mutate(YrStr = factor(paste(Year, Str, sep = "."), cYrStr))
-tMdlMtx <- model.matrix  (~ YrStr - 1, data = tNewCol)
-MdlMtx <- diag(tNewCol$KMSq) %*% tMdlMtx
+tMdlMtx <- model.matrix  ( ~ YrStr - 1, data = NewObsYS)
+MdlMtx <- diag(NewObsYS$KMSq) %*% tMdlMtx
 
-NewColMdl <- lm(nNestCol ~ MdlMtx -1, 
-                data = tNewCol)
+NewColMdl <- lm(nNestCol ~ MdlMtx - 1, data = NewObsYS)
 summary(NewColMdl)
+NewColGLM <- glm(nNestCol ~ tMdlMtx - 1, 
+                 family = poisson, weight = log(NewObsYS$KMSq),
+                 data = NewObsYS)
+summary(NewColMdl)
+summary(NewColGLM)
+tAIC <- AIC(NewColMdl, NewColGLM)
+tAIC$AIC <-  tAIC$AIC- c(0, sum(log(NewObsYS$KMSq)))
+tAIC
+
 NewColMn <- coefficients(NewColMdl)
 NewColSD <- sqrt(diag(vcov(NewColMdl)))
 
 ```
+
+## Area Active Colony Estimation
+
 ```{r EstNewAct}
-NewActColMdl <- lm(nActCol ~ MdlMtx -1, 
-                data = tNewCol)
+NewActColMdl <- lm(nActCol ~ MdlMtx - 1, data = NewObsYS)
 summary(NewActColMdl)
 NewActColMn <- coefficients(NewActColMdl)
 NewActColSD <- sqrt(diag(vcov(NewActColMdl)))
@@ -456,31 +552,12 @@ tPlot <- expand_grid(Year = cYear, Plot %>%
   mutate(Year = factor(Year, cYear), Str = factor(Str, cDFStr)) %>%
   arrange(Year, Str, PlotID)
 
-NonSmpCol <- anti_join(tPlot ,
-                       NewCol %>%
+NonSmpPlot <- anti_join(tPlot ,
+                       NewObs %>%
                          dplyr::select(Year, Str, PlotID),
                        by = c("Year", "Str", "PlotID")) %>%
   mutate(Str = factor(Str, cDFStr))
-
-```
-
-## Expansion Factors
-I just save these for the JAGS estimation.
-
-```{r ExpansionFactors}
-# Expansion factors
-ExpFac <- inner_join(
-  sf::st_drop_geometry(StrSF) %>%
-    dplyr::select(Str = Str_FK, KMSq),
-  GRTSSmp %>%
-    filter(SmpType != "List") %>%
-    group_by(Year, Str) %>%
-    summarize(KMSq = sum(KMSq), .groups = "drop"),
-  by = c("Str")
-) %>%
-  mutate(ExpFac = KMSq.x / KMSq.y) %>%
-  dplyr::select(Year, Str, ExpFac) %>%
-  arrange(Year, factor(Str, cDFStr))
+rm(tPlot)
 
 ```
 
@@ -489,7 +566,7 @@ ExpFac <- inner_join(
 Make a simple summary of the new colonies. Use linear regression to get the density of colonies and their SDs. We use the finite sample to only predict the number and SD of colonies in the non-sampled plots.
 
 ```{r NewColEst}
-tNewCol <-   NewCol %>%
+NewObsYS <-   NewObs %>%
   group_by(Year, Str) %>%
   summarize(
     nPlot = n(),
@@ -499,108 +576,69 @@ tNewCol <-   NewCol %>%
     .groups = "drop"
   )
 
-tNonSmpCol <-  NonSmpCol %>%
+NonSmpYS <-  NonSmpPlot %>%
   group_by(Year, Str) %>%
   summarize(NSPlot = n(),
             NSKMSq = sum(KMSq),
             .groups = "drop")
 
 # Check that the estimates are in the same order as the indices.
-NewSmry <- inner_join(tNewCol, tNonSmpCol, by = c("Year", "Str")) %>%
+NewSmry <- inner_join(NewObsYS, NonSmpYS, by = c("Year", "Str")) %>%
   mutate(
     NestColDen = NewColMn,
     NestColSD = NewColSD,
-    nNestCol = nSmpNestCol + NestColDen * NSKMSq,
-    nNestColSD = NestColSD * NSKMSq,
+    nEstNestCol = nSmpNestCol + NestColDen * NSKMSq,
+    nEstNestColSD = NestColSD * NSKMSq,
     ActColDen = NewActColMn,
     ActColSD = NewActColSD,
-    nActCo = nSmpActCol + ActColDen * NSKMSq,
-    nActCoSD = ActColSD * NSKMSq
+    nEstActCol = nSmpActCol + ActColDen * NSKMSq,
+    nEstActColSD = ActColSD * NSKMSq
   )
 
+```
+  ## New Colony Summaries
+
+```{r NewColSmry}
 knitr::kable(NewSmry[, c(1:3, 7, 6, 4, 5)],
              digits = c(0, 0, 0, 0, 0, 0, 0),
              caption = "Area Plot Summaries")
+
+```
+## New Nest Summaries
+
+```{r NewNestSmry}
 knitr::kable(NewSmry[, c(1, 2, 4, 9:12)],
-             digits = c(0, 0, 0, 4, 5, 1, 2),
+             digits = c(0, 0, 4, 4, 5, 1, 2),
              caption = "New Colony Estimates")
-knitr::kable(NewSmry[, c(1, 3, 5, 13:16)],
-             digits = c(0, 0, 0, 4, 5, 1, 2),
+
+```
+## New Active Nest Summaries
+
+```{r NewActSmry}
+knitr::kable(NewSmry[, c(1, 2, 5, 13:16)],
+             digits = c(0, 0, 4, 4, 5, 1, 2),
              caption = "New Active Colony Estimates")
-
-```
-Is this a duplication of above???
-Get the Area frame. 
-
-All known and new colony list to use in `FWSColonyID` factor. YFS is year-frame-stratum.
-
-```{r AllSmpColonies}
-# I was using nest but did all the prep on SmpColObs
-tSmpCol <- SmpColObs %>%
-  mutate(
-    Year = factor(Year, cYear),
-    Str = factor(Str, cDFStr),
-    YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
-    InSmp = TRUE
-  ) %>%
-  dplyr::select(Year, FWSColonyID, Frame, Str, YFS, InSmp)
-
-tNonSmpCol <- anti_join(
-  Colony %>%
-    dplyr::select(Year, FWSColonyID, Str, PlotID) %>%
-    mutate(
-      Frame = "List",
-      Year = factor(Year, cYear),
-      Str = factor(Str, cDFStr),
-      YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
-      InSmp = FALSE
-    ) %>%
-    dplyr::select(Year, FWSColonyID, Frame, Str, YFS, InSmp),
-  tSmpCol,
-  by = c("Year", "FWSColonyID")
-)
-
-AllCol <- distinct(bind_rows(tSmpCol, tNonSmpCol)) %>%
-  arrange(Year, FWSColonyID)
-rm(tSmpCol, tNonSmpCol)
-
-```
-
-Get the colony IDs, including the new.  Use this for the JAGS estimation.
-There are 303 in sample and should be 321, but first make the new nests with their FWSColonyID not new...
-
-```{r ColonyIDs}
-cFWSColonyID <- sort(unique(AllCol$FWSColonyID))
-AllCol$FWSColonyID <- factor(AllCol$FWSColonyID, cFWSColonyID)
-Col2FS <- as.integer(AllCol$YFS)
-Col2Year <- as.integer(AllCol$Year)
-Col2Str <- as.integer(AllCol$Str)
-nAllCol <- nrow(AllCol)
 
 ```
 
 Make factors of the colony ID and the year-frame-stratum
 
-```{r FSIndices}
-SmpColObs$FWSColonyID <- factor(SmpColObs$FWSColonyID, cFWSColonyID)
-SmpColObs$Str <- factor(SmpColObs$Str, cDFStr)
-SmpColObs$YFS <-
-  with(SmpColObs, factor(paste(Year, Frame, Str, sep = "."), cYFS))
-SmpColObs$fSeat <- factor(SmpColObs$Seat, c("Front", "Dirt", "Rear"))
-SmpColObs$Act <- ifelse(is.na(SmpColObs$Act), 0, SmpColObs$Act)
+```{r AllNestObs}
 
 # Group over observers
 # For now just get the max and don't worry about seat
-SmpNestObs <- SmpColObs %>%
+AllNestObs <- AllObs %>%
   mutate(
+    YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
     Year = factor(Year, cYear),
+    Str = factor(Str, cDFStr),
     Frame = factor(Frame, cFrame),
     Nest = ifelse(is.na(Nest), 0, Nest),
     Act = ifelse(is.na(Act), 0, Act)
-    ) %>%
-  group_by(Year, Frame, Str, YFS, FWSColonyID) %>%
+  ) %>%
+  group_by(Year, Frame, Str, YFS, FWSColonyID, InSmp) %>%
   summarize(
-    Nest = max(Nest),
+    Nest = max(Nest, na.rm = TRUE),
     Act = max(Act, na.rm = TRUE),
     .groups = "drop"
   )
@@ -609,20 +647,22 @@ SmpNestObs <- SmpColObs %>%
 
 Model list nests per colony with only stratum and frame effects. Use NestMdlFS
 
-The overall mean model is best by AIC, so we do not have to distinguish among frames of strata.
+The strata model is best by AIC, but is not different from the YFS and there look like there are differents in the stratum pattern by year and frame.
 
 ```{r ModelNestPerColony}
 NestMdl0 <-
-  lm(Nest ~ 1, data = SmpNestObs)
+  lm(Nest ~ 1, data = AllNestObs, subset = InSmp)
 summary(NestMdl0)
 NestMdlStr <-
-  lm(Nest ~ Str+-1, data = SmpNestObs)
+  lm(Nest ~ Str+-1, data = AllNestObs, subset = InSmp)
 summary(NestMdlStr)
-lm(Nest ~ Str+-1, data = SmpNestObs)
+NestMdlYrStr <-
+  lm(Nest ~ Str + Year+-1, data = AllNestObs, subset = InSmp)
+summary(NestMdlYrStr)
 NestMdlFS <-
-  lm(Nest ~ YFS - 1, data = SmpNestObs)
+  lm(Nest ~ YFS - 1, data = AllNestObs, subset = InSmp)
 summary(NestMdlFS)
-AIC(NestMdl0, NestMdlStr, NestMdlFS)
+AIC(NestMdl0, NestMdlStr, NestMdlYrStr, NestMdlFS)
 
 # Mdl0 estimate and SD
 # Need zeros for the year-frame-stratum with no new colonies.
@@ -648,14 +688,14 @@ NestSmry <- inner_join(
   bind_rows(
     LstSmry %>%
       mutate(Year = as.character(Year), Frame = "List") %>%
-      dplyr::select(Year, Frame, Str, nColony = nLstCol, nColonySD = nLstColSD),
+      dplyr::select(Year, Frame, Str, nEstNestCol, nEstNestColSD),
     NewSmry %>%
       mutate(
         Year = as.character(Year),
         Frame = "Area",
         Str = as.character(Str)
       ) %>%
-      dplyr::select(Year, Frame, Str, nColony, nColonySD)
+        dplyr::select(Year, Frame, Str, nEstNestCol, nEstNestColSD)
   ),
   NestPerCol,
   by = c("Year", "Frame", "Str")
@@ -665,22 +705,19 @@ NestSmry <- inner_join(
     Frame = factor(Frame, cFrame),
     Str = factor(Str, cDFStr)
   ) %>%
-  mutate(
-    NestMn = nColony * NestPerCol,
-    NestSD = sqrt(
-      pmax(
-        0,
-        nColony ^ 2 * nColonySD ^ 2 +
-          NestPerCol ^ 2 * NestPerColSD ^ 2 -
-          nColonySD ^ 2 * NestPerColSD ^ 2
-      )
+  mutate(NestMn = nEstNestCol * NestPerCol, NestSD = sqrt(
+    pmax(
+      0,
+      nEstNestCol ^ 2 * nEstNestColSD ^ 2 +
+        NestPerCol ^ 2 * NestPerColSD ^ 2 -
+        nEstNestColSD ^ 2 * NestPerColSD ^ 2
     )
-  )
+  ))
 
 # The simulations estimates are good the SD differ from the calculated.
 nSim < -10 ^ 5
 setnsims(nSim)
-nColSim <- rvnorm(mean = NestSmry$nColony, sd = NestSmry$nColonySD)
+nColSim <- rvnorm(mean = NestSmry$nEstNestCol, sd = NestSmry$nEstNestColSD)
 C2NSim <- rvnorm(mean = NestSmry$NestPerCol, sd = NestSmry$NestPerColSD)
 Nests <- nColSim * C2NSim
 NestSmry$NestMn <- pmax(0, rvmean(Nests))
@@ -693,56 +730,129 @@ knitr::kable(NestSmry,
 ## The year and frame totals and the year dual-frame totals.
 
 ```{r NestSmry2}
+# Calculate the 90 percent quantiles
+qfcn <- function(x) {
+  Qt <- qnorm(p = c(0.5, 0.05, 0.95),
+              mean = x[1],
+              sd = x[2])
+  rndQt <- pmax(0, round(Qt, digits = 0))
+  rndQt
+}
+
 NestYF <- NestSmry %>%
   group_by(Year, Frame, .drop = TRUE) %>%
   summarize(
-    nCol = sum(nColony),
-    nCSD = sqrt(sum(nColonySD ^ 2)),
+    nCol = sum(nEstNestCol),
+    nCSD = sqrt(sum(nEstNestColSD ^ 2)),
     Nest = sum(NestMn),
     NestSD = sqrt(sum(NestSD ^ 2)),
+    NestCI90 = NA,
     .groups = "drop"
   )
-NestYF
+NestYFQ <- t(apply(NestYF[, c("Nest", "NestSD")], 1, qfcn))
+NestYF$NestCI90 <- paste(format(NestYFQ[, 1]),
+                         " (",
+                         format(NestYFQ[, 2]),
+                         "–",
+                         format(NestYFQ[, 3]),
+                         ")",
+                         sep = "")
 
+knitr::kable(NestYF, digits = c(0, 0, 1, 2, 0), caption = "Year-Frame Nest Colonies")
+
+```
+## List Coverage
+Of nest colonies, not nests.  It is very high, since few new nests were found, and was the new nests were found.  On one hand, the coverage should include all colonies including the not found, but on the other hand there are no new not-found colonies.
+
+```{r ListCov}
+LstCov <- inner_join(
+  NestYF %>%
+    filter(Frame == "List") %>%
+    select(Year, nLstCol = nCol),
+  NestYF %>%
+    filter(Frame == "Area") %>%
+    select(Year, nNewCol = nCol),
+  by = "Year"
+) %>%
+  mutate(
+    LstCov = round(100 * nLstCol / (nLstCol + nNewCol))
+  )
+knitr::kable(LstCov, digits = 0, caption = "List Coverage of Colonies by Year")
+
+
+```
+## Dual-Frame Nest Estimates
+
+```{r NestDF}
 
 NestDF <- NestSmry %>%
   group_by(Year, .drop = TRUE) %>%
   summarize(
-    nCol = sum(nColony),
-    nCSD = sqrt(sum(nColonySD ^ 2)),
+    nCol = sum(nEstNestCol),
+    nCSD = sqrt(sum(nEstNestColSD ^ 2)),
     Nest = sum(NestMn),
     NestSD = sqrt(sum(NestSD ^ 2)),
+    NestCI90 = NA,
     .groups = "drop"
   )
-NestDF
-qnorm(p = c(0.5, 0.05, 0.95), mean = 297, sd = 315)
 
+
+NestDFQ <- t(apply(NestDF[, c("Nest", "NestSD")], 1, qfcn))
+NestDF$NestCI90 <- paste(format(NestDFQ[, 1]),
+                         " (",
+                         format(NestDFQ[, 2]),
+                         "–",
+                         format(NestDFQ[, 3]),
+                         ")",
+                         sep = "")
+
+knitr::kable(NestDF, digits = c(0, 1, 2, 0), caption = "Year Dual-Frame Nest Colonies")
 
 ```
+## Nest Colony Covariance
+The survey design is based on the colony CV.  The nest or active nest CV will be much higher.  Having the 2015 nest and active nests estimates, I could have designed a survey for active nest CV.  I could have included the drop in colonies and active nests, but we would not have been able to afford a survey that had such a low active nest CV.  I didn't think of it at the time. 
 
-Model the number of active nests per colony. The year-frame-stratum model is best.
+The 2023 colony CV is twice the 2015, which is not surprising given the drop in the estimates.  Interesting that the nest CVs are so close.
+
+```{r SurveyCVs}
+PctCV <- NestDF %>%
+  mutate(
+    PctColCV = 100 * nCSD / nCol,
+    PctNestCV = 100 * NestSD / Nest
+  ) %>%
+  select(Year, nCol, nCSD, PctColCV, Nest, NestSD, PctNestCV)
+knitr::kable(PctCV, digits = 0, caption = "Percent CVs of Colonies and Nests by Year")
+
+```
+## Active nest per colony
+Model the number of active nests per colony. Stratum is best but use year-frame-stratum model.
 
 ```{r ModelActPerColony}
 ActMdl0 <-
-  lm(Act ~ 1, data = SmpColObs)
+  lm(Act ~ 1, data = AllNestObs, subset = InSmp)
 summary(ActMdl0)
+
+ActMdlStr <-
+  lm(Act ~ Str - 1, data = AllNestObs, subset = InSmp)
+summary(ActMdlStr)
+
 ActMdlYrStr <-
-  lm(Act ~ Year + Str+-1, data = SmpColObs)
+  lm(Act ~ Year + Str+-1, data = AllNestObs, subset = InSmp)
 summary(ActMdlYrStr)
 
 ActMdlFS <-
-  lm(Act ~ YFS - 1, data = SmpColObs)
+  lm(Act ~ YFS - 1, data = AllNestObs, subset = InSmp)
 summary(ActMdlFS)
 
 # Use the YrStr
-AIC(ActMdl0, ActMdlYrStr, ActMdlFS)
+AIC(ActMdl0, ActMdlStr, ActMdlYrStr, ActMdlFS)
 
 # MdlFS estimate and SD
-cCoef <- stringr::str_replace(names(coefficients(NestMdlFS)), "YFS", "")
+cCoef <- stringr::str_replace(names(coefficients(ActMdlFS)), "YFS", "")
 FSEst <- rep(0, length = length(cYFS))
 names(FSEst) <- cYFS
-FSEst[cCoef] <- as.numeric(coefficients(NestMdlFS))
-FSSD[cCoef] <- as.numeric(sqrt(diag(vcov(NestMdlFS))))
+FSEst[cCoef] <- as.numeric(coefficients(ActMdlFS))
+FSSD[cCoef] <- as.numeric(sqrt(diag(vcov(ActMdlFS))))
 ActPerCol <- tibble::tibble(
   YFS = cYFS,
   ActPerCol = as.double(FSEst),
@@ -759,14 +869,14 @@ ActSmry <- inner_join(
   bind_rows(
     LstSmry %>%
       mutate(Year = as.character(Year), Frame = "List") %>%
-      dplyr::select(Year, Frame, Str, nLstAct = nLstAct, nLstActSD = nLstActSD),
+      dplyr::select(Year, Frame, Str, nEstActCol, nEstActColSD),
     NewSmry %>%
       mutate(
         Year = as.character(Year),
         Frame = "Area",
         Str = as.character(Str)
       ) %>%
-      dplyr::select(Year, Frame, Str, nColony, nColonySD)
+      dplyr::select(Year, Frame, Str, nEstActCol, nEstActColSD)
   ),
   ActPerCol,
   by = c("Year", "Frame", "Str")
@@ -776,69 +886,96 @@ ActSmry <- inner_join(
     Frame = factor(Frame, cFrame),
     Str = factor(Str, cDFStr)
   ) %>%
-  mutate(
-    ActMn = nColony * ActPerCol,
-    ActSD = sqrt(
-      pmax(
-        0,
-        nColony ^ 2 * nColonySD ^ 2 +
-          ActPerCol ^ 2 * ActPerColSD ^ 2 -
-          nColonySD ^ 2 * ActPerColSD ^ 2
-      )
+  mutate(ActMn = nEstActCol * ActPerCol, ActSD = sqrt(
+    pmax(
+      0,
+      ActPerCol ^ 2 * nEstActColSD ^ 2 +
+        nEstActCol ^ 2 * ActPerColSD ^ 2 -
+        nEstActColSD ^ 2 * ActPerColSD ^ 2
     )
-  )
+  ))
 
 # The simulations estimates are good the SD differ from the calculated.
+# This might make more sense as a log-normal simulation, but
 nSim < -10 ^ 5
 setnsims(nSim)
-nColSim <- rvnorm(mean = ActSmry$nColony, sd = ActSmry$nColonySD)
+nColSim <- rvnorm(mean = ActSmry$nEstActCol, sd = ActSmry$nEstActColSD)
 C2NSim <- rvnorm(mean = ActSmry$ActPerCol, sd = ActSmry$ActPerColSD)
 Act <- nColSim * C2NSim
-ActSmry$ActMn <- pmax(0, rvmean(Act))
+ActSmry$ActMn <- pmax(0, rvmean(Act), na.rm = TRUE)
 ActSmry$ActSD <- rvsd(Act)
 knitr::kable(ActSmry,
              digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1),
              caption = "Active per Colony Summary")
+
+```
+## Log-Normal Estimates
+The simulations estimates are good the SD differ from the calculated.
+This might make more sense as a log-normal simulation, but they are a lot more variable.
+
+```{r LnActEst}
+nSim <- 10 ^ 5
+invisible(setnsims(nSim))
+ActLnSmry <- ActSmry
+LnActCol <- ifelse(ActSmry$nEstActCol <= 0, -10, log(ActSmry$nEstActCol))
+nColSim <- exp(rvnorm(mean = LnActCol, sd = pmin(2, ActSmry$nEstActColSD/exp(LnActCol))))
+
+LnActPerCol <- ifelse(ActSmry$ActPerCol <= 0, -10, log(ActSmry$ActPerCol))
+C2NSim <- exp(rvnorm(mean = LnActPerCol, sd = pmin(2, ActSmry$ActPerColSD/exp(LnActPerCol))))
+Act <- nColSim * C2NSim
+ActLnSmry$ActMn <- pmax(0, rvmean(Act), na.rm = TRUE)
+ActLnSmry$ActSD <- rvsd(Act)
+knitr::kable(ActLnSmry,
+             digits = c(0, 0, 0, 0, 1, 2, 2, 0, 1),
+             caption = "Active per Colony Summary Using the Log-Normal")
+
 ```
 
 ## Colony and list summary
 
 ```{r ActSmry2}
-ActYS <- ActSmry %>%
-  group_by(Year, Frame, .drop = TRUE) %>%
+ActColYF <- ActSmry %>%
+  group_by(Year, Frame) %>%
   summarize(
-    nCol = sum(nColony),
-    nCSD = sqrt(sum(nColonySD ^ 2)),
-    Act = sum(ActMn),
-    ActSD = sqrt(sum(ActSD ^ 2)),
+    nEstActCol = sum(nEstActCol),
+    nEstActColSD = sqrt(sum(nEstActColSD ^ 2)),
+    ActCI90 = NA,
     .groups = "drop"
   )
-ActYS
+ActColYFQ <- t(apply(ActColYF[, c("nEstActCol", "nEstActColSD")], 1, qfcn))
+ActColYF$ActCI90 <- paste(format(ActColYFQ[, 1]),
+                          " (",
+                          format(ActColYFQ[, 2]),
+                          "–",
+                          format(ActColYFQ[, 3]),
+                          ")",
+                          sep = "")
 
-ActYF <- ActSmry %>%
-  group_by(Str, Year, .drop = TRUE) %>%
-  summarize(
-    nCol = sum(nColony),
-    nCSD = sqrt(sum(nColonySD ^ 2)),
-    Act = sum(ActMn),
-    ActSD = sqrt(sum(ActSD ^ 2)),
-    .groups = "drop"
-  )
-ActYF
+knitr::kable(ActColYF, digits = c(0, 0, 1, 2, 0), caption = "Year-Frame Active Colonies")
 
+# Dual-Frame Total Colonies
 ActDF <- ActSmry %>%
   group_by(Year, .drop = TRUE) %>%
   summarize(
-    nCol = sum(nColony),
-    nCSD = sqrt(sum(nColonySD ^ 2)),
+    nCol = sum(nEstActCol),
+    nCSD = sqrt(sum(nEstActColSD ^ 2)),
     Act = sum(ActMn),
     ActSD = sqrt(sum(ActSD ^ 2)),
+    ActCI90 = NA,
     .groups = "drop"
   )
-ActDF
-qnorm(p = c(0.5, 0.05, 0.95), mean = 118, sd = 32)
-qnorm(p = c(0.5, 0.05, 0.95), mean = 171, sd = 165)
 
+
+ActDFQ <- t(apply(ActDF[, c("Act", "ActSD")], 1, qfcn))
+ActDF$ActCI90 <- paste(format(ActDFQ[, 1]),
+                         " (",
+                         format(ActDFQ[, 2]),
+                         "–",
+                         format(ActDFQ[, 3]),
+                         ")",
+                         sep = "")
+
+knitr::kable(ActDF, digits = c(0, 1, 2, 0), caption = "Year Dual-Frame Active Colonies")
 
 ```
 Set up the observers for observer detection. Put ground last and set detection to one. Make a sort function for the observers to sort by last then first name.
@@ -848,7 +985,7 @@ LastFirst <- function(str) {
   nc <- nchar(str)
   paste(substr(str, nc, nc), substr(str, 1, nc - 1), sep = "")
 }
-cObsr <- unique(as.character(SmpColObs$Obsr))
+cObsr <- unique(as.character(AllObs$Obsr))
 cObsr <- cObsr[order(LastFirst(cObsr))]
 
 ```
@@ -857,15 +994,18 @@ Get all the observers including the ground, then make all observer seat combinat
 
 ```{r ObserverSeat}
 cObsr <- c(cObsr[cObsr != "Gnd"], "Gnd")
-SmpColObs$Obsr <- factor(SmpColObs$Obsr, levels = cObsr)
-nObsr <- nlevels(SmpColObs$Obsr)
+AllObs$Obsr <- factor(AllObs$Obsr, levels = cObsr)
+nObsr <- nlevels(AllObs$Obsr)
 
-ObsrSeat <- SmpColObs %>%
+ObsrSeat <- AllObs %>%
   # dplyr::select(Year, Front, Rear) %>%
   # gather("Year", "Seat", "Obsr") %>%
+#  group_by(Year, Seat, Obsr) %>%
   group_by(Year, Seat, Obsr) %>%
   summarize(nObs = n(), .groups = "drop") %>%
   mutate(LstFrst = LastFirst(as.character(Obsr))) %>%
+  # arrange(Year, LstFrst, Seat) %>%
+  # dplyr::select(Year, Obsr, Seat, nObs)
   arrange(Year, LstFrst, Seat) %>%
   dplyr::select(Year, Obsr, Seat, nObs)
 
@@ -874,7 +1014,12 @@ ObsrSeat <- SmpColObs %>%
 Make the capture history matrix for data augmentation. Put different rear-seat observers in the area frame
 
 ```{r RearObserverIndex}
-RearAreaObsr <- unique(RecObsArea$Rear)
+CHObs <- RecObs %>%
+  filter(!is.na(CapHist)) %>%
+  mutate(nNest = pmax(0, fNest, rNest, na.rm = TRUE)) %>%
+  select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, CapHist, nNest)
+
+RearAreaObsr <- unique(CHObs$Rear)
 Idx <- order(LastFirst(RearAreaObsr))
 RearAreaObsr <- RearAreaObsr[Idx]
 nRearAreaObsr <- length(RearAreaObsr)
@@ -883,21 +1028,23 @@ rm(Idx)
 
 ```
 
-Extract capture histories from both the list and area frame observations.  Anything that has a capture history.
+Extract capture histories from both the list and area frame observations for any species.  The other species, BAEA and OSPR, have similar nest to GBHE.  Anything that has a capture history.
 
 ```{r CaptureHistories}
-CapHist <- tRecObs %>%
-  filter(!is.na(CapHist)) %>%
-  dplyr::select(Year, Frame, Str, PlotID, FWSColonyID, Front, Rear, CapHist) %>%
+CapHist <- CHObs %>%
+  # Frame, removed
+  dplyr::select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, CapHist) %>%
   mutate(
     Str = as.character(Str),
-    inCNA = !grepl("ME", FWSColonyID),
+    # is a new nest?
+    # inCNA = !grepl("ME", FWSColonyID),
     FRObsr = paste(Front, Rear, sep = "."),
     CH = gsub("x", "0", ifelse(
       CapHist == "", "00", substring(CapHist, 2, 3)
     ))
   ) %>%
-  group_by(Year, Frame, Str, inCNA, Front, Rear, FWSColonyID, FRObsr, CH) %>%
+  # Frame, removed
+  group_by(Year, Str, Front, Rear, FWSColonyID, FRObsr, CH) %>%
   summarise(N = n(), .groups = "drop") %>%
   pivot_wider(
     names_from = "CH",
@@ -910,18 +1057,9 @@ CapHist <- tRecObs %>%
   mutate(`00` = ifelse(`01` > 0 |
                          `10` > 0 |
                          `11` > 0, 0, 1)) %>%
-  dplyr::select(Year,
-         Frame,
-         Str,
-         inCNA,
-         Front,
-         Rear,
-         FWSColonyID,
-         FRObsr,
-         `01`,
-         `10`,
-         `11`,
-         `00`)
+  dplyr::select(Year, # Frame,
+                Str, # inCNA,
+                Front, Rear, FWSColonyID, FRObsr, `01`, `10`, `11`, `00`)
 
 ```
 There are so few capture histories and no rear-seat only observations, `01`, just collapse all the rear observers. Two of the nests were sighted twice.
@@ -936,11 +1074,10 @@ tX.Smp <- CapHist %>%
     x11 = sum(`11`),
     x00 = sum(`00`)
   )
-X.Smp <- as.numeric(tX.Smp[2:4])
-names(X.Smp) <- colnames(tX.Smp)[2:4]
-Parm0 <- c(pf = 0.95, pr = 0.3)
-CRC(Parm0, X = X.Smp)
-
+X.Smp <- matrix(unlist(tX.Smp[3:5]), nrow = 3, byrow = TRUE)
+dimnames(X.Smp) <- list(colnames(tX.Smp)[3:5], cYear)
+Parm0 <- c(0.95, 0.3, 0.95, 0.3)
+# CRC(Parm0, X = X.Smp)
 
 Est <- optim(
   par = Parm0,
@@ -953,19 +1090,19 @@ Est <- optim(
     "L-BFGS-B",
   lower = c(0.0001, 0.0001),
   upper = c(0.9999, 0.9999),
-  control = list(maxit = 10000,
-                 #    reltol = 1e-10),
-                 hessian = TRUE
-  ))
+  control = list(maxit = 10000), #  reltol = 1e-10),
+  hessian = TRUE
+)
 
-Est
-DetPN <- tribble( ~ Pf, ~ Pr, ~ N,
-                  0, 0, 0)
-tmp <- c(round(Est$par, 2), N=currentN)
-names(tmp) <- c("Pf", "Pr", "N")
-DetPN[1, 1:3] <- as.list(tmp)
-knitr::kable(DetPN, digits =2,
-             caption = "Front-Rear Observer Detection Estimates")
+# Est
+DetPN  <- bind_cols(
+  Year = rep(cYear, each = 2),
+  Seat = rep(cSeat[1:2], times = 2),
+  pDet = round(100 * Est$par, 0),
+  SD = round(100 * sqrt(diag(solve(Est$hessian))), 1),
+  N = rep(currentN, each = 2)
+)
+knitr::kable(DetPN, digits = 1, caption = "Front-Rear Observer Detection Estimates")
 
 ```
 
@@ -974,18 +1111,13 @@ knitr::kable(DetPN, digits =2,
 ```{r SaveEst}
 save(
   cStr,
-  AllCol,
   Colony,
-  RecObsList,
+  RecObs,
   LstSmry,
   GroundObs,
-  RecObsArea,
-  LstData,
-  LstEst,
-  NewCol,
-  ExpFac,
+  NewObs,
   NewSmry,
-  SmpColObs,
+  AllObs,
   NestSmry,
   ActSmry,
   ObsrSeat,
@@ -997,7 +1129,7 @@ save(
   cCHCol,
   CapHist,
   DetPN,
-  file = here::here("output/CochranEst.RData")
+  file = here::here(paste("output/", cMdl, "Est.RData", sep = ""))
 )
 
 ```
