@@ -1,7 +1,7 @@
 ##' Calculate capture-recapture likelihood
 #'
-#' @param parm numeric vector of length 2 for the front and rear observers
-#' @param X numeric vector of double observer capture histories: x01 x10 x11 
+#' @param parm numeric vector of length 2 * number of categories for the front and rear observers
+#' @param X numeric vector or matrix of double observer capture histories: x01 x10 x11 
 #' @detail Need to determine the best N for the given probabilities because
 #' N can only be an integer.
 #' @return numeric log-likelihood
@@ -60,30 +60,39 @@
 #' plot(x, y, type = "l")
 #' 
 CRC <- function(parm, X = X.Smp) {
-  pf <- parm[1]
-  pr <- parm[2]
+  Parm <- matrix(parm, nrow = 2)
+  nCat <- ncol(Parm)
+  cFront <- 1
+  cRear <- 2
   
-  # Generate possible N values.
-  N <- (sum(X):(10 * sum(X) * ceiling(1 / (1 - (
-    1 - pf
-  ) * (
-    1 - pr
-  )))))
+  LnLkhd <- double(nCat)
+  currentN <<- LnLkhd
   
-  LnLkhd <- dbinom(X[1], N, (1 - pf) * pr, log = TRUE) +
-    dbinom(X[2], N, pf * (1 - pr), log = TRUE) +
-    dbinom(X[3], N, pf * pr, log = TRUE)
+  for (iCat in 1:nCat) {
+    # Generate possible N values.
+    sumXi <- sum(X[, iCat])
+    N <- (sumXi:(10 * sumXi * ceiling(1 / (
+      1 - (1 - Parm[cFront, iCat]) * (1 - Parm[cRear, iCat])
+    ))))
+    
+    # Calculates a binomial likelihood for each N
+    LnLkhdi <- dbinom(X[1, iCat], N, (1 - Parm[cFront, iCat]) * Parm[cRear, iCat], log = TRUE) +
+      dbinom(X[2, iCat], N, Parm[cFront, iCat] * (1 - Parm[cRear, iCat]), log = TRUE) +
+      dbinom(X[3, iCat], N, Parm[cFront, iCat] * Parm[cRear, iCat], log = TRUE)
+    
+    # Find the maximum log-likelihood and the N that generated it
+    Idx <- min(which(LnLkhdi == max(LnLkhdi)), na.rm = TRUE)
+    MxLnLkhdi <- LnLkhdi[Idx]
+    
+    # Set the N value in the overall environment, so it can be used.
+    currentN[iCat] <<- N[Idx]
+    
+    if (is.na(MxLnLkhdi)) {
+      LnLkhd <- -100000
+      break
+    } else
+      LnLkhd[iCat] <- MxLnLkhdi
+  }
   
-  # Find the maximum log-likelihood and the N that generated it
-  Idx <- min(which(LnLkhd == max(LnLkhd)), na.rm = TRUE)
-  LnLkhd <- LnLkhd[Idx]
-  # Set the N value in the overall environment, so it can be used.
-  currentN <<- N[Idx]
-  
-  print(paste(pf, pr, currentN, LnLkhd))
-  LnLkhd <- if (is.na(LnLkhd)) {
-    -100000
-  } else
-    LnLkhd
-  return(-LnLkhd)
+  return(-sum(LnLkhd))
 }
