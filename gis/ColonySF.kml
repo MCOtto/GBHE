@@ -3258,8 +3258,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1w</SimpleData>
-		<SimpleData name="Lng">353907</SimpleData>
-		<SimpleData name="Lat">4776074</SimpleData>
+		<SimpleData name="Lng">-70.7959443864382</SimpleData>
+		<SimpleData name="Lat">43.1233125556857</SimpleData>
 		<SimpleData name="nNest">13</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7959443864382,43.1233125556857</coordinates></Point>
@@ -3270,8 +3270,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1w</SimpleData>
-		<SimpleData name="Lng">354025</SimpleData>
-		<SimpleData name="Lat">4777852</SimpleData>
+		<SimpleData name="Lng">-70.7949625607964</SimpleData>
+		<SimpleData name="Lat">43.1393381234668</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7949625607964,43.1393381234668</coordinates></Point>
@@ -3282,8 +3282,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1v</SimpleData>
-		<SimpleData name="Lng">355397</SimpleData>
-		<SimpleData name="Lat">4783096</SimpleData>
+		<SimpleData name="Lng">-70.779469717813</SimpleData>
+		<SimpleData name="Lat">43.1868000371848</SimpleData>
 		<SimpleData name="nNest">19</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.779469717813,43.1868000371848</coordinates></Point>
@@ -3294,8 +3294,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1v</SimpleData>
-		<SimpleData name="Lng">360696.513021852</SimpleData>
-		<SimpleData name="Lat">4782553.86020117</SimpleData>
+		<SimpleData name="Lng">-70.7141470299438</SimpleData>
+		<SimpleData name="Lat">43.182915963253</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7141470299438,43.182915963253</coordinates></Point>
@@ -3306,8 +3306,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1u</SimpleData>
-		<SimpleData name="Lng">361365.849168958</SimpleData>
-		<SimpleData name="Lat">4792952.75415521</SimpleData>
+		<SimpleData name="Lng">-70.70852746055</SimpleData>
+		<SimpleData name="Lat">43.2766366102557</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.70852746055,43.2766366102557</coordinates></Point>
@@ -3318,8 +3318,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1u</SimpleData>
-		<SimpleData name="Lng">358269.340939365</SimpleData>
-		<SimpleData name="Lat">4799705.47740796</SimpleData>
+		<SimpleData name="Lng">-70.7484132131028</SimpleData>
+		<SimpleData name="Lat">43.3368376390462</SimpleData>
 		<SimpleData name="nNest">12</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7484132131028,43.3368376390462</coordinates></Point>
@@ -3330,8 +3330,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1u</SimpleData>
-		<SimpleData name="Lng">361903.532016689</SimpleData>
-		<SimpleData name="Lat">4794856.7592915</SimpleData>
+		<SimpleData name="Lng">-70.7023818844662</SimpleData>
+		<SimpleData name="Lat">43.2938726774694</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7023818844662,43.2938726774694</coordinates></Point>
@@ -3342,8 +3342,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1t</SimpleData>
-		<SimpleData name="Lng">353123.679471071</SimpleData>
-		<SimpleData name="Lat">4807401.1214437</SimpleData>
+		<SimpleData name="Lng">-70.8139239209765</SimpleData>
+		<SimpleData name="Lat">43.4051105631103</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8139239209765,43.4051105631103</coordinates></Point>
@@ -3354,8 +3354,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1t</SimpleData>
-		<SimpleData name="Lng">373490.995114742</SimpleData>
-		<SimpleData name="Lat">4802244.09064421</SimpleData>
+		<SimpleData name="Lng">-70.5612946193907</SimpleData>
+		<SimpleData name="Lat">43.3624042435368</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5612946193907,43.3624042435368</coordinates></Point>
@@ -3366,8 +3366,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1t</SimpleData>
-		<SimpleData name="Lng">369012.769991073</SimpleData>
-		<SimpleData name="Lat">4803686.16368552</SimpleData>
+		<SimpleData name="Lng">-70.616885652134</SimpleData>
+		<SimpleData name="Lat">43.3746165143044</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.616885652134,43.3746165143044</coordinates></Point>
@@ -3378,8 +3378,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1s</SimpleData>
-		<SimpleData name="Lng">345650.737935244</SimpleData>
-		<SimpleData name="Lat">4817922.14341884</SimpleData>
+		<SimpleData name="Lng">-70.9091428139561</SimpleData>
+		<SimpleData name="Lat">43.4982924271908</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.9091428139561,43.4982924271908</coordinates></Point>
@@ -3390,8 +3390,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1s</SimpleData>
-		<SimpleData name="Lng">352538.112370287</SimpleData>
-		<SimpleData name="Lat">4821026.99508396</SimpleData>
+		<SimpleData name="Lng">-70.8248385329929</SimpleData>
+		<SimpleData name="Lat">43.527625622344</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8248385329929,43.527625622344</coordinates></Point>
@@ -3402,8 +3402,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1s</SimpleData>
-		<SimpleData name="Lng">357667.88809041</SimpleData>
-		<SimpleData name="Lat">4813931.02728011</SimpleData>
+		<SimpleData name="Lng">-70.7595317692864</SimpleData>
+		<SimpleData name="Lat">43.4647569724246</SimpleData>
 		<SimpleData name="nNest">26</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7595317692864,43.4647569724246</coordinates></Point>
@@ -3414,8 +3414,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1s</SimpleData>
-		<SimpleData name="Lng">365030.914893876</SimpleData>
-		<SimpleData name="Lat">4812260.39687785</SimpleData>
+		<SimpleData name="Lng">-70.6681343342251</SimpleData>
+		<SimpleData name="Lat">43.45108459623</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6681343342251,43.45108459623</coordinates></Point>
@@ -3426,8 +3426,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1s</SimpleData>
-		<SimpleData name="Lng">371546.128880235</SimpleData>
-		<SimpleData name="Lat">4809847.14183461</SimpleData>
+		<SimpleData name="Lng">-70.5870734548486</SimpleData>
+		<SimpleData name="Lat">43.4305092308465</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5870734548486,43.4305092308465</coordinates></Point>
@@ -3438,8 +3438,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1s</SimpleData>
-		<SimpleData name="Lng">379020.786909674</SimpleData>
-		<SimpleData name="Lat">4812632.20757057</SimpleData>
+		<SimpleData name="Lng">-70.4953719022378</SimpleData>
+		<SimpleData name="Lat">43.4568227539631</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4953719022378,43.4568227539631</coordinates></Point>
@@ -3450,8 +3450,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1r</SimpleData>
-		<SimpleData name="Lng">351797.370374572</SimpleData>
-		<SimpleData name="Lat">4827483.48033904</SimpleData>
+		<SimpleData name="Lng">-70.8357643043776</SimpleData>
+		<SimpleData name="Lat">43.585584670874</SimpleData>
 		<SimpleData name="nNest">0</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8357643043776,43.585584670874</coordinates></Point>
@@ -3462,8 +3462,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1r</SimpleData>
-		<SimpleData name="Lng">346752.167884642</SimpleData>
-		<SimpleData name="Lat">4828450.44704553</SimpleData>
+		<SimpleData name="Lng">-70.8984988605199</SimpleData>
+		<SimpleData name="Lat">43.5932662381847</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8984988605199,43.5932662381847</coordinates></Point>
@@ -3474,8 +3474,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1r</SimpleData>
-		<SimpleData name="Lng">353367.105738711</SimpleData>
-		<SimpleData name="Lat">4823717.01778695</SimpleData>
+		<SimpleData name="Lng">-70.8153112583659</SimpleData>
+		<SimpleData name="Lat">43.5519982967528</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8153112583659,43.5519982967528</coordinates></Point>
@@ -3486,8 +3486,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1r</SimpleData>
-		<SimpleData name="Lng">369241.801035385</SimpleData>
-		<SimpleData name="Lat">4821106.80103538</SimpleData>
+		<SimpleData name="Lng">-70.618236172591</SimpleData>
+		<SimpleData name="Lat">43.5314558750839</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.618236172591,43.5314558750839</coordinates></Point>
@@ -3498,8 +3498,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1r</SimpleData>
-		<SimpleData name="Lng">364055.787827832</SimpleData>
-		<SimpleData name="Lat">4828761.03632408</SimpleData>
+		<SimpleData name="Lng">-70.6843093191907</SimpleData>
+		<SimpleData name="Lat">43.5994200824061</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6843093191907,43.5994200824061</coordinates></Point>
@@ -3510,8 +3510,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1r</SimpleData>
-		<SimpleData name="Lng">366046.267856644</SimpleData>
-		<SimpleData name="Lat">4822916.63095493</SimpleData>
+		<SimpleData name="Lng">-70.6582137962792</SimpleData>
+		<SimpleData name="Lat">43.547178700353</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6582137962792,43.547178700353</coordinates></Point>
@@ -3522,8 +3522,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1r</SimpleData>
-		<SimpleData name="Lng">368776.559522768</SimpleData>
-		<SimpleData name="Lat">4821582.76190893</SimpleData>
+		<SimpleData name="Lng">-70.6241066224304</SimpleData>
+		<SimpleData name="Lat">43.5356581950685</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6241066224304,43.5356581950685</coordinates></Point>
@@ -3534,8 +3534,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1r</SimpleData>
-		<SimpleData name="Lng">361764.05833545</SimpleData>
-		<SimpleData name="Lat">4820968.82499365</SimpleData>
+		<SimpleData name="Lng">-70.7107045481729</SimpleData>
+		<SimpleData name="Lat">43.5288670403417</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7107045481729,43.5288670403417</coordinates></Point>
@@ -3546,8 +3546,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1q</SimpleData>
-		<SimpleData name="Lng">348516.883912316</SimpleData>
-		<SimpleData name="Lat">4834821.30067402</SimpleData>
+		<SimpleData name="Lng">-70.8784332845962</SimpleData>
+		<SimpleData name="Lat">43.6509601265442</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8784332845962,43.6509601265442</coordinates></Point>
@@ -3558,8 +3558,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1q</SimpleData>
-		<SimpleData name="Lng">352634.104489751</SimpleData>
-		<SimpleData name="Lat">4840908.72678139</SimpleData>
+		<SimpleData name="Lng">-70.8290685183009</SimpleData>
+		<SimpleData name="Lat">43.7065708707266</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8290685183009,43.7065708707266</coordinates></Point>
@@ -3570,8 +3570,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1q</SimpleData>
-		<SimpleData name="Lng">351596.872161131</SimpleData>
-		<SimpleData name="Lat">4837338.47512726</SimpleData>
+		<SimpleData name="Lng">-70.8409525017388</SimpleData>
+		<SimpleData name="Lat">43.6742342655276</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8409525017388,43.6742342655276</coordinates></Point>
@@ -3582,8 +3582,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1q</SimpleData>
-		<SimpleData name="Lng">356262.100837236</SimpleData>
-		<SimpleData name="Lat">4832012.70359607</SimpleData>
+		<SimpleData name="Lng">-70.7816901369652</SimpleData>
+		<SimpleData name="Lat">43.6272211772145</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7816901369652,43.6272211772145</coordinates></Point>
@@ -3594,8 +3594,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1q</SimpleData>
-		<SimpleData name="Lng">358021</SimpleData>
-		<SimpleData name="Lat">4837182.82499365</SimpleData>
+		<SimpleData name="Lng">-70.7612576646192</SimpleData>
+		<SimpleData name="Lat">43.6740889196643</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7612576646192,43.6740889196643</coordinates></Point>
@@ -3606,8 +3606,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1q</SimpleData>
-		<SimpleData name="Lng">383052.579187447</SimpleData>
-		<SimpleData name="Lat">4831524.17094901</SimpleData>
+		<SimpleData name="Lng">-70.4496221998534</SimpleData>
+		<SimpleData name="Lat">43.62751678529</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4496221998534,43.62751678529</coordinates></Point>
@@ -3618,8 +3618,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1p</SimpleData>
-		<SimpleData name="Lng">348037</SimpleData>
-		<SimpleData name="Lat">4848083</SimpleData>
+		<SimpleData name="Lng">-70.8881249470706</SimpleData>
+		<SimpleData name="Lat">43.770205297517</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8881249470706,43.770205297517</coordinates></Point>
@@ -3630,8 +3630,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1p</SimpleData>
-		<SimpleData name="Lng">353810.702268519</SimpleData>
-		<SimpleData name="Lat">4853270.90497054</SimpleData>
+		<SimpleData name="Lng">-70.8178387369636</SimpleData>
+		<SimpleData name="Lat">43.8180552040321</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8178387369636,43.8180552040321</coordinates></Point>
@@ -3642,8 +3642,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1p</SimpleData>
-		<SimpleData name="Lng">368533.012780894</SimpleData>
-		<SimpleData name="Lat">4839616.41984219</SimpleData>
+		<SimpleData name="Lng">-70.6315034074243</SimpleData>
+		<SimpleData name="Lat">43.6979267204338</SimpleData>
 		<SimpleData name="nNest">25</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6315034074243,43.6979267204338</coordinates></Point>
@@ -3654,8 +3654,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1p</SimpleData>
-		<SimpleData name="Lng">370500.025493143</SimpleData>
-		<SimpleData name="Lat">4842226.96877349</SimpleData>
+		<SimpleData name="Lng">-70.6077304446533</SimpleData>
+		<SimpleData name="Lat">43.721768517659</SimpleData>
 		<SimpleData name="nNest">16</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6077304446533,43.721768517659</coordinates></Point>
@@ -3666,8 +3666,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1p</SimpleData>
-		<SimpleData name="Lng">404225</SimpleData>
-		<SimpleData name="Lat">4832297</SimpleData>
+		<SimpleData name="Lng">-70.1873780138518</SimpleData>
+		<SimpleData name="Lat">43.6375004662523</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1873780138518,43.6375004662523</coordinates></Point>
@@ -3678,8 +3678,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1o</SimpleData>
-		<SimpleData name="Lng">358472.143278364</SimpleData>
-		<SimpleData name="Lat">4858891.7546349</SimpleData>
+		<SimpleData name="Lng">-70.761390167819</SimpleData>
+		<SimpleData name="Lat">43.8695471676351</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.761390167819,43.8695471676351</coordinates></Point>
@@ -3690,8 +3690,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1o</SimpleData>
-		<SimpleData name="Lng">358614.337088463</SimpleData>
-		<SimpleData name="Lat">4860223.65092013</SimpleData>
+		<SimpleData name="Lng">-70.7599741686596</SimpleData>
+		<SimpleData name="Lat">43.8815607628304</SimpleData>
 		<SimpleData name="nNest">15</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7599741686596,43.8815607628304</coordinates></Point>
@@ -3702,8 +3702,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1o</SimpleData>
-		<SimpleData name="Lng">373237.845982308</SimpleData>
-		<SimpleData name="Lat">4849900.10199469</SimpleData>
+		<SimpleData name="Lng">-70.5755649229748</SimpleData>
+		<SimpleData name="Lat">43.7913034373012</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5755649229748,43.7913034373012</coordinates></Point>
@@ -3714,8 +3714,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1o</SimpleData>
-		<SimpleData name="Lng">406020.380219462</SimpleData>
-		<SimpleData name="Lat">4843039.362425</SimpleData>
+		<SimpleData name="Lng">-70.1669977144176</SimpleData>
+		<SimpleData name="Lat">43.7344337070706</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1669977144176,43.7344337070706</coordinates></Point>
@@ -3726,8 +3726,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1o</SimpleData>
-		<SimpleData name="Lng">415181</SimpleData>
-		<SimpleData name="Lat">4840310</SimpleData>
+		<SimpleData name="Lng">-70.0528347028613</SimpleData>
+		<SimpleData name="Lat">43.7109675772183</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0528347028613,43.7109675772183</coordinates></Point>
@@ -3738,8 +3738,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1o</SimpleData>
-		<SimpleData name="Lng">427558</SimpleData>
-		<SimpleData name="Lat">4841328</SimpleData>
+		<SimpleData name="Lng">-69.8993597661643</SimpleData>
+		<SimpleData name="Lat">43.7214442667135</SimpleData>
 		<SimpleData name="nNest">59</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8993597661643,43.7214442667135</coordinates></Point>
@@ -3750,8 +3750,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1o</SimpleData>
-		<SimpleData name="Lng">424548.945390369</SimpleData>
-		<SimpleData name="Lat">4841934.1115478</SimpleData>
+		<SimpleData name="Lng">-69.9367970684924</SimpleData>
+		<SimpleData name="Lat">43.7266009088757</SimpleData>
 		<SimpleData name="nNest">24</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9367970684924,43.7266009088757</coordinates></Point>
@@ -3762,8 +3762,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1n</SimpleData>
-		<SimpleData name="Lng">365118.118271143</SimpleData>
-		<SimpleData name="Lat">4870682.60826787</SimpleData>
+		<SimpleData name="Lng">-70.681700879158</SimpleData>
+		<SimpleData name="Lat">43.9769066843419</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.681700879158,43.9769066843419</coordinates></Point>
@@ -3774,8 +3774,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1n</SimpleData>
-		<SimpleData name="Lng">365333.145525602</SimpleData>
-		<SimpleData name="Lat">4864191.81645922</SimpleData>
+		<SimpleData name="Lng">-70.6773770667946</SimpleData>
+		<SimpleData name="Lat">43.9185307718075</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.6773770667946,43.9185307718075</coordinates></Point>
@@ -3786,8 +3786,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1n</SimpleData>
-		<SimpleData name="Lng">389109.06480237</SimpleData>
-		<SimpleData name="Lat">4858583.77492692</SimpleData>
+		<SimpleData name="Lng">-70.380157646241</SimpleData>
+		<SimpleData name="Lat">43.8720155981328</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.380157646241,43.8720155981328</coordinates></Point>
@@ -3798,8 +3798,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1n</SimpleData>
-		<SimpleData name="Lng">390101.233379033</SimpleData>
-		<SimpleData name="Lat">4854482.24987724</SimpleData>
+		<SimpleData name="Lng">-70.3669688124052</SimpleData>
+		<SimpleData name="Lat">43.835245516651</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.3669688124052,43.835245516651</coordinates></Point>
@@ -3810,8 +3810,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1n</SimpleData>
-		<SimpleData name="Lng">390435</SimpleData>
-		<SimpleData name="Lat">4861213.82499365</SimpleData>
+		<SimpleData name="Lng">-70.3641998183715</SimpleData>
+		<SimpleData name="Lat">43.8958871342632</SimpleData>
 		<SimpleData name="nNest">31</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.3641998183715,43.8958871342632</coordinates></Point>
@@ -3822,8 +3822,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1n</SimpleData>
-		<SimpleData name="Lng">417025</SimpleData>
-		<SimpleData name="Lat">4850841</SimpleData>
+		<SimpleData name="Lng">-70.0315769887361</SimpleData>
+		<SimpleData name="Lat">43.8059807120667</SimpleData>
 		<SimpleData name="nNest">196</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0315769887361,43.8059807120667</coordinates></Point>
@@ -3834,8 +3834,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1n</SimpleData>
-		<SimpleData name="Lng">413720.074934749</SimpleData>
-		<SimpleData name="Lat">4848201.1596047</SimpleData>
+		<SimpleData name="Lng">-70.0722330818038</SimpleData>
+		<SimpleData name="Lat">43.7818379704896</SimpleData>
 		<SimpleData name="nNest">20</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0722330818038,43.7818379704896</coordinates></Point>
@@ -3846,8 +3846,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1n</SimpleData>
-		<SimpleData name="Lng">415740.525883968</SimpleData>
-		<SimpleData name="Lat">4848825.03564913</SimpleData>
+		<SimpleData name="Lng">-70.0472264171773</SimpleData>
+		<SimpleData name="Lat">43.7876871035113</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0472264171773,43.7876871035113</coordinates></Point>
@@ -3858,8 +3858,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1n</SimpleData>
-		<SimpleData name="Lng">428232</SimpleData>
-		<SimpleData name="Lat">4844612</SimpleData>
+		<SimpleData name="Lng">-69.8914316479534</SimpleData>
+		<SimpleData name="Lat">43.7510751086044</SimpleData>
 		<SimpleData name="nNest">39</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8914316479534,43.7510751086044</coordinates></Point>
@@ -3870,8 +3870,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1n</SimpleData>
-		<SimpleData name="Lng">441797</SimpleData>
-		<SimpleData name="Lat">4848148</SimpleData>
+		<SimpleData name="Lng">-69.7233388679291</SimpleData>
+		<SimpleData name="Lat">43.7841001611241</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7233388679291,43.7841001611241</coordinates></Point>
@@ -3882,8 +3882,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1m</SimpleData>
-		<SimpleData name="Lng">377011.349976769</SimpleData>
-		<SimpleData name="Lat">4876158.00394711</SimpleData>
+		<SimpleData name="Lng">-70.5347419621754</SimpleData>
+		<SimpleData name="Lat">44.0282726934115</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5347419621754,44.0282726934115</coordinates></Point>
@@ -3894,8 +3894,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1m</SimpleData>
-		<SimpleData name="Lng">378685.961429536</SimpleData>
-		<SimpleData name="Lat">4870213.84214126</SimpleData>
+		<SimpleData name="Lng">-70.5124921116892</SimpleData>
+		<SimpleData name="Lat">43.9750518372267</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5124921116892,43.9750518372267</coordinates></Point>
@@ -3906,8 +3906,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1m</SimpleData>
-		<SimpleData name="Lng">381251.265720895</SimpleData>
-		<SimpleData name="Lat">4868082.29251653</SimpleData>
+		<SimpleData name="Lng">-70.4800431309548</SimpleData>
+		<SimpleData name="Lat">43.9562855391062</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4800431309548,43.9562855391062</coordinates></Point>
@@ -3918,8 +3918,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1m</SimpleData>
-		<SimpleData name="Lng">392885.298231095</SimpleData>
-		<SimpleData name="Lat">4870424.1345735</SimpleData>
+		<SimpleData name="Lng">-70.3355539507566</SimpleData>
+		<SimpleData name="Lat">43.9791507196366</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.3355539507566,43.9791507196366</coordinates></Point>
@@ -3930,8 +3930,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1m</SimpleData>
-		<SimpleData name="Lng">427163</SimpleData>
-		<SimpleData name="Lat">4857002</SimpleData>
+		<SimpleData name="Lng">-69.9063933042704</SimpleData>
+		<SimpleData name="Lat">43.8625140998985</SimpleData>
 		<SimpleData name="nNest">41</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9063933042704,43.8625140998985</coordinates></Point>
@@ -3942,8 +3942,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1m</SimpleData>
-		<SimpleData name="Lng">427313.14197318</SimpleData>
-		<SimpleData name="Lat">4857414.36012855</SimpleData>
+		<SimpleData name="Lng">-69.9045812854264</SimpleData>
+		<SimpleData name="Lat">43.8662412160458</SimpleData>
 		<SimpleData name="nNest">18</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9045812854264,43.8662412160458</coordinates></Point>
@@ -3954,8 +3954,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1m</SimpleData>
-		<SimpleData name="Lng">441691.439587718</SimpleData>
-		<SimpleData name="Lat">4849622.48249127</SimpleData>
+		<SimpleData name="Lng">-69.7248110715082</SimpleData>
+		<SimpleData name="Lat">43.7973667928198</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7248110715082,43.7973667928198</coordinates></Point>
@@ -3966,8 +3966,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1m</SimpleData>
-		<SimpleData name="Lng">453853</SimpleData>
-		<SimpleData name="Lat">4848467</SimpleData>
+		<SimpleData name="Lng">-69.5735443984615</SimpleData>
+		<SimpleData name="Lat">43.7878222762334</SimpleData>
 		<SimpleData name="nNest">22</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5735443984615,43.7878222762334</coordinates></Point>
@@ -3978,8 +3978,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1l</SimpleData>
-		<SimpleData name="Lng">342131.859587266</SimpleData>
-		<SimpleData name="Lat">4896371.55039836</SimpleData>
+		<SimpleData name="Lng">-70.975819984836</SimpleData>
+		<SimpleData name="Lat">44.2034803572838</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.975819984836,44.2034803572838</coordinates></Point>
@@ -3990,8 +3990,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1l</SimpleData>
-		<SimpleData name="Lng">342917.74895154</SimpleData>
-		<SimpleData name="Lat">4888780.22808207</SimpleData>
+		<SimpleData name="Lng">-70.9637213085773</SimpleData>
+		<SimpleData name="Lat">44.1353437643713</SimpleData>
 		<SimpleData name="nNest">19</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.9637213085773,44.1353437643713</coordinates></Point>
@@ -4002,8 +4002,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1l</SimpleData>
-		<SimpleData name="Lng">350029.044167079</SimpleData>
-		<SimpleData name="Lat">4892257.82802661</SimpleData>
+		<SimpleData name="Lng">-70.875860979002</SimpleData>
+		<SimpleData name="Lat">44.1681299566429</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.875860979002,44.1681299566429</coordinates></Point>
@@ -4014,8 +4014,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c3.1l</SimpleData>
-		<SimpleData name="Lng">349687.032752341</SimpleData>
-		<SimpleData name="Lat">4888827.71783848</SimpleData>
+		<SimpleData name="Lng">-70.8791566178203</SimpleData>
+		<SimpleData name="Lat">44.1371940899678</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8791566178203,44.1371940899678</coordinates></Point>
@@ -4026,8 +4026,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1l</SimpleData>
-		<SimpleData name="Lng">363047.446613586</SimpleData>
-		<SimpleData name="Lat">4882004.7561585</SimpleData>
+		<SimpleData name="Lng">-70.7104350564465</SimpleData>
+		<SimpleData name="Lat">44.0784170170704</SimpleData>
 		<SimpleData name="nNest">25</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7104350564465,44.0784170170704</coordinates></Point>
@@ -4038,8 +4038,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c4.1l</SimpleData>
-		<SimpleData name="Lng">360487.778515763</SimpleData>
-		<SimpleData name="Lat">4885621.75888795</SimpleData>
+		<SimpleData name="Lng">-70.7433451772004</SimpleData>
+		<SimpleData name="Lat">44.1104841243176</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7433451772004,44.1104841243176</coordinates></Point>
@@ -4050,8 +4050,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1l</SimpleData>
-		<SimpleData name="Lng">386261.520882348</SimpleData>
-		<SimpleData name="Lat">4876899.44782162</SimpleData>
+		<SimpleData name="Lng">-70.419507393869</SimpleData>
+		<SimpleData name="Lat">44.0364382439702</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.419507393869,44.0364382439702</coordinates></Point>
@@ -4062,8 +4062,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1l</SimpleData>
-		<SimpleData name="Lng">393524.551910575</SimpleData>
-		<SimpleData name="Lat">4874296.81756079</SimpleData>
+		<SimpleData name="Lng">-70.32836312119</SimpleData>
+		<SimpleData name="Lat">44.0141019719366</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.32836312119,44.0141019719366</coordinates></Point>
@@ -4074,8 +4074,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1l</SimpleData>
-		<SimpleData name="Lng">441002.068346785</SimpleData>
-		<SimpleData name="Lat">4859666.52903954</SimpleData>
+		<SimpleData name="Lng">-69.7344883108282</SimpleData>
+		<SimpleData name="Lat">43.887738869079</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7344883108282,43.887738869079</coordinates></Point>
@@ -4086,8 +4086,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1l</SimpleData>
-		<SimpleData name="Lng">446150.263039711</SimpleData>
-		<SimpleData name="Lat">4866672.1942826</SimpleData>
+		<SimpleData name="Lng">-69.6711095666895</SimpleData>
+		<SimpleData name="Lat">43.951204957526</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6711095666895,43.951204957526</coordinates></Point>
@@ -4098,8 +4098,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1l</SimpleData>
-		<SimpleData name="Lng">452189.261930227</SimpleData>
-		<SimpleData name="Lat">4860436.32211906</SimpleData>
+		<SimpleData name="Lng">-69.595291893468</SimpleData>
+		<SimpleData name="Lat">43.8954797326985</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.595291893468,43.8954797326985</coordinates></Point>
@@ -4110,8 +4110,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1k</SimpleData>
-		<SimpleData name="Lng">342393</SimpleData>
-		<SimpleData name="Lat">4899925</SimpleData>
+		<SimpleData name="Lng">-70.9736217623051</SimpleData>
+		<SimpleData name="Lat">44.2355101091196</SimpleData>
 		<SimpleData name="nNest">12</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.9736217623051,44.2355101091196</coordinates></Point>
@@ -4122,8 +4122,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1k</SimpleData>
-		<SimpleData name="Lng">343116.5944811</SimpleData>
-		<SimpleData name="Lat">4901519.7222076</SimpleData>
+		<SimpleData name="Lng">-70.9650436640571</SimpleData>
+		<SimpleData name="Lat">44.2500152940239</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.9650436640571,44.2500152940239</coordinates></Point>
@@ -4134,8 +4134,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1k</SimpleData>
-		<SimpleData name="Lng">349928.370674207</SimpleData>
-		<SimpleData name="Lat">4896253.54962652</SimpleData>
+		<SimpleData name="Lng">-70.8782613076353</SimpleData>
+		<SimpleData name="Lat">44.2040642680439</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8782613076353,44.2040642680439</coordinates></Point>
@@ -4146,8 +4146,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c3.1k</SimpleData>
-		<SimpleData name="Lng">356494.112247881</SimpleData>
-		<SimpleData name="Lat">4902423.24279252</SimpleData>
+		<SimpleData name="Lng">-70.7978169618088</SimpleData>
+		<SimpleData name="Lat">44.2609048485414</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7978169618088,44.2609048485414</coordinates></Point>
@@ -4158,8 +4158,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1k</SimpleData>
-		<SimpleData name="Lng">372815.556316341</SimpleData>
-		<SimpleData name="Lat">4890609.56222573</SimpleData>
+		<SimpleData name="Lng">-70.5905635590552</SimpleData>
+		<SimpleData name="Lat">44.1576200291372</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5905635590552,44.1576200291372</coordinates></Point>
@@ -4170,8 +4170,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1k</SimpleData>
-		<SimpleData name="Lng">441524.675263539</SimpleData>
-		<SimpleData name="Lat">4879455.39546685</SimpleData>
+		<SimpleData name="Lng">-69.7301626340202</SimpleData>
+		<SimpleData name="Lat">44.065936026046</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7301626340202,44.065936026046</coordinates></Point>
@@ -4182,8 +4182,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1k</SimpleData>
-		<SimpleData name="Lng">445651.745377798</SimpleData>
-		<SimpleData name="Lat">4868742.97328152</SimpleData>
+		<SimpleData name="Lng">-69.6775338200565</SimpleData>
+		<SimpleData name="Lat">43.9698114040297</SimpleData>
 		<SimpleData name="nNest">34</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6775338200565,43.9698114040297</coordinates></Point>
@@ -4194,8 +4194,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1k</SimpleData>
-		<SimpleData name="Lng">446319.963008959</SimpleData>
-		<SimpleData name="Lat">4871357.97453894</SimpleData>
+		<SimpleData name="Lng">-69.6694685449228</SimpleData>
+		<SimpleData name="Lat">43.9934031493293</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6694685449228,43.9934031493293</coordinates></Point>
@@ -4206,8 +4206,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1k</SimpleData>
-		<SimpleData name="Lng">448736.070633092</SimpleData>
-		<SimpleData name="Lat">4873594.14017252</SimpleData>
+		<SimpleData name="Lng">-69.6395543065509</SimpleData>
+		<SimpleData name="Lat">44.013707788319</SimpleData>
 		<SimpleData name="nNest">25</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6395543065509,44.013707788319</coordinates></Point>
@@ -4218,8 +4218,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1k</SimpleData>
-		<SimpleData name="Lng">463290.141569198</SimpleData>
-		<SimpleData name="Lat">4870520.27448044</SimpleData>
+		<SimpleData name="Lng">-69.457775863386</SimpleData>
+		<SimpleData name="Lat">43.9869051449853</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.457775863386,43.9869051449853</coordinates></Point>
@@ -4230,8 +4230,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1k</SimpleData>
-		<SimpleData name="Lng">462172.038108397</SimpleData>
-		<SimpleData name="Lat">4866543.18894463</SimpleData>
+		<SimpleData name="Lng">-69.4714349660738</SimpleData>
+		<SimpleData name="Lat">43.9510417269856</SimpleData>
 		<SimpleData name="nNest">16</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4714349660738,43.9510417269856</coordinates></Point>
@@ -4242,8 +4242,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1k</SimpleData>
-		<SimpleData name="Lng">461518.058779506</SimpleData>
-		<SimpleData name="Lat">4868497.46498145</SimpleData>
+		<SimpleData name="Lng">-69.4797265245773</SimpleData>
+		<SimpleData name="Lat">43.9686026615249</SimpleData>
 		<SimpleData name="nNest">24</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4797265245773,43.9686026615249</coordinates></Point>
@@ -4254,8 +4254,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1k</SimpleData>
-		<SimpleData name="Lng">461037.245701809</SimpleData>
-		<SimpleData name="Lat">4865789.94628408</SimpleData>
+		<SimpleData name="Lng">-69.48552173548</SimpleData>
+		<SimpleData name="Lat">43.9442008594956</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.48552173548,43.9442008594956</coordinates></Point>
@@ -4266,8 +4266,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1k</SimpleData>
-		<SimpleData name="Lng">467835</SimpleData>
-		<SimpleData name="Lat">4861995</SimpleData>
+		<SimpleData name="Lng">-69.4005866186444</SimpleData>
+		<SimpleData name="Lat">43.9103619421227</SimpleData>
 		<SimpleData name="nNest">126</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4005866186444,43.9103619421227</coordinates></Point>
@@ -4278,8 +4278,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1j</SimpleData>
-		<SimpleData name="Lng">354969.460502259</SimpleData>
-		<SimpleData name="Lat">4908680.83341384</SimpleData>
+		<SimpleData name="Lng">-70.8186453014089</SimpleData>
+		<SimpleData name="Lat">44.3169117170791</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.8186453014089,44.3169117170791</coordinates></Point>
@@ -4290,8 +4290,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1j</SimpleData>
-		<SimpleData name="Lng">383753.962153924</SimpleData>
-		<SimpleData name="Lat">4897380.71348743</SimpleData>
+		<SimpleData name="Lng">-70.4553131329821</SimpleData>
+		<SimpleData name="Lat">44.220384915869</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4553131329821,44.220384915869</coordinates></Point>
@@ -4302,8 +4302,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1j</SimpleData>
-		<SimpleData name="Lng">387266.444027567</SimpleData>
-		<SimpleData name="Lat">4903582.57646445</SimpleData>
+		<SimpleData name="Lng">-70.4126886168321</SimpleData>
+		<SimpleData name="Lat">44.2767557001719</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4126886168321,44.2767557001719</coordinates></Point>
@@ -4314,8 +4314,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1j</SimpleData>
-		<SimpleData name="Lng">387942.594941199</SimpleData>
-		<SimpleData name="Lat">4903746.56342977</SimpleData>
+		<SimpleData name="Lng">-70.4042533150274</SimpleData>
+		<SimpleData name="Lat">44.2783361008209</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4042533150274,44.2783361008209</coordinates></Point>
@@ -4326,8 +4326,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1j</SimpleData>
-		<SimpleData name="Lng">417217.350163002</SimpleData>
-		<SimpleData name="Lat">4894115.23606889</SimpleData>
+		<SimpleData name="Lng">-70.0359429572807</SimpleData>
+		<SimpleData name="Lat">44.1955588431329</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0359429572807,44.1955588431329</coordinates></Point>
@@ -4338,8 +4338,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1j</SimpleData>
-		<SimpleData name="Lng">444525.799718866</SimpleData>
-		<SimpleData name="Lat">4884412.82913622</SimpleData>
+		<SimpleData name="Lng">-69.6932124199145</SimpleData>
+		<SimpleData name="Lat">44.1107996977135</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6932124199145,44.1107996977135</coordinates></Point>
@@ -4350,8 +4350,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1j</SimpleData>
-		<SimpleData name="Lng">455445</SimpleData>
-		<SimpleData name="Lat">4878579</SimpleData>
+		<SimpleData name="Lng">-69.5562794949471</SimpleData>
+		<SimpleData name="Lat">44.0590244435957</SimpleData>
 		<SimpleData name="nNest">20</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5562794949471,44.0590244435957</coordinates></Point>
@@ -4362,8 +4362,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1j</SimpleData>
-		<SimpleData name="Lng">455534.387306299</SimpleData>
-		<SimpleData name="Lat">4879612.47972203</SimpleData>
+		<SimpleData name="Lng">-69.5552504875428</SimpleData>
+		<SimpleData name="Lat">44.0683342746954</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5552504875428,44.0683342746954</coordinates></Point>
@@ -4374,8 +4374,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1j</SimpleData>
-		<SimpleData name="Lng">465988.443668488</SimpleData>
-		<SimpleData name="Lat">4879431.4634685</SimpleData>
+		<SimpleData name="Lng">-69.4247011595809</SimpleData>
+		<SimpleData name="Lat">44.0672643830171</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4247011595809,44.0672643830171</coordinates></Point>
@@ -4386,8 +4386,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1j</SimpleData>
-		<SimpleData name="Lng">485265.558603679</SimpleData>
-		<SimpleData name="Lat">4868680.36102784</SimpleData>
+		<SimpleData name="Lng">-69.1836914153274</SimpleData>
+		<SimpleData name="Lat">43.9711087573463</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1836914153274,43.9711087573463</coordinates></Point>
@@ -4398,8 +4398,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1j</SimpleData>
-		<SimpleData name="Lng">492338.142771005</SimpleData>
-		<SimpleData name="Lat">4869806.25547132</SimpleData>
+		<SimpleData name="Lng">-69.0955353121361</SimpleData>
+		<SimpleData name="Lat">43.9813535119328</SimpleData>
 		<SimpleData name="nNest">53</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0955353121361,43.9813535119328</coordinates></Point>
@@ -4410,8 +4410,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1i</SimpleData>
-		<SimpleData name="Lng">416031</SimpleData>
-		<SimpleData name="Lat">4906466</SimpleData>
+		<SimpleData name="Lng">-70.0527680634865</SimpleData>
+		<SimpleData name="Lat">44.3065998125236</SimpleData>
 		<SimpleData name="nNest">37</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0527680634865,44.3065998125236</coordinates></Point>
@@ -4422,8 +4422,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1i</SimpleData>
-		<SimpleData name="Lng">420455.595647233</SimpleData>
-		<SimpleData name="Lat">4905943.95403689</SimpleData>
+		<SimpleData name="Lng">-69.997223353281</SimpleData>
+		<SimpleData name="Lat">44.3023982940172</SimpleData>
 		<SimpleData name="nNest">0</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.997223353281,44.3023982940172</coordinates></Point>
@@ -4434,8 +4434,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1i</SimpleData>
-		<SimpleData name="Lng">419110.702026437</SimpleData>
-		<SimpleData name="Lat">4906044.57318141</SimpleData>
+		<SimpleData name="Lng">-70.0140968569456</SimpleData>
+		<SimpleData name="Lat">44.303155602612</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0140968569456,44.303155602612</coordinates></Point>
@@ -4446,8 +4446,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1i</SimpleData>
-		<SimpleData name="Lng">433908.821816443</SimpleData>
-		<SimpleData name="Lat">4900767.28645022</SimpleData>
+		<SimpleData name="Lng">-69.8279290270071</SimpleData>
+		<SimpleData name="Lat">44.2571451279945</SimpleData>
 		<SimpleData name="nNest">0</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8279290270071,44.2571451279945</coordinates></Point>
@@ -4458,8 +4458,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1i</SimpleData>
-		<SimpleData name="Lng">452071</SimpleData>
-		<SimpleData name="Lat">4892408</SimpleData>
+		<SimpleData name="Lng">-69.5996604706844</SimpleData>
+		<SimpleData name="Lat">44.1833116576954</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5996604706844,44.1833116576954</coordinates></Point>
@@ -4470,8 +4470,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1i</SimpleData>
-		<SimpleData name="Lng">458137</SimpleData>
-		<SimpleData name="Lat">4888063</SimpleData>
+		<SimpleData name="Lng">-69.5234234876253</SimpleData>
+		<SimpleData name="Lat">44.1445673311564</SimpleData>
 		<SimpleData name="nNest">17</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5234234876253,44.1445673311564</coordinates></Point>
@@ -4482,8 +4482,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1i</SimpleData>
-		<SimpleData name="Lng">459063.57666582</SimpleData>
-		<SimpleData name="Lat">4890363.51833037</SimpleData>
+		<SimpleData name="Lng">-69.5120177893705</SimpleData>
+		<SimpleData name="Lat">44.1653311682729</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5120177893705,44.1653311682729</coordinates></Point>
@@ -4494,8 +4494,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1i</SimpleData>
-		<SimpleData name="Lng">462699.142281291</SimpleData>
-		<SimpleData name="Lat">4888377.31304177</SimpleData>
+		<SimpleData name="Lng">-69.4664061584854</SimpleData>
+		<SimpleData name="Lat">44.1476441814851</SimpleData>
 		<SimpleData name="nNest">27</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4664061584854,44.1476441814851</coordinates></Point>
@@ -4506,8 +4506,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1i</SimpleData>
-		<SimpleData name="Lng">459179.425259856</SimpleData>
-		<SimpleData name="Lat">4890214.91614679</SimpleData>
+		<SimpleData name="Lng">-69.5105573154798</SimpleData>
+		<SimpleData name="Lat">44.1639998037939</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5105573154798,44.1639998037939</coordinates></Point>
@@ -4518,8 +4518,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1i</SimpleData>
-		<SimpleData name="Lng">496909.924408083</SimpleData>
-		<SimpleData name="Lat">4876573.21498649</SimpleData>
+		<SimpleData name="Lng">-69.0385694839334</SimpleData>
+		<SimpleData name="Lat">44.0423131991893</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0385694839334,44.0423131991893</coordinates></Point>
@@ -4530,8 +4530,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ci.1i</SimpleData>
-		<SimpleData name="Lng">507342.004977291</SimpleData>
-		<SimpleData name="Lat">4877232.01042864</SimpleData>
+		<SimpleData name="Lng">-68.9083499919979</SimpleData>
+		<SimpleData name="Lat">44.0482143750377</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9083499919979,44.0482143750377</coordinates></Point>
@@ -4542,8 +4542,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1h</SimpleData>
-		<SimpleData name="Lng">427211.982101003</SimpleData>
-		<SimpleData name="Lat">4906053.96761892</SimpleData>
+		<SimpleData name="Lng">-69.9125471521504</SimpleData>
+		<SimpleData name="Lat">44.3040966403459</SimpleData>
 		<SimpleData name="nNest">34</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9125471521504,44.3040966403459</coordinates></Point>
@@ -4554,8 +4554,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1h</SimpleData>
-		<SimpleData name="Lng">429931.43976332</SimpleData>
-		<SimpleData name="Lat">4905012.12239349</SimpleData>
+		<SimpleData name="Lng">-69.8783173895348</SimpleData>
+		<SimpleData name="Lat">44.2949852410288</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8783173895348,44.2949852410288</coordinates></Point>
@@ -4566,8 +4566,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1h</SimpleData>
-		<SimpleData name="Lng">445393.063649178</SimpleData>
-		<SimpleData name="Lat">4901657.69788597</SimpleData>
+		<SimpleData name="Lng">-69.6841692966665</SimpleData>
+		<SimpleData name="Lat">44.2661130807118</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6841692966665,44.2661130807118</coordinates></Point>
@@ -4578,8 +4578,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1h</SimpleData>
-		<SimpleData name="Lng">442539.949708944</SimpleData>
-		<SimpleData name="Lat">4906068.86153516</SimpleData>
+		<SimpleData name="Lng">-69.720398364238</SimpleData>
+		<SimpleData name="Lat">44.3056042193823</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.720398364238,44.3056042193823</coordinates></Point>
@@ -4590,8 +4590,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1h</SimpleData>
-		<SimpleData name="Lng">451709.50515663</SimpleData>
-		<SimpleData name="Lat">4904309.49578532</SimpleData>
+		<SimpleData name="Lng">-69.6052804214713</SimpleData>
+		<SimpleData name="Lat">44.2904326228877</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6052804214713,44.2904326228877</coordinates></Point>
@@ -4602,8 +4602,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1h</SimpleData>
-		<SimpleData name="Lng">449607.063598493</SimpleData>
-		<SimpleData name="Lat">4905998.8628943</SimpleData>
+		<SimpleData name="Lng">-69.6317942522192</SimpleData>
+		<SimpleData name="Lat">44.3054984646643</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6317942522192,44.3054984646643</coordinates></Point>
@@ -4614,8 +4614,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1h</SimpleData>
-		<SimpleData name="Lng">453075.428965338</SimpleData>
-		<SimpleData name="Lat">4898857.23688455</SimpleData>
+		<SimpleData name="Lng">-69.5876713884896</SimpleData>
+		<SimpleData name="Lat">44.2414374725636</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5876713884896,44.2414374725636</coordinates></Point>
@@ -4626,8 +4626,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1h</SimpleData>
-		<SimpleData name="Lng">462586.191304324</SimpleData>
-		<SimpleData name="Lat">4904686.72253944</SimpleData>
+		<SimpleData name="Lng">-69.4689825994316</SimpleData>
+		<SimpleData name="Lat">44.294469715277</SimpleData>
 		<SimpleData name="nNest">0</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4689825994316,44.294469715277</coordinates></Point>
@@ -4638,8 +4638,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1h</SimpleData>
-		<SimpleData name="Lng">493957.686858389</SimpleData>
-		<SimpleData name="Lat">4895292.84516287</SimpleData>
+		<SimpleData name="Lng">-69.075633232511</SimpleData>
+		<SimpleData name="Lat">44.2108332965689</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.075633232511,44.2108332965689</coordinates></Point>
@@ -4650,8 +4650,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cj.1h</SimpleData>
-		<SimpleData name="Lng">523370</SimpleData>
-		<SimpleData name="Lat">4885833</SimpleData>
+		<SimpleData name="Lng">-68.707893912747</SimpleData>
+		<SimpleData name="Lat">44.125315618245</SimpleData>
 		<SimpleData name="nNest">26</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.707893912747,44.125315618245</coordinates></Point>
@@ -4662,8 +4662,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.1g</SimpleData>
-		<SimpleData name="Lng">362862.836579302</SimpleData>
-		<SimpleData name="Lat">4942058.44228047</SimpleData>
+		<SimpleData name="Lng">-70.7285544238782</SimpleData>
+		<SimpleData name="Lat">44.6187991045002</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7285544238782,44.6187991045002</coordinates></Point>
@@ -4674,8 +4674,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1g</SimpleData>
-		<SimpleData name="Lng">416664.743896923</SimpleData>
-		<SimpleData name="Lat">4928251.50153649</SimpleData>
+		<SimpleData name="Lng">-70.0483204403154</SimpleData>
+		<SimpleData name="Lat">44.5027720082742</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0483204403154,44.5027720082742</coordinates></Point>
@@ -4686,8 +4686,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1g</SimpleData>
-		<SimpleData name="Lng">435478</SimpleData>
-		<SimpleData name="Lat">4918510</SimpleData>
+		<SimpleData name="Lng">-69.810471001768</SimpleData>
+		<SimpleData name="Lat">44.4170071639035</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.810471001768,44.4170071639035</coordinates></Point>
@@ -4698,8 +4698,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1g</SimpleData>
-		<SimpleData name="Lng">438753.001469206</SimpleData>
-		<SimpleData name="Lat">4914616.86600276</SimpleData>
+		<SimpleData name="Lng">-69.7688778437714</SimpleData>
+		<SimpleData name="Lat">44.3822453995838</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7688778437714,44.3822453995838</coordinates></Point>
@@ -4710,8 +4710,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1g</SimpleData>
-		<SimpleData name="Lng">432121.279905984</SimpleData>
-		<SimpleData name="Lat">4914486.94823306</SimpleData>
+		<SimpleData name="Lng">-69.8521049692341</SimpleData>
+		<SimpleData name="Lat">44.38048518158</SimpleData>
 		<SimpleData name="nNest">13</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8521049692341,44.38048518158</coordinates></Point>
@@ -4722,8 +4722,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1g</SimpleData>
-		<SimpleData name="Lng">474396.792086592</SimpleData>
-		<SimpleData name="Lat">4911581.12848644</SimpleData>
+		<SimpleData name="Lng">-69.3212780047114</SimpleData>
+		<SimpleData name="Lat">44.3570509069472</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3212780047114,44.3570509069472</coordinates></Point>
@@ -4734,8 +4734,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1g</SimpleData>
-		<SimpleData name="Lng">472054.24410385</SimpleData>
-		<SimpleData name="Lat">4910665.84615303</SimpleData>
+		<SimpleData name="Lng">-69.3506234578584</SimpleData>
+		<SimpleData name="Lat">44.3487243598636</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3506234578584,44.3487243598636</coordinates></Point>
@@ -4746,8 +4746,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1g</SimpleData>
-		<SimpleData name="Lng">488167.488239211</SimpleData>
-		<SimpleData name="Lat">4899490.78243822</SimpleData>
+		<SimpleData name="Lng">-69.1482053089596</SimpleData>
+		<SimpleData name="Lat">44.2485568386374</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1482053089596,44.2485568386374</coordinates></Point>
@@ -4758,8 +4758,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1g</SimpleData>
-		<SimpleData name="Lng">502870.486807893</SimpleData>
-		<SimpleData name="Lat">4900641.20196235</SimpleData>
+		<SimpleData name="Lng">-68.964040033768</SimpleData>
+		<SimpleData name="Lat">44.2590046681686</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.964040033768,44.2590046681686</coordinates></Point>
@@ -4770,8 +4770,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1g</SimpleData>
-		<SimpleData name="Lng">502820.11532764</SimpleData>
-		<SimpleData name="Lat">4899872.8411222</SimpleData>
+		<SimpleData name="Lng">-68.9646752028284</SimpleData>
+		<SimpleData name="Lat">44.2520872327183</SimpleData>
 		<SimpleData name="nNest">21</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9646752028284,44.2520872327183</coordinates></Point>
@@ -4782,8 +4782,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1g</SimpleData>
-		<SimpleData name="Lng">533654.669429659</SimpleData>
-		<SimpleData name="Lat">4890643.43444726</SimpleData>
+		<SimpleData name="Lng">-68.5790390981701</SimpleData>
+		<SimpleData name="Lat">44.1682231381042</SimpleData>
 		<SimpleData name="nNest">29</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5790390981701,44.1682231381042</coordinates></Point>
@@ -4794,8 +4794,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1g</SimpleData>
-		<SimpleData name="Lng">533326.440973104</SimpleData>
-		<SimpleData name="Lat">4893013.89416646</SimpleData>
+		<SimpleData name="Lng">-68.5829941633387</SimpleData>
+		<SimpleData name="Lat">44.1895794124632</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5829941633387,44.1895794124632</coordinates></Point>
@@ -4806,8 +4806,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c5.1f</SimpleData>
-		<SimpleData name="Lng">388921.851188296</SimpleData>
-		<SimpleData name="Lat">4937842.86997355</SimpleData>
+		<SimpleData name="Lng">-70.3992898529342</SimpleData>
+		<SimpleData name="Lat">44.5853581862176</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.3992898529342,44.5853581862176</coordinates></Point>
@@ -4818,8 +4818,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cb.1f</SimpleData>
-		<SimpleData name="Lng">448236.407606499</SimpleData>
-		<SimpleData name="Lat">4922102.15234714</SimpleData>
+		<SimpleData name="Lng">-69.6505808481255</SimpleData>
+		<SimpleData name="Lat">44.4503692858119</SimpleData>
 		<SimpleData name="nNest">12</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6505808481255,44.4503692858119</coordinates></Point>
@@ -4830,8 +4830,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1f</SimpleData>
-		<SimpleData name="Lng">461469.123581478</SimpleData>
-		<SimpleData name="Lat">4915780.41071937</SimpleData>
+		<SimpleData name="Lng">-69.4838053033283</SimpleData>
+		<SimpleData name="Lat">44.3942838948611</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4838053033283,44.3942838948611</coordinates></Point>
@@ -4842,8 +4842,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1f</SimpleData>
-		<SimpleData name="Lng">460934.831153595</SimpleData>
-		<SimpleData name="Lat">4921368.29948138</SimpleData>
+		<SimpleData name="Lng">-69.4909345670478</SimpleData>
+		<SimpleData name="Lat">44.444560337119</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4909345670478,44.444560337119</coordinates></Point>
@@ -4854,8 +4854,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1f</SimpleData>
-		<SimpleData name="Lng">470689.122445569</SimpleData>
-		<SimpleData name="Lat">4917614.28377736</SimpleData>
+		<SimpleData name="Lng">-69.3681424880557</SimpleData>
+		<SimpleData name="Lat">44.4112253591566</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3681424880557,44.4112253591566</coordinates></Point>
@@ -4866,8 +4866,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1f</SimpleData>
-		<SimpleData name="Lng">532162.732883585</SimpleData>
-		<SimpleData name="Lat">4899982.4555474</SimpleData>
+		<SimpleData name="Lng">-68.5971274035389</SimpleData>
+		<SimpleData name="Lat">44.2523691573878</SimpleData>
 		<SimpleData name="nNest">13</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5971274035389,44.2523691573878</coordinates></Point>
@@ -4878,8 +4878,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1e</SimpleData>
-		<SimpleData name="Lng">406636.935373413</SimpleData>
-		<SimpleData name="Lat">4942180.13390922</SimpleData>
+		<SimpleData name="Lng">-70.1769662625915</SimpleData>
+		<SimpleData name="Lat">44.6269123469978</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1769662625915,44.6269123469978</coordinates></Point>
@@ -4890,8 +4890,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1e</SimpleData>
-		<SimpleData name="Lng">413451.288897801</SimpleData>
-		<SimpleData name="Lat">4949852.53136561</SimpleData>
+		<SimpleData name="Lng">-70.0923745253135</SimpleData>
+		<SimpleData name="Lat">44.6968231575922</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0923745253135,44.6968231575922</coordinates></Point>
@@ -4902,8 +4902,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1e</SimpleData>
-		<SimpleData name="Lng">412247.233885524</SimpleData>
-		<SimpleData name="Lat">4950577.82187869</SimpleData>
+		<SimpleData name="Lng">-70.1076931695233</SimpleData>
+		<SimpleData name="Lat">44.7032049359693</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1076931695233,44.7032049359693</coordinates></Point>
@@ -4914,8 +4914,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1e</SimpleData>
-		<SimpleData name="Lng">422879</SimpleData>
-		<SimpleData name="Lat">4937634</SimpleData>
+		<SimpleData name="Lng">-69.9715633510113</SimpleData>
+		<SimpleData name="Lat">44.5879178892929</SimpleData>
 		<SimpleData name="nNest">12</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9715633510113,44.5879178892929</coordinates></Point>
@@ -4926,8 +4926,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1e</SimpleData>
-		<SimpleData name="Lng">427300.718609203</SimpleData>
-		<SimpleData name="Lat">4945107.03194988</SimpleData>
+		<SimpleData name="Lng">-69.9169245083063</SimpleData>
+		<SimpleData name="Lat">44.6556456835999</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9169245083063,44.6556456835999</coordinates></Point>
@@ -4938,8 +4938,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1e</SimpleData>
-		<SimpleData name="Lng">429962</SimpleData>
-		<SimpleData name="Lat">4940860</SimpleData>
+		<SimpleData name="Lng">-69.8827831179973</SimpleData>
+		<SimpleData name="Lat">44.6176808543344</SimpleData>
 		<SimpleData name="nNest">15</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8827831179973,44.6176808543344</coordinates></Point>
@@ -4950,8 +4950,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1e</SimpleData>
-		<SimpleData name="Lng">428454.565004664</SimpleData>
-		<SimpleData name="Lat">4939819.53764703</SimpleData>
+		<SimpleData name="Lng">-69.9016360949796</SimpleData>
+		<SimpleData name="Lat">44.6081667787235</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9016360949796,44.6081667787235</coordinates></Point>
@@ -4962,8 +4962,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1e</SimpleData>
-		<SimpleData name="Lng">436335.324101084</SimpleData>
-		<SimpleData name="Lat">4940724.98116778</SimpleData>
+		<SimpleData name="Lng">-69.8024430474141</SimpleData>
+		<SimpleData name="Lat">44.6170581078245</SimpleData>
 		<SimpleData name="nNest">15</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8024430474141,44.6170581078245</coordinates></Point>
@@ -4974,8 +4974,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1e</SimpleData>
-		<SimpleData name="Lng">470427</SimpleData>
-		<SimpleData name="Lat">4933419</SimpleData>
+		<SimpleData name="Lng">-69.3723385402994</SimpleData>
+		<SimpleData name="Lat">44.5534975519681</SimpleData>
 		<SimpleData name="nNest">14</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3723385402994,44.5534975519681</coordinates></Point>
@@ -4986,8 +4986,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1e</SimpleData>
-		<SimpleData name="Lng">470216.262147673</SimpleData>
-		<SimpleData name="Lat">4933033.01041168</SimpleData>
+		<SimpleData name="Lng">-69.3749694640399</SimpleData>
+		<SimpleData name="Lat">44.5500140220348</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3749694640399,44.5500140220348</coordinates></Point>
@@ -4998,8 +4998,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1e</SimpleData>
-		<SimpleData name="Lng">476523.670571833</SimpleData>
-		<SimpleData name="Lat">4923829.95092292</SimpleData>
+		<SimpleData name="Lng">-69.2951436386528</SimpleData>
+		<SimpleData name="Lat">44.4673957938272</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2951436386528,44.4673957938272</coordinates></Point>
@@ -5010,8 +5010,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1e</SimpleData>
-		<SimpleData name="Lng">492246.101974395</SimpleData>
-		<SimpleData name="Lat">4922661.7934589</SimpleData>
+		<SimpleData name="Lng">-69.0974648246239</SimpleData>
+		<SimpleData name="Lat">44.4572188763478</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0974648246239,44.4572188763478</coordinates></Point>
@@ -5022,8 +5022,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1e</SimpleData>
-		<SimpleData name="Lng">493241.131191644</SimpleData>
-		<SimpleData name="Lat">4926119.27299215</SimpleData>
+		<SimpleData name="Lng">-69.0850027067296</SimpleData>
+		<SimpleData name="Lat">44.488355693916</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0850027067296,44.488355693916</coordinates></Point>
@@ -5034,8 +5034,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1e</SimpleData>
-		<SimpleData name="Lng">493405.100882138</SimpleData>
-		<SimpleData name="Lat">4925284.58753105</SimpleData>
+		<SimpleData name="Lng">-69.0829299024626</SimpleData>
+		<SimpleData name="Lat">44.4808427592332</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0829299024626,44.4808427592332</coordinates></Point>
@@ -5046,8 +5046,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cj.1e</SimpleData>
-		<SimpleData name="Lng">528475.520589638</SimpleData>
-		<SimpleData name="Lat">4916321.83939592</SimpleData>
+		<SimpleData name="Lng">-68.6424202172416</SimpleData>
+		<SimpleData name="Lat">44.3996232136382</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6424202172416,44.3996232136382</coordinates></Point>
@@ -5058,8 +5058,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cm.1e</SimpleData>
-		<SimpleData name="Lng">560051.652931377</SimpleData>
-		<SimpleData name="Lat">4902548.19008695</SimpleData>
+		<SimpleData name="Lng">-68.2475172453519</SimpleData>
+		<SimpleData name="Lat">44.2737006473634</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.2475172453519,44.2737006473634</coordinates></Point>
@@ -5070,8 +5070,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c7.1d</SimpleData>
-		<SimpleData name="Lng">413051.899557356</SimpleData>
-		<SimpleData name="Lat">4951122.26932175</SimpleData>
+		<SimpleData name="Lng">-70.0976304459518</SimpleData>
+		<SimpleData name="Lat">44.7082034205288</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.0976304459518,44.7082034205288</coordinates></Point>
@@ -5082,8 +5082,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1d</SimpleData>
-		<SimpleData name="Lng">424764.598120575</SimpleData>
-		<SimpleData name="Lat">4954457.9980297</SimpleData>
+		<SimpleData name="Lng">-69.9502829738944</SimpleData>
+		<SimpleData name="Lat">44.739554024979</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9502829738944,44.739554024979</coordinates></Point>
@@ -5094,8 +5094,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1d</SimpleData>
-		<SimpleData name="Lng">444843.632951065</SimpleData>
-		<SimpleData name="Lat">4946702.34809868</SimpleData>
+		<SimpleData name="Lng">-69.6958539673191</SimpleData>
+		<SimpleData name="Lat">44.6715684247325</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6958539673191,44.6715684247325</coordinates></Point>
@@ -5106,8 +5106,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1d</SimpleData>
-		<SimpleData name="Lng">463824.770302687</SimpleData>
-		<SimpleData name="Lat">4938787.56476213</SimpleData>
+		<SimpleData name="Lng">-69.4558388991654</SimpleData>
+		<SimpleData name="Lat">44.6015258084977</SimpleData>
 		<SimpleData name="nNest">38</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4558388991654,44.6015258084977</coordinates></Point>
@@ -5118,8 +5118,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1d</SimpleData>
-		<SimpleData name="Lng">469785</SimpleData>
-		<SimpleData name="Lat">4940147</SimpleData>
+		<SimpleData name="Lng">-69.3808166666151</SimpleData>
+		<SimpleData name="Lat">44.6140389751355</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3808166666151,44.6140389751355</coordinates></Point>
@@ -5130,8 +5130,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1d</SimpleData>
-		<SimpleData name="Lng">486910.137529022</SimpleData>
-		<SimpleData name="Lat">4930951.53664053</SimpleData>
+		<SimpleData name="Lng">-69.1647465081202</SimpleData>
+		<SimpleData name="Lat">44.5317719395054</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1647465081202,44.5317719395054</coordinates></Point>
@@ -5142,8 +5142,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1d</SimpleData>
-		<SimpleData name="Lng">497300.22872006</SimpleData>
-		<SimpleData name="Lat">4929360.36039173</SimpleData>
+		<SimpleData name="Lng">-69.0339705465429</SimpleData>
+		<SimpleData name="Lat">44.5175608546626</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0339705465429,44.5175608546626</coordinates></Point>
@@ -5154,8 +5154,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1d</SimpleData>
-		<SimpleData name="Lng">504274.414034014</SimpleData>
-		<SimpleData name="Lat">4927248.47993342</SimpleData>
+		<SimpleData name="Lng">-68.9462336053653</SimpleData>
+		<SimpleData name="Lat">44.4985406130828</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9462336053653,44.4985406130828</coordinates></Point>
@@ -5166,8 +5166,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1d</SimpleData>
-		<SimpleData name="Lng">510220.636338567</SimpleData>
-		<SimpleData name="Lat">4929497.20709786</SimpleData>
+		<SimpleData name="Lng">-68.8713937302414</SimpleData>
+		<SimpleData name="Lat">44.5187254902945</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8713937302414,44.5187254902945</coordinates></Point>
@@ -5178,8 +5178,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1d</SimpleData>
-		<SimpleData name="Lng">539453.802057903</SimpleData>
-		<SimpleData name="Lat">4922880.82661478</SimpleData>
+		<SimpleData name="Lng">-68.5040664170451</SimpleData>
+		<SimpleData name="Lat">44.4581557027366</SimpleData>
 		<SimpleData name="nNest">15</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5040664170451,44.4581557027366</coordinates></Point>
@@ -5190,8 +5190,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c1.1c</SimpleData>
-		<SimpleData name="Lng">363488</SimpleData>
-		<SimpleData name="Lat">4976649</SimpleData>
+		<SimpleData name="Lng">-70.7299485148041</SimpleData>
+		<SimpleData name="Lat">44.9301706907175</SimpleData>
 		<SimpleData name="nNest">20</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7299485148041,44.9301706907175</coordinates></Point>
@@ -5202,8 +5202,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c1.1c</SimpleData>
-		<SimpleData name="Lng">359666.319561117</SimpleData>
-		<SimpleData name="Lat">4981369.43057068</SimpleData>
+		<SimpleData name="Lng">-70.7796682393626</SimpleData>
+		<SimpleData name="Lat">44.9718997689418</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.7796682393626,44.9718997689418</coordinates></Point>
@@ -5214,8 +5214,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c6.1c</SimpleData>
-		<SimpleData name="Lng">411004.131075636</SimpleData>
-		<SimpleData name="Lat">4962828.33515951</SimpleData>
+		<SimpleData name="Lng">-70.1255204732246</SimpleData>
+		<SimpleData name="Lat">44.8133133214616</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1255204732246,44.8133133214616</coordinates></Point>
@@ -5226,8 +5226,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1c</SimpleData>
-		<SimpleData name="Lng">425889.853815523</SimpleData>
-		<SimpleData name="Lat">4961910.46001769</SimpleData>
+		<SimpleData name="Lng">-69.9371563353666</SimpleData>
+		<SimpleData name="Lat">44.8067516117611</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9371563353666,44.8067516117611</coordinates></Point>
@@ -5238,8 +5238,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1c</SimpleData>
-		<SimpleData name="Lng">427869.700463017</SimpleData>
-		<SimpleData name="Lat">4964399.01430914</SimpleData>
+		<SimpleData name="Lng">-69.9124767281017</SimpleData>
+		<SimpleData name="Lat">44.8293539562905</SimpleData>
 		<SimpleData name="nNest">21</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9124767281017,44.8293539562905</coordinates></Point>
@@ -5250,8 +5250,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ca.1c</SimpleData>
-		<SimpleData name="Lng">451393.762150796</SimpleData>
-		<SimpleData name="Lat">4956404.43131364</SimpleData>
+		<SimpleData name="Lng">-69.614145532857</SimpleData>
+		<SimpleData name="Lat">44.7593788016312</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.614145532857,44.7593788016312</coordinates></Point>
@@ -5262,8 +5262,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1c</SimpleData>
-		<SimpleData name="Lng">468076.215564535</SimpleData>
-		<SimpleData name="Lat">4950985.54634339</SimpleData>
+		<SimpleData name="Lng">-69.4030283645079</SimpleData>
+		<SimpleData name="Lat">44.7115363114113</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4030283645079,44.7115363114113</coordinates></Point>
@@ -5274,8 +5274,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1c</SimpleData>
-		<SimpleData name="Lng">477191.024378647</SimpleData>
-		<SimpleData name="Lat">4942072.1540026</SimpleData>
+		<SimpleData name="Lng">-69.287561271458</SimpleData>
+		<SimpleData name="Lat">44.6316430893222</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.287561271458,44.6316430893222</coordinates></Point>
@@ -5286,8 +5286,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1c</SimpleData>
-		<SimpleData name="Lng">472586.792600035</SimpleData>
-		<SimpleData name="Lat">4946136.0728724</SimpleData>
+		<SimpleData name="Lng">-69.3458249031032</SimpleData>
+		<SimpleData name="Lat">44.668066875213</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3458249031032,44.668066875213</coordinates></Point>
@@ -5298,8 +5298,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1c</SimpleData>
-		<SimpleData name="Lng">488483.277889862</SimpleData>
-		<SimpleData name="Lat">4943137.3328701</SimpleData>
+		<SimpleData name="Lng">-69.1452202093608</SimpleData>
+		<SimpleData name="Lat">44.6415020524516</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1452202093608,44.6415020524516</coordinates></Point>
@@ -5310,8 +5310,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1c</SimpleData>
-		<SimpleData name="Lng">489051.937184872</SimpleData>
-		<SimpleData name="Lat">4945285.10520994</SimpleData>
+		<SimpleData name="Lng">-69.1380955903916</SimpleData>
+		<SimpleData name="Lat">44.6608461644665</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1380955903916,44.6608461644665</coordinates></Point>
@@ -5322,8 +5322,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1c</SimpleData>
-		<SimpleData name="Lng">484300.686837183</SimpleData>
-		<SimpleData name="Lat">4944595.96218862</SimpleData>
+		<SimpleData name="Lng">-69.1980050241212</SimpleData>
+		<SimpleData name="Lat">44.6545540245058</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1980050241212,44.6545540245058</coordinates></Point>
@@ -5334,8 +5334,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1c</SimpleData>
-		<SimpleData name="Lng">487197.007225104</SimpleData>
-		<SimpleData name="Lat">4940393.31275652</SimpleData>
+		<SimpleData name="Lng">-69.1613709287684</SimpleData>
+		<SimpleData name="Lat">44.6167772961189</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1613709287684,44.6167772961189</coordinates></Point>
@@ -5346,8 +5346,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1c</SimpleData>
-		<SimpleData name="Lng">492621.715927606</SimpleData>
-		<SimpleData name="Lat">4941823.91638047</SimpleData>
+		<SimpleData name="Lng">-69.09301773536</SimpleData>
+		<SimpleData name="Lat">44.6297324615705</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.09301773536,44.6297324615705</coordinates></Point>
@@ -5358,8 +5358,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1c</SimpleData>
-		<SimpleData name="Lng">500805.108818749</SimpleData>
-		<SimpleData name="Lat">4943264.58628496</SimpleData>
+		<SimpleData name="Lng">-68.9898477572646</SimpleData>
+		<SimpleData name="Lat">44.6427395238317</SimpleData>
 		<SimpleData name="nNest">21</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9898477572646,44.6427395238317</coordinates></Point>
@@ -5370,8 +5370,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1c</SimpleData>
-		<SimpleData name="Lng">502636</SimpleData>
-		<SimpleData name="Lat">4945000</SimpleData>
+		<SimpleData name="Lng">-68.9667517057662</SimpleData>
+		<SimpleData name="Lat">44.6583581632404</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9667517057662,44.6583581632404</coordinates></Point>
@@ -5382,8 +5382,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1c</SimpleData>
-		<SimpleData name="Lng">505890.900611182</SimpleData>
-		<SimpleData name="Lat">4935955.76189869</SimpleData>
+		<SimpleData name="Lng">-68.9258009050918</SimpleData>
+		<SimpleData name="Lat">44.5769178549377</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9258009050918,44.5769178549377</coordinates></Point>
@@ -5394,8 +5394,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1c</SimpleData>
-		<SimpleData name="Lng">518881.197139705</SimpleData>
-		<SimpleData name="Lat">4939864.83502982</SimpleData>
+		<SimpleData name="Lng">-68.762038412444</SimpleData>
+		<SimpleData name="Lat">44.6118857589316</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.762038412444,44.6118857589316</coordinates></Point>
@@ -5406,8 +5406,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1c</SimpleData>
-		<SimpleData name="Lng">519148.823807121</SimpleData>
-		<SimpleData name="Lat">4939269.45003239</SimpleData>
+		<SimpleData name="Lng">-68.7586877106801</SimpleData>
+		<SimpleData name="Lat">44.6065187485946</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7586877106801,44.6065187485946</coordinates></Point>
@@ -5418,8 +5418,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1c</SimpleData>
-		<SimpleData name="Lng">517292.882214709</SimpleData>
-		<SimpleData name="Lat">4932237.90932184</SimpleData>
+		<SimpleData name="Lng">-68.7823122794532</SimpleData>
+		<SimpleData name="Lat">44.5432640797191</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7823122794532,44.5432640797191</coordinates></Point>
@@ -5430,8 +5430,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ci.1c</SimpleData>
-		<SimpleData name="Lng">524922.458928628</SimpleData>
-		<SimpleData name="Lat">4931181.52545739</SimpleData>
+		<SimpleData name="Lng">-68.6863212744878</SimpleData>
+		<SimpleData name="Lat">44.5335305270611</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6863212744878,44.5335305270611</coordinates></Point>
@@ -5442,8 +5442,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cj.1c</SimpleData>
-		<SimpleData name="Lng">532159.776501951</SimpleData>
-		<SimpleData name="Lat">4930929.96905049</SimpleData>
+		<SimpleData name="Lng">-68.5952487372005</SimpleData>
+		<SimpleData name="Lat">44.5309794168789</SimpleData>
 		<SimpleData name="nNest">38</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5952487372005,44.5309794168789</coordinates></Point>
@@ -5454,8 +5454,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1c</SimpleData>
-		<SimpleData name="Lng">542431.552985011</SimpleData>
-		<SimpleData name="Lat">4932293.38426303</SimpleData>
+		<SimpleData name="Lng">-68.4658646116621</SimpleData>
+		<SimpleData name="Lat">44.5427219721012</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4658646116621,44.5427219721012</coordinates></Point>
@@ -5466,8 +5466,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cn.1c</SimpleData>
-		<SimpleData name="Lng">577813.905956713</SimpleData>
-		<SimpleData name="Lat">4920826.52533995</SimpleData>
+		<SimpleData name="Lng">-68.0222418032967</SimpleData>
+		<SimpleData name="Lat">44.4365527917364</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.0222418032967,44.4365527917364</coordinates></Point>
@@ -5478,8 +5478,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">bz.1b</SimpleData>
-		<SimpleData name="Lng">343493.235883804</SimpleData>
-		<SimpleData name="Lat">4993940.36658917</SimpleData>
+		<SimpleData name="Lng">-70.9885666330704</SimpleData>
+		<SimpleData name="Lat">45.0816143361628</SimpleData>
 		<SimpleData name="nNest">36</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.9885666330704,45.0816143361628</coordinates></Point>
@@ -5490,8 +5490,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1b</SimpleData>
-		<SimpleData name="Lng">429655.529405238</SimpleData>
-		<SimpleData name="Lat">4971180.10167113</SimpleData>
+		<SimpleData name="Lng">-69.8908288089139</SimpleData>
+		<SimpleData name="Lat">44.8905691877434</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.8908288089139,44.8905691877434</coordinates></Point>
@@ -5502,8 +5502,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c8.1b</SimpleData>
-		<SimpleData name="Lng">428024.052894064</SimpleData>
-		<SimpleData name="Lat">4974007.67472622</SimpleData>
+		<SimpleData name="Lng">-69.9118892077394</SimpleData>
+		<SimpleData name="Lat">44.9158569810272</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9118892077394,44.9158569810272</coordinates></Point>
@@ -5514,8 +5514,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">c9.1b</SimpleData>
-		<SimpleData name="Lng">438461.405222248</SimpleData>
-		<SimpleData name="Lat">4967713.9653467</SimpleData>
+		<SimpleData name="Lng">-69.7789029257703</SimpleData>
+		<SimpleData name="Lat">44.8601848726461</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.7789029257703,44.8601848726461</coordinates></Point>
@@ -5526,8 +5526,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1b</SimpleData>
-		<SimpleData name="Lng">470893.963837053</SimpleData>
-		<SimpleData name="Lat">4954458.31987486</SimpleData>
+		<SimpleData name="Lng">-69.3676538682661</SimpleData>
+		<SimpleData name="Lat">44.7429188132828</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3676538682661,44.7429188132828</coordinates></Point>
@@ -5538,8 +5538,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.1b</SimpleData>
-		<SimpleData name="Lng">479562.843987324</SimpleData>
-		<SimpleData name="Lat">4956690.24898252</SimpleData>
+		<SimpleData name="Lng">-69.2582434282044</SimpleData>
+		<SimpleData name="Lat">44.7633111520386</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2582434282044,44.7633111520386</coordinates></Point>
@@ -5550,8 +5550,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1b</SimpleData>
-		<SimpleData name="Lng">489841</SimpleData>
-		<SimpleData name="Lat">4956639</SimpleData>
+		<SimpleData name="Lng">-69.1283683561892</SimpleData>
+		<SimpleData name="Lat">44.7630696188832</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1283683561892,44.7630696188832</coordinates></Point>
@@ -5562,8 +5562,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1b</SimpleData>
-		<SimpleData name="Lng">493076.188159511</SimpleData>
-		<SimpleData name="Lat">4956493.47745071</SimpleData>
+		<SimpleData name="Lng">-69.0874868446897</SimpleData>
+		<SimpleData name="Lat">44.7617982144326</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0874868446897,44.7617982144326</coordinates></Point>
@@ -5574,8 +5574,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1b</SimpleData>
-		<SimpleData name="Lng">511653</SimpleData>
-		<SimpleData name="Lat">4946609</SimpleData>
+		<SimpleData name="Lng">-68.8529824488677</SimpleData>
+		<SimpleData name="Lat">44.6727533302584</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8529824488677,44.6727533302584</coordinates></Point>
@@ -5586,8 +5586,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.1b</SimpleData>
-		<SimpleData name="Lng">507646.136924936</SimpleData>
-		<SimpleData name="Lat">4953992.0407807</SimpleData>
+		<SimpleData name="Lng">-68.90342363035</SimpleData>
+		<SimpleData name="Lat">44.7392721517757</SimpleData>
 		<SimpleData name="nNest">21</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.90342363035,44.7392721517757</coordinates></Point>
@@ -5598,8 +5598,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1b</SimpleData>
-		<SimpleData name="Lng">515652.060708455</SimpleData>
-		<SimpleData name="Lat">4949904.30855362</SimpleData>
+		<SimpleData name="Lng">-68.8024286097432</SimpleData>
+		<SimpleData name="Lat">44.7023428207892</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8024286097432,44.7023428207892</coordinates></Point>
@@ -5610,8 +5610,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1b</SimpleData>
-		<SimpleData name="Lng">518094.755965155</SimpleData>
-		<SimpleData name="Lat">4945887.1066456</SimpleData>
+		<SimpleData name="Lng">-68.7717374666427</SimpleData>
+		<SimpleData name="Lat">44.666121040478</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7717374666427,44.666121040478</coordinates></Point>
@@ -5622,8 +5622,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1b</SimpleData>
-		<SimpleData name="Lng">547881.368475286</SimpleData>
-		<SimpleData name="Lat">4932281.34526029</SimpleData>
+		<SimpleData name="Lng">-68.3972661185551</SimpleData>
+		<SimpleData name="Lat">44.5422721717611</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.3972661185551,44.5422721717611</coordinates></Point>
@@ -5634,8 +5634,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cl.1b</SimpleData>
-		<SimpleData name="Lng">552136.288959442</SimpleData>
-		<SimpleData name="Lat">4932769.85224183</SimpleData>
+		<SimpleData name="Lng">-68.3436588386488</SimpleData>
+		<SimpleData name="Lat">44.5463745358316</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.3436588386488,44.5463745358316</coordinates></Point>
@@ -5646,8 +5646,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">co.1b</SimpleData>
-		<SimpleData name="Lng">588441.172427369</SimpleData>
-		<SimpleData name="Lat">4928801.94664729</SimpleData>
+		<SimpleData name="Lng">-67.8873668602682</SimpleData>
+		<SimpleData name="Lat">44.507119028736</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.8873668602682,44.507119028736</coordinates></Point>
@@ -5658,8 +5658,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cp.1b</SimpleData>
-		<SimpleData name="Lng">593141.05735517</SimpleData>
-		<SimpleData name="Lat">4926289.42007979</SimpleData>
+		<SimpleData name="Lng">-67.8287048479881</SimpleData>
+		<SimpleData name="Lat">44.4839129388346</SimpleData>
 		<SimpleData name="nNest">40</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.8287048479881,44.4839129388346</coordinates></Point>
@@ -5670,8 +5670,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cp.1b</SimpleData>
-		<SimpleData name="Lng">593557.038849443</SimpleData>
-		<SimpleData name="Lat">4921796.37930834</SimpleData>
+		<SimpleData name="Lng">-67.8242868421994</SimpleData>
+		<SimpleData name="Lat">44.4434178742114</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.8242868421994,44.4434178742114</coordinates></Point>
@@ -5682,8 +5682,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1a</SimpleData>
-		<SimpleData name="Lng">476529.000158071</SimpleData>
-		<SimpleData name="Lat">4969721.90108482</SimpleData>
+		<SimpleData name="Lng">-69.2971805807054</SimpleData>
+		<SimpleData name="Lat">44.8805301143133</SimpleData>
 		<SimpleData name="nNest">39</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2971805807054,44.8805301143133</coordinates></Point>
@@ -5694,8 +5694,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cc.1a</SimpleData>
-		<SimpleData name="Lng">467642.37113835</SimpleData>
-		<SimpleData name="Lat">4970510.37629549</SimpleData>
+		<SimpleData name="Lng">-69.4097474867253</SimpleData>
+		<SimpleData name="Lat">44.8872796594429</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4097474867253,44.8872796594429</coordinates></Point>
@@ -5706,8 +5706,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1a</SimpleData>
-		<SimpleData name="Lng">492810</SimpleData>
-		<SimpleData name="Lat">4963307</SimpleData>
+		<SimpleData name="Lng">-69.0909465808849</SimpleData>
+		<SimpleData name="Lat">44.8231325828031</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0909465808849,44.8231325828031</coordinates></Point>
@@ -5718,8 +5718,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1a</SimpleData>
-		<SimpleData name="Lng">489096.172304112</SimpleData>
-		<SimpleData name="Lat">4965990.73373522</SimpleData>
+		<SimpleData name="Lng">-69.1379804543844</SimpleData>
+		<SimpleData name="Lat">44.8472449182322</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1379804543844,44.8472449182322</coordinates></Point>
@@ -5730,8 +5730,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1a</SimpleData>
-		<SimpleData name="Lng">494522.427345981</SimpleData>
-		<SimpleData name="Lat">4963653.57029348</SimpleData>
+		<SimpleData name="Lng">-69.0692897783766</SimpleData>
+		<SimpleData name="Lat">44.8262676721672</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0692897783766,44.8262676721672</coordinates></Point>
@@ -5742,8 +5742,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1a</SimpleData>
-		<SimpleData name="Lng">489402.425951568</SimpleData>
-		<SimpleData name="Lat">4965532.95477512</SimpleData>
+		<SimpleData name="Lng">-69.1340954746771</SimpleData>
+		<SimpleData name="Lat">44.8431285409383</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1340954746771,44.8431285409383</coordinates></Point>
@@ -5754,8 +5754,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.1a</SimpleData>
-		<SimpleData name="Lng">487379.640584326</SimpleData>
-		<SimpleData name="Lat">4963166.4613852</SimpleData>
+		<SimpleData name="Lng">-69.1596317014003</SimpleData>
+		<SimpleData name="Lat">44.8217920745038</SimpleData>
 		<SimpleData name="nNest">38</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.1596317014003,44.8217920745038</coordinates></Point>
@@ -5766,8 +5766,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1a</SimpleData>
-		<SimpleData name="Lng">506219.763525527</SimpleData>
-		<SimpleData name="Lat">4963145.86258573</SimpleData>
+		<SimpleData name="Lng">-68.9213279371894</SimpleData>
+		<SimpleData name="Lat">44.8216911052752</SimpleData>
 		<SimpleData name="nNest">14</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9213279371894,44.8216911052752</coordinates></Point>
@@ -5778,8 +5778,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.1a</SimpleData>
-		<SimpleData name="Lng">501757.11332389</SimpleData>
-		<SimpleData name="Lat">4959967.55103923</SimpleData>
+		<SimpleData name="Lng">-68.9777857358581</SimpleData>
+		<SimpleData name="Lat">44.7931041439643</SimpleData>
 		<SimpleData name="nNest">16</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9777857358581,44.7931041439643</coordinates></Point>
@@ -5790,8 +5790,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1a</SimpleData>
-		<SimpleData name="Lng">520389.100104525</SimpleData>
-		<SimpleData name="Lat">4956009.54376425</SimpleData>
+		<SimpleData name="Lng">-68.7423910300801</SimpleData>
+		<SimpleData name="Lat">44.757184668436</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7423910300801,44.757184668436</coordinates></Point>
@@ -5802,8 +5802,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1a</SimpleData>
-		<SimpleData name="Lng">525216.098549467</SimpleData>
-		<SimpleData name="Lat">4957746.58664093</SimpleData>
+		<SimpleData name="Lng">-68.6813185258597</SimpleData>
+		<SimpleData name="Lat">44.7726679589877</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6813185258597,44.7726679589877</coordinates></Point>
@@ -5814,8 +5814,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.1a</SimpleData>
-		<SimpleData name="Lng">525814.636805744</SimpleData>
-		<SimpleData name="Lat">4958260.39395909</SimpleData>
+		<SimpleData name="Lng">-68.6737282665119</SimpleData>
+		<SimpleData name="Lat">44.7772719651832</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6737282665119,44.7772719651832</coordinates></Point>
@@ -5826,8 +5826,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.1a</SimpleData>
-		<SimpleData name="Lng">533811.254798787</SimpleData>
-		<SimpleData name="Lat">4949899.43375003</SimpleData>
+		<SimpleData name="Lng">-68.5732153701907</SimpleData>
+		<SimpleData name="Lat">44.7016723985313</SimpleData>
 		<SimpleData name="nNest">15</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5732153701907,44.7016723985313</coordinates></Point>
@@ -5838,8 +5838,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cj.1a</SimpleData>
-		<SimpleData name="Lng">540931.069909149</SimpleData>
-		<SimpleData name="Lat">4946373.08267521</SimpleData>
+		<SimpleData name="Lng">-68.483630488496</SimpleData>
+		<SimpleData name="Lat">44.6695567925125</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.483630488496,44.6695567925125</coordinates></Point>
@@ -5850,8 +5850,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cj.1a</SimpleData>
-		<SimpleData name="Lng">543022.061607083</SimpleData>
-		<SimpleData name="Lat">4945498.99552801</SimpleData>
+		<SimpleData name="Lng">-68.4573259691118</SimpleData>
+		<SimpleData name="Lat">44.6615659040747</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4573259691118,44.6615659040747</coordinates></Point>
@@ -5862,8 +5862,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ck.1a</SimpleData>
-		<SimpleData name="Lng">544024.437181056</SimpleData>
-		<SimpleData name="Lat">4945073.63543017</SimpleData>
+		<SimpleData name="Lng">-68.4447192839077</SimpleData>
+		<SimpleData name="Lat">44.6576760179182</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4447192839077,44.6576760179182</coordinates></Point>
@@ -5874,8 +5874,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cl.1a</SimpleData>
-		<SimpleData name="Lng">554649.413853938</SimpleData>
-		<SimpleData name="Lat">4940536.8950084</SimpleData>
+		<SimpleData name="Lng">-68.3111983806872</SimpleData>
+		<SimpleData name="Lat">44.6161067989536</SimpleData>
 		<SimpleData name="nNest">24</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.3111983806872,44.6161067989536</coordinates></Point>
@@ -5886,8 +5886,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cl.1a</SimpleData>
-		<SimpleData name="Lng">554381.188187539</SimpleData>
-		<SimpleData name="Lat">4941619.63161105</SimpleData>
+		<SimpleData name="Lng">-68.3144641681849</SimpleData>
+		<SimpleData name="Lat">44.6258738040251</SimpleData>
 		<SimpleData name="nNest">22</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.3144641681849,44.6258738040251</coordinates></Point>
@@ -5898,8 +5898,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c9.19</SimpleData>
-		<SimpleData name="Lng">449856.730584609</SimpleData>
-		<SimpleData name="Lat">4981347.25799693</SimpleData>
+		<SimpleData name="Lng">-69.6360331456478</SimpleData>
+		<SimpleData name="Lat">44.983797495011</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6360331456478,44.983797495011</coordinates></Point>
@@ -5910,8 +5910,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ca.19</SimpleData>
-		<SimpleData name="Lng">451770.226011874</SimpleData>
-		<SimpleData name="Lat">4981127.62007121</SimpleData>
+		<SimpleData name="Lng">-69.6117421479697</SimpleData>
+		<SimpleData name="Lat">44.9819530269365</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6117421479697,44.9819530269365</coordinates></Point>
@@ -5922,8 +5922,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.19</SimpleData>
-		<SimpleData name="Lng">483969.520033652</SimpleData>
-		<SimpleData name="Lat">4976612.75683383</SimpleData>
+		<SimpleData name="Lng">-69.2031908223533</SimpleData>
+		<SimpleData name="Lat">44.942767956355</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2031908223533,44.942767956355</coordinates></Point>
@@ -5934,8 +5934,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.19</SimpleData>
-		<SimpleData name="Lng">483670.757902023</SimpleData>
-		<SimpleData name="Lat">4974426.26927885</SimpleData>
+		<SimpleData name="Lng">-69.2069070057491</SimpleData>
+		<SimpleData name="Lat">44.9230784509318</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2069070057491,44.9230784509318</coordinates></Point>
@@ -5946,8 +5946,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cd.19</SimpleData>
-		<SimpleData name="Lng">483075.25655843</SimpleData>
-		<SimpleData name="Lat">4976058.45555735</SimpleData>
+		<SimpleData name="Lng">-69.2145072046007</SimpleData>
+		<SimpleData name="Lat">44.9377574299945</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2145072046007,44.9377574299945</coordinates></Point>
@@ -5958,8 +5958,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ce.19</SimpleData>
-		<SimpleData name="Lng">495374</SimpleData>
-		<SimpleData name="Lat">4970297</SimpleData>
+		<SimpleData name="Lng">-69.0585782269622</SimpleData>
+		<SimpleData name="Lat">44.8860788508821</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0585782269622,44.8860788508821</coordinates></Point>
@@ -5970,8 +5970,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.19</SimpleData>
-		<SimpleData name="Lng">499777.112237845</SimpleData>
-		<SimpleData name="Lat">4968877.19391121</SimpleData>
+		<SimpleData name="Lng">-69.0028217646079</SimpleData>
+		<SimpleData name="Lat">44.8733125776139</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0028217646079,44.8733125776139</coordinates></Point>
@@ -5982,8 +5982,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.19</SimpleData>
-		<SimpleData name="Lng">527698.063250149</SimpleData>
-		<SimpleData name="Lat">4961767.42169203</SimpleData>
+		<SimpleData name="Lng">-68.649733115723</SimpleData>
+		<SimpleData name="Lat">44.8087720453086</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.649733115723,44.8087720453086</coordinates></Point>
@@ -5994,8 +5994,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.19</SimpleData>
-		<SimpleData name="Lng">534522.59638742</SimpleData>
-		<SimpleData name="Lat">4958349.98401719</SimpleData>
+		<SimpleData name="Lng">-68.5636648947246</SimpleData>
+		<SimpleData name="Lat">44.7777110056727</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5636648947246,44.7777110056727</coordinates></Point>
@@ -6006,8 +6006,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.19</SimpleData>
-		<SimpleData name="Lng">533141.515702372</SimpleData>
-		<SimpleData name="Lat">4965826.07558644</SimpleData>
+		<SimpleData name="Lng">-68.5806326299192</SimpleData>
+		<SimpleData name="Lat">44.8450760207525</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5806326299192,44.8450760207525</coordinates></Point>
@@ -6018,8 +6018,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.19</SimpleData>
-		<SimpleData name="Lng">530977.442433002</SimpleData>
-		<SimpleData name="Lat">4959153.00856623</SimpleData>
+		<SimpleData name="Lng">-68.6084225420309</SimpleData>
+		<SimpleData name="Lat">44.7851022821131</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6084225420309,44.7851022821131</coordinates></Point>
@@ -6030,8 +6030,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ci.19</SimpleData>
-		<SimpleData name="Lng">531543.979412047</SimpleData>
-		<SimpleData name="Lat">4963295.92352047</SimpleData>
+		<SimpleData name="Lng">-68.6010042855415</SimpleData>
+		<SimpleData name="Lat">44.8223721039858</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6010042855415,44.8223721039858</coordinates></Point>
@@ -6042,8 +6042,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ck.19</SimpleData>
-		<SimpleData name="Lng">555485.629578934</SimpleData>
-		<SimpleData name="Lat">4960852.86507643</SimpleData>
+		<SimpleData name="Lng">-68.2984538974804</SimpleData>
+		<SimpleData name="Lat">44.798921349221</SimpleData>
 		<SimpleData name="nNest">11</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.2984538974804,44.798921349221</coordinates></Point>
@@ -6054,8 +6054,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cn.19</SimpleData>
-		<SimpleData name="Lng">580272.12990477</SimpleData>
-		<SimpleData name="Lat">4950457.4444874</SimpleData>
+		<SimpleData name="Lng">-67.9867375325213</SimpleData>
+		<SimpleData name="Lat">44.702998183122</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9867375325213,44.702998183122</coordinates></Point>
@@ -6066,8 +6066,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cn.19</SimpleData>
-		<SimpleData name="Lng">582447.256781574</SimpleData>
-		<SimpleData name="Lat">4949629.91261953</SimpleData>
+		<SimpleData name="Lng">-67.9594191397547</SimpleData>
+		<SimpleData name="Lat">44.6953027594502</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9594191397547,44.6953027594502</coordinates></Point>
@@ -6078,8 +6078,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cs.19</SimpleData>
-		<SimpleData name="Lng">629280</SimpleData>
-		<SimpleData name="Lat">4939537</SimpleData>
+		<SimpleData name="Lng">-67.3710750424995</SimpleData>
+		<SimpleData name="Lat">44.5975646679234</SimpleData>
 		<SimpleData name="nNest">50</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.3710750424995,44.5975646679234</coordinates></Point>
@@ -6090,8 +6090,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c2.18</SimpleData>
-		<SimpleData name="Lng">380575.873486179</SimpleData>
-		<SimpleData name="Lat">5015198.66421467</SimpleData>
+		<SimpleData name="Lng">-70.5226801139723</SimpleData>
+		<SimpleData name="Lat">45.2801380613895</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.5226801139723,45.2801380613895</coordinates></Point>
@@ -6102,8 +6102,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ca.18</SimpleData>
-		<SimpleData name="Lng">460997.903288621</SimpleData>
-		<SimpleData name="Lat">4990281.03991501</SimpleData>
+		<SimpleData name="Lng">-69.4954141395691</SimpleData>
+		<SimpleData name="Lat">45.064914978292</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4954141395691,45.064914978292</coordinates></Point>
@@ -6114,8 +6114,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.18</SimpleData>
-		<SimpleData name="Lng">512746.9728598</SimpleData>
-		<SimpleData name="Lat">4983033.57654628</SimpleData>
+		<SimpleData name="Lng">-68.8382659959462</SimpleData>
+		<SimpleData name="Lat">45.0006342281269</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8382659959462,45.0006342281269</coordinates></Point>
@@ -6126,8 +6126,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.18</SimpleData>
-		<SimpleData name="Lng">503693.923992212</SimpleData>
-		<SimpleData name="Lat">4980112.39848945</SimpleData>
+		<SimpleData name="Lng">-68.9531527115135</SimpleData>
+		<SimpleData name="Lat">44.9744428505694</SimpleData>
 		<SimpleData name="nNest">19</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9531527115135,44.9744428505694</coordinates></Point>
@@ -6138,8 +6138,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cf.18</SimpleData>
-		<SimpleData name="Lng">510150.106918239</SimpleData>
-		<SimpleData name="Lat">4978951.7327044</SimpleData>
+		<SimpleData name="Lng">-68.8712972579192</SimpleData>
+		<SimpleData name="Lat">44.9639316539043</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8712972579192,44.9639316539043</coordinates></Point>
@@ -6150,8 +6150,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.18</SimpleData>
-		<SimpleData name="Lng">513368.528015553</SimpleData>
-		<SimpleData name="Lat">4974624.80259277</SimpleData>
+		<SimpleData name="Lng">-68.8306026192809</SimpleData>
+		<SimpleData name="Lat">44.9249274537555</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8306026192809,44.9249274537555</coordinates></Point>
@@ -6162,8 +6162,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.18</SimpleData>
-		<SimpleData name="Lng">520449.083035435</SimpleData>
-		<SimpleData name="Lat">4981325.49439417</SimpleData>
+		<SimpleData name="Lng">-68.7406115549251</SimpleData>
+		<SimpleData name="Lat">44.9850781329426</SimpleData>
 		<SimpleData name="nNest">13</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7406115549251,44.9850781329426</coordinates></Point>
@@ -6174,8 +6174,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.18</SimpleData>
-		<SimpleData name="Lng">528153</SimpleData>
-		<SimpleData name="Lat">4969321</SimpleData>
+		<SimpleData name="Lng">-68.6435611056006</SimpleData>
+		<SimpleData name="Lat">44.8767515811314</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6435611056006,44.8767515811314</coordinates></Point>
@@ -6186,8 +6186,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.18</SimpleData>
-		<SimpleData name="Lng">522998.984582813</SimpleData>
-		<SimpleData name="Lat">4972877.0330796</SimpleData>
+		<SimpleData name="Lng">-68.7086524362604</SimpleData>
+		<SimpleData name="Lat">44.9089479357881</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7086524362604,44.9089479357881</coordinates></Point>
@@ -6198,8 +6198,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cj.18</SimpleData>
-		<SimpleData name="Lng">542164.802274149</SimpleData>
-		<SimpleData name="Lat">4966439.02421305</SimpleData>
+		<SimpleData name="Lng">-68.4664069026068</SimpleData>
+		<SimpleData name="Lat">44.8501173135889</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4664069026068,44.8501173135889</coordinates></Point>
@@ -6210,8 +6210,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cj.18</SimpleData>
-		<SimpleData name="Lng">542797.017564936</SimpleData>
-		<SimpleData name="Lat">4967476.07847112</SimpleData>
+		<SimpleData name="Lng">-68.4583190999254</SimpleData>
+		<SimpleData name="Lat">44.8594149608316</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4583190999254,44.8594149608316</coordinates></Point>
@@ -6222,8 +6222,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cj.18</SimpleData>
-		<SimpleData name="Lng">545544.192422272</SimpleData>
-		<SimpleData name="Lat">4965053.80757773</SimpleData>
+		<SimpleData name="Lng">-68.4237673209092</SimpleData>
+		<SimpleData name="Lat">44.8374401696127</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.4237673209092,44.8374401696127</coordinates></Point>
@@ -6234,8 +6234,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cn.18</SimpleData>
-		<SimpleData name="Lng">580642.809654257</SimpleData>
-		<SimpleData name="Lat">4958745.92470674</SimpleData>
+		<SimpleData name="Lng">-67.9807492245991</SimpleData>
+		<SimpleData name="Lat">44.7775604685683</SimpleData>
 		<SimpleData name="nNest">27</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9807492245991,44.7775604685683</coordinates></Point>
@@ -6246,8 +6246,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c4.17</SimpleData>
-		<SimpleData name="Lng">401680</SimpleData>
-		<SimpleData name="Lat">5021681</SimpleData>
+		<SimpleData name="Lng">-70.2549571812849</SimpleData>
+		<SimpleData name="Lat">45.3417445448907</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.2549571812849,45.3417445448907</coordinates></Point>
@@ -6258,8 +6258,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c9.17</SimpleData>
-		<SimpleData name="Lng">454104.228201891</SimpleData>
-		<SimpleData name="Lat">5001396.32709684</SimpleData>
+		<SimpleData name="Lng">-69.5839946767178</SimpleData>
+		<SimpleData name="Lat">45.1645533689062</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5839946767178,45.1645533689062</coordinates></Point>
@@ -6270,8 +6270,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ca.17</SimpleData>
-		<SimpleData name="Lng">461046.613495083</SimpleData>
-		<SimpleData name="Lat">5002973.90566525</SimpleData>
+		<SimpleData name="Lng">-69.4957840157558</SimpleData>
+		<SimpleData name="Lat">45.1791711845745</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4957840157558,45.1791711845745</coordinates></Point>
@@ -6282,8 +6282,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cb.17</SimpleData>
-		<SimpleData name="Lng">473952.197835788</SimpleData>
-		<SimpleData name="Lat">4995429.08945618</SimpleData>
+		<SimpleData name="Lng">-69.3311366140283</SimpleData>
+		<SimpleData name="Lat">45.1118510928363</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3311366140283,45.1118510928363</coordinates></Point>
@@ -6294,8 +6294,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cd.17</SimpleData>
-		<SimpleData name="Lng">494313</SimpleData>
-		<SimpleData name="Lat">4994659</SimpleData>
+		<SimpleData name="Lng">-69.0722886710721</SimpleData>
+		<SimpleData name="Lat">45.10537610846</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0722886710721,45.10537610846</coordinates></Point>
@@ -6306,8 +6306,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cd.17</SimpleData>
-		<SimpleData name="Lng">492264.63477251</SimpleData>
-		<SimpleData name="Lat">4994554.10473099</SimpleData>
+		<SimpleData name="Lng">-69.0983242245157</SimpleData>
+		<SimpleData name="Lat">45.1044124194653</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0983242245157,45.1044124194653</coordinates></Point>
@@ -6318,8 +6318,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ce.17</SimpleData>
-		<SimpleData name="Lng">498242.537898519</SimpleData>
-		<SimpleData name="Lat">4990559.99524754</SimpleData>
+		<SimpleData name="Lng">-69.0223251066455</SimpleData>
+		<SimpleData name="Lat">45.0684984262065</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0223251066455,45.0684984262065</coordinates></Point>
@@ -6330,8 +6330,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.17</SimpleData>
-		<SimpleData name="Lng">518579.855410271</SimpleData>
-		<SimpleData name="Lat">4984368.3010258</SimpleData>
+		<SimpleData name="Lng">-68.7642094363248</SimpleData>
+		<SimpleData name="Lat">45.0125204201268</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7642094363248,45.0125204201268</coordinates></Point>
@@ -6342,8 +6342,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.17</SimpleData>
-		<SimpleData name="Lng">529823.894932824</SimpleData>
-		<SimpleData name="Lat">4988007.83061121</SimpleData>
+		<SimpleData name="Lng">-68.6213017514049</SimpleData>
+		<SimpleData name="Lat">45.0448985749338</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6213017514049,45.0448985749338</coordinates></Point>
@@ -6354,8 +6354,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.17</SimpleData>
-		<SimpleData name="Lng">523663.964691318</SimpleData>
-		<SimpleData name="Lat">4981521.42241976</SimpleData>
+		<SimpleData name="Lng">-68.6998233836168</SimpleData>
+		<SimpleData name="Lat">44.9867419436369</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6998233836168,44.9867419436369</coordinates></Point>
@@ -6366,8 +6366,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cm.17</SimpleData>
-		<SimpleData name="Lng">577881.70183886</SimpleData>
-		<SimpleData name="Lat">4964949.45680363</SimpleData>
+		<SimpleData name="Lng">-68.0146916963507</SimpleData>
+		<SimpleData name="Lat">44.8337039589949</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.0146916963507,44.8337039589949</coordinates></Point>
@@ -6378,8 +6378,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">Co</SimpleData>
 		<SimpleData name="PlotID_FK">cr.17</SimpleData>
-		<SimpleData name="Lng">626158.102897109</SimpleData>
-		<SimpleData name="Lat">4951296.96112027</SimpleData>
+		<SimpleData name="Lng">-67.4075015573548</SimpleData>
+		<SimpleData name="Lat">44.7039467666597</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.4075015573548,44.7039467666597</coordinates></Point>
@@ -6390,8 +6390,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c4.16</SimpleData>
-		<SimpleData name="Lng">405986.977842142</SimpleData>
-		<SimpleData name="Lat">5034282.89084392</SimpleData>
+		<SimpleData name="Lng">-70.2023985902125</SimpleData>
+		<SimpleData name="Lat">45.4557436668398</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.2023985902125,45.4557436668398</coordinates></Point>
@@ -6402,8 +6402,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cb.16</SimpleData>
-		<SimpleData name="Lng">478036.846911661</SimpleData>
-		<SimpleData name="Lat">5008815.13762257</SimpleData>
+		<SimpleData name="Lng">-69.2797999574736</SimpleData>
+		<SimpleData name="Lat">45.2324849878502</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2797999574736,45.2324849878502</coordinates></Point>
@@ -6414,8 +6414,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ce.16</SimpleData>
-		<SimpleData name="Lng">500046.682540357</SimpleData>
-		<SimpleData name="Lat">4999629.6452077</SimpleData>
+		<SimpleData name="Lng">-68.9994061439288</SimpleData>
+		<SimpleData name="Lat">45.1501433650443</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.9994061439288,45.1501433650443</coordinates></Point>
@@ -6426,8 +6426,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ce.16</SimpleData>
-		<SimpleData name="Lng">499706.707828744</SimpleData>
-		<SimpleData name="Lat">5000396.21011721</SimpleData>
+		<SimpleData name="Lng">-69.0037314669477</SimpleData>
+		<SimpleData name="Lat">45.1570436806977</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0037314669477,45.1570436806977</coordinates></Point>
@@ -6438,8 +6438,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cf.16</SimpleData>
-		<SimpleData name="Lng">508937.028385477</SimpleData>
-		<SimpleData name="Lat">5001454.95059766</SimpleData>
+		<SimpleData name="Lng">-68.8862780643384</SimpleData>
+		<SimpleData name="Lat">45.1665175575253</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8862780643384,45.1665175575253</coordinates></Point>
@@ -6450,8 +6450,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cf.16</SimpleData>
-		<SimpleData name="Lng">511077.599208554</SimpleData>
-		<SimpleData name="Lat">4999979.07170447</SimpleData>
+		<SimpleData name="Lng">-68.8590725488217</SimpleData>
+		<SimpleData name="Lat">45.1532018472457</SimpleData>
 		<SimpleData name="nNest">8</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8590725488217,45.1532018472457</coordinates></Point>
@@ -6462,8 +6462,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.16</SimpleData>
-		<SimpleData name="Lng">522927.093094481</SimpleData>
-		<SimpleData name="Lat">4998822.17140315</SimpleData>
+		<SimpleData name="Lng">-68.7083797347306</SimpleData>
+		<SimpleData name="Lat">45.1425024249684</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7083797347306,45.1425024249684</coordinates></Point>
@@ -6474,8 +6474,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.16</SimpleData>
-		<SimpleData name="Lng">522360.113345012</SimpleData>
-		<SimpleData name="Lat">4998987.55779275</SimpleData>
+		<SimpleData name="Lng">-68.7155839189909</SimpleData>
+		<SimpleData name="Lat">45.1440093516223</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7155839189909,45.1440093516223</coordinates></Point>
@@ -6486,8 +6486,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.16</SimpleData>
-		<SimpleData name="Lng">521685.779472332</SimpleData>
-		<SimpleData name="Lat">5000207.75350367</SimpleData>
+		<SimpleData name="Lng">-68.7241082237019</SimpleData>
+		<SimpleData name="Lat">45.1550140861569</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.7241082237019,45.1550140861569</coordinates></Point>
@@ -6498,8 +6498,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.16</SimpleData>
-		<SimpleData name="Lng">535747.168596872</SimpleData>
-		<SimpleData name="Lat">4991046.50775528</SimpleData>
+		<SimpleData name="Lng">-68.5458748324423</SimpleData>
+		<SimpleData name="Lat">45.0719772260439</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5458748324423,45.0719772260439</coordinates></Point>
@@ -6510,8 +6510,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.16</SimpleData>
-		<SimpleData name="Lng">534777.216618443</SimpleData>
-		<SimpleData name="Lat">4992414.69296333</SimpleData>
+		<SimpleData name="Lng">-68.5581016253842</SimpleData>
+		<SimpleData name="Lat">45.0843413244959</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5581016253842,45.0843413244959</coordinates></Point>
@@ -6522,8 +6522,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.16</SimpleData>
-		<SimpleData name="Lng">528908.476547084</SimpleData>
-		<SimpleData name="Lat">4993086.26067209</SimpleData>
+		<SimpleData name="Lng">-68.6326326141755</SimpleData>
+		<SimpleData name="Lat">45.0906506980826</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6326326141755,45.0906506980826</coordinates></Point>
@@ -6534,8 +6534,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c1.15</SimpleData>
-		<SimpleData name="Lng">383607.587396117</SimpleData>
-		<SimpleData name="Lat">5042672.602947</SimpleData>
+		<SimpleData name="Lng">-70.4905267696668</SimpleData>
+		<SimpleData name="Lat">45.5278641626398</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.4905267696668,45.5278641626398</coordinates></Point>
@@ -6546,8 +6546,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c4.15</SimpleData>
-		<SimpleData name="Lng">406407.165763496</SimpleData>
-		<SimpleData name="Lat">5035750.46780685</SimpleData>
+		<SimpleData name="Lng">-70.1973052539296</SimpleData>
+		<SimpleData name="Lat">45.4690071643598</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-70.1973052539296,45.4690071643598</coordinates></Point>
@@ -6558,8 +6558,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c9.15</SimpleData>
-		<SimpleData name="Lng">460297.425443033</SimpleData>
-		<SimpleData name="Lat">5026725.51343388</SimpleData>
+		<SimpleData name="Lng">-69.5072207684367</SimpleData>
+		<SimpleData name="Lat">45.392920522851</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5072207684367,45.392920522851</coordinates></Point>
@@ -6570,8 +6570,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ce.15</SimpleData>
-		<SimpleData name="Lng">508169</SimpleData>
-		<SimpleData name="Lat">5006383</SimpleData>
+		<SimpleData name="Lng">-68.895970284243</SimpleData>
+		<SimpleData name="Lat">45.2108872668248</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.895970284243,45.2108872668248</coordinates></Point>
@@ -6582,8 +6582,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cf.15</SimpleData>
-		<SimpleData name="Lng">510324.632340123</SimpleData>
-		<SimpleData name="Lat">5008971.82279452</SimpleData>
+		<SimpleData name="Lng">-68.8684653062791</SimpleData>
+		<SimpleData name="Lat">45.2341623848126</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8684653062791,45.2341623848126</coordinates></Point>
@@ -6594,8 +6594,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">cg.15</SimpleData>
-		<SimpleData name="Lng">523729.746354003</SimpleData>
-		<SimpleData name="Lat">5005135.29140794</SimpleData>
+		<SimpleData name="Lng">-68.6978702558545</SimpleData>
+		<SimpleData name="Lat">45.1993036483989</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.6978702558545,45.1993036483989</coordinates></Point>
@@ -6606,8 +6606,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">SC</SimpleData>
 		<SimpleData name="PlotID_FK">ch.15</SimpleData>
-		<SimpleData name="Lng">532020.264085006</SimpleData>
-		<SimpleData name="Lat">5005936.36010532</SimpleData>
+		<SimpleData name="Lng">-68.5922653019478</SimpleData>
+		<SimpleData name="Lat">45.2061863661771</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5922653019478,45.2061863661771</coordinates></Point>
@@ -6618,8 +6618,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c5.14</SimpleData>
-		<SimpleData name="Lng">422363.332779018</SimpleData>
-		<SimpleData name="Lat">5045108.36746789</SimpleData>
+		<SimpleData name="Lng">-69.9946994650578</SimpleData>
+		<SimpleData name="Lat">45.5551831124229</SimpleData>
 		<SimpleData name="nNest">4</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.9946994650578,45.5551831124229</coordinates></Point>
@@ -6630,8 +6630,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ca.14</SimpleData>
-		<SimpleData name="Lng">467621.764828602</SimpleData>
-		<SimpleData name="Lat">5028373.75791247</SimpleData>
+		<SimpleData name="Lng">-69.4137595775267</SimpleData>
+		<SimpleData name="Lat">45.4081336568746</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.4137595775267,45.4081336568746</coordinates></Point>
@@ -6642,8 +6642,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c9.13</SimpleData>
-		<SimpleData name="Lng">458578</SimpleData>
-		<SimpleData name="Lat">5044799</SimpleData>
+		<SimpleData name="Lng">-69.5307111367743</SimpleData>
+		<SimpleData name="Lat">45.555496540852</SimpleData>
 		<SimpleData name="nNest">10</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.5307111367743,45.555496540852</coordinates></Point>
@@ -6654,8 +6654,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cd.11</SimpleData>
-		<SimpleData name="Lng">509471.810180528</SimpleData>
-		<SimpleData name="Lat">5049034.11164802</SimpleData>
+		<SimpleData name="Lng">-68.8785596919079</SimpleData>
+		<SimpleData name="Lat">45.5947850948121</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8785596919079,45.5947850948121</coordinates></Point>
@@ -6666,8 +6666,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cc.10</SimpleData>
-		<SimpleData name="Lng">495870.784668309</SimpleData>
-		<SimpleData name="Lat">5062975</SimpleData>
+		<SimpleData name="Lng">-69.0530600703763</SimpleData>
+		<SimpleData name="Lat">45.7203176723915</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.0530600703763,45.7203176723915</coordinates></Point>
@@ -6678,8 +6678,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cd.10</SimpleData>
-		<SimpleData name="Lng">511256.107400289</SimpleData>
-		<SimpleData name="Lat">5067385.47110428</SimpleData>
+		<SimpleData name="Lng">-68.8552576292442</SimpleData>
+		<SimpleData name="Lat">45.759935884822</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.8552576292442,45.759935884822</coordinates></Point>
@@ -6690,8 +6690,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cj.0y</SimpleData>
-		<SimpleData name="Lng">571664.38822527</SimpleData>
-		<SimpleData name="Lat">5070032.47953268</SimpleData>
+		<SimpleData name="Lng">-68.0781334153774</SimpleData>
+		<SimpleData name="Lat">45.7801334610701</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.0781334153774,45.7801334610701</coordinates></Point>
@@ -6702,8 +6702,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c8.0v</SimpleData>
-		<SimpleData name="Lng">478318</SimpleData>
-		<SimpleData name="Lat">5123218</SimpleData>
+		<SimpleData name="Lng">-69.2813441939034</SimpleData>
+		<SimpleData name="Lat">46.2621924108183</SimpleData>
 		<SimpleData name="nNest">5</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.2813441939034,46.2621924108183</coordinates></Point>
@@ -6714,8 +6714,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ci.0v</SimpleData>
-		<SimpleData name="Lng">570094.560552959</SimpleData>
-		<SimpleData name="Lat">5095501.77431374</SimpleData>
+		<SimpleData name="Lng">-68.0946071743124</SimpleData>
+		<SimpleData name="Lat">46.0095027115758</SimpleData>
 		<SimpleData name="nNest">6</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.0946071743124,46.0095027115758</coordinates></Point>
@@ -6726,8 +6726,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c5.0u</SimpleData>
-		<SimpleData name="Lng">448300.162918511</SimpleData>
-		<SimpleData name="Lat">5142600.33622016</SimpleData>
+		<SimpleData name="Lng">-69.6729716866246</SimpleData>
+		<SimpleData name="Lat">46.4349955572633</SimpleData>
 		<SimpleData name="nNest">9</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.6729716866246,46.4349955572633</coordinates></Point>
@@ -6738,8 +6738,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cj.0u</SimpleData>
-		<SimpleData name="Lng">581612.343644503</SimpleData>
-		<SimpleData name="Lat">5101744.3235395</SimpleData>
+		<SimpleData name="Lng">-67.9447899320985</SimpleData>
+		<SimpleData name="Lat">46.0644026328188</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9447899320985,46.0644026328188</coordinates></Point>
@@ -6750,8 +6750,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cg.0r</SimpleData>
-		<SimpleData name="Lng">561019.080674941</SimpleData>
-		<SimpleData name="Lat">5137150.83865012</SimpleData>
+		<SimpleData name="Lng">-68.2064431524449</SimpleData>
+		<SimpleData name="Lat">46.3851783488059</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.2064431524449,46.3851783488059</coordinates></Point>
@@ -6762,8 +6762,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ch.0q</SimpleData>
-		<SimpleData name="Lng">572672.778722104</SimpleData>
-		<SimpleData name="Lat">5150580.99749465</SimpleData>
+		<SimpleData name="Lng">-68.0528130178408</SimpleData>
+		<SimpleData name="Lat">46.5048764217674</SimpleData>
 		<SimpleData name="nNest">3</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.0528130178408,46.5048764217674</coordinates></Point>
@@ -6774,8 +6774,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ch.0p</SimpleData>
-		<SimpleData name="Lng">577489.264096949</SimpleData>
-		<SimpleData name="Lat">5154695.93655975</SimpleData>
+		<SimpleData name="Lng">-67.9893601252775</SimpleData>
+		<SimpleData name="Lat">46.541366098071</SimpleData>
 		<SimpleData name="nNest">17</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9893601252775,46.541366098071</coordinates></Point>
@@ -6786,8 +6786,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ci.0n</SimpleData>
-		<SimpleData name="Lng">591570.891722098</SimpleData>
-		<SimpleData name="Lat">5170445.03943507</SimpleData>
+		<SimpleData name="Lng">-67.8026214503148</SimpleData>
+		<SimpleData name="Lat">46.6812974951928</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.8026214503148,46.6812974951928</coordinates></Point>
@@ -6798,8 +6798,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ci.0n</SimpleData>
-		<SimpleData name="Lng">592572.720493479</SimpleData>
-		<SimpleData name="Lat">5168959.68464851</SimpleData>
+		<SimpleData name="Lng">-67.7898229381734</SimpleData>
+		<SimpleData name="Lat">46.6677955424577</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.7898229381734,46.6677955424577</coordinates></Point>
@@ -6810,8 +6810,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">c5.0m</SimpleData>
-		<SimpleData name="Lng">476156.769898506</SimpleData>
-		<SimpleData name="Lat">5218663.28037268</SimpleData>
+		<SimpleData name="Lng">-69.3143318813427</SimpleData>
+		<SimpleData name="Lat">47.1210432743588</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-69.3143318813427,47.1210432743588</coordinates></Point>
@@ -6822,8 +6822,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ch.0m</SimpleData>
-		<SimpleData name="Lng">591093.132151353</SimpleData>
-		<SimpleData name="Lat">5182367.3162808</SimpleData>
+		<SimpleData name="Lng">-67.8065027093222</SimpleData>
+		<SimpleData name="Lat">46.7886301717857</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.8065027093222,46.7886301717857</coordinates></Point>
@@ -6834,8 +6834,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cb.0l</SimpleData>
-		<SimpleData name="Lng">531687.789663951</SimpleData>
-		<SimpleData name="Lat">5211189.91156868</SimpleData>
+		<SimpleData name="Lng">-68.5827790302902</SimpleData>
+		<SimpleData name="Lat">47.0534645438065</SimpleData>
 		<SimpleData name="nNest">2</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.5827790302902,47.0534645438065</coordinates></Point>
@@ -6846,8 +6846,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cd.0k</SimpleData>
-		<SimpleData name="Lng">557532.859726741</SimpleData>
-		<SimpleData name="Lat">5220153.27790427</SimpleData>
+		<SimpleData name="Lng">-68.2413660691407</SimpleData>
+		<SimpleData name="Lat">47.132370261016</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.2413660691407,47.132370261016</coordinates></Point>
@@ -6858,8 +6858,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">cg.0k</SimpleData>
-		<SimpleData name="Lng">581436.275688824</SimpleData>
-		<SimpleData name="Lat">5213799.51776283</SimpleData>
+		<SimpleData name="Lng">-67.9273705922932</SimpleData>
+		<SimpleData name="Lat">47.0726845345018</SimpleData>
 		<SimpleData name="nNest">1</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-67.9273705922932,47.0726845345018</coordinates></Point>
@@ -6870,8 +6870,8 @@
 		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="Str_FK">ND</SimpleData>
 		<SimpleData name="PlotID_FK">ce.0j</SimpleData>
-		<SimpleData name="Lng">566025.064356909</SimpleData>
-		<SimpleData name="Lat">5223140.13393459</SimpleData>
+		<SimpleData name="Lng">-68.1289605270575</SimpleData>
+		<SimpleData name="Lat">47.1584481969696</SimpleData>
 		<SimpleData name="nNest">7</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>-68.1289605270575,47.1584481969696</coordinates></Point>
