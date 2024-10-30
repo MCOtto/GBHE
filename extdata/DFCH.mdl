@@ -1,0 +1,103 @@
+# Random effect detection and including the ground truth (GT) observations
+# There is a differential in first detecting colonies over nests in colonies.
+ var ColZ[nLstCol], ToStr[2*nStr,nFS], pObsr[nObsr];
+ model {
+
+# Some aerial counts may be higher than the ground truth
+  for(iObs in 1:nColObs){
+#   nest[iObs]~dbin(pObsr[Obs2Obsr[iObs]],Nest[Obs2Col[iObs]]);
+   nest[iObs]~dpois(pObsr[Obs2Obsr[iObs]]*Nest[Obs2Col[iObs]]);
+#    act[iObs]~ dbin(pObsr[Obs2Obsr[iObs]], Act[Obs2Col[iObs]]);
+    act[iObs]~ dpois(pObsr[Obs2Obsr[iObs]]*Act[Obs2Col[iObs]]);
+  }
+
+# Colony detection from few capture histories
+  for(iCmb in 1:nCmb){
+# Capture history probability
+#   xCH[nCH,iCmb]<-sum(xCH[1:(nCH-1),iCmb])
+    xCH[1:(nCH-1),iCmb]~dmulti(pCH[1:(nCH-1),iCmb],xCH[nCH,iCmb])
+    
+# Calculate the new colony detection for each observer given colony size
+    pCO[1,iCmb]<-(1-(1-pNest2Col*pObsr[Grp[1,iCmb]])^sqrt(Nest[Cmb2Col[iCmb]]))
+    pCO[2,iCmb]<-(1-(1-pNest2Col*pObsr[Grp[2,iCmb]])^sqrt(Nest[Cmb2Col[iCmb]]))
+
+# Calculate the detection of combinations of different capture histories   
+    pCH[nCH,iCmb]<-
+      pCO[1,iCmb]+pCO[2,iCmb]-pCO[1,iCmb]*pCO[2,iCmb]
+      
+    for(iCH in 1:(nCH-1)){
+      pCH[iCH,iCmb]<-(
+        (CHCoef[1,iCH]+CHCoef[2,iCH]*pCO[1,iCmb])*
+        (CHCoef[3,iCH]+CHCoef[4,iCH]*pCO[2,iCmb])
+      )/pCH[nCH,iCmb]
+    }
+  }
+
+# Continuous version of occupancy?  Is this right or worth it?
+# Could just raise the colonies per area and get the same new colonies.
+  for(iPlot in 1:nAreaPlot){
+   newcol[iPlot]~dpois(CpA[Plot2YS[iPlot]]);
+  }
+
+# Nests per colony.  
+# See if we use this for new nests.  
+  for(iCol in 1:nLstCol){
+   Nest[iCol]~dpois(ColZ[iCol]*NpC[Col2FS[iCol]])
+    Act[iCol]~dbin(pAct[Col2YS[iCol]],Nest[iCol])
+   ColZ[iCol]~dbern(ColPsi[Col2YS[iCol]]);
+  }
+ 
+# Occupancy of active colonies
+  for(iStr in 1:nYS){
+   ActPsi[iStr]=sum(ifelse(Col2YS==iStr,Act>0,0))/
+                sum(ifelse(Col2YS==iStr,  1,0));
+  }
+
+# Nest per colony for area frame nests.  No occupancy.
+  for(iCol in nLstCol+1:nNewCol){
+   Nest[iCol]~dpois(NpC[Col2FS[iCol]])
+    Act[iCol]~dbin(pAct[Col2YS[iCol]],Nest[iCol])
+  }
+
+# Factor between nest and colony detection
+  pNest2Col~dbeta(1,1);
+ 
+# Occupancy of each colony
+  for(iStr in 1:nYS){
+   ColPsi[iStr]~dbeta(1,1);
+  }
+  
+  lnNpC<-ToStr%*%lnNpCFS;
+#  NpC<-mexp(ToStr%*%lnNpCFS);
+  for(iFS in 1:(2*nStr)){
+   NpC[iFS]<-exp(lnNpC[iFS]);
+  }
+
+  for(iFS in 1:nFS){
+   lnNpCFS[iFS]~dunif(-10,10);
+  }
+
+# Assume proportion active does not change between list and area frames
+  for(iStr in 1:nYS){
+   pAct[iStr]~dbeta(1,1);
+  }
+  
+# Colonies per area
+  for(iStr in 1:nYS){
+   CpA[iStr]<-exp(lnCpA[iStr]);
+   lnCpA[iStr]~dunif(-10,10);
+  }
+
+# Observer random effects.  There are only DDA, BZ, and KM that are 
+# observers both years, to observer could account for year effects.
+  tau0~dgamma(3.2890,7.8014);
+  p0~dbeta(1,1);
+  ObsrMu~dnorm(0,tau0/p0);
+  ObsrSD<-tau0/(1-p0);
+  for(iObsr in 1:(nObsr-1)){  # Last is the ground observations
+   lgtObsr[iObsr]~dnorm(ObsrMu,ObsrSD);
+   logit(pObsr[iObsr])<-lgtObsr[iObsr];
+  }
+  pObsr[nObsr]<-1.0  # Ground truth
+
+ }
