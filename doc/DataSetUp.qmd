@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "11 October 2024"
+date: "31 October 2024"
 format: docx
 editor: source
 ---
@@ -57,7 +57,13 @@ nYrStr <- length(cYrStr)
 cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, function(x)
   paste(x[1], x[2], x[3], sep = "."))
 nFS <- length(cFS)
+
+# Write the spatial data to  `gis`, the dataframes to  `GBHE/data` and the collections of 
+# single variables to `ori/MetaVars.RDump`.  Use `lWrite = FALSE` to debug and test.
 lWrite <- FALSE
+
+# FALSE, the data come from the 2015 and 2023 projects and are written to the `GBHE/ori` directory.
+# TRUE, the data are just read from the `GBHE/ori` directory.  
 lFromOri <- FALSE
 
 if(lWrite) {
@@ -131,21 +137,23 @@ StrArea <- RDB2Data(Tbl = "StrArea",
 fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
 if (lWrite) {
   dump(
-    c("StrArea", "fStr"),
+    list = c("StrArea", "fStr"),
     file = here::here("ori/MetaVars.RDump") ,
     append = TRUE
   )
 }
 
 # Use the 2023 for both stratum layers.
-tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp")
-if (lWrite) {
+if (lFromOri) {
+  tStrSF <- st_read(here::here("ori/gis/StrSF.shp"))
+} else {
+  tStrSF <- st_read("~/Profesional/GBHE.2023/GIS/GBHE_Stratum.shp")
   st_write(tStrSF,
            dsn = here::here("ori/gis/StrSF.shp"),
            delete_layer = TRUE)
 }
 
-# `dplyr` joins removes the `sf` class.
+# `dplyr` joins remove the `sf` class.
 tStrSF2 <- st_as_sf(
   inner_join(
     tibble::as_tibble(x = list(
@@ -216,11 +224,25 @@ if (lFromOri) {
   readr::write_csv(tRC2XY, here::here("ori/RC2XY.csv"), na = "")
 }
 
+# Save RC2XY for reference.  
 RC2XY <- tRC2XY %>%
   select(PlotID, Col, Row)
+if(lWrite){
+  readr::write_csv(RC2XY, here::here("data/RC2XY.csv"), na = "")
+}
 
-tColony2023 <-st_read("~/Profesional/GBHE.2023/GIS/2023/ListFrameNewPlots.shp")
-if (lWrite) {
+```
+## 2023 Colony List
+
+2023 is a spatial file but 2015 was a dataframe.  How does that work?
+
+```{r Colony2023}
+if (lFromOri) {
+  tColony2023 <- st_read(here::here("ori/gis/Colony2023.shp"))
+} else {
+  tColony2023 <- st_read("~/Profesional/GBHE.2023/GIS/2023/ListFrameNewPlots.shp")
+  # This only has 215 colonies.  Ask Danielle.
+  # uColony2023 <- st_read("~/Profesional/GBHE.2023/GIS/2023/GBHE_ColonyPlotJoin.shp")
   st_write(
     tColony2023,
     dsn = here::here("ori/gis/Colony2023.shp"),
@@ -228,6 +250,8 @@ if (lWrite) {
   )
 }
 
+# Format the colony names, use the stratum short names, and add the `PlotID`.
+# Note that the join makes the file non-spatial.
 tCol2023SF <- inner_join(
   tColony2023 %>%
     mutate(
@@ -275,16 +299,8 @@ Col2023SF <- bind_cols(tCol2023SF, LatLong) %>%
          Comment)
 
 
-tColony2023 <- st_read("~/Profesional/GBHE.2023/GIS/2023/GBHE_ColonyPlotJoin.shp")
-if (lWrite) {
-  st_write(
-    tColony2023,
-    dsn = here::here("ori/gis/Colony2023.shp"),
-    delete_layer = TRUE
-  )
-}
-
-tColony2015SF <- inner_join(
+# Don't use.  Make the spatial data from the dataframes?
+tColony2015SF <- left_join(
   tColony2023 %>%
     mutate(FWSColonyID_PK = sprintf("ME.%04d", COLONYNO)) %>%
     select(FWSColonyID_PK),
