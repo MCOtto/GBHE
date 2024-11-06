@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey 2015 and 2023"
 author: "Mark C. Otto"
-date: "18 July 2024"
+date: "1 October 2024"
 echo: false
 format: docx
 editor: source
@@ -758,15 +758,20 @@ save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
 Detection is low and 
 
 ```{r ColonyDetection}
-pColSeen %>%
-  ggplot(aes(Nest, Median)) +
-  geom_line() +
-  geom_ribbon(
-    aes(ymin = C0.05, ymax = C0.95),
-    fill = "light green",
-    color = NA,
-    alpha = 0.2
-  ) +
-  geom_rug(data = SmpColObs, aes(x = Nest, y = 0.1), 
-    alpha = 1 / 2, sides = "b", position = "jitter")
+# pColSeen %>%
+#   ggplot(aes(Nest, Median)) +
+#   geom_line() +
+#   geom_ribbon(
+#     aes(ymin = C0.05, ymax = C0.95),
+#     fill = "light green",
+#     color = NA,
+#     alpha = 0.2
+#   ) +
+#   geom_rug(
+#     data = SmpColObs,
+#     aes(x = Nest, y = 0.1),
+#     alpha = 1 / 2,
+#     sides = "b",
+#     position = "jitter"
+#   )
 

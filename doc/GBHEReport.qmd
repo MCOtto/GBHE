@@ -400,8 +400,10 @@ for (iYrStr in 1:nrow(LstSmry)) {
   # iYrStr <- 1
   
   # Estimated proportion of occupied colony sites and the number of colonies
-  tBeta <- Beta(nu = 1 + LstSmry[iYrStr, "nNestCol"], nup = 1 + LstSmry[iYrStr, "nSmpCol"] - LstSmry[iYrStr, "nNestCol"])
-  LstSmry[iYrStr, "pNestCol"] <- attr(tBeta, "Mean")
+   LstSmry[iYrStr, "NestColNu"] <- 1 + LstSmry[iYrStr, "nNestCol"]
+  LstSmry[iYrStr, "NestColNup"] <- 1 + LstSmry[iYrStr, "nSmpCol"] - LstSmry[iYrStr, "nNestCol"]
+ tBeta <- Beta(nu = LstSmry[iYrStr, "NestColNu"], nup = 1 + LstSmry[iYrStr, "nSmpCol"] - LstSmry[iYrStr, "nNestCol"])
+ LstSmry[iYrStr, "pNestCol"] <- attr(tBeta, "Mean")
   LstSmry[iYrStr, "pNestColSD"] <- attr(tBeta, "SD")
   LstSmry[iYrStr, "nEstNestCol"] <- LstSmry[iYrStr, "nNestCol"] + LstSmry[iYrStr, "nNestNSCol"] +
     LstSmry[iYrStr, "pNestCol"] * LstSmry[iYrStr, "nColonyPred"]

@@ -9,7 +9,7 @@ editor: source
 
 ## Introduction
 
-## Use data augmentation Royle and Dorazio, 2008. p. 211--224 to
+## Use Royle and Dorazio, 2008. p. ?--? to
 
 Great blue heron dual-frame survey 2015 and 2023
 
@@ -55,6 +55,9 @@ lEst <- FALSE
 # RearAreaObsr, nRearAreaObsr, cCHCol
 
 ```
+## 
+
+
 
 ## Occupancy Proportion
 
