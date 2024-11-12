@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "31 October 2024"
+date: "12 November 2024"
 format: docx
 editor: source
 ---
@@ -33,6 +33,19 @@ library(purrr)
 library(ggplot2)
 library(RSQLite)
 source(here::here("R/RDB2Data.R"))
+# Write the spatial data to  `gis`, the dataframes to  `GBHE/data` and the collections of 
+# single variables to `data/MetaVars.R`.  Use `lWrite = FALSE` to debug and test.
+lWrite <- FALSE
+
+# FALSE, the data come from the 2015 and 2023 projects and are written to the `GBHE/ori` directory.
+# TRUE, the data are just read from the `GBHE/ori` directory.  
+lFromOri <- FALSE
+
+```
+
+## Setup the levels, level names, and size of each level
+
+```{r Indices}
 
 # Survey years
 CurrentYr <- 2023
@@ -43,28 +56,22 @@ nYear <- length(cYear)
 cFrame <- c("List", "Area")
 nFrame <- length(cFrame)
 
-# Survey strata
-cDFStr <- c("SC", "Co", "ND")
-nStr <- length(cDFStr)
+# Survey strata.  List stratum can be different than area stratum
+# but not in this survey, so do not worry about this complication
+# by using LstStr, AreaStr, and Str.  Just use Str.
+cStr <- c("SC", "Co", "ND")
+nStr <- length(cStr)
 
 # Make the year-stratum levels
-cYrStr <- apply(expand_grid(Year = cYear, Str = cDFStr), 1, function(x)
+cYrStr <- apply(expand_grid(Year = cYear, Str = cStr), 1, function(x)
   paste(x[1], x[2], sep = "."))
 nYrStr <- length(cYrStr)
 
 # Make the year-frame-stratum levels.
 # Should call cYFS.
-cFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr), 1, function(x)
+cYFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cStr), 1, function(x)
   paste(x[1], x[2], x[3], sep = "."))
-nFS <- length(cFS)
-
-# Write the spatial data to  `gis`, the dataframes to  `GBHE/data` and the collections of 
-# single variables to `ori/MetaVars.RDump`.  Use `lWrite = FALSE` to debug and test.
-lWrite <- FALSE
-
-# FALSE, the data come from the 2015 and 2023 projects and are written to the `GBHE/ori` directory.
-# TRUE, the data are just read from the `GBHE/ori` directory.  
-lFromOri <- FALSE
+nYFS <- length(cYFS)
 
 if(lWrite) {
   dump(
@@ -74,14 +81,14 @@ if(lWrite) {
       "nYear",
       "cFrame",
       "nFrame" ,
-      "cDFStr",
+      "cStr",
       "nStr",
       "cYrStr",
       "nYrStr",
-      "cFS"               ,
-      "nFS"
+      "cYFS" ,              ,
+      "nYFS"
     ),
-    file = here::here("ori/MetaVars.RDump")
+    file = here::here("data/MetaVars.R")
   )
 }
 
@@ -138,7 +145,7 @@ fStr <- factor(StrArea$Str_PK, StrArea$Str_PK)
 if (lWrite) {
   dump(
     list = c("StrArea", "fStr"),
-    file = here::here("ori/MetaVars.RDump") ,
+    file = here::here("data/MetaVars.R") ,
     append = TRUE
   )
 }
@@ -234,7 +241,7 @@ if(lWrite){
 ```
 ## 2023 Colony List
 
-2023 is a spatial file but 2015 was a dataframe.  How does that work?
+2023 is a spatial file but 2015 was a dataframe, but the `dplyr` joins remove the spatial class.
 
 ```{r Colony2023}
 if (lFromOri) {
@@ -688,6 +695,36 @@ rm(tblFlightInfo2015, tblFlightInfo2023)
 
 ```
 
+## Add the obserervers to the meta-variable dump
+
+```{r ObsrVars}
+# For observer detection
+cSeat <- c("Front", "Rear", "Dirt")
+
+# Set up the observers for observer detection. Put ground last and set detection to one. 
+# Make a sort function for the observers to sort by last then first name.
+LastFirst <- function(str) {
+  nc <- nchar(str)
+  paste(substr(str, nc, nc), substr(str, 1, nc - 1), sep = "")
+}
+cObsr <- unique(as.character(c(tblFlightInfo$Front,tblFlightInfo$Front)))
+cObsr <- cObsr[order(LastFirst(cObsr))]
+cObsr <- c(cObsr[cObsr != "Gnd"], "Gnd")
+nObsr <- length(cObsr)
+
+
+if (lWrite) {
+  dump(
+    list = c("cSeat",
+      "cObsr",
+      "nObsr"),
+    file = here::here("data/MetaVars.R") ,
+    append = TRUE
+  )
+}
+
+```
+
 ## Merge the plot tables
 
 Combine with `GRTSLoc` to add `Str` and `PlotID`. The `OOS` will not have stratum or plot ID.
@@ -867,7 +904,6 @@ if (lWrite) {
 rm(tblObservations2015, tblObservations2023)
 
 ```
-
 ## List the new colonies, since in `tblObservations` and `RecObs` the we use the new colony id instead of a code with `new.`.
 
 ```{r NewColonies}
@@ -1507,16 +1543,6 @@ save(
   CRS.WGS84,
   CRS.Alpers,
   CRS.UTM19N,
-  cYear,
-  nYear,
-  cFrame,
-  nFrame,
-  cDFStr,
-  nStr,
-  cYrStr,
-  nYrStr,
-  cFS,
-  nFS,
   MEBoundarySF,
   StrSF,
   ColonySF,

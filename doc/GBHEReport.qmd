@@ -1,6 +1,6 @@
 ---
 title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
-author: "Mark C. Otto 30 October 2024"
+author: "Mark C. Otto 12 November 2024"
 echo: false
 eval: true
 warning: false
@@ -57,7 +57,10 @@ File <- here::here(paste("doc/Notes/", cMdl, ".xlsx", sep = ""))
 SimFile <- here::here(paste("TmpData/", cMdl, ".PS.RData", sep = ""))
 lEst <- TRUE
 
-# Load the data
+# Load the single variables
+source(file = here::here("data/MetaVars.R"))
+
+# All the data in `output/GBHE.RData` is in the `data` directory.
 load(file = here::here("output/GBHE.RData"))
 
 ```
@@ -68,16 +71,6 @@ The study area is the state of Maine divided in the same 10 km x 10 km grid inte
 The Maine state boundary is in [MEBoundarSF.kml](file:///`{r} here::here("gis/MEBoundarySF.kml")`), 
 the stratum layer is in [StrSF.kml](file:///`{r} here::here("gis/StrSF.kml")`), and
 the stratum-plot layer is in [StrPlotSF.kml](file:///`{r} here::here("gis/StrPlotSF.kml")`).
-
-```{r Strata}
-# Add totals for the tables
-cStr <- c(cDFStr, "Total")
-
-# Make a year-frame-stratum levels
-tYFS <- expand_grid(Year = cYear, Frame = cFrame, Str = cDFStr) %>%
-  mutate(YFS = paste(Year, Frame, Str, sep = "."))
-cYFS <- tYFS$YFS
-```
 
 # Sample Size Determination
 
@@ -117,7 +110,7 @@ GRTSSmpYFS <- tGRTSSmp %>%
     nListColony = sum(nListColony),
     .groups = "drop"
   ) %>%
-  arrange(factor(Frame, cFrame), Year, factor(Str, cDFStr))
+  arrange(factor(Frame, cFrame), Year, factor(Str, cStr))
 
 knitr::kable(GRTSSmpYFS, digits = 0, caption = "Number of sample plots and list colonies for each year, frame, and stratum.")
 
@@ -143,7 +136,7 @@ GBHEObs <- left_join(
   RecObs %>%
     filter(!(AOU != "GBHE" |
                is.na(FWSColonyID))) %>%
-    mutate(Str = factor(Str, cDFStr),
+    mutate(Str = factor(Str, cStr),
          InSmp = siteID != "OOS",
          rNest = ifelse(is.na(rNest), 0, rNest),
          rAct = ifelse(is.na(rAct), 0, rAct)
@@ -198,7 +191,6 @@ The ground observations should be added to this.
 Note that in both 2015 and 2023, ME.0034 was sighted in A08 or cl.1d, a list nest in an area plot.
 
 ```{r SampleColonies}
-cSeat <- c("Front", "Rear", "Dirt")
 
 SeatObs <- bind_rows(
   GBHEObs %>%
@@ -301,7 +293,7 @@ ListCol <- anti_join(
 YrStrCol <- ListCol %>%
   group_by(Year, Str) %>%
   summarize(nColony = n_distinct(FWSColonyID), .groups = "drop") %>%
-  arrange(Year, factor(Str, cDFStr))
+  arrange(Year, factor(Str, cStr))
 
 # I am not sure why the above does not the same as GTRSSmpYFS
 # YrStrCol <- GRTSSmpYFS %>%
@@ -322,10 +314,12 @@ In the Cochran survey estimation, the only error is in the prediction of the num
 
 The number of colonies is right in the Colony Summary but not in the List Frame Colony Summary. (corrected?)
 
+Check why the stratum and plot are missing from some observations.
+
 ```{r ListSmry}
 
 tLstSmry <- AllObs %>%
-  filter(Frame == "List") %>%
+  filter(Frame == "List" & !is.na(Str)) %>%
   group_by(Year, Str, FWSColonyID, InSmp) %>%
   summarize(isNest = as.integer(any(Nest > 0, na.rm = TRUE)),
             isAct = as.integer(any(Act > 0, na.rm = TRUE)),
@@ -363,6 +357,8 @@ LstSmry <- inner_join(tLstSmry, YrStrCol, by = c("Year", "Str")) %>%
     # sampled.
     # Remove colonies were nonsample observations have been made.
     nColonyPred = nColony - nSmpCol - nNSCol,
+    NestColNu = NA,
+    NestColNup = NA,
     pNestCol = NA,
     pNestColSD = NA,
     nEstNestCol = NA,
@@ -379,6 +375,8 @@ LstSmry <- inner_join(tLstSmry, YrStrCol, by = c("Year", "Str")) %>%
     nColonyPred,
     nSmpCol,
     nNSCol,
+    NestColNu,
+    NestColNup,
     nNestCol,
     nNestNSCol,
     nActCol,
@@ -393,7 +391,7 @@ LstSmry <- inner_join(tLstSmry, YrStrCol, by = c("Year", "Str")) %>%
     nEstActCol,
     nEstActColSD
   ) %>%
-  arrange(Year, factor(Str, cDFStr))
+  arrange(Year, factor(Str, cStr))
 
 # Arrrrgh will not let Beta work on vectors.
 for (iYrStr in 1:nrow(LstSmry)) {
@@ -442,7 +440,7 @@ knitr::kable(LstSmry[, c("Year",
                          "pNestCol",
                          "pNestColSD",
                          "nEstNestCol",
-                         "nEstNestColSD")], digits = 2, caption = "List Frame Nest Summary")
+                         "nEstNestColSD")], digits = 2, caption = "List Frame Colony Summary")
 
 ```
 ## Active Nests in colony summaries
@@ -454,7 +452,7 @@ knitr::kable(LstSmry[, c("Year",
                          "pActCol",
                          "pActColSD",
                          "nEstActCol",
-                         "nEstActColSD")], digits = 2, caption = "List Frame Active Nest Summary")
+                         "nEstActColSD")], digits = 2, caption = "List Frame Active Colony Summary")
 rm(tLstSmry)
 
 ```
@@ -483,7 +481,7 @@ NewObs <- left_join(
   by = c("Year", "Str", "PlotID")
 ) %>%
   mutate(Year = factor(Year, cYear),
-         Str = factor(Str, levels = cDFStr),) %>%
+         Str = factor(Str, levels = cStr),) %>%
   group_by(Year, Str, PlotID) %>%
   summarize(
     nNestCol = sum(nNestCol, na.rm = TRUE),
@@ -551,14 +549,14 @@ Get the nonsample plots.
 ```{r NonSmpPlots}
 tPlot <- expand_grid(Year = cYear, Plot %>%
                        dplyr::select(Str, PlotID, KMSq)) %>%
-  mutate(Year = factor(Year, cYear), Str = factor(Str, cDFStr)) %>%
+  mutate(Year = factor(Year, cYear), Str = factor(Str, cStr)) %>%
   arrange(Year, Str, PlotID)
 
 NonSmpPlot <- anti_join(tPlot ,
                        NewObs %>%
                          dplyr::select(Year, Str, PlotID),
                        by = c("Year", "Str", "PlotID")) %>%
-  mutate(Str = factor(Str, cDFStr))
+  mutate(Str = factor(Str, cStr))
 rm(tPlot)
 
 ```
@@ -633,7 +631,7 @@ AllNestObs <- AllObs %>%
   mutate(
     YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
     Year = factor(Year, cYear),
-    Str = factor(Str, cDFStr),
+    Str = factor(Str, cStr),
     Frame = factor(Frame, cFrame),
     Nest = ifelse(is.na(Nest), 0, Nest),
     Act = ifelse(is.na(Act), 0, Act)
@@ -661,23 +659,23 @@ summary(NestMdlStr)
 NestMdlYrStr <-
   lm(Nest ~ Str + Year+-1, data = AllNestObs, subset = InSmp)
 summary(NestMdlYrStr)
-NestMdlFS <-
+NestMdlYFS <-
   lm(Nest ~ YFS - 1, data = AllNestObs, subset = InSmp)
-summary(NestMdlFS)
-AIC(NestMdl0, NestMdlStr, NestMdlYrStr, NestMdlFS)
+summary(NestMdlYFS)
+AIC(NestMdl0, NestMdlStr, NestMdlYrStr, NestMdlYFS)
 
 # Mdl0 estimate and SD
 # Need zeros for the year-frame-stratum with no new colonies.
-cCoef <- stringr::str_replace(names(coefficients(NestMdlFS)), "YFS", "")
-FSEst <- rep(0, length = length(cYFS))
-names(FSEst) <- cYFS
-FSSD <- FSEst
-FSEst[cCoef] <- as.numeric(coefficients(NestMdlFS))
-FSSD[cCoef] <- as.numeric(sqrt(diag(vcov(NestMdlFS))))
+cCoef <- stringr::str_replace(names(coefficients(NestMdlYFS)), "YFS", "")
+YFSEst <- rep(0, length = length(cYFS))
+names(YFSEst) <- cYFS
+YFSSD <- YFSEst
+YFSEst[cCoef] <- as.numeric(coefficients(NestMdlYFS))
+YFSSD[cCoef] <- as.numeric(sqrt(diag(vcov(NestMdlYFS))))
 NestPerCol <- tibble::tibble(
   YFS = cYFS,
-  NestPerCol = as.double(FSEst),
-  NestPerColSD = as.double(FSSD)
+  NestPerCol = as.double(YFSEst),
+  NestPerColSD = as.double(YFSSD)
 ) %>%
   separate(YFS, into = c("Year", "Frame", "Str"))
 
@@ -705,7 +703,7 @@ NestSmry <- inner_join(
   mutate(
     Year = factor(Year, cYear),
     Frame = factor(Frame, cFrame),
-    Str = factor(Str, cDFStr)
+    Str = factor(Str, cStr)
   ) %>%
   mutate(NestMn = nEstNestCol * NestPerCol, NestSD = sqrt(
     pmax(
@@ -842,23 +840,23 @@ ActMdlYrStr <-
   lm(Act ~ Year + Str+-1, data = AllNestObs, subset = InSmp)
 summary(ActMdlYrStr)
 
-ActMdlFS <-
+ActMdlYFS <-
   lm(Act ~ YFS - 1, data = AllNestObs, subset = InSmp)
-summary(ActMdlFS)
+summary(ActMdlYFS)
 
 # Use the YrStr
-AIC(ActMdl0, ActMdlStr, ActMdlYrStr, ActMdlFS)
+AIC(ActMdl0, ActMdlStr, ActMdlYrStr, ActMdlYFS)
 
-# MdlFS estimate and SD
-cCoef <- stringr::str_replace(names(coefficients(ActMdlFS)), "YFS", "")
-FSEst <- rep(0, length = length(cYFS))
-names(FSEst) <- cYFS
-FSEst[cCoef] <- as.numeric(coefficients(ActMdlFS))
-FSSD[cCoef] <- as.numeric(sqrt(diag(vcov(ActMdlFS))))
+# MdlYFS estimate and SD
+cCoef <- stringr::str_replace(names(coefficients(ActMdlYFS)), "YFS", "")
+YFSEst <- rep(0, length = length(cYFS))
+names(YFSEst) <- cYFS
+YFSEst[cCoef] <- as.numeric(coefficients(ActMdlYFS))
+YFSSD[cCoef] <- as.numeric(sqrt(diag(vcov(ActMdlYFS))))
 ActPerCol <- tibble::tibble(
   YFS = cYFS,
-  ActPerCol = as.double(FSEst),
-  ActPerColSD = as.double(FSSD)
+  ActPerCol = as.double(YFSEst),
+  ActPerColSD = as.double(YFSSD)
 ) %>%
   separate(YFS, into = c("Year", "Frame", "Str"))
 
@@ -886,7 +884,7 @@ ActSmry <- inner_join(
   mutate(
     Year = factor(Year, cYear),
     Frame = factor(Frame, cFrame),
-    Str = factor(Str, cDFStr)
+    Str = factor(Str, cStr)
   ) %>%
   mutate(ActMn = nEstActCol * ActPerCol, ActSD = sqrt(
     pmax(
@@ -980,22 +978,10 @@ ActDF$ActCI90 <- paste(format(ActDFQ[, 1]),
 knitr::kable(ActDF, digits = c(0, 1, 2, 0), caption = "Year Dual-Frame Active Colonies")
 
 ```
-Set up the observers for observer detection. Put ground last and set detection to one. Make a sort function for the observers to sort by last then first name.
-
-```{r ObserverName}
-LastFirst <- function(str) {
-  nc <- nchar(str)
-  paste(substr(str, nc, nc), substr(str, 1, nc - 1), sep = "")
-}
-cObsr <- unique(as.character(AllObs$Obsr))
-cObsr <- cObsr[order(LastFirst(cObsr))]
-
-```
 
 Get all the observers including the ground, then make all observer seat combinations. Danielle D'Auria was the only front seat observer.
 
 ```{r ObserverSeat}
-cObsr <- c(cObsr[cObsr != "Gnd"], "Gnd")
 AllObs$Obsr <- factor(AllObs$Obsr, levels = cObsr)
 nObsr <- nlevels(AllObs$Obsr)
 
@@ -1064,11 +1050,13 @@ CapHist <- CHObs %>%
                 Front, Rear, FWSColonyID, FRObsr, `01`, `10`, `11`, `00`)
 
 ```
-There are so few capture histories and no rear-seat only observations, `01`, just collapse all the rear observers. Two of the nests were sighted twice.
+
+## Capture Histories by observer
+There are only three observers that fly both years, so year is confounded with observer.  Just do by observer.
 
 ```{r ObsDet}
 tX.Smp <- CapHist %>%
-  group_by(Year) %>%
+  group_by(Rear) %>%
   summarise(
     nCapHist = n(),
     x01 = sum(`01`),
@@ -1077,8 +1065,8 @@ tX.Smp <- CapHist %>%
     x00 = sum(`00`)
   )
 X.Smp <- matrix(unlist(tX.Smp[3:5]), nrow = 3, byrow = TRUE)
-dimnames(X.Smp) <- list(colnames(tX.Smp)[3:5], cYear)
-Parm0 <- c(0.95, 0.3, 0.95, 0.3)
+dimnames(X.Smp) <- list(colnames(tX.Smp)[3:5], tX.Smp$Rear)
+Parm0 <- c(0.95, rep(0.3, length = ncol(X.Smp)))
 # CRC(Parm0, X = X.Smp)
 
 Est <- optim(
@@ -1097,22 +1085,67 @@ Est <- optim(
 )
 
 # Est
-DetPN  <- bind_cols(
-  Year = rep(cYear, each = 2),
-  Seat = rep(cSeat[1:2], times = 2),
+DetPNObsr  <- bind_cols(
+  Obsr = c("DD", tX.Smp$Rear),
   pDet = round(100 * Est$par, 0),
   SD = round(100 * sqrt(diag(solve(Est$hessian))), 1),
-  N = rep(currentN, each = 2)
+  N = c(NA, currentN)
 )
-knitr::kable(DetPN, digits = 1, caption = "Front-Rear Observer Detection Estimates")
+knitr::kable(DetPNObsr, digits = 1, caption = "Front-Rear Observer Detection Estimates")
 
 ```
+# Detection of rear-seat observer by year
+There are so few capture histories and no rear-seat only observations, `01`, just collapse all the rear observers. Two of the nests were sighted twice.
 
+```{r rYrDet}
+tX.Smp <- CapHist %>%
+  group_by(Year) %>%
+  summarise(
+    nCapHist = n(),
+    x01 = sum(`01`),
+    x10 = sum(`10`),
+    x11 = sum(`11`),
+    x00 = sum(`00`)
+  )
+X.Smp <- matrix(unlist(tX.Smp[3:5]), nrow = 3, byrow = TRUE)
+dimnames(X.Smp) <- list(colnames(tX.Smp)[3:5], cYear)
+Parm0 <- c(0.95, rep(0.3, length = ncol(X.Smp)))
+# CRC(Parm0, X = X.Smp)
+
+Est <- optim(
+  par = Parm0,
+  fn = CRC,
+  X = X.Smp,
+  method =
+    # "CG",
+    # "Nelder-Mead",
+    # "SANN",
+    "L-BFGS-B",
+  lower = c(0.0001, 0.0001),
+  upper = c(0.9999, 0.9999),
+  control = list(maxit = 10000), #  reltol = 1e-10),
+  hessian = TRUE
+)
+
+# Est
+DetPNYr  <- bind_cols(
+  Obsr = c("DD", cYear),
+  Seat = (cSeat[c(1,2,2)]),
+  pDet = round(100 * Est$par, 0),
+  SD = round(100 * sqrt(diag(solve(Est$hessian))), 1),
+  N = c(NA, currentN)
+)
+knitr::kable(DetPNYr, digits = 1, caption = "Front-Rear Observer Detection Estimates")
+
+# Make the capture matrix for the estimation
+ xCH<-t(cbind(t(X.Smp),apply(X.Smp,2,sum)))
+
+
+```
 ## Save data and estimates to use with the
 
 ```{r SaveEst}
 save(
-  cStr,
   Colony,
   RecObs,
   LstSmry,
@@ -1123,14 +1156,12 @@ save(
   NestSmry,
   ActSmry,
   ObsrSeat,
-  cSeat,
-  cObsr,
-  nObsr,
   RearAreaObsr,
   nRearAreaObsr,
   cCHCol,
   CapHist,
-  DetPN,
+  xCH,
+  DetPNYr,
   file = here::here(paste("output/", cMdl, "Est.RData", sep = ""))
 )
 
