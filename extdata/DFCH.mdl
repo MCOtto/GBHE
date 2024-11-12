@@ -1,6 +1,6 @@
 # Random effect detection and including the ground truth (GT) observations
 # There is a differential in first detecting colonies over nests in colonies.
- var ColZ[nLstCol], ToStr[2*nStr,nFS], pObsr[nObsr];
+ var ColZ[nLstCol], pObsr[nObsr];
  model {
 
 # Some aerial counts may be higher than the ground truth
@@ -36,26 +36,29 @@
 # Continuous version of occupancy?  Is this right or worth it?
 # Could just raise the colonies per area and get the same new colonies.
   for(iPlot in 1:nAreaPlot){
-   newcol[iPlot]~dpois(CpA[Plot2YS[iPlot]]);
+   newcol[iPlot]~dpois(logobsrdec * lnCpA[Plot2YS[iPlot]] * sample plot size);
+   NewCol[iPlot]~dpois(CpA[Plot2YS[iPlot]] * sample plot size)
+   newact[iPlot]~dbin(pActCol[[Plot2YS[iPlot]]], NewCol[iPlot])
+   NewAct[iPlot]~dbin(pActCol[[Plot2YS[iPlot]]], NewCol[iPlot])
+
   }
 
-# Nests per colony.  
-# See if we use this for new nests.  
+# Nests per colony.  For all colonies, list and new.
   for(iCol in 1:nLstCol){
-   Nest[iCol]~dpois(ColZ[iCol]*NpC[Col2FS[iCol]])
+   Nest[iCol]~dpois(ColZ[iCol]*NpC[Col2YFS[iCol]])
     Act[iCol]~dbin(pAct[Col2YS[iCol]],Nest[iCol])
    ColZ[iCol]~dbern(ColPsi[Col2YS[iCol]]);
   }
  
 # Occupancy of active colonies
-  for(iStr in 1:nYS){
+  for(iStr in 1:nYrStr){
    ActPsi[iStr]=sum(ifelse(Col2YS==iStr,Act>0,0))/
                 sum(ifelse(Col2YS==iStr,  1,0));
   }
 
 # Nest per colony for area frame nests.  No occupancy.
   for(iCol in nLstCol+1:nNewCol){
-   Nest[iCol]~dpois(NpC[Col2FS[iCol]])
+   Nest[iCol]~dpois(NpC[Col2YFS[iCol]])
     Act[iCol]~dbin(pAct[Col2YS[iCol]],Nest[iCol])
   }
 
@@ -63,27 +66,26 @@
   pNest2Col~dbeta(1,1);
  
 # Occupancy of each colony
-  for(iStr in 1:nYS){
+  for(iStr in 1:nYrStr){
    ColPsi[iStr]~dbeta(1,1);
   }
   
-  lnNpC<-ToStr%*%lnNpCFS;
-#  NpC<-mexp(ToStr%*%lnNpCFS);
-  for(iFS in 1:(2*nStr)){
-   NpC[iFS]<-exp(lnNpC[iFS]);
+# Nests per colony
+  for(iYFS in 1:nYFS){
+   NpC[iYFS]<-exp(lnNpC[iYFS]);
   }
 
-  for(iFS in 1:nFS){
-   lnNpCFS[iFS]~dunif(-10,10);
+  for(iYFS in 1:nYFS){
+   lnNpCYFS[iYFS]~dunif(-10,10);
   }
 
 # Assume proportion active does not change between list and area frames
-  for(iStr in 1:nYS){
+  for(iStr in 1:nYrStr){
    pAct[iStr]~dbeta(1,1);
   }
   
 # Colonies per area
-  for(iStr in 1:nYS){
+  for(iStr in 1:nYrStr){
    CpA[iStr]<-exp(lnCpA[iStr]);
    lnCpA[iStr]~dunif(-10,10);
   }
@@ -94,10 +96,9 @@
   p0~dbeta(1,1);
   ObsrMu~dnorm(0,tau0/p0);
   ObsrSD<-tau0/(1-p0);
-  for(iObsr in 1:(nObsr-1)){  # Last is the ground observations
+  for(iObsr in 1:(nObsr)){  # Last is the ground observations but they miss too.
    lgtObsr[iObsr]~dnorm(ObsrMu,ObsrSD);
    logit(pObsr[iObsr])<-lgtObsr[iObsr];
   }
-  pObsr[nObsr]<-1.0  # Ground truth
 
  }
