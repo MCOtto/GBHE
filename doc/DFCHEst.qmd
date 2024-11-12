@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey 2015 and 2023"
 author: "Mark C. Otto"
-date: "30 October 2024"
+date: "12 November 2024"
 echo: false
 format: docx
 editor: source
@@ -22,6 +22,7 @@ library(CollisionModel)
 library(dplyr)
 library(tidyr)
 library(lme4)
+library(rv)
 library(rjags)
 library(runjags)
 library(modeest)
@@ -35,6 +36,7 @@ source(here::here("R/Beta.R"))
 source(here::here("R/MkSmry.R"))
 
 # Load the data
+source(file = here::here("data/MetaVars.R"))
 load(file = here::here("output/GBHE.RData"))
 load(file = here::here("output/SimpleEst.RData"))
 Probs <- c(0.5, 0.05, 0.95)
@@ -47,105 +49,52 @@ lEst <- FALSE
 ## Loaded Data
 
 ```{r LoadedData}
-# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GrndObs -> GroundObs, cFS, AllCol -> AllColonies,
+# cFrame, RecObs,RecObsArea, NewSmpObs, SmpColObs GrndObs -> GroundObs, cYFS, AllCol -> AllColonies,
 #
 #  List nests per colony model: only stratum and frame effects
-# FSEst, FSVar
+# YFSEst, YFSVar
 # LastFirst, cObsr, nObsr, ObsrSeat
 # RearAreaObsr, nRearAreaObsr, cCHCol
 
 ```
-## 
-
-
 
 ## Occupancy Proportion
 
-This is a rough estimate, so just do an overall.  Convert the logistic estimates in to proportions with simulations, then get the mean and standard deviations.  Since this is a random effect we need the Beta $nu$ and $nu'$.  Use the\ `Beta`\ function to get it
+The data come from the list frame `AllObs` observations.  Each colony has the potential for a front, rear, and ground observations.  The nest colony exists if any have a nest and is active if there is at least one active colony.  
+For colony occupation estimation, use `LstSmry` that is based on `AllObs` of the colonies in the 
 
-```{r OccProp}
-OccMdl <- glm(I(Act > 0) ~ 1, family = binomial, data = SmpColObs)
-summary(OccMdl)
-Sim <- expit(rvnorm(1, mean = coefficients(OccMdl), sd = sqrt(vcov(OccMdl))))
-OccEst <- rvmean(Sim)
-OccSD <- rvsd(Sim)
-OccBeta <- Beta(Mean = OccEst, SD = OccSD)
+```{r ListOcc}
+tSmpColObs <- AllObs %>%
+  filter(InSmp)
+ColIdx <- sort(unique(tSmpColObs$FWSColonyID))
 
-```
-
-## Poisson GLM New Colony Model
-
-New colony per full plot GLM model with year-stratum effects. Make the independent variables factors for models.
-
-```{r GLMNewCol}
-tSmpColObs <- SmpColObs %>%
+SmpColObs <- tSmpColObs %>%
   mutate(
     Year = factor(Year, cYear),
     Str = factor(Str, cStr),
-    FS = factor(paste(Year, Frame, Str, sep = "."), cFS)
+    YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
+    ColID = factor(FWSColonyID, ColIdx)
   )
 
-NpCGLM <- glm(
-  Nest ~ FS - 1,
-  data = tSmpColObs,
-  family = poisson
-#  ,offset = log(KMSq / 100)
-)
-NpCYrpStrGLM <- glm(
-  Nest ~ Str + Year - 1,
-  data = tSmpColObs,
-  family = poisson
-#  ,offset = log(KMSq / 100)
-)
-summary(NpCYrpStrGLM)
+# Colony indicator to match number of nests in colonies
+Obs2Col <- as.numeric(SmpColObs$ColID)
+Obs2Obsr <- as.numeric(SmpColObs$Obsr)
+Obs2Str <- as.numeric(SmpColObs$Str)
 
-NpCYrGLM <- glm(
-  Nest ~ Year - 1,
-  data = tSmpColObs,
-  family = poisson
-#  ,offset = log(KMSq / 100)
-)
-summary(NpCYrGLM)
-
-NpCLME <- glmer(
-  Nest ~ 1 + (1|FS),
-  data = tSmpColObs,
-  family = poisson
-#  ,offset = log(KMSq / 100)
-)
-summary(NpCLME)
-AIC(NpCGLM, NpCYrpStrGLM, NpCLME)
-
-
-
-# Estimates are on the log scale.
-# Use the unconditional mean and variance to estimate missing
-# effects
-tNpCEst <- coef(NpCLME)$FS
-NpCEst <- rep(NA, nFS)
-names(NpCEst) <- cFS
-NpCEst[rownames(tNpCEst)] <-tNpCEst$"(Intercept)"
-NpCEst[is.na(NpCEst)] <- mean(NpCEst, na.rm = TRUE)
-NpCVar <- diag(as.numeric(vcov(NpCLME)), nFS) + 
-               as.numeric(VarCorr(NpCLME))
-
-# nFS by (nYear -1) + (nFrame -1) + nStr Design matrix
-ToStr <- rbind(cbind(diag(nStr), 0), 
-               cbind(diag(nStr), 0),
-               cbind(diag(nStr), 1), 
-               cbind(diag(nStr), 1))
-NpCEst <- coefficients(NpCYrpStrGLM)
-NpCVar <- vcov(NpCYrpStrGLM)
+rm(tSmpColObs)
 
 ```
 
-## Proportion of Active Nest
+
+```
+## Proportion of Active Nests
+
 ```{r ActiveNests}
 # Dropping `Frame` lowered the AIC.
-ActGLM <- glm(cbind(Act, Nest - Act) ~ FS - 1, 
+ActGLM <- glm(cbind(Act, Nest - Act) ~ YFS - 1, 
               data = tSmpColObs, family = binomial)
 summary(ActGLM)
-ActLME <- glmer(cbind(Act, Nest - Act) ~ 1 + (1 | FS),
+ActLME <- glmer(cbind(Act, Nest - Act) ~ 1 + (1 | YFS),
                 data = tSmpColObs,
                 family = binomial)
 summary(ActLME)
@@ -155,13 +104,13 @@ AIC(ActGLM, ActLME)
 # Estimates are on the log scale.
 # Use the unconditional mean and variance to estimate missing
 # effects
-tActEst <- coef(ActLME)$FS
-ActEst <- rep(NA, nFS)
-names(ActEst) <- cFS
+tActEst <- coef(ActLME)$YFS
+ActEst <- rep(NA, nYFS)
+names(ActEst) <- cYFS
 ActEst[rownames(tActEst)] <-tActEst$"(Intercept)"
 NAIdx <- is.na(ActEst)
 ActEst[NAIdx] <- mean(ActEst, na.rm = TRUE)
-ActVar <- diag(as.numeric(vcov(ActLME)), nFS) + 
+ActVar <- diag(as.numeric(vcov(ActLME)), nYFS) + 
                as.numeric(VarCorr(ActLME))
 
 Sim <- expit(mvrnorm(n = nSim, mu = ActEst , 
@@ -171,92 +120,23 @@ ActLMESD <- apply(Sim, 2, sd, na.rm = TRUE)
 pActBeta <- Beta(Mean = mean(ActLMEEst), 
         SD = sqrt(var(ActLMEEst) + mean(ActLMESD ^ 2)))
 
+```
+## Observer Detection
 
- # Need a name sort function
- LastFirst<-function(str){
-   nc<-nchar(str)
-   paste(substr(str,nc,nc),substr(str,1,nc-1),sep="")
- }
- cObsr<-unique(as.character(SmpColObs$Obsr))
- cObsr<-cObsr[order(LastFirst(cObsr))]
- 
- # Get all the observers first
- cObsr<-c(cObsr[cObsr!="Gnd"],"Gnd")
- SmpColObs$Obsr<-factor(SmpColObs$Obsr,cObsr)
- nObsr<-nlevels(SmpColObs$Obsr)
- 
- ObsrSeat<-tRecObs%>%
-   select(Front,Rear)%>%
-   gather("Seat","Obsr")%>%
-   group_by(Seat,Obsr)%>%
-   summarize(nObs=n())%>%
-   mutate(LstFrst=LastFirst(Obsr))%>%
-   arrange(LstFrst,Seat)%>%
-   select(Obsr,Seat,nObs)
+```{r ObsrDet}
 
- # Extract capture histories
- OSCmb<-tRecObs%>%
-   filter(!is.na(CapHist))%>%
-   select(Str,StrPltID,ColID,
-          Front,Rear,
-          #  Lng,Lat,AOU,
-          CapHist
-   )%>%
-   mutate(
-     OSCmb=paste(Front,Rear,sep="."),
-     CH=gsub("x","0",substring(CapHist,2,3))
-   )%>%
-   group_by(OSCmb,Front,Rear,ColID,CH)%>%
-   summarise(N=n())%>%
-   spread(CH,N,0)
- 
- Cmb2Col<-as.numeric(OSCmb$ColID)
- 
- Grp<-rbind(
-   match(OSCmb$Front,cObsr),
-   match(OSCmb$Rear,cObsr)
- )
- 
- # Make the capture history matrix  
- cCHCol<-c("01","10","11")
- tMltObsr<-matrix(0,nrow=nrow(OSCmb),ncol=length(cCHCol),
-                  dimnames=list(OSCmb$OSCmb,cCHCol)
- )
- 
- tMltObsr[,]<-as.matrix(OSCmb[,5:7])
- 
- # Coefficient matrix for 0O, P0, and PO
- nObsrs<-2
- nCH<-2^nObsrs
- CHCoef<-matrix(c(
-   1,-1, 0, 1,
-   0, 1, 1,-1,
-   0, 1, 0, 1),nrow=nCH
- )
- 
- xCH<-t(cbind(tMltObsr,apply(tMltObsr,1,sum)))
-
-# Colony indicator to match number of nests in colonies
- Obs2Col<-as.numeric(SmpColObs$ColID)
- Obs2Obsr<-as.numeric(SmpColObs$Obsr)
- Obs2Str<-as.numeric(SmpColObs$Str)
-
- ToStr<-rbind(
-   cbind(diag(nStr),0),
-   cbind(diag(nStr),1)
- )
 
 # Z[ColID]~bernoulli(1|Str);
  ColObs<-unique(SmpColObs[,c("ColID","Frame","Str")])
- cFS<-apply(expand.grid(Str=cDFStr,Frame=cFrame),1,
+ cYFS<-apply(expand.grid(Str=cDFStr,Frame=cFrame),1,
   function(x)paste(x[2],x[1],sep=".")
  )
  ColObs<-SmpColObs%>%
    mutate(
-    FS=factor(paste(Frame,Str,sep="."),cFS),
+    YFS=factor(paste(Frame,Str,sep="."),cYFS),
     GndNest=ifelse(Obsr=="Gnd",Nest,NA)
    )%>%
-   group_by(ColID,Frame,Str,FS)%>%
+   group_by(ColID,Frame,Str,YFS)%>%
    summarise(Nest=max(Nest,na.rm=TRUE),Act=max(Act,na.rm=TRUE),
              GndNest=sum(GndNest,na.rm=TRUE)
    )%>%
@@ -264,6 +144,9 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
  
  Idx<-SmpColObs[SmpColObs$ColID%in%GndObs[GndObs$InSmp,"ColID"],"ColID"]
  ColObs[!ColObs$ColID%in%Idx,"GndNest"]<-NA
+ 
+ ```
+ ## New Colony Estimation
 
 ```{r NewColonies}
 # Number of new colonies by year and stratum: NewSmry
@@ -274,6 +157,9 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
  summary(occmdl )
  OccEst<-coefficients(occmdl)
  OccSD<-sqrt(diag(vcov(occmdl)))
+ 
+ 
+ 
 
 ```
 
@@ -283,19 +169,16 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
 # Model data
 Data <- list(
   nYrStr = nYrStr,
-  nFS = nFS,
+  nYFS = nYFS,
   nColObs = nrow(SmpColObs),
   nest = SmpColObs$Nest,
   act = SmpColObs$Act,
   Obs2Col = Obs2Col,
   Obs2Obsr = Obs2Obsr,
-  CapHist2FS = as.numeric(CapHistAug$CapHist2FS),
-  ToStr = ToStr,
+  newcol = ,
   nCH = nCH,
-  nCapHistAug = nCapHistAug,
-  xCH = t(MltObsr),
-  xCHTot = as.integer(apply(MltObsr, 1, sum)),
-  ExpFac = ExpFac$ExpFac
+  nCmb = ncol(xCH),
+  xCH = xCH
 )
 
 ```
@@ -306,40 +189,29 @@ Data <- list(
 InitFcn <- function(iChain) {
   # Colony occupancy proportion random effect Beta parameters
   ColPsiNu <- pmax(0.6, pmin(100, rnorm(
-    n = 1,
-    mean = OccBeta$nu,
-    sd = OccBeta$nu / 10
+    n = nYrStr,
+    mean = LstSmry[, "NestColNu"]$NestColNu,
+    sd = LstSmry[, "NestColNu"]$NestColNu / 10
   )))
   ColPsiNup <- pmax(0.6, pmin(100, rnorm(
-    n = 1,
-    mean = OccBeta$nup,
-    sd = OccBeta$nup / 10
+    n = nYrStr,
+    mean = LstSmry[, "NestColNup"]$NestColNup,
+    sd = LstSmry[, "NestColNup"]$NestColNup / 10
   )))
   
-  # The observed colonies require ColZ = 
+  # The proportion of observed colonies, ColZ
   nCHSeen <- 39
-  ColPsi0 <- rbeta(1, ColPsiNu, ColPsiNup)
+  ColPsi0 <- rbeta(nYrStr, ColPsiNu, ColPsiNup)
   
-  # Any colony that is positive needs a ColZ of 1.  
-  # MaxCol <- left_join(
-  #   CapHistAug %>%
-  #     mutate(
-  #       ID = row_number()
-  #     ) %>%
-  #     select(ID, FWSColonyID),
-  #   SmpColObs %>%
-  #     group_by(FWSColonyID) %>%
-  #     summarize(PosCol = as.integer(max(Nest, Act) > 0)),
-  #   by = "FWSColonyID"
-  # )
-  ColZ <- c(rep(1, length = nCHSeen),
+  ColZ <- c(rep(1, length = nLstCol),
             rep(1, length = nCapHistAug - nCHSeen)
             # rbinom(nCapHistAug - nCHSeen, size = 1, prob = ColPsi0)
             )
+            
   pNest2Col <- rbeta(1, 9, 1)
   
   # Nest per colony stratum + year model
-  lnNpCFS <- mvrnorm(n = 1, mu = NpCEst, Sigma = NpCVar)
+  lnNpCYFS <- mvrnorm(n = 1, mu = NpCEst, Sigma = NpCVar)
   
   # Colony nestws proportion active random effect Beta parameters
   pActNu <- rnorm(1, pActBeta$nu, pActBeta$nu / 10)
@@ -354,7 +226,7 @@ InitFcn <- function(iChain) {
     ColZ = ColZ,
     ColPsiNu = ColPsiNu,
     ColPsiNup = ColPsiNup,
-    lnNpCFS = lnNpCFS,
+    lnNpCYFS = lnNpCYFS,
     pNest2Col = pNest2Col,
     pActNu = pActNu,
     pActNup = pActNup
@@ -400,10 +272,10 @@ cParm <- c(
   paste("NAT", cYrStr, sep = ""),
   # Nests per Colony
   paste("NpC", sub(
-    "\\.Area\\.", "a", sub("\\.List\\.", "l", cFS)
+    "\\.Area\\.", "a", sub("\\.List\\.", "l", cYFS)
   ), sep = ""),
   # Proportion active nests per colony
-  paste("pA", cFS, sep = ""),
+  paste("pA", cYFS, sep = ""),
   # Observer detection rates
   paste("p", cSeat, sep = ""),
   # Extra difficulty to detect colonies over nests in colonies
