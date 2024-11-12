@@ -3,7 +3,7 @@
 #' @param parm numeric vector of length 2 * number of categories for the front and rear observers
 #' @param X numeric vector or matrix of double observer capture histories: x01 x10 x11 
 #' @detail Need to determine the best N for the given probabilities because
-#' N can only be an integer.
+#' N can only be an integer and keeps the front observer detection constant.
 #' @return numeric log-likelihood
 #' @export
 #'
@@ -60,10 +60,11 @@
 #' plot(x, y, type = "l")
 #' 
 CRC <- function(parm, X = X.Smp) {
-  Parm <- matrix(parm, nrow = 2)
-  nCat <- ncol(Parm)
-  cFront <- 1
-  cRear <- 2
+  # The first parameter is for the front and the rest for the differing rear.
+  fParm <- parm[1]
+  rParm <- parm[-1]
+  # There will be the number of differing rear observers.
+  nCat <- length(rParm)
   
   LnLkhd <- double(nCat)
   currentN <<- LnLkhd
@@ -72,13 +73,13 @@ CRC <- function(parm, X = X.Smp) {
     # Generate possible N values.
     sumXi <- sum(X[, iCat])
     N <- (sumXi:(10 * sumXi * ceiling(1 / (
-      1 - (1 - Parm[cFront, iCat]) * (1 - Parm[cRear, iCat])
+      1 - (1 - fParm) * (1 - rParm[iCat])
     ))))
     
     # Calculates a binomial likelihood for each N
-    LnLkhdi <- dbinom(X[1, iCat], N, (1 - Parm[cFront, iCat]) * Parm[cRear, iCat], log = TRUE) +
-      dbinom(X[2, iCat], N, Parm[cFront, iCat] * (1 - Parm[cRear, iCat]), log = TRUE) +
-      dbinom(X[3, iCat], N, Parm[cFront, iCat] * Parm[cRear, iCat], log = TRUE)
+    LnLkhdi <- dbinom(X[1, iCat], N, (1 - fParm) * rParm[iCat], log = TRUE) +
+      dbinom(X[2, iCat], N, fParm * (1 - rParm[iCat]), log = TRUE) +
+      dbinom(X[3, iCat], N, fParm * rParm[iCat], log = TRUE)
     
     # Find the maximum log-likelihood and the N that generated it
     Idx <- min(which(LnLkhdi == max(LnLkhdi)), na.rm = TRUE)
