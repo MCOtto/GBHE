@@ -1,0 +1,19 @@
+Flight_PK,DateYear,DateMonth,DateDay,Pilot,FObs,RObs,Start,End,WxNotes,Comments
+8,2015,5,28,JB,DD,DK,1899-12-30 08:37:00,1899-12-30 12:00:00,,It took a few sites for DK to get a good search image going.
+9,2015,5,30,CL,DD,SS,1899-12-30 11:14:00,1899-12-30 02:00:00,Clear but windy,"SS got sick after colony #16, so we landed on Georges Pond in Franklin for a 15 min. break."
+10,2015,6,3,JB,DD,AM,1899-12-30 09:30:00,1899-12-30 01:35:00,Overcast; winds ~10 mph.,
+11,2015,6,8,JB,DD,MC,1899-12-30 09:12:00,1899-12-30 01:00:00,Rain showers,Break in Millinocket for 25 min.
+12,2015,6,10,CB,DD,DK,1899-12-30 10:27:00,1899-12-30 02:00:00,"Breezy, partly sunny, ~70 deg F.",
+13,2015,6,11,CL,DD,KM,1899-12-30 10:40:00,1899-12-30 03:01:00,"~70 deg F, clear, light wind.",
+14,2015,6,12,JB,DD,AD,1899-12-30 09:12:00,1899-12-30 02:25:00,,Commute from Old Town to Presque Isle to pick up AD; and back at end.
+15,2015,6,15,JB,DD,BZ,1899-12-30 08:40:00,1899-12-30 02:20:00,,Picked up BZ in Lewiston and left there at 9:55.
+16,2015,6,17,JS,DD,AS,1899-12-30 08:55:00,1899-12-30 12:30:00,,Picked up at Cold Stream Pond.
+17,2015,6,18,JB,DD,AD,1899-12-30 07:42:00,1899-12-30 03:00:00,,"Picked up AD at Presque Isle 8:30, started out at 8:45; back to Presque Isle at 13:30, started out at 14:00"
+18,2015,6,19,JB,DD,BC,1899-12-30 10:35:00,1899-12-30 01:40:00,Cloudy; variable amounts of clouds/sun and variable winds.,Started and ended in Norridgewock.
+4,2015,5,15,JB,DD,KM,1899-12-30 09:45:00,1899-12-30 02:35:00,Calm and clear to start; a little windy at mid and end of day.,Stop in Belfast 13:30-13:55.
+5,2015,5,18,JB,DD,BZ,1899-12-30 09:10:00,1899-12-30 01:05:00,"Overcast, ~50 deg F.",
+6,2015,5,18,JB,DD,CS,1899-12-30 01:35:00,1899-12-30 03:28:00,Overcast,
+7,2015,5,22,JB,DD,KM,1899-12-30 09:39:00,1899-12-30 12:51:00,"Coastal fog, low clouds; rain showers scattered across state.","Attempted to check coastal colonies and Area Plots, but got turned away due to low clouds."
+1,2015,5,1,CL,DD,CT,1899-12-30 09:45:00,1899-12-30 12:00:00,"Clear, light wind",
+2,2015,5,6,CL,DD,KM,1899-12-30 09:28:00,1899-12-30 03:40:00,"Clear, light winds to start; 60 deg F; gusty at end.",Break from 12:30-13:20
+3,2015,5,8,CL,DD,BZ,1899-12-30 09:16:00,1899-12-30 04:40:00,"Clear, very little wind at start, 10-15 mph at end.",10 min stop in Lewiston; 1 hr stop in Sanford.
