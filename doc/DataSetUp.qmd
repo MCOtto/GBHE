@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "1 December 2024"
+date: "4 December 2024"
 format: docx
 editor: source
 ---
@@ -1263,28 +1263,30 @@ if (lWrite) {
 Save all the tables we need for the estimation. The spatial data are already in `gis` and the non-spatial tables in `data`, so they can be accessed easily by `locdata` which is more general than `base::data`. `Load`ing the save file makes data access easy as if this were an `R` project.
 
 ```{r SaveAll}
-save(
-  CRS.WGS84,
-  CRS.Alpers,
-  CRS.UTM19N,
-  MEBoundarySF,
-  StrSF,
-  ColonySF,
-  Colony,
-  AllColonySF,
-  AllColony,
-  StrPlotSF,
-  List,
-  Plot,
-  GRTSSmp,
-  tblFlightInfo,
-  tblPlotDetails,
-  tblObservations,
-  RecObs,
-  NewColonies,
-  GroundObsSF,
-  GroundObs,
-  file = here::here("output/GBHE.RData")
-)
+if(lWrite) {
+  save(
+    CRS.WGS84,
+    CRS.Alpers,
+    CRS.UTM19N,
+    MEBoundarySF,
+    StrSF,
+    ColonySF,
+    Colony,
+    AllColonySF,
+    AllColony,
+    StrPlotSF,
+    List,
+    Plot,
+    GRTSSmp,
+    tblFlightInfo,
+    tblPlotDetails,
+    tblObservations,
+    RecObs,
+    NewColonies,
+    GroundObsSF,
+    GroundObs,
+    file = here::here("output/GBHE.RData")
+  )
+}
 
 ```
