@@ -2,7 +2,7 @@
 title: "Combined 2015 and 2023 Data Setup"
 author: "Mark C. Otto"
 eval: true
-date: "12 November 2024"
+date: "1 December 2024"
 format: docx
 editor: source
 ---
@@ -44,6 +44,8 @@ lFromOri <- FALSE
 ```
 
 ## Setup the levels, level names, and size of each level
+
+If `lFromOri` is `FALSE`, then do I get the variables from `data/MetaVars.R`?
 
 ```{r Indices}
 
@@ -196,7 +198,7 @@ To add the 2015 new colonies, use the locations and match them to the `AllColoni
 
 Make the spatial layer out of the `.csv` files.
 
-```{r ListColony}
+```{r Colony2015}
 # These are all the colonies.  445 of them so select from the last list
 # Where are the new colonies found in the last survey.
 # Is in UTM 19N
@@ -305,8 +307,8 @@ Col2023SF <- bind_cols(tCol2023SF, LatLong) %>%
          nActive,
          Comment)
 
-
 # Don't use.  Make the spatial data from the dataframes?
+# Has 302 observations like 2023.  
 tColony2015SF <- left_join(
   tColony2023 %>%
     mutate(FWSColonyID_PK = sprintf("ME.%04d", COLONYNO)) %>%
@@ -370,8 +372,15 @@ if (lWrite) {
 I intersected or spatially joined the stratum with the plot layers, so use `StrPlotSF`. Later create the lat-long using `st_centroid()`. Also copy over the `Plot` table that is non spatial but has number of colonies and km^2^. The row and col come from `RC2XY` made in the Bald Eagle national grid.
 
 ```{r StrPlot}
-tStrPlotSF <- st_read("~/Profesional/GBHE.2023/GIS/StrPlotSp.shp") %>%
-  select(Str_FK = Str, PlotID_FK = PlotID, KMSq, Col, Row)
+if (lFromOri) {
+  tStrPlotSF <- st_read(here::here("ori/gis/StrPlotSF.shp"))
+} else {
+  tStrPlotSF <- st_read("~/Profesional/GBHE.2023/GIS/StrPlotSp.shp") %>%
+    select(Str_FK = Str, PlotID_FK = PlotID, KMSq, Col, Row)
+  st_write(tStrPlotSF,
+           dsn = here::here("ori/gis/StrPlotSF.shp"),
+           delete_layer = TRUE)
+}
 
 tLatLong <- st_transform(x = st_centroid(tStrPlotSF), crs = CRS.WGS84)
 LatLong <- st_drop_geometry(tLatLong %>%
@@ -394,12 +403,20 @@ rm(tStrPlotSF, tLatLong, LatLong)
 
 ## All Known Colonies
 
-We need allcolonies to incorporate the 2015 new nests into the 2023 list and some colonies not in the original list were observered.
+We need all colonies to incorporate the 2015 new nests into the 2023 list and some colonies not in the original list were observered.
 
 ```{r AllColonies}
 # NestList is the colony list.  Need to remove all the colonies without
 # locations.
-tColonySF <- read_csv(file = "~/Profesional/GBHE.2023/extdata/2023/COLONIES.csv", col_types = "ic--c---------cccc---dd---c-d------ii") %>%
+if (lFromOri) {
+  tColonies <- read_csv(here::here("ori/Colonies.csv"))
+} else {
+  tColonies <- read_csv(file = "~/Profesional/GBHE.2023/extdata/2023/COLONIES.csv")
+  readr::write_csv(tColonies, here::here("ori/Colonies.csv"), na = "")
+}
+
+tColonySF <- tColonies %>%
+  # read_csv(file = "~/Profesional/GBHE.2023/extdata/2023/COLONIES.csv", col_types = "ic--c---------cccc---dd---c-d------ii") %>%
   filter(!is.na(X_UTMNAD83)) %>%
   mutate(
     FWSColonyID = sprintf("ME.%04d", COLONYNO),
@@ -491,7 +508,7 @@ if (lWrite) {
            here::here("gis/AllColonySF.kml"),
            delete_layer = TRUE)
 }
-rm(tColonySF, tColonySF2, tLatLong, LatLong)
+rm(tColonies, tColonySF, tColonySF2, tLatLong, LatLong)
 
 ```
 
@@ -529,40 +546,6 @@ tColUsed <- read_csv("~/Profesional/GBHE.2023/extdata/2023/GBHE_ColonyPlotJoin.c
          DatEntered = "2022-01-01") %>%
   select(FWSColonyID, DatEntered)
 
-# # Identfy the colonies used by 2022 for the `DatEntered` and 2008 otherwise.
-# ColoniesSF <- left_join(tColonySF2, tColUsed, by = "FWSColonyID") %>%
-#   mutate(
-#     St = "ME",
-#     StNestID = as.integer(sub("ME.", "", FWSColonyID)),
-#     LocAcc = .1,
-#     Location = "",
-#     Access = "",
-#     Owner = "Danielle D'Auria",
-#     ListYr = 2008,
-#     DatEntered = ifelse(is.na(DatEntered), "2008-01-01", DatEntered),
-#     Comment = ""
-#   ) %>%
-#   select(
-#     FWSColonyID  ,
-#     St       ,
-#     StNestID ,
-#     PlotID   ,
-#     Str      ,
-#     Lng      ,
-#     Lat      ,
-#     LocAcc   ,
-#     Location ,
-#     Access   ,
-#     Owner    ,
-#     ListYr   ,
-#     DatEntered,
-#     Comment
-#   ) %>%
-#   arrange(FWSColonyID)
-# if (lWrite) {
-#   st_write(ColonySF, here::here("GIS/AllColonySF.kml"), delete_layer = TRUE)
-# }
-
 ```
 
 ## Plot Non-Spatial
@@ -581,7 +564,7 @@ Plot <- left_join(tPlot, List, by = c("Str", "PlotID")) %>%
   ) %>%
   select(Str, PlotID, Lng, Lat, KMSq, nCol, nNest, nAct)
 if (lWrite) {
-  write_csv(Plot, here::here("GIS/Plot.csv"), na = "")
+  write_csv(Plot, here::here("data/Plot.csv"), na = "")
 }
 rm(tPlot)
 
@@ -594,24 +577,31 @@ Combine the current year GRTS sample file with the past years. Add the year onto
 L79 was sampled, so correct `EvalStatus`.
 
 ```{r GetFromDB}
-tGRTSLoc <- RDB2Data(
-  Tbl = "GRTSLoc",
-  RowNames = "siteID",
-  RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3",
-  envir = NULL
-) %>%
-  mutate(Year = 2015)
+if (lFromOri) {
+  GRTSLoc2015 <- read_csv(here::here("ori/GRTSLoc2015.csv"), col_types = "ccddidcccccccc")
+  GRTSLoc2023 <- read_csv(here::here("ori/GRTSLoc2023.csv"), col_types = "ccddidcccccccc")
+} else {
+  GRTSLoc2015 <- RDB2Data(
+    Tbl = "GRTSLoc",
+    RowNames = "siteID",
+    RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3",
+    envir = NULL
+  )
+  readr::write_csv(GRTSLoc2015, here::here("ori/GRTSLoc2015.csv"), na = "")
+  
+  GRTSLoc2023 <- RDB2Data(
+    Tbl = "GRTSLoc",
+    RowNames = "siteID",
+    RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3",
+    envir = NULL
+  )
+  readr::write_csv(GRTSLoc2023, here::here("ori/GRTSLoc2023.csv"), na = "")
+}
 
-tGRTSCurrent <- RDB2Data(
-  Tbl = "GRTSLoc",
-  RowNames = "siteID",
-  RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3",
-  envir = NULL
-) %>%
-  mutate(Year = CurrentYr)
-
-
-tGRTSLoc2 <- bind_rows(tGRTSLoc, tGRTSCurrent) %>%
+tGRTSLoc2 <- bind_rows(GRTSLoc2015 %>%
+                         mutate(Year = 2015),
+                       GRTSLoc2023 %>%
+                         mutate(Year = CurrentYr)) %>%
   mutate(
     Str = stratum,
     siteID = Plot,
@@ -643,7 +633,7 @@ GRTSLoc <- inner_join(tGRTSLoc2,
 if (lWrite) {
   readr::write_csv(GRTSLoc, here::here("data/GRTSLoc.csv"), na = "")
 }
-rm(tGRTSLoc, tGRTSLoc2, tGRTSCurrent)
+rm(GRTSLoc2015, GRTSLoc2023, tGRTSLoc2)
 
 ```
 ## `GRTSSmp` for the Estimation
@@ -652,10 +642,10 @@ rm(tGRTSLoc, tGRTSLoc2, tGRTSCurrent)
 GRTSSmp <- GRTSLoc %>%
   filter(EvalStatus) %>%
   select(Year, siteID, Str, PlotID, SmpType, KMSq, nAct)
+
 if (lWrite) {
   readr::write_csv(GRTSSmp, here::here("data/GRTSSmp.csv"), na = "")
 }
-
 
 ```
 
@@ -664,12 +654,28 @@ The colony observations, `RecObs` are created from `tblFlightInfo`, `tblObservat
 First combine the flight and plot files. Problems with commas in the weather notes, `WxNotes` in the 2023 table. Put quotes around the field.
 
 ```{r FlightPlot}
-tblFlightInfo2015 <- readr::read_csv("~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblFlightInfo.csv",
-                                     col_types = "iiiiccccccc")
+if (lFromOri) {
+  tblFlightInfo2015 <- read_csv(here::here("ori/tblFlightInfo2015.csv"), col_types = "iiiiccccccc")
+  
+  tblFlightInfo2023 <- read_csv(here::here("ori/tblFlightInfo2023.csv"), col_types = "iiiiccccccc")
+} else {
+  tblFlightInfo2015 <- readr::read_csv(
+    "~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblFlightInfo.csv",
+    col_types = "iiiiccccccc"
+  )
+  readr::write_csv(tblFlightInfo2015,
+                   here::here("ori/tblFlightInfo2015.csv"),
+                   na = "")
+  
+  tblFlightInfo2023 <- readr::read_csv(
+    "~/Profesional/GBHE.2023/extdata/2023/tblFlightInfo.csv",
+    col_types = "iiiiccccccc"
+  )
+  readr::write_csv(tblFlightInfo2023,
+                   here::here("ori/tblFlightInfo2023.csv"),
+                   na = "")
+}
 
-tblFlightInfo2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblFlightInfo.csv",
-                              col_types = "iiiiccccccc")
-#  %>%mutate(Start = as.character(Start), End = as.character(End))
 tblFlightInfo <- bind_rows(tblFlightInfo2015, tblFlightInfo2023) %>%
   mutate(
     Date = sprintf("%04d-%02d-%02d", DateYear, DateMonth, DateDay),
@@ -701,23 +707,22 @@ rm(tblFlightInfo2015, tblFlightInfo2023)
 # For observer detection
 cSeat <- c("Front", "Rear", "Dirt")
 
-# Set up the observers for observer detection. Put ground last and set detection to one. 
+# Set up the observers for observer detection. Put ground last and set detection to one.
 # Make a sort function for the observers to sort by last then first name.
 LastFirst <- function(str) {
   nc <- nchar(str)
   paste(substr(str, nc, nc), substr(str, 1, nc - 1), sep = "")
 }
-cObsr <- unique(as.character(c(tblFlightInfo$Front,tblFlightInfo$Front)))
+cObsr <- unique(as.character(c(
+  tblFlightInfo$Front, tblFlightInfo$Front
+)))
 cObsr <- cObsr[order(LastFirst(cObsr))]
 cObsr <- c(cObsr[cObsr != "Gnd"], "Gnd")
 nObsr <- length(cObsr)
 
-
 if (lWrite) {
   dump(
-    list = c("cSeat",
-      "cObsr",
-      "nObsr"),
+    list = c("cSeat", "cObsr", "nObsr"),
     file = here::here("data/MetaVars.R") ,
     append = TRUE
   )
@@ -730,15 +735,32 @@ if (lWrite) {
 Combine with `GRTSLoc` to add `Str` and `PlotID`. The `OOS` will not have stratum or plot ID.
 
 ```{r PlotDetails}
-tblPlotDetails2015 <- readr::read_csv("~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblPlotDetails.csv",
-                                      col_types = "iclccccci") %>%
-  mutate(Year = 2015)
+if (lFromOri) {
+  tblPlotDetails2015 <- read_csv(here::here("ori/tblPlotDetails2015.csv"), col_types = "iclccccci")
+  
+  tblPlotDetails2023 <- read_csv(here::here("ori/tblPlotDetails2023.csv"), col_types = "iclccccci")
+} else {
+  tblPlotDetails2015 <- readr::read_csv(
+    "~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblPlotDetails.csv",
+    col_types = "iclccccci"
+  )
+  readr::write_csv(tblPlotDetails2015,
+                   here::here("ori/tblPlotDetails2015.csv"),
+                   na = "")
+  
+  tblPlotDetails2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblPlotDetails.csv",
+                                 col_types = "iiclccccc")
+  readr::write_csv(tblPlotDetails2023,
+                   here::here("ori/tblPlotDetails2023.csv"),
+                   na = "")
+}
 
-tblPlotDetails2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblPlotDetails.csv",
-                               col_types = "iiclccccc") %>%
-  mutate(Year = CurrentYr)
-
-ttblPlotDetails <- bind_rows(tblPlotDetails2015, tblPlotDetails2023) %>%
+ttblPlotDetails <- bind_rows(
+  tblPlotDetails2015 %>%
+    mutate(Year = 2015),
+  tblPlotDetails2023 %>%
+    mutate(Year = CurrentYr)
+) %>%
   mutate(
     BegArea = as.POSIXct(BegArea, format = "%H:%M:%S"),
     EndArea = as.POSIXct(EndArea, format = "%H:%M:%S"),
@@ -777,16 +799,28 @@ rm(tblPlotDetails2015, tblPlotDetails2023, ttblPlotDetails)
 ```
 
 ## 2015 Observations
-
 I am assuming the coordinates are in UTM 19N. Convert them to lat-longs for the few that have coordinates. These are important since the GBHE ones are the new colonies and we have to add them to the 2023 colony list.
 
 Save `LatLong` to correct `RecObs2015` too.
 
+Is 2015 a different format than 2023?
+
 ```{r 2015Observations}
-ttblObservations2015 <- readr::read_csv(
-  "~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblObservations.csv",
-  col_types = "iclicciiiicccicii"
-) %>%
+if (lFromOri) {
+  ttblObservations2015 <- read_csv(here::here("ori/tblObservations2015.csv"), 
+                                   col_types = "iclicciiiicccicii")
+} else {
+  ttblObservations2015 <- readr::read_csv(
+    "~/Profesional/GBHE.2015/ExtData/GBHEDualFrame2/tblObservations.csv",
+    col_types = "iclicciiiicccicii"
+  )
+  readr::write_csv(ttblObservations2015,
+                   here::here("ori/tblObservations2015.csv"),
+                   na = "")
+}
+
+# Putting the primary and secondary keys first
+utblObservations2015 <- ttblObservations2015 %>%
   mutate(Year = 2015) %>%
   select(
     Obs_PK,
@@ -810,7 +844,7 @@ ttblObservations2015 <- readr::read_csv(
   )
 
 # For only those observations with locations.
-Loc2015SF <- ttblObservations2015 %>%
+Loc2015SF <- utblObservations2015 %>%
   filter(!is.na(Latitude)) %>%
   mutate(xUTM = Longitude, yUTM = Latitude) %>%
   st_as_sf(coords = c("Longitude", "Latitude"), crs = CRS.UTM19N) %>%
@@ -824,7 +858,7 @@ LatLong <- st_drop_geometry(Loc2015SF %>%
                               ))) %>%
                               select(Obs_PK, xUTM, yUTM, Lat, Lng))
 
-tblObservations2015 <- left_join(ttblObservations2015, LatLong, by = "Obs_PK") %>%
+tblObservations2015 <- left_join(utblObservations2015, LatLong, by = "Obs_PK") %>%
   select(
     Obs_PK,
     PlotDetails_FK,
@@ -846,7 +880,7 @@ tblObservations2015 <- left_join(ttblObservations2015, LatLong, by = "Obs_PK") %
     Year
   )
 
-rm(ttblObservations2015, Loc2015SF)
+rm(ttblObservations2015, utblObservations2015, Loc2015SF, LatLong)
 
 ```
 
@@ -855,10 +889,17 @@ rm(ttblObservations2015, Loc2015SF)
 Make edits that I would have made on `RecObs`.
 
 ```{r 2023Observations}
-
-tblObservations2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblObservations.csv",
-                                col_types = "iicliccciiiicccii") %>%
-  mutate(Year = CurrentYr)
+if (lFromOri) {
+  tblObservations2023 <- read_csv(here::here("ori/tblObservations2023.csv"), col_types = "iicliccciiiicccdd")
+} else {
+  tblObservations2023 <- read_csv("~/Profesional/GBHE.2023/extdata/2023/tblObservations.csv",
+                                  col_types = "iicliccciiiicccdd") %>%
+    # Remove the duplicate ObsPK = 151
+    distinct()
+  readr::write_csv(tblObservations2023,
+                   here::here("ori/tblObservations2023.csv"),
+                   na = "")
+}
 
 ```
 
@@ -869,7 +910,9 @@ Need to edit the 2023 observations like Danielle and I did with `RecObs`. and ad
 To get this done, combine `RecObs`.
 
 ```{r Combine2015-2023}
-tblObservations <- bind_rows(tblObservations2015, tblObservations2023)  %>%
+tblObservations <- bind_rows(tblObservations2015,
+                             tblObservations2023 %>%
+                               mutate(Year = CurrentYr))  %>%
   mutate(
     FWSColonyID = ifelse(is.na(WBC_ID), NA, ifelse(
       `NewColony?`,
@@ -895,6 +938,7 @@ tblObservations <- bind_rows(tblObservations2015, tblObservations2023)  %>%
     rAct = RObsAct,
     Comment = Comments
   )
+
 if (lWrite) {
   readr::write_csv(tblObservations,
                    here::here("data/tblObservations.csv"),
@@ -956,9 +1000,7 @@ tRecObs2 <- left_join(
   GRTSLoc %>%
     select(Year, siteID, PlotID, Str),
   by = c("Year", "siteID", "PlotID")
-) %>%
-  # Should not need this
-  distinct()
+) 
 
 # Merge the flight, plot, and observation tables to make `RecObs`.
 # Keep all the flight, plot, and observation keys for reference.
@@ -994,10 +1036,9 @@ tRecObs3 <- inner_join(tRecObs2,
     Comment,
     Flight_PK,
     PlotDetails_PK
-  ) %>%
-  distinct()
+  ) 
 
-# Obs_PK = 151 was duplicated.  Find why.
+# tRecObs4 still has the geometry
 tRecObs4 <- left_join(
   tRecObs3,
   AllColonySF %>%
@@ -1006,9 +1047,7 @@ tRecObs4 <- left_join(
       tStr = Str,
       tPlotID = PlotID,
       Lng,
-      Lat #,
-      # Str = Str_FK,
-      # PlotID = PlotID_FK
+      Lat
     ),
   by = "FWSColonyID"
 )  %>%
@@ -1016,19 +1055,7 @@ tRecObs4 <- left_join(
     Str = ifelse(is.na(Str), tStr, Str),
     PlotID = ifelse(is.na(PlotID), tPlotID, PlotID),
     Lng = ifelse(is.na(Lng.x), Lng.y, Lng.x),
-    Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x) #,
-    # Str = ifelse(is.na(Str.x), Str.y, ifelse(
-    #   Str.x == Str.y, Str.x, paste(Str.x, Str.y, sep = "!=")
-    # )),
-    # PlotID = ifelse(
-    #   is.na(PlotID.x),
-    #   PlotID.y,
-    #   ifelse(
-    #     PlotID.x == PlotID.y,
-    #     PlotID.x,
-    #     paste(PlotID.x, PlotID.y, sep = "!=")
-    #   )
-    # )
+    Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x)
   )  %>%
   select(
     Obs_PK,
@@ -1058,7 +1085,6 @@ tRecObs4 <- left_join(
 
 RecObs <- st_drop_geometry(tRecObs4)
 
-
 if (lWrite) {
   readr::write_csv(RecObs, here::here("data/RecObs.MCO.csv"), na = "")
 }
@@ -1066,294 +1092,13 @@ if (lWrite) {
 rm(tRecObs, tRecObs2, tRecObs3)
 
 ```
-
-## Combine `RecObs` from year-specific `RecObs`
-
-Use `Obs_FK` rather than `OBJECTID`.\
-In 2015, change the UTMs to lat-longs. Add the locations for 2015 using the colony list.
-
-```{r CombineRecObsYS}
-#| eval: false
-RecObs2015 <- RDB2Data(Tbl = "RecObs",
-                       RowNames = "OBJECTID",
-                       RDB = "~/Profesional/GBHE.2023/extdata/2015/DFS2015.sq3") %>%
-  mutate(Yr = 2015,
-         siteID = ifelse(siteID == "outplot", "OOS", siteID)) %>%
-  mutate(FWSColonyID = FWSNestID)
-
-RecObs2023 <- RDB2Data(Tbl = "RecObs",
-                       RowNames = "OBJECTID",
-                       RDB = "~/Profesional/GBHE.2023/extdata/2023/DFS2023.sq3") %>%
-  mutate(FWSColonyID = stringr::str_replace(FWSNestID, "new\\.[:alpha:][:alpha:]", "ME"))
-
-tRecObs <- bind_rows(RecObs2015, RecObs2023) %>%
-  select(
-    OBJECTID,
-    Year = Yr,
-    St,
-    Svy,
-    DatTim,
-    Pilot,
-    Front,
-    Rear,
-    Str,
-    PlotID,
-    siteID,
-    Lng,
-    Lat,
-    AOU,
-    CapHist,
-    Location,
-    FWSColonyID,
-    fNest,
-    rNest,
-    fAct,
-    rAct,
-    Comment,
-    Edit,
-    File,
-    Rec,
-    FWSNestID
-  )
-
-tRecObs2 <- left_join(tRecObs,
-                      AllColonySF %>% select(FWSColonyID, Lng, Lat, Str, PlotID),
-                      by = "FWSColonyID")  %>%
-  mutate(
-    Lng = ifelse(is.na(Lng.x), Lng.y, Lng.x / 10 ^ 4),
-    Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x / 10 ^ 5),
-    Str = ifelse(is.na(Str.x), Str.y, ifelse(
-      Str.x == Str.y, Str.x, paste(Str.x, Str.y, sep = "!=")
-    )),
-    PlotID = ifelse(
-      is.na(PlotID.x),
-      PlotID.y,
-      ifelse(
-        PlotID.x == PlotID.y,
-        PlotID.x,
-        paste(PlotID.x, PlotID.y, sep = "!=")
-      )
-    )
-  )  %>%
-  select(
-    OBJECTID,
-    Year,
-    St,
-    Svy,
-    DatTim,
-    Pilot,
-    Front,
-    Rear,
-    Str,
-    PlotID,
-    siteID,
-    Lng,
-    Lat,
-    AOU,
-    CapHist,
-    Location,
-    FWSColonyID = FWSNestID,
-    fNest,
-    rNest,
-    fAct,
-    rAct,
-    Comment,
-    Edit,
-    File,
-    Rec
-  )
-
-RecObsYS <- tRecObs2
-
-```
-
-## Edit 2023 Observations
-
-```{r EditRecObs}
-#| eval: false
-# MCO:  The ME.0647 seems to be off c6.1v vs. c4.1r (2 over and 3 up).
-# DDA:  This should be c6.1v.
-#  This is probably due to the original data entry error where it was entered as 105.
-# MCO:  ColList:  ME.0647 c6.1v SC -70.78627 43.17239
-#   It was in a list plot, L63, with no nests.
-#   c6.1v is not a sample plot, but this was the colony that was sampled?
-#   ColList:  ME.0105 c4.1r SC -70.82679 43.61651
-#   105 is in the c4.1r or the L63 sample plot.  Is 105 647?
-# RecObs[25,"FWSColonyID"]
-iObs <- which(RecObs$FWSColonyID == "ME.0647")
-RecObs[iObs, "PlotID"] <- "c6.1v"
-RecObs[iObs, "siteID"] <- "OOS"
-RecObs[iObs, "Edit"] <- "Changed PlotID from c4.1r and siteID from L63."
-
-# MCO:  new.SC.0917 may be just over the border, so go with what you marked it as.
-# DDA:  This should be ci.18.
-# MCO:  So it is outside the A16 ci.19 sample plot?
-#   That would make it OOS.  I will change it.
-#  RecObs[81,"FWSColonyID"]
-iObs <- which(RecObs$FWSColonyID == "new.SC.0917")
-RecObs[iObs, "PlotID"] <- "ci.18"
-RecObs[iObs, "siteID"] <- "OOS"
-RecObs[iObs, "Edit"] <- "Changed PlotID from ci.19 and siteID from A18."
-
-# MCO: ch.1c is a split plot, so go with the Co part of the plot?
-# DDA:   Yes, this colony (866) is in Co stratum.
-# MCO: Good
-#  RecObs[184,"FWSColonyID"]
-iObs <- which(RecObs$FWSColonyID == "ME.0866")
-RecObs[iObs, "Str"] <- "Co"
-RecObs[iObs, "Edit"] <- "Changed Str from SC because it was a plot split between strata."
-
-# MCO: ME.0721 is just over in the next plot, so should we stick with the
-# assigned plot as it is the sample plot?
-# DDA:  This should be c4.16
-# MCO: c4.16 is not a sample plot, but it was a list plot and had no nests.
-#  RecObs[217,"FWSColonyID"]
-iObs <- which(RecObs$FWSColonyID == "ME.0721")
-RecObs[iObs, "PlotID"] <- "c4.16"
-RecObs[iObs, "siteID"] <- "OOS"
-RecObs[iObs, "Edit"] <- "Changed PlotID from c4.15 and siteID from L73."
-
-# MCO: cd.1l (1 down and 5 up) is a ways off.  Not sure what to do for ME.0739.
-# DDA:  This should be cd.1l
-# MCO: cd.1l  is the listover.  I can fix that.
-#  RecObs[221,"FWSColonyID"]
-iObs <- which(RecObs$FWSColonyID == "ME.0739")
-RecObs[iObs, "PlotID"] <- "cd.1l"
-RecObs[iObs, "siteID"] <- "L79"
-RecObs[iObs, "Edit"] <- "Changed PlotID from c4.16 and siteID from L03."
-
-# New nests from talking to DDA 27 June 2024:
-# OBJECTID, siteID, ColonyID
-# 12 A27 848 	ce.1i? Co?
-iObs <- grep("A27", RecObs$siteID)
-
-# 115 A37 850
-# 126 A18 851
-# 137 A33 852
-# OOS 846
-
-# MCO 7 Oct 24: extracting data/RecObs and getting
-# dataRecObs <- read_csv(here::here("data/RecObs.csv"), col_types = "-ic-c----ddc--ciiii")
-#                       col_types = "-ic-c----ddc--ciiii") %>%
-dataRecObs <- read_csv("~/Profesional/GBHE.2023/extdata/2023/RecObs.csv",
-                       col_types = "-i------cc-dd---ciiii----") %>%
-  mutate(
-    FWSColonyID = sub("(ND|SC|Co)\\.", "", sub("new", "ME", FWSNestID)),
-    nNest = pmax(0, fNest, rNest, na.rm = TRUE),
-    nActive = pmax(0, fAct, rAct, na.rm = TRUE)
-  ) %>%
-  filter(!is.na(FWSColonyID)) %>%
-  group_by(Yr, FWSColonyID, Str, PlotID) %>%
-  summarize(
-    Lng = mean(Lng),
-    Lat = mean(Lat),
-    nNest = max(nNest, na.rm = TRUE),
-    nActive = max(nActive, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  select(Year = Yr, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive)
-
-addCol <- anti_join(dataRecObs, Colony2, by = c("Year", "FWSColonyID"))
-
-Colony2 <- bind_rows(Colony, dataRecObs) %>%
-  group_by(Year, FWSColonyID, Str, PlotID) %>%
-  summarize(
-    Lng = mean(Lng),
-    Lat = mean(Lat),
-    nNest = max(0, nNest, na.rm = TRUE),
-    nActive = max(0, nActive, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  select(Year, FWSColonyID, Str, PlotID, Lng, Lat, nNest, nActive) %>%
-  arrange(Year, FWSColonyID)
-
-Colony2 <- bind_rows(
-  Colony %>%
-    filter(FWSColonyID == "ME.0854") %>%
-    mutate(Year = 2015),
-  Colony
-) %>%
-  arrange(Year, FWSColonyID)
-
-Colony <- Colony2
-
-
-if(lWrite) {
-  readr::write_csv(Colony,
-            file = here::here("data/Colony.csv"),
-            na = "")
-}
-# Need to update ColonySF too!!
-
-# Update recobs with the colony info
-RecObs2 <- left_join(
-  RecObs,
-  Colony %>%
-    select(
-      Year,
-      FWSColonyID,
-      tStr = Str,
-      tPlotID = PlotID,
-      Lng,
-      Lat 
-    ),
-  by = c("Year","FWSColonyID")
-)  %>%
-  mutate(
-    Str = ifelse(is.na(Str), tStr, Str),
-    PlotID = ifelse(is.na(PlotID), tPlotID, PlotID),
-    Lng = ifelse(is.na(Lng.x), Lng.y, Lng.x),
-    Lat = ifelse(is.na(Lat.x), Lat.y, Lat.x),
-    AOU = ifelse(is.na(AOU) & !is.na(FWSColonyID), "GBHE", AOU),
-    FWSColonyID = ifelse(AOU != "GBHE", NA, FWSColonyID)
-  )  %>%
-  # filter(!is.na(AOU)) %>%
-  select(
-    Obs_PK,
-    Year,
-    Str,
-    siteID,
-    PlotID,
-    DatTim,
-    Pilot,
-    Front,
-    Rear,
-    Lng,
-    Lat,
-    AOU,
-    CapHist,
-    Location,
-    FWSColonyID,
-    fNest,
-    rNest,
-    fAct,
-    rAct,
-    Comment,
-    Flight_PK,
-    PlotDetails_PK
-  ) %>%
-  arrange(Obs_PK)
- RecObs <- RecObs2
-
-if(lWrite) {
-  write_csv(RecObs2,
-            file = here::here("data/RecObs.csv"),
-            na = "")
-}
-
-
-```
-
 ## Spatial `RecObs`
 
 ```{r SpatialRecObs}
-# Make a spatial file.  `tRecObs4` is a spatial file 
+# Make a spatial file.  `tRecObs4` is a spatial file
 tRecObsSF2 <- tRecObs4 %>%
   filter(!is.na(Lng)) %>%
-  mutate(
-    Lng2 = Lng,
-    Lat2 = Lat
-  ) %>%
+  mutate(Lng2 = Lng, Lat2 = Lat) %>%
   st_as_sf(coords = c("Lng2", "Lat2"), crs = CRS.WGS84)
 
 # This only had 137 observations, so it some locations are off.
@@ -1370,58 +1115,34 @@ RecObsSF <- st_as_sf(tRecObsSF2 %>%
                      crs = CRS.WGS84) %>%
   st_transform(crs = CRS.UTM19N)
 if (lWrite) {
-  st_write(RecObsSF, here::here("GIS/RecObsSF.kml"), delete_layer = TRUE)
+  st_write(RecObsSF, here::here("GIS/RecObsSF.MCO.kml"), delete_layer = TRUE)
 }
 
-rm(
-   # RecObs2015,
-   # RecObs2023,
-   # tRecObs,
-   # tRecObs2,
-   tRecObs4,
-   tRecObsSF2,
-   tRecObsSF3)
+rm(tRecObs4, tRecObsSF2, tRecObsSF3)
 
 ```
-
-## Check `RecObs`
-
-Check stratum and plot for those that have it and add it where they are missing.
-
-```{r CheckRecObs}
-#| eval: false
-tRecObsSF <- st_as_sf(RecObs, coords = c("Lng", "Lat"), crs = st_crs(4326))
-tRecObsSF2 <- st_intersection(StrPlotSF %>%
-                         select(tStr = Str, tPlotID = PlotID), 
-                       st_transform(x = tRecObsSF, crs = st_crs(StrPlotSF))) %>%
-  mutate(
-    Str = ifelse(is.na(Str), tStr, Str),
-    PlotID = ifelse(is.na(PlotID), tPlotID, PlotID)
-  )
-
-# Check of stratum and plot differences.  Resolve.
-tRecObsSF2 %>%
-  filter(tStr != Str | tPlotID != PlotID)
-
-# Edit RecObs, to avoid the complications of dropping the spatial
-# and rearranging the columns.
-
-RecObs$Str <- ifelse(is.na(RecObs$Str), tRecObsSF2$Str, RecObs$Str)
-RecObs$PlotID <- ifelse(is.na(RecObs$PlotID), tRecObsSF2$PlotID, RecObs$PlotID)
-RecObs$FWSColonyID <- ifelse(
-  grepl("\\.  \\.", RecObs$FWSColonyID),
-  stringr::str_replace(RecObs$FWSColonyID, "  ", RecObs$Str),
-  RecObs$FWSColonyID
-)
-
-```
-
 ## Ground Observations
 
 Add the ground observations. Make a spatial file by adding the colony information.
 
 ```{r GroundObservations}
-GroundObs2015 <- read_excel(path =                        "~/Profesional/GBHE.2015/Ori/GroundObs_DualFrame.xlsx", sheet = "Sheet1", skip = 1) %>%
+if (lFromOri) {
+  tGroundObs2015 <- read_csv(here::here("ori/GroundObs2015.csv"), col_types = "iiccciicc")
+  tGroundObs2023 <- read_csv(here::here("ori/GroundObs2023.csv"), col_types = "cciiiicc")
+} else {
+  tGroundObs2015 <- read_excel(path = 
+                               "~/Profesional/GBHE.2015/Ori/GroundObs_DualFrame.xlsx",
+                               sheet = "Sheet1",
+                               skip = 1)
+  readr::write_csv(tGroundObs2015, here::here("ori/GroundObs2015.csv"), na = "")
+  
+  tGroundObs2023 <- read_csv(file =
+                             "~/Profesional/GBHE.2023/extdata/2023/GroundCounts.csv", 
+                             col_types = "cciiii------cc")
+  readr::write_csv(tGroundObs2023, here::here("ori/GroundObs2023.csv"), na = "")
+}
+
+GroundObs2015 <- tGroundObs2015 %>%
   mutate(
     #      OBJECTID = row_number(),
     Year = 2015,
@@ -1431,7 +1152,7 @@ GroundObs2015 <- read_excel(path =                        "~/Profesional/GBHE.20
     FWSColonyID = sprintf("ME.%04d", Colony),
     Obsr = "Gnd",
     Seat = "Dirt",
-    Comment = NA
+    Comment = `Additional Comments (from volunteer)`
   ) %>%
   rename(Nest = `Total Nests`,
     Act = `Active Nests`) %>%
@@ -1446,7 +1167,7 @@ GroundObs2015 <- read_excel(path =                        "~/Profesional/GBHE.20
          Act,
          Comment)
 
-GroundObs2023 <- read_csv(file =              "~/Profesional/GBHE.2023/extdata/2023/GroundCounts.csv", col_types = "cciiii------cc") %>%
+ GroundObs2023 <-tGroundObs2023%>% 
   mutate(
     #      OBJECTID = row_number(),
     Year = 2023,
@@ -1471,6 +1192,10 @@ GroundObs2023 <- read_csv(file =              "~/Profesional/GBHE.2023/extdata/2
          Act,
          Comment)
 
+```
+ Combine the year ground observations aand make the spatial layer
+   
+```{r CmbSpatialGround}
 tGroundObs <- bind_rows(GroundObs2015, GroundObs2023) %>%
   mutate(OBJECTID = row_number()) %>%
   select(OBJECTID,
@@ -1512,7 +1237,7 @@ tGroundObsSF <- left_join(tGroundObs,
 tGroundObsSF %>%
   filter(is.na(Lng))
 
-GroundObsSF <-     tGroundObsSF %>%
+GroundObsSF <- tGroundObsSF %>%
   filter(!is.na(Lng)) %>%
   st_sf()
 
@@ -1521,7 +1246,7 @@ if (lWrite) {
            here::here("GIS/GroundObsSF.kml"),
            delete_layer = TRUE)
 }
-rm(GroundObs2015, GroundObs2023, tGroundObs, tGroundObsSF)
+rm(tGroundObs2015, tGroundObs2023, GroundObs2015, GroundObs2023, tGroundObs, tGroundObsSF)
 
 ```
 ## Non-Spatial Ground Observations
