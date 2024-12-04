@@ -916,6 +916,8 @@ tblObservations <- bind_rows(tblObservations2015,
   mutate(
     FWSColonyID = ifelse(is.na(WBC_ID), NA, sprintf("ME.%04d", WBC_ID)),
     Str = Strata,
+    AOU = ifelse(is.na(Species) &
+                   pmax(FObsAct, RObsAct, na.rm = TRUE) == 0, "GBHE", Species),
     CapHist = tolower(CaptHist),
   ) %>%
   select(
@@ -924,7 +926,7 @@ tblObservations <- bind_rows(tblObservations2015,
     PlotDetails_FK,
     Lng = Longitude,
     Lat = Latitude,
-    AOU = Species,
+    AOU,
     CapHist,
     Location = Habitat,
     FWSColonyID,
