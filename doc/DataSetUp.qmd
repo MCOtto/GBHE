@@ -914,11 +914,7 @@ tblObservations <- bind_rows(tblObservations2015,
                              tblObservations2023 %>%
                                mutate(Year = CurrentYr))  %>%
   mutate(
-    FWSColonyID = ifelse(is.na(WBC_ID), NA, ifelse(
-      `NewColony?`,
-      sprintf("new.%04d", WBC_ID),
-      sprintf("ME.%04d", WBC_ID)
-    )),
+    FWSColonyID = ifelse(is.na(WBC_ID), NA, sprintf("ME.%04d", WBC_ID)),
     Str = Strata,
     CapHist = tolower(CaptHist),
   ) %>%
@@ -937,7 +933,8 @@ tblObservations <- bind_rows(tblObservations2015,
     fAct = FObsAct,
     rAct = RObsAct,
     Comment = Comments
-  )
+  ) %>%
+  arrange(Obs_PK)
 
 if (lWrite) {
   readr::write_csv(tblObservations,
