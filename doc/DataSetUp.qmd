@@ -33,13 +33,15 @@ library(purrr)
 library(ggplot2)
 library(RSQLite)
 source(here::here("R/RDB2Data.R"))
+source(here::here("R/LastFirst.R"))
+
 # Write the spatial data to  `gis`, the dataframes to  `GBHE/data` and the collections of 
 # single variables to `data/MetaVars.R`.  Use `lWrite = FALSE` to debug and test.
 lWrite <- FALSE
 
 # FALSE, the data come from the 2015 and 2023 projects and are written to the `GBHE/ori` directory.
 # TRUE, the data are just read from the `GBHE/ori` directory.  
-lFromOri <- FALSE
+lFromOri <- TRUE
 
 ```
 
@@ -203,7 +205,7 @@ Make the spatial layer out of the `.csv` files.
 # Where are the new colonies found in the last survey.
 # Is in UTM 19N
 if (lFromOri) {
-  tColony2015 <- read_csv(here::here("ori/Colony2015.csv"), col_types = "c-iiidd")
+  tColony2015 <- read_csv(here::here("ori/Colony2015.csv"), col_types = "c-ccddicciic")
 } else {
   tColony2015 <- RDB2Data(Tbl = "Nest",
                           RowNames = "FWSNestID",
@@ -227,7 +229,7 @@ tColony2015<-tColony2015%>%
 
 # Save the original RC2XY, row-col to my 0-9A-Z code
 if (lFromOri) {
-  tRC2XY <- read_csv(here::here("ori/Colony.csv"), col_types = "c-iiidd")
+  tRC2XY <- read_csv(here::here("ori/RC2XY.csv"), col_types = "ciiidd")
 } else {
   tRC2XY <- read_csv("~/Profesional/GBHE.2015/ExtData/RC2XY.csv", col_types = "c-iiidd")
   readr::write_csv(tRC2XY, here::here("ori/RC2XY.csv"), na = "")
@@ -291,10 +293,10 @@ LatLong <- st_drop_geometry(LatLongSF %>%
 # Add the long-lat to the nestlist
 Col2023SF <- bind_cols(tCol2023SF, LatLong) %>%
   mutate(
-    LastYr = NA,
-    Status = NA,
-    nActive = NA,
-    Comment = NA
+    LastYr = as.integer(NA),
+    Status = as.character(NA),
+    nActive = as.integer(NA),
+    Comment = as.character(NA)
   ) %>%
   select(FWSColonyID_PK,
          Str_FK,
@@ -339,8 +341,16 @@ ColonySF <- st_as_sf(bind_rows(
     Comment
   )
 
+tColonySF <- st_transform(
+  st_as_sf(Colony %>% mutate(tLng = Lng, tLat = Lat), 
+                         coords = c("tLng", "tLat"), 
+                         crs = CRS.WGS84),
+  crs = CRS.UTM19N)
+# I made AllColony and AllColonySF read only to protect them.
+
+
 if (lWrite) {
-  st_write(ColonySF,
+  st_write(tColonySF,
            dsn = here::here("gis/ColonySF.kml"),
            delete_layer = TRUE)
 }
@@ -502,9 +512,42 @@ tAllCol <- bind_rows(
 AllColonySF <- tAllCol        
 AllColony <- st_drop_geometry(AllColonySF)
 
+# Here is another attempt to put together AllColony
+ctmp <- left_join(Colony,
+                  NewColonies %>%
+                    mutate(LastYr = Year),
+                  by = c("Year", "FWSColonyID")) %>%
+  group_by(FWSColonyID, Str, PlotID) %>%
+  summarize(Year = max(Year, na.rm = TRUE),
+            LastYr = max(LastYr, na.rm = TRUE),
+            Nest = max(nNest, na.rm = TRUE),
+            Lng = mean(Lng, na.rm = TRUE), 
+            Lat = mean(Lat, na.rm = TRUE), 
+            .groups = "drop") %>%
+  mutate(Year = ifelse(is.finite(LastYr), LastYr, Year)) %>%
+  select(FWSColonyID, Year, Str, PlotID, Nest, Lng, Lat)
+
+tAllColony <- full_join(ctmp,
+                        AllColony,
+                        by = c("FWSColonyID", "Str", "PlotID")) %>%
+  mutate(
+    Year = ifelse(is.na(Year.x), Year.y, Year.x),
+    Nest = pmax(Nest.x, Nest.y, na.rm = TRUE), 
+    Lng = pmax(Lng.x, Lng.y, na.rm = TRUE), 
+    Lat = pmax(Lat.x, Lat.y, na.rm = TRUE)
+  ) %>%
+  select(FWSColonyID, Year, Str, PlotID, Nest, Lng, Lat, Comment)
+
+tAllColonySF <- st_transform(
+  st_as_sf(tAllColony %>% mutate(tLng = Lng, tLat = Lat), 
+                         coords = c("tLng", "tLat"), 
+                         crs = CRS.WGS84),
+  crs = CRS.UTM19N)
+# I made AllColony and AllColonySF read only to protect them.
+
 if (lWrite) {
-  write_csv(AllColony, here::here("data/AllColony.csv"), na = "")
-  st_write(AllColonySF,
+  write_csv(tAllColony, here::here("data/AllColony.csv"), na = "")
+  st_write(tAllColonySF,
            here::here("gis/AllColonySF.kml"),
            delete_layer = TRUE)
 }
@@ -633,6 +676,9 @@ GRTSLoc <- inner_join(tGRTSLoc2,
 if (lWrite) {
   readr::write_csv(GRTSLoc, here::here("data/GRTSLoc.csv"), na = "")
 }
+ # GRTSLoc <-   readr::read_csv(here::here("data/GRTSLoc.csv"), 
+ #                              col_types = "iccccddiddiclcc")
+
 rm(GRTSLoc2015, GRTSLoc2023, tGRTSLoc2)
 
 ```
@@ -708,11 +754,6 @@ rm(tblFlightInfo2015, tblFlightInfo2023)
 cSeat <- c("Front", "Rear", "Dirt")
 
 # Set up the observers for observer detection. Put ground last and set detection to one.
-# Make a sort function for the observers to sort by last then first name.
-LastFirst <- function(str) {
-  nc <- nchar(str)
-  paste(substr(str, nc, nc), substr(str, 1, nc - 1), sep = "")
-}
 cObsr <- unique(as.character(c(
   tblFlightInfo$Front, tblFlightInfo$Front
 )))
@@ -1082,8 +1123,68 @@ tRecObs4 <- left_join(
   ) %>%
   arrange(Obs_PK)
 
-RecObs <- st_drop_geometry(tRecObs4)
-
+RecObs <- st_drop_geometry(tRecObs4) %>%
+  group_by(
+    Obs_PK,
+    Year,
+    Str,
+    siteID,
+    PlotID,
+    DatTim,
+    Pilot,
+    Front,
+    Rear,
+    AOU,
+    CapHist,
+    Location,
+    FWSColonyID,
+    fNest,
+    rNest,
+    fAct,
+    rAct,
+    Comment,
+    Flight_PK,
+    PlotDetails_PK
+  ) %>%
+  summarize(
+    Lng = mean(Lng, na.rm = TRUE),
+    Lat = mean(Lat, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    AOU = ifelse(is.na(AOU)&!is.na(FWSColonyID), "GBHE", AOU),
+    fNest = ifelse(is.na(fNest), 0, fNest),
+    rNest = ifelse(is.na(rNest), 0, rNest),
+    fAct = ifelse(is.na(fAct), 0, fAct),
+    rAct = ifelse(is.na(rAct), 0, rAct),
+    Comment = str_replace_all(Comment, ";NA", ";")
+  ) %>%
+  select(
+    Obs_PK,
+    Year,
+    Str,
+    siteID,
+    PlotID,
+    DatTim,
+    Pilot,
+    Front,
+    Rear,
+    Lng,
+    Lat,
+    AOU,
+    CapHist,
+    Location,
+    FWSColonyID,
+    fNest,
+    rNest,
+    fAct,
+    rAct,
+    Comment,
+    Flight_PK,
+    PlotDetails_PK
+  )
+# Keep the colony IDs on the non-GBHE but make the counts zero.
+# at one time they were GBHE colonies.
 if (lWrite) {
   readr::write_csv(RecObs, here::here("data/RecObs.MCO.csv"), na = "")
 }
@@ -1095,7 +1196,8 @@ rm(tRecObs, tRecObs2, tRecObs3)
 
 ```{r SpatialRecObs}
 # Make a spatial file.  `tRecObs4` is a spatial file
-tRecObsSF2 <- tRecObs4 %>%
+# tRecObsSF2 <- tRecObs4 %>%
+tRecObsSF2 <- RecObs %>%
   filter(!is.na(Lng)) %>%
   mutate(Lng2 = Lng, Lat2 = Lat) %>%
   st_as_sf(coords = c("Lng2", "Lat2"), crs = CRS.WGS84)
@@ -1114,7 +1216,7 @@ RecObsSF <- st_as_sf(tRecObsSF2 %>%
                      crs = CRS.WGS84) %>%
   st_transform(crs = CRS.UTM19N)
 if (lWrite) {
-  st_write(RecObsSF, here::here("GIS/RecObsSF.MCO.kml"), delete_layer = TRUE)
+  st_write(RecObsSF, here::here("GIS/RecObsSF.kml"), delete_layer = TRUE)
 }
 
 rm(tRecObs4, tRecObsSF2, tRecObsSF3)
