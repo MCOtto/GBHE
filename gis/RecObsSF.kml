@@ -3,7 +3,7 @@
 <Document id="root_doc">
 <Schema name="RecObsSF" id="RecObsSF">
 	<SimpleField name="Obs_PK" type="int"></SimpleField>
-	<SimpleField name="Year" type="float"></SimpleField>
+	<SimpleField name="Year" type="int"></SimpleField>
 	<SimpleField name="Str" type="string"></SimpleField>
 	<SimpleField name="siteID" type="string"></SimpleField>
 	<SimpleField name="PlotID" type="string"></SimpleField>
@@ -17,10 +17,10 @@
 	<SimpleField name="CapHist" type="string"></SimpleField>
 	<SimpleField name="Location" type="string"></SimpleField>
 	<SimpleField name="FWSColonyID" type="string"></SimpleField>
-	<SimpleField name="fNest" type="float"></SimpleField>
-	<SimpleField name="rNest" type="float"></SimpleField>
-	<SimpleField name="fAct" type="float"></SimpleField>
-	<SimpleField name="rAct" type="float"></SimpleField>
+	<SimpleField name="fNest" type="int"></SimpleField>
+	<SimpleField name="rNest" type="int"></SimpleField>
+	<SimpleField name="fAct" type="int"></SimpleField>
+	<SimpleField name="rAct" type="int"></SimpleField>
 	<SimpleField name="Comment" type="string"></SimpleField>
 	<SimpleField name="Flight_PK" type="int"></SimpleField>
 	<SimpleField name="PlotDetails_PK" type="int"></SimpleField>
@@ -3347,12 +3347,12 @@
 		<SimpleData name="Lat">43.8954797326989</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
-		<SimpleData name="FWSColonyID">ME.0739</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0730</SimpleData>
 		<SimpleData name="fNest">0</SimpleData>
 		<SimpleData name="rNest">0</SimpleData>
 		<SimpleData name="fAct">0</SimpleData>
 		<SimpleData name="rAct">0</SimpleData>
-		<SimpleData name="Comment">; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;</SimpleData>
+		<SimpleData name="Comment">; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;FWSColony from ME.0739</SimpleData>
 		<SimpleData name="Flight_PK">14</SimpleData>
 		<SimpleData name="PlotDetails_PK">90</SimpleData>
 	</SchemaData></ExtendedData>
@@ -4469,7 +4469,7 @@
 		<SimpleData name="Front">DD</SimpleData>
 		<SimpleData name="Rear">LM</SimpleData>
 		<SimpleData name="Lng">-70.8357643043776</SimpleData>
-		<SimpleData name="Lat">43.585584670874</SimpleData>
+		<SimpleData name="Lat">43.5855846708739</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0703</SimpleData>
@@ -4481,7 +4481,7 @@
 		<SimpleData name="Flight_PK">20</SimpleData>
 		<SimpleData name="PlotDetails_PK">124</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-70.8357643043776,43.585584670874</coordinates></Point>
+      <Point><coordinates>-70.8357643043776,43.5855846708739</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#RecObsSF">
@@ -9545,12 +9545,12 @@
 		<SimpleData name="Lat">43.8954797326989</SimpleData>
 		<SimpleData name="AOU">GBHE</SimpleData>
 		<SimpleData name="Location">Wetland</SimpleData>
-		<SimpleData name="FWSColonyID">ME.0739</SimpleData>
+		<SimpleData name="FWSColonyID">ME.0793</SimpleData>
 		<SimpleData name="fNest">0</SimpleData>
 		<SimpleData name="rNest">0</SimpleData>
 		<SimpleData name="fAct">0</SimpleData>
 		<SimpleData name="rAct">0</SimpleData>
-		<SimpleData name="Comment">clear, calm, 60-75 deg F; ;;</SimpleData>
+		<SimpleData name="Comment">clear, calm, 60-75 deg F; ;;FWSColony from ME.0739</SimpleData>
 		<SimpleData name="Flight_PK">34</SimpleData>
 		<SimpleData name="PlotDetails_PK">225</SimpleData>
 	</SchemaData></ExtendedData>

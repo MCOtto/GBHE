@@ -5085,19 +5085,6 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#ColonySF">
 		<SimpleData name="Year">2023</SimpleData>
-		<SimpleData name="FWSColonyID">ME.0739</SimpleData>
-		<SimpleData name="Str">SC</SimpleData>
-		<SimpleData name="PlotID">cd.1l</SimpleData>
-		<SimpleData name="Lng">-69.595291893468</SimpleData>
-		<SimpleData name="Lat">43.8954797326985</SimpleData>
-		<SimpleData name="nNest">0</SimpleData>
-		<SimpleData name="nActive">0</SimpleData>
-	</SchemaData></ExtendedData>
-      <Point><coordinates>-69.595291893468,43.8954797326985</coordinates></Point>
-  </Placemark>
-  <Placemark>
-	<ExtendedData><SchemaData schemaUrl="#ColonySF">
-		<SimpleData name="Year">2023</SimpleData>
 		<SimpleData name="FWSColonyID">ME.0740</SimpleData>
 		<SimpleData name="Str">SC</SimpleData>
 		<SimpleData name="PlotID">ch.16</SimpleData>

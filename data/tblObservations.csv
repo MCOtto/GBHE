@@ -128,7 +128,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2015,127,88,,,GBHE,,Upland,ME.0510,0,0,0,0,"No nests seen, but did see prominent pine where DD recalls an old nest had been."
 2015,128,89,,,GBHE,,Wetland,ME.0823,3,3,3,2,Hard to tell if 3rd nest active.
 2015,129,90,,,GBHE,,Wetland,ME.0712,0,0,0,0,
-2015,130,90,,,GBHE,,Wetland,ME.0739,0,0,0,0,
+2015,130,90,,,GBHE,,Wetland,ME.0730,0,0,0,0,FWSColony from ME.0739
 2015,131,93,,,GBHE,,Wetland,ME.0786,3,3,3,3,"3 nests in 1 tree, or 3 clustered in 2 trees very close together."
 2015,132,94,,,GBHE,,Wetland,ME.0609,3,4,2,2,
 2015,133,95,,,GBHE,,Upland,ME.0772,0,0,0,0,Could not find any nests.
@@ -365,7 +365,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,364,219,,,GBHE,,Upland,ME.0722,0,0,0,0,
 2023,365,221,,,GBHE,,Wetland,ME.0899,5,4,5,2,one nest on east side of peninsula agaist live trees.
 2023,366,222,,,GBHE,,Wetland,ME.0749,0,0,0,0,
-2023,367,225,,,GBHE,,Wetland,ME.0739,0,0,0,0,
+2023,367,225,,,GBHE,,Wetland,ME.0793,0,0,0,0,FWSColony from ME.0739
 2023,368,225,,,GBHE,,Wetland,ME.0792,0,0,0,0,
 2023,369,228,,,GBHE,,Upland,ME.0131,47,42,45,40,only noticed 2 inactive
 2023,370,232,,,GBHE,,Upland,ME.0837,0,0,0,0,

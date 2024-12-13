@@ -128,7 +128,7 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 127,2015,ND,OOS,ch.0p,2015-06-12,JB,DD,AD,-67.98936012528873,46.541366098085504,GBHE,,Upland,ME.0510,0,0,0,0,"; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;No nests seen, but did see prominent pine where DD recalls an old nest had been.",14,88
 128,2015,ND,L62,ch.0q,2015-06-12,JB,DD,AD,-68.0528130178204,46.50487642178368,GBHE,,Wetland,ME.0823,3,3,3,2,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;Hard to tell if 3rd nest active.,14,89
 129,2015,ND,L58,ci.0n,2015-06-12,JB,DD,AD,-67.7898229381867,46.66779554247884,GBHE,,Wetland,ME.0712,0,0,0,0,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;,14,90
-130,2015,ND,L58,ci.0n,2015-06-12,JB,DD,AD,-69.59529189347603,43.89547973269889,GBHE,,Wetland,ME.0739,0,0,0,0,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;,14,90
+130,2015,ND,L58,ci.0n,2015-06-12,JB,DD,AD,-69.59529189347603,43.89547973269889,GBHE,,Wetland,ME.0730,0,0,0,0,; Commute from Old Town to Presque Isle to pick up AD; and back at end.;;FWSColony from ME.0739,14,90
 131,2015,ND,L55,c5.1f,2015-06-15,JB,DD,BZ,-70.39928985291712,44.585358186208786,GBHE,,Wetland,ME.0786,3,3,3,3,"; Picked up BZ in Lewiston and left there at 9:55.;;3 nests in 1 tree, or 3 clustered in 2 trees very close together.",15,93
 132,2015,ND,L64,c2.1g,2015-06-15,JB,DD,BZ,-70.72855442388911,44.61879910450009,GBHE,,Wetland,ME.0609,3,4,2,2,; Picked up BZ in Lewiston and left there at 9:55.;;,15,94
 133,2015,ND,L57,c2.1j,2015-06-15,JB,DD,BZ,-70.81864530140446,44.31691171708954,GBHE,,Upland,ME.0772,0,0,0,0,; Picked up BZ in Lewiston and left there at 9:55.;;Could not find any nests.,15,95
@@ -365,7 +365,7 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 364,2023,ND,OOS,c4.15,2023-06-20,NM,DD,MT,-70.19730525391482,45.46900716437989,GBHE,,Upland,ME.0722,0,0,0,0,mostly overcast near Winthrop - moved towards w. ME where partly sunny and no rain; 60-75 deg F.; ;;,33,219
 365,2023,Co,L54,cf.1g,2023-06-22,CH,DD,CK,-69.14820530895963,44.2485568386374,GBHE,,Wetland,ME.0899,5,4,5,2,"clear, calm, 60-75 deg F; ;;one nest on east side of peninsula agaist live trees.",34,221
 366,2023,Co,L56,cg.1h,2023-06-22,CH,DD,CK,-69.07563323250548,44.210833296584454,GBHE,,Wetland,ME.0749,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,222
-367,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.59529189347603,43.89547973269889,GBHE,,Wetland,ME.0739,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,225
+367,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.59529189347603,43.89547973269889,GBHE,,Wetland,ME.0793,0,0,0,0,"clear, calm, 60-75 deg F; ;;FWSColony from ME.0739",34,225
 368,2023,SC,L03,ce.1g,2023-06-22,CH,DD,CK,-69.3212780047057,44.357050906923604,GBHE,,Wetland,ME.0792,0,0,0,0,"clear, calm, 60-75 deg F; ;;",34,225
 369,2023,ND,L72,bz.1b,2023-06-23,JS,DD,SB,-70.98856663308521,45.08161433618142,GBHE,,Upland,ME.0131,47,42,45,40,"54-87 deg F, clear, 8-15 mph wind; ;;only noticed 2 inactive",35,228
 370,2023,ND,L89,cg.0r,2023-06-30,NM,DD,JR,-68.20644315244493,46.38517834880593,GBHE,,Upland,ME.0837,0,0,0,0,"low cloud ceilings but broken, temps 60s-70s; ;;",36,232
