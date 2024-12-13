@@ -1,6 +1,6 @@
 ---
 title: "GBHE 2015 and 2023 Dual-Frame Survey Estimation"
-author: "Mark C. Otto 12 November 2024"
+author: "Mark C. Otto 12 December 2024"
 echo: false
 eval: true
 warning: false
@@ -50,6 +50,7 @@ source("~/Ref/RLib/logit.R")
 source("~/Ref/RLib/expit.R")
 source(here::here("R/Beta.R"))
 source(here::here("R/CRC.R"))
+source(here::here("R/LastFirst.R"))
 cMdl <- "Simple"
 Probs <- c(0.5, 0.05, 0.95)
 source(here::here("R/MkSmry.R"))
@@ -62,6 +63,12 @@ source(file = here::here("data/MetaVars.R"))
 
 # All the data in `output/GBHE.RData` is in the `data` directory.
 load(file = here::here("output/GBHE.RData"))
+
+# I want to get the right colonies. Sort this out later and make ColonySF match
+# If Colony2 is right, then make it add it into the R save file.  Colon does have the 
+# new colonies, so is right.  Made read-only
+# Colony2 <- readr::read_csv(here::here("data/Colony.csv"), col_types = "icccddii")
+# Colony <- Colony2
 
 ```
 
@@ -265,7 +272,6 @@ Need to remove the training flight of `DD` and `DK` on `ME.0822`.
   #   filter(!rownames(AllObs) %in% c("GBHE.SC. 84", "GBHE.SC. 841"))
   
 ```
-
 
 ## Colonies by Year and Stratum
 Summarize the colonies by year and stratum for simple analyses.  
@@ -488,7 +494,9 @@ NewObs <- left_join(
     nActCol = sum(nActCol, na.rm = TRUE),
     KMSq = max(KMSq, na.rm = TRUE),
     .groups = "drop"
-  )
+  ) %>%
+  mutate(YrStr = factor(paste(Year, Str, sep = "."), cYrStr))
+
 knitr::kable(
   NewObs %>%
     group_by(Year, Str) %>%
@@ -514,20 +522,17 @@ I added a Poisson regression that would not allow any negative estimates on the 
 From spot checking the means, they come close to the ordinary regression estimates.
 
 ```{r EstNewCol}
-NewObsYS <- NewObs %>%
-  mutate(YrStr = factor(paste(Year, Str, sep = "."), cYrStr))
-tMdlMtx <- model.matrix  ( ~ YrStr - 1, data = NewObsYS)
-MdlMtx <- diag(NewObsYS$KMSq) %*% tMdlMtx
+tMdlMtx <- model.matrix  ( ~ YrStr - 1, data = NewObs)
+MdlMtx <- diag(NewObs$KMSq) %*% tMdlMtx
 
-NewColMdl <- lm(nNestCol ~ MdlMtx - 1, data = NewObsYS)
+NewColMdl <- lm(nNestCol ~ MdlMtx - 1, data = NewObs)
 summary(NewColMdl)
 NewColGLM <- glm(nNestCol ~ tMdlMtx - 1, 
-                 family = poisson, weight = log(NewObsYS$KMSq),
-                 data = NewObsYS)
-summary(NewColMdl)
+                 family = poisson, weight = log(NewObs$KMSq),
+                 data = NewObs)
 summary(NewColGLM)
 tAIC <- AIC(NewColMdl, NewColGLM)
-tAIC$AIC <-  tAIC$AIC- c(0, sum(log(NewObsYS$KMSq)))
+tAIC$AIC <-  tAIC$AIC- c(0, sum(log(NewObs$KMSq)))
 tAIC
 
 NewColMn <- coefficients(NewColMdl)
@@ -538,7 +543,7 @@ NewColSD <- sqrt(diag(vcov(NewColMdl)))
 ## Area Active Colony Estimation
 
 ```{r EstNewAct}
-NewActColMdl <- lm(nActCol ~ MdlMtx - 1, data = NewObsYS)
+NewActColMdl <- lm(nActCol ~ MdlMtx - 1, data = NewObs)
 summary(NewActColMdl)
 NewActColMn <- coefficients(NewActColMdl)
 NewActColSD <- sqrt(diag(vcov(NewActColMdl)))
@@ -992,20 +997,18 @@ ObsrSeat <- AllObs %>%
   group_by(Year, Seat, Obsr) %>%
   summarize(nObs = n(), .groups = "drop") %>%
   mutate(LstFrst = LastFirst(as.character(Obsr))) %>%
-  # arrange(Year, LstFrst, Seat) %>%
-  # dplyr::select(Year, Obsr, Seat, nObs)
   arrange(Year, LstFrst, Seat) %>%
   dplyr::select(Year, Obsr, Seat, nObs)
 
 ```
 
-Make the capture history matrix for data augmentation. Put different rear-seat observers in the area frame
+Make the capture history matrix. Put different rear-seat observers in the area frame
 
 ```{r RearObserverIndex}
 CHObs <- RecObs %>%
   filter(!is.na(CapHist)) %>%
   mutate(nNest = pmax(0, fNest, rNest, na.rm = TRUE)) %>%
-  select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, CapHist, nNest)
+  select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, nNest, CapHist)
 
 RearAreaObsr <- unique(CHObs$Rear)
 Idx <- order(LastFirst(RearAreaObsr))
@@ -1021,7 +1024,7 @@ Extract capture histories from both the list and area frame observations for any
 ```{r CaptureHistories}
 CapHist <- CHObs %>%
   # Frame, removed
-  dplyr::select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, CapHist) %>%
+  dplyr::select(Year, Str, PlotID, FWSColonyID, Front, Rear, AOU, nNest, CapHist) %>%
   mutate(
     Str = as.character(Str),
     # is a new nest?
@@ -1032,7 +1035,7 @@ CapHist <- CHObs %>%
     ))
   ) %>%
   # Frame, removed
-  group_by(Year, Str, Front, Rear, FWSColonyID, FRObsr, CH) %>%
+  group_by(Year, Str, Front, Rear, FWSColonyID, FRObsr, nNest, CH) %>%
   summarise(N = n(), .groups = "drop") %>%
   pivot_wider(
     names_from = "CH",
@@ -1047,7 +1050,7 @@ CapHist <- CHObs %>%
                          `11` > 0, 0, 1)) %>%
   dplyr::select(Year, # Frame,
                 Str, # inCNA,
-                Front, Rear, FWSColonyID, FRObsr, `01`, `10`, `11`, `00`)
+                Front, Rear, FWSColonyID, FRObsr, nNest, `01`, `10`, `11`, `00`)
 
 ```
 
@@ -1146,6 +1149,7 @@ knitr::kable(DetPNYr, digits = 1, caption = "Front-Rear Observer Detection Estim
 
 ```{r SaveEst}
 save(
+  # Why are Colony, RecObs, GroundObs here when they are created in DataSetUp?
   Colony,
   RecObs,
   LstSmry,
