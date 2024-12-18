@@ -1,7 +1,7 @@
 ---
-title: "Great Blue Heron Survey 2015 and 2023"
+title: "Great Blue Heron Survey Bayesian Estimation 2015 and 2023"
 author: "Mark C. Otto"
-date: "12 November 2024"
+date: "9 December 2024"
 echo: false
 format: docx
 editor: source
@@ -19,6 +19,7 @@ Estimation with random observer effects
 library(MASS)
 library(DualFrame)
 library(CollisionModel)
+library(stringr)
 library(dplyr)
 library(tidyr)
 library(lme4)
@@ -67,35 +68,38 @@ For colony occupation estimation, use `LstSmry` that is based on `AllObs` of the
 tSmpColObs <- AllObs %>%
   filter(InSmp)
 ColIdx <- sort(unique(tSmpColObs$FWSColonyID))
+StrPlotID <- sort(unique(paste(tSmpColObs$Str, tSmpColObs$PlotID, sep = ".")))
 
 SmpColObs <- tSmpColObs %>%
   mutate(
     Year = factor(Year, cYear),
     Str = factor(Str, cStr),
     YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
+    StrPlotID = factor(paste(Str, PlotID, sep = "."), StrPlotID),
     ColID = factor(FWSColonyID, ColIdx)
   )
 
 # Colony indicator to match number of nests in colonies
 Obs2Col <- as.numeric(SmpColObs$ColID)
 Obs2Obsr <- as.numeric(SmpColObs$Obsr)
-Obs2Str <- as.numeric(SmpColObs$Str)
+Obs2Str <-  as.numeric(SmpColObs$Str)
+obs2StrPlotID <- as.numeric(SmpColObs$StrPlotID)
 
-rm(tSmpColObs)
-
-```
-
+ rm(tSmpColObs)
 
 ```
 ## Proportion of Active Nests
+Proportion of total nests that are active.
 
 ```{r ActiveNests}
 # Dropping `Frame` lowered the AIC.
 ActGLM <- glm(cbind(Act, Nest - Act) ~ YFS - 1, 
-              data = tSmpColObs, family = binomial)
+              data = SmpColObs, family = binomial)
 summary(ActGLM)
-ActLME <- glmer(cbind(Act, Nest - Act) ~ 1 + (1 | YFS),
-                data = tSmpColObs,
+
+# A stratum plot effect
+ActLME <- glmer(cbind(Act, Nest - Act) ~ -1 + YFS + (1 | StrPlotID),
+                data = SmpColObs,
                 family = binomial)
 summary(ActLME)
 AIC(ActGLM, ActLME)
@@ -104,14 +108,15 @@ AIC(ActGLM, ActLME)
 # Estimates are on the log scale.
 # Use the unconditional mean and variance to estimate missing
 # effects
-tActEst <- coef(ActLME)$YFS
+tActEst <- fixef(ActLME, add.dropped=TRUE)
 ActEst <- rep(NA, nYFS)
 names(ActEst) <- cYFS
-ActEst[rownames(tActEst)] <-tActEst$"(Intercept)"
+ActEst[str_replace(names(tActEst), "YFS", "")] <-tActEst
 NAIdx <- is.na(ActEst)
 ActEst[NAIdx] <- mean(ActEst, na.rm = TRUE)
-ActVar <- diag(as.numeric(vcov(ActLME)), nYFS) + 
-               as.numeric(VarCorr(ActLME))
+ActVar <- diag(vcov(ActLME)) + as.numeric(VarCorr(ActLME))
+# ???I need to include the missing estimates
+ActVar <- as.matrix(vcov(ActLME)) + diag(as.numeric(VarCorr(ActLME)),)
 
 Sim <- expit(mvrnorm(n = nSim, mu = ActEst , 
                      Sigma = ActVar))
@@ -124,28 +129,27 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
 ## Observer Detection
 
 ```{r ObsrDet}
-
-
+# *** This is not used?  delete?
 # Z[ColID]~bernoulli(1|Str);
  ColObs<-unique(SmpColObs[,c("ColID","Frame","Str")])
- cYFS<-apply(expand.grid(Str=cDFStr,Frame=cFrame),1,
+ cYFS<-apply(expand.grid(Str=cStr,Frame=cFrame),1,
   function(x)paste(x[2],x[1],sep=".")
  )
- ColObs<-SmpColObs%>%
-   mutate(
-    YFS=factor(paste(Frame,Str,sep="."),cYFS),
-    GndNest=ifelse(Obsr=="Gnd",Nest,NA)
-   )%>%
-   group_by(ColID,Frame,Str,YFS)%>%
-   summarise(Nest=max(Nest,na.rm=TRUE),Act=max(Act,na.rm=TRUE),
-             GndNest=sum(GndNest,na.rm=TRUE)
-   )%>%
+ 
+ ColObs <- SmpColObs %>%
+   mutate(YFS = factor(paste(Frame, Str, sep = "."), cYFS),
+          GndNest = ifelse(Obsr == "Gnd" | !InSmp, Nest, NA)) %>%
+   group_by(ColID, Frame, Str, YFS) %>%
+   summarise(
+     Nest = max(Nest, na.rm = TRUE),
+     Act = max(Act, na.rm = TRUE),
+     GndNest = ifelse(all(is.na(GndNest)), NA, sum(GndNest, na.rm =
+                                                     TRUE)),
+     .groups = "drop"
+   ) %>%
    arrange(ColID)
- 
- Idx<-SmpColObs[SmpColObs$ColID%in%GndObs[GndObs$InSmp,"ColID"],"ColID"]
- ColObs[!ColObs$ColID%in%Idx,"GndNest"]<-NA
- 
- ```
+
+```
  ## New Colony Estimation
 
 ```{r NewColonies}
@@ -158,9 +162,6 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
  OccEst<-coefficients(occmdl)
  OccSD<-sqrt(diag(vcov(occmdl)))
  
- 
- 
-
 ```
 
 ## JAGS Data
@@ -168,14 +169,18 @@ pActBeta <- Beta(Mean = mean(ActLMEEst),
 ```{r JAGSData}
 # Model data
 Data <- list(
-  nYrStr = nYrStr,
   nYFS = nYFS,
   nColObs = nrow(SmpColObs),
   nest = SmpColObs$Nest,
   act = SmpColObs$Act,
   Obs2Col = Obs2Col,
   Obs2Obsr = Obs2Obsr,
-  newcol = ,
+  nYrStr = nYrStr,
+  nAreaPlot = nrow(NewObs),
+  newcol = NewObs$nNestCol,
+  newact = NewObs$nActCol,
+  Plot2YS = NewObs$YrStr,
+  Plot2KMSq = NewObs$PlotKMSq,
   nCH = nCH,
   nCmb = ncol(xCH),
   xCH = xCH
