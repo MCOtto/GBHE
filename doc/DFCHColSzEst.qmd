@@ -395,8 +395,10 @@ InitFcn <- function(iChain) {
             # rbinom(nCapHistAug - nCHSeen, size = 1, prob = ColPsi0)
             )
   Nest <- rep(1, length = nColYr)
+  Nest[SmpColYr2ColYr] <- Data$nest + 1
   Act <- rep(1, length = nColYr)
-            
+  Act[SmpColYr2ColYr] <- pmax(1, Data$act)
+  tmp<-   bind_cols(act=pmax(1, Data$act), Act =Act[SmpColYr2ColYr])       
 #  pNest2Col <- rbeta(1, 9, 1)
   
   # Nest per colony stratum + year model
@@ -411,7 +413,6 @@ InitFcn <- function(iChain) {
   # pObsr <- rbeta(2)
   
   list(
-    #    ColZ = rep(1, length = nCapHistAug),
     ColYrZ = ColYrZ,
     Nest = Nest,
     Act = Act
@@ -444,7 +445,7 @@ Parm <- c(
   "pActCol",
   "pNestDet",
   "pColDet",
-  "pD", "popt"
+  "pD", "popt", 
   "deviance"
 )
 cParm <- c(

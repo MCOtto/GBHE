@@ -1,0 +1,129 @@
+# Random effect detection and including the ground truth (GT) observations
+# There is a differential in first detecting colonies over nests in colonies.
+var ColYrZ[nSmpColYr], pNestDet[nNestDet], pColDet[nColDet]
+
+model {
+  # Likelihood for the nest and active nest observations by
+  # front observer, and rear observers, and from the ground.
+  # Some aerial counts may be higher than the ground truth
+  # The ground observations also have a detection probability.
+  for (iSmpColYr  in 1:nSmpColYr) {
+    nest[iSmpColYr]~dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Nest[SmpColYr2ColYr[iSmpColYr]])
+    # nest[iSmpColYr] ~ dpois(pNestDet[SmpColYr2Det[iSmpColYr]] * Nest[SmpColYr2ColYr[iSmpColYr]])
+    
+    act[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr ]], Act[SmpColYr2ColYr[iSmpColYr ]])
+    # act[iSmpColYr] ~ dpois(pNestDet[SmpColYr2Det[iSmpColYr]] * Act[SmpColYr2ColYr[iSmpColYr]])
+  }
+  
+  # Likelihood of the new colonies found in the area plots.
+  for (iSmpPlotYr in 1:nSmpPlotYr) {
+    newcol[iSmpPlotYr] ~ dpois(pBoth[SmpPlotYr2Det[iSmpPlotYr]] * ENewCol[SmpPlotYr2PlotStrYr[iSmpPlotYr]])
+    newact[iSmpPlotYr] ~ dbin(pActCol[SmpPlotYr2Det[iSmpPlotYr]], NewCol[SmpPlotYr2PlotStrYr[iSmpPlotYr]])
+  }
+  
+  # Likelihood for Colony detection with few capture histories
+  for (iCmb in 1:nCmb) {
+    # Capture history probability
+    #   xCH[nCH,iCmb]<-sum(xCH[1:(nCH-1),iCmb])
+    xCH[1:(nCH - 1), iCmb] ~ dmulti(pCH[1:(nCH - 1), iCmb], xCH[nCH, iCmb])
+    
+    # Calculate the new colony detection for each observer given colony size
+    # pCO[1, iCmb] <- (1 - (1 - pColDet[1]) ^ sqrt(Nest[Cmb2ColYr[iCmb]]))
+    # pCO[2, iCmb] <- (1 - (1 - pColDet[Cmb2RYr[iCmb]]) ^ sqrt(Nest[Cmb2ColYr[iCmb]]))
+    pCO[1, iCmb] <- (1 - (1 - pColDet[1]) ^ sqrt(max(1, CmbNest[iCmb])))
+    pCO[2, iCmb] <- (1 - (1 - pColDet[Cmb2RYr[iCmb]]) ^ sqrt(max(1, CmbNest[iCmb])))
+    
+    # Calculate the detection of combinations of different capture histories
+    pCH[nCH, iCmb] <-
+      pCO[1, iCmb] + pCO[2, iCmb] - pCO[1, iCmb] * pCO[2, iCmb]
+    
+    for (iCH in 1:(nCH - 1)) {
+      pCH[iCH, iCmb] <- ((CHCoef[1, iCH] + CHCoef[2, iCH] * pCO[1, iCmb]) *
+                           (CHCoef[3, iCH] + CHCoef[4, iCH] * pCO[2, iCmb])) / pCH[nCH, iCmb]
+    }
+  }
+  
+  # The number of new colonies are the chance of at least one observer
+  # seeing a colony times the year-stratum colony density times the plot size.
+  # The detection are DD-Rear2015 or DD-Rear2023.
+  # For now don't let the detection vary by colony size.
+  # Front = 1, Rear2015 = 2, and Rear2023 = 3
+  pBoth[1] = pColDet[1] + pColDet[2] - pColDet[1] * pColDet[2]
+  pBoth[2] = pColDet[1] + pColDet[3] - pColDet[1] * pColDet[3]
+  
+  # Think in the future of working with the list plots, which are the primary sample unit.
+  # Nests per colony.  For all colonies, list and new.
+  for (iColYr in 1:nColYr) {
+    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2YFS[iColYr]]
+    Nest[iColYr] ~ dpois(ENest[iColYr])
+    Act[iColYr] ~ dbin(pAct[ColYr2YS[iColYr]], Nest[iColYr])
+    ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2YS[iColYr]])
+  }
+  
+  # Estimates for all plots apart from observer detection
+  for (iPlotYr in 1:nPlotYr) {
+    NewCol[iPlotYr] ~ dpois(ENewCol[iPlotYr])
+    ENewCol[iPlotYr] <- ColPsi[PlotYr2YS[iPlotYr]] * CpA[PlotYr2YS[iPlotYr]] * PlotYr2KMSq[iPlotYr]
+    NewActCol[iPlotYr] ~ dbin(pActCol[PlotYr2YS[iPlotYr]], NewCol[iPlotYr])
+    
+    # YAS is Year-Area Frame only-Stratum
+    NewNest[iPlotYr] ~ dpois(NpC[PlotYr2YAS[iPlotYr]] * ENewCol[iPlotYr])
+    NewActNest[iPlotYr] ~ dbin(pAct[PlotYr2YS[iPlotYr]], NewNest[iPlotYr])
+  }
+  
+  # Year-Frame-Stratum totals
+  for (iYrStr in 1:nYrStr) {
+    LstColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest > 0, 0))
+    LstActColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Act > 0, 0))
+    LstNestTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest, 0))
+    LstActTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest, 0))
+    
+    NewColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewNest > 0, 0))
+    NewActColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewActNest > 0, 0))
+    NewNestTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewNest, 0))
+    NewActTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewActNest, 0))
+  }
+  
+  # Occupancy of active colonies (assumes it is the same for the list and area frames.)
+  for (iYrStr in 1:nYrStr) {
+    ActPsi[iYrStr] = sum(ifelse(ColYr2YS == iYrStr, Act > 0, 0)) /
+                     sum(ifelse(ColYr2YS == iYrStr, Nest > 0, 0))
+  }
+  
+  # Occupancy of each colony
+  for (iYrStr in 1:nYrStr) {
+    ColPsi[iYrStr] ~ dbeta(1, 1)
+  }
+  
+  # Nests per colony
+  for (iYFS in 1:nYFS) {
+    NpC[iYFS] <- exp(lnNpC[iYFS])
+  }
+  
+  for (iYFS in 1:nYFS) {
+    lnNpC[iYFS] ~ dunif(-10, 10)
+  }
+  
+  # Assume proportion active does not change between list and area frames
+  for (iStr in 1:nYrStr) {
+    pAct[iStr] ~ dbeta(1, 1)
+  }
+  
+  # Colonies per area
+  for (iYrStr in 1:nYrStr) {
+    CpA[iYrStr] <- exp(lnCpA[iYrStr])
+    lnCpA[iYrStr] ~ dunif(-10, 10)
+    pActCol[iYrStr] ~ dbeta(1, 1)
+  }
+  
+  # Observer effects: rear by year and front
+  for (iObsr in 1:nNestDet) {
+    # Last is the ground observations but they miss too.
+    pNestDet[iObsr] ~ dbeta(1, 1)
+  }
+  
+  # Colony detection
+  for (iObsr in 1:nColDet) {
+    pColDet[iObsr] ~ dbeta(1, 1)
+  }
+}
