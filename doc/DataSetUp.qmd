@@ -678,7 +678,7 @@ GRTSLoc <- inner_join(tGRTSLoc2,
 if (lWrite) {
   readr::write_csv(GRTSLoc, here::here("data/GRTSLoc.csv"), na = "")
 }
- # GRTSLoc <-   readr::read_csv(here::here("data/GRTSLoc.csv"), 
+ # GRTSLoc <-   readr::read_csv(here::here("data/GRTSLoc.csv"),
  #                              col_types = "iccccddiddiclcc")
 
 rm(GRTSLoc2015, GRTSLoc2023, tGRTSLoc2)
@@ -693,6 +693,8 @@ GRTSSmp <- GRTSLoc %>%
 
 if (lWrite) {
   readr::write_csv(GRTSSmp, here::here("data/GRTSSmp.csv"), na = "")
+  # GRTSSmp <- readr::read_csv(here::here("data/GRTSSmp.csv"),
+  #                            col_types = "iccccdi")
 }
 
 ```
@@ -836,6 +838,7 @@ tblPlotDetails <-
   )
 if (lWrite) {
   readr::write_csv(tblPlotDetails, here::here("data/tblPlotDetails.csv"), na = "")
+#  tblPlotDetails <- readr::read_csv(here::here("data/tblPlotDetails.csv"), col_types = "iiciccccccc")
 }
 rm(tblPlotDetails2015, tblPlotDetails2023, ttblPlotDetails)
 
