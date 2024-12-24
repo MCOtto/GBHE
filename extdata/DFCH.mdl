@@ -37,7 +37,7 @@
 # Could just raise the colonies per area and get the same new colonies.
   for(iPlot in 1:nAreaPlot){
    newcol[iPlot]~dpois(logobsrdec * lnCpA[Plot2YS[iPlot]] * sample plot size);
-   NewCol[iPlot]~dpois(CpA[Plot2YS[iPlot]] * sample plot size)
+   NewCol[iPlot]~dpois(CpA[Plot2YS[iPlot]] * Plot2KMSq[iPlot])
    newact[iPlot]~dbin(pActCol[[Plot2YS[iPlot]]], NewCol[iPlot])
    NewAct[iPlot]~dbin(pActCol[[Plot2YS[iPlot]]], NewCol[iPlot])
 
