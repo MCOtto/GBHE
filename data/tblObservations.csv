@@ -227,7 +227,7 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,226,150,,,GBHE,,Wetland,ME.0769,0,0,0,0,
 2023,227,150,,,GBHE,,Wetland,ME.0881,0,0,0,0,
 2023,228,151,,,GBHE,,Wetland,ME.0770,0,0,0,0,Empty BAEA(?) nest in live pine on west side of wetland. No other nests seen.
-2023,229,152,-68.610239000000007,44.866079,GBHE,x10,Wetland,ME.0917,2,2,0,0,Northwest corner of plot; not detected by Robs at first.
+2023,229,152,-68.610239000000007,44.866079,GBHE,x10,Wetland,ME.0917,2,2,0,0,Northwest corner of plot; not detected by Robs at first. New Colony
 2023,230,152,,,GBHE,,Wetland,ME.0684,0,0,0,0,
 2023,231,152,,,GBHE,x10,Wetland,ME.0773,1,1,0,0,There are 2 nests here - we each saw a different nest and realized it after that there were 2 total.
 2023,232,152,,,GBHE,x00,Upland,ME.0905,1,1,1,1,
@@ -329,10 +329,10 @@ Year,Obs_PK,PlotDetails_FK,Lng,Lat,AOU,CapHist,Location,FWSColonyID,fNest,rNest,
 2023,328,195,,,GBHE,,Wetland,ME.0736,0,0,0,0,
 2023,329,196,,,GBHE,,Wetland,ME.0694,0,0,0,0,
 2023,330,196,,,GBHE,,Wetland,ME.0812,0,0,0,0,
-2023,331,196,,,GBHE,,Wetland,ME.0866,0,0,0,0,
+2023,331,238,,,GBHE,,Wetland,ME.0866,0,0,0,0,Colony is in Co
 2023,332,197,,,GBHE,,Wetland,ME.0179,0,0,0,0,1 active OSPR  plus 1 active OSPR to northwest
 2023,333,197,,,OSPR,,Wetland,ME.0179,1,1,1,1,
-2023,334,198,,,GBHE,,Upland,ME.0034,0,0,0,0,1 inactive OSPRE or BAEA nest on east side of island.
+2023,334,198,,,GBHE,,Upland,ME.0034,0,0,0,0,1 inactive OSPRE or BAEA nest on the east side of island.
 2023,335,199,,,GBHE,,Upland,ME.0802,0,0,0,0,
 2023,336,200,,,GBHE,,Upland,ME.0886,0,0,0,0,
 2023,337,200,,,GBHE,,Upland,ME.0013,0,0,0,0,

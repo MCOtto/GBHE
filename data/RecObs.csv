@@ -133,7 +133,7 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 132,2015,ND,L64,c2.1g,2015-06-15,JB,DD,BZ,-70.72855442388911,44.61879910450009,GBHE,,Wetland,ME.0609,3,4,2,2,; Picked up BZ in Lewiston and left there at 9:55.;;,15,94
 133,2015,ND,L57,c2.1j,2015-06-15,JB,DD,BZ,-70.81864530140446,44.31691171708954,GBHE,,Upland,ME.0772,0,0,0,0,; Picked up BZ in Lewiston and left there at 9:55.;;Could not find any nests.,15,95
 134,2015,SC,L38,c2.1k,2015-06-15,JB,DD,BZ,-70.87826130761763,44.20406426802195,GBHE,,Upland,ME.0806,14,15,13,14,; Picked up BZ in Lewiston and left there at 9:55.;;All in pies on west edge in upland immediately adjacent to wetland.,15,96
-135,2015,SC,L38,c2.1k,2015-06-15,JB,DD,BZ,-70.97362176230256,44.23551010910979,GBHE,,,ME.0109,0,0,0,0,; Picked up BZ in Lewiston and left there at 9:55.;;DID NOT SURVEY DUE TO LOW CLOUDS WHERE WE NEEDED TO FLY.,15,96
+135,2015,ND,L38,c2.1k,2015-06-15,JB,DD,BZ,-70.97362176230256,44.23551010910979,GBHE,,,ME.0109,0,0,0,0,; Picked up BZ in Lewiston and left there at 9:55.;;DID NOT SURVEY DUE TO LOW CLOUDS WHERE WE NEEDED TO FLY.,15,96
 136,2015,SC,L24,c2.1l,2015-06-15,JB,DD,BZ,-70.96372130858865,44.135343764385645,GBHE,,Split: upland and wetland,ME.0713,7,5,7,5,; Picked up BZ in Lewiston and left there at 9:55.;;5 in area where trees' foliage sparse; 2 in trees with dense foliage. All hardwooods; floodplain. Did not see owl nest that volunteer said was there.,15,97
 137,2015,ND,OOS,c3.1k,2015-06-15,JB,DD,BZ,-70.79767078313577,44.26099499365616,GBHE,x1x,Upland,ME.0852,10,11,10,11,; Picked up BZ in Lewiston and left there at 9:55.;;Island in middle of small pond.,15,98
 138,2015,ND,L53,bz.1b,2015-06-15,JB,DD,BZ,-70.98856663308521,45.08161433618142,GBHE,,Upland,ME.0131,40,35,40,35,; Picked up BZ in Lewiston and left there at 9:55.;;Island in middle of large lake.,15,100
@@ -329,7 +329,7 @@ Obs_PK,Year,Str,siteID,PlotID,DatTim,Pilot,Front,Rear,Lng,Lat,AOU,CapHist,Locati
 328,2023,SC,L32,ch.1b,2023-06-12,NM,DD,BP,-68.77173746662136,44.666121040488974,GBHE,,Wetland,ME.0736,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,195
 329,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.76195776372224,44.61229120012207,GBHE,,Wetland,ME.0694,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
 330,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.75868771069008,44.60651874859731,GBHE,,Wetland,ME.0812,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
-331,2023,SC,L39,ch.1c,2023-06-12,NM,DD,BP,-68.78231227945321,44.54326407971909,GBHE,,Wetland,ME.0866,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,196
+331,2023,Co,L39,ch.1c,2023-06-12,NM,DD,BP,-68.78231227945321,44.54326407971909,GBHE,,Wetland,ME.0866,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,238
 332,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.458155702736605,GBHE,,Wetland,ME.0179,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;1 active OSPR  plus 1 active OSPR to northwest",31,197
 333,2023,Co,L59,ck.1d,2023-06-12,NM,DD,BP,-68.50406641704512,44.458155702736605,OSPR,,Wetland,ME.0179,1,1,1,1,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;;",31,197
 334,2023,Co,A08,cl.1d,2023-06-12,NM,DD,BP,-68.40088972639566,44.381876800225726,GBHE,,Upland,ME.0034,0,0,0,0,"55-81 deg F, hazy from wildfires and partly cloudy; no wind.; ;Combined. ;1 inactive OSPRE or BAEA nest on east side of island.",31,198

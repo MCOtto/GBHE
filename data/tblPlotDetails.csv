@@ -133,7 +133,7 @@ PlotDetails_PK,Year,Str,Flight_FK,SiteID,PlotID,BegArea,EndArea,BegList,EndList,
 132,2023,SC,22,L33,ce.1d,,,,,
 133,2023,Co,22,L25,cg.1d,,,,,
 134,2023,SC,22,L22,cg.1d,,,,,
-135,2023,,22,OOS,,,,,,
+135,2023,ND,22,OOS,,,,,,
 136,2023,SC,23,L44,c7.1m,,,,,
 137,2023,SC,23,L08,c7.1n,,,,,
 138,2023,SC,23,A03,c6.1o,,,,,Combined. Didn't finish due to illness; didn't et to list frame of this plot during this flight.
@@ -194,7 +194,7 @@ PlotDetails_PK,Year,Str,Flight_FK,SiteID,PlotID,BegArea,EndArea,BegList,EndList,
 193,2023,SC,30,L45,ce.1e,,,,,
 194,2023,SC,30,L17,cf.1e,,,,,
 195,2023,SC,31,L32,ch.1b,,,,,
-196,2023,SC,31,L39,ch.1c,,,,,
+196,2023,SC,31,L39,ch.1c,,,,,Split Plot
 197,2023,Co,31,L59,ck.1d,,,,,
 198,2023,Co,31,A08,cl.1d,,,,,Combined. 
 199,2023,Co,31,A23,cm.1e,,,,,Combined. 
@@ -234,3 +234,4 @@ PlotDetails_PK,Year,Str,Flight_FK,SiteID,PlotID,BegArea,EndArea,BegList,EndList,
 235,2023,ND,37,A25,c5.0w,,,,,
 236,2023,ND,37,L82,c8.0v,,,,,
 237,2023,SC,20,L41,c5.1r,,,,,
+238,2023,Co,31,L39,ch.1c,,,,,Split Plot with 196
