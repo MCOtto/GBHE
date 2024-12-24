@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey Bayesian Estimation 2015 and 2023"
 author: "Mark C. Otto"
-date: "16 December 2024"
+date: "18 December 2024"
 echo: false
 format: docx
 editor: source
@@ -68,7 +68,7 @@ This should come from DataSetUp.  This includes list and new colonies.
  FWSColonyID.
 
 
-```{r ObsrDet}
+```{r ColYr}
 # All the colonies in the survey sampled or not.
 tColYr <- Colony %>%
   mutate(ColYr = paste(FWSColonyID, Year, sep = ".")) %>%
@@ -159,6 +159,15 @@ SmpColYr <- inner_join(tSmpColYr,
   )
 nSmpColYr <- nrow(SmpColYr)
 
+# Which YFS have no nests
+bind_rows(tibble(YFS = cYFS, Nest = 0), 
+          SmpColYr %>%
+            mutate(YFS = as.character(YFS)) %>%
+            select(YFS, Nest)) %>%
+  group_by(YFS) %>%
+  summarize(Nest = sum(Nest))
+YFS0 <- c(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0)
+
 # Colony indicator to match number of nests in colonies
 SmpColYr2ColYr <- as.numeric(SmpColYr$ColYr)
 SmpColYr2Det <- as.numeric(SmpColYr$Det)
@@ -202,22 +211,22 @@ AIC(ActGLM, ActLME)
 # Estimates are on the log scale.
 # Use the unconditional mean and variance to estimate missing
 # effects
-tActEst <- fixef(ActLME, add.dropped=TRUE)
-ActEst <- rep(NA, nYFS)
-names(ActEst) <- cYFS
-ActEst[str_replace(names(tActEst), "YFS", "")] <-tActEst
-NAIdx <- is.na(ActEst)
-ActEst[NAIdx] <- mean(ActEst, na.rm = TRUE)
-ActVar <- diag(vcov(ActLME)) + as.numeric(VarCorr(ActLME))
-# ???I need to include the missing estimates
-ActVar <- as.matrix(vcov(ActLME)) + diag(as.numeric(VarCorr(ActLME)),)
-
-Sim <- expit(mvrnorm(n = nSim, mu = ActEst , 
-                     Sigma = ActVar))
-ActLMEEst <- apply(Sim, 2, mean, na.rm = TRUE)
-ActLMESD <- apply(Sim, 2, sd, na.rm = TRUE)
-pActBeta <- Beta(Mean = mean(ActLMEEst), 
-        SD = sqrt(var(ActLMEEst) + mean(ActLMESD ^ 2)))
+# tActEst <- fixef(ActLME, add.dropped=TRUE)
+# ActEst <- rep(NA, nYFS)
+# names(ActEst) <- cYFS
+# ActEst[str_replace(names(tActEst), "YFS", "")] <-tActEst
+# NAIdx <- is.na(ActEst)
+# ActEst[NAIdx] <- mean(ActEst, na.rm = TRUE)
+# ActVar <- diag(vcov(ActLME)) + as.numeric(VarCorr(ActLME))
+# # ???I need to include the missing estimates
+# ActVar <- as.matrix(vcov(ActLME)) + diag(as.numeric(VarCorr(ActLME)),)
+# 
+# Sim <- expit(mvrnorm(n = nSim, mu = ActEst , 
+#                      Sigma = ActVar))
+# ActLMEEst <- apply(Sim, 2, mean, na.rm = TRUE)
+# ActLMESD <- apply(Sim, 2, sd, na.rm = TRUE)
+# pActBeta <- Beta(Mean = mean(ActLMEEst), 
+#         SD = sqrt(var(ActLMEEst) + mean(ActLMESD ^ 2)))
 
 ```
  ## List Colony Nest Occupancy
@@ -280,6 +289,17 @@ SmpPlotYr <- left_join(
     nActCol = ifelse(is.na(nActCol), 0, nActCol)
   )
 
+# Which YS have no nests
+bind_rows(
+  tibble(YrStr = cYrStr, nCol = 0),
+  SmpPlotYr %>%
+    mutate(YrStr = as.character(YrStr)) %>%
+    select(YrStr, nCol)
+) %>%
+  group_by(YrStr) %>%
+  summarize(nCol = sum(nCol))
+YS0 <- c(0, 1, 1, 1, 0, 0)
+
 nSmpPlotYr <- nrow(SmpPlotYr)
 SmpPlotYr2PlotStrYr <- as.integer(SmpPlotYr$PlotStrYr)
 SmpPlotYr2Det <- as.integer(SmpPlotYr$Det)
@@ -300,7 +320,7 @@ SmpPlotYr2Det <- as.integer(SmpPlotYr$Det)
 ## Observer Detection
 The detection model has size of the colony and a rear seat observer effect
 
-```{r ObsrDet}
+```{r ObsrCol2}
 cRSeatYr <- c("DD", "R2015", "R2023")
 nColDet <- length(cRSeatYr)
 
@@ -319,6 +339,7 @@ Cmb2Col <- as.integer(CapHist$ColID)
 CmbNest <- as.integer(CapHist$nNest)
 xCH <- as.matrix(CapHist %>%
                    select(8:11))
+nCmb <- nrow(CapHist)
 nCH <- ncol(xCH)
 # xCH[, nCH] <- apply(xCH, 1, sum)
 xCH <- t(xCH)
@@ -343,6 +364,7 @@ Data <- list(
   nSmpColYr = nSmpColYr,
   nest = SmpColYr$Nest,
   act = SmpColYr$Act,
+  YFS0 = YFS0,  
   SmpColYr2ColYr = SmpColYr2ColYr,
   SmpColYr2Det = SmpColYr2Det,
   nYrStr = nYrStr,
@@ -353,6 +375,7 @@ Data <- list(
   nSmpPlotYr = nSmpPlotYr,
   newcol = SmpPlotYr$nCol,
   newact = SmpPlotYr$nActCol,
+  YS0 = YS0,
   SmpPlotYr2PlotStrYr = SmpPlotYr2PlotStrYr,
   SmpPlotYr2Det = SmpPlotYr2Det,
   nPlotYr = nPlotYr,
@@ -360,7 +383,7 @@ Data <- list(
   PlotYr2YAS = PlotYr2YAS,
   PlotYr2KMSq = PlotYr2KMSq,
   nCH = nCH,
-  nCmb = ncol(xCH),
+  nCmb = nCmb,
   xCH = xCH,
   # Add index and connect with ColObs that Nest and Act are associated with.
   CmbNest = CmbNest,
@@ -395,11 +418,26 @@ InitFcn <- function(iChain) {
             # rbinom(nCapHistAug - nCHSeen, size = 1, prob = ColPsi0)
             )
   Nest <- rep(1, length = nColYr)
-  Nest[SmpColYr2ColYr] <- Data$nest + 1
   Act <- rep(1, length = nColYr)
-  Act[SmpColYr2ColYr] <- pmax(1, Data$act)
-  tmp<-   bind_cols(act=pmax(1, Data$act), Act =Act[SmpColYr2ColYr])       
-#  pNest2Col <- rbeta(1, 9, 1)
+  tmp <-   bind_cols(Idx = SmpColYr2ColYr,
+                     Nest = Data$nest,
+                     Act = Data$act,) %>%
+    group_by(Idx) %>%
+    summarize(Nest = max(Nest), Act = max(Act))
+  tNest <- rep(NA, length = max(SmpColYr2ColYr))
+  
+  # There has to be a more elegant way to the maximum nests in a colony
+  # into each observation of that colony
+  tNest[as.integer(tmp$Idx)] <- as.integer(tmp$Nest)
+  Nest[SmpColYr2ColYr] <- tNest[SmpColYr2ColYr]
+  all(Data$nest <= Nest[SmpColYr2ColYr])
+  
+  tAct <- rep(NA, length = max(SmpColYr2ColYr))
+  tAct[as.integer(tmp$Idx)] <- as.integer(tmp$Act)
+  Act[SmpColYr2ColYr] <- tAct[SmpColYr2ColYr]
+  all(Data$act <= Act[SmpColYr2ColYr])
+  
+  #  pNest2Col <- rbeta(1, 9, 1)
   
   # Nest per colony stratum + year model
 #  lnNpCYFS <- mvrnorm(n = 1, mu = NpCEst, Sigma = NpCVar)
@@ -445,7 +483,7 @@ Parm <- c(
   "pActCol",
   "pNestDet",
   "pColDet",
-  "pD", "popt", 
+#  "pD", "popt", 
   "deviance"
 )
 cParm <- c(
@@ -482,7 +520,8 @@ cParm <- c(
   # Observer detection rates
   paste("pc", cRSeatYr, sep = ""),
   # Model deviance (could not monitor DIC)
-  "pD", "popt", "Dev"
+#  "pD", "popt", 
+  "Dev"
 )
 nParm <- length(cParm)
 
@@ -565,7 +604,7 @@ if(lEst) {
     tempdir = TRUE
   )
   
-  dic <- extract(BUGSMdl, what = "dic")
+#  dic <- extract(BUGSMdl, what = "dic")
 
 } else {
   load(file = here::here(paste("TmpData/", cMdl, ".PS.RData", sep = "")))
@@ -612,9 +651,9 @@ plot(MCMC, plot.type = "trace"#, vars = "NpC"
 ```
 
 ## Print JAGS Estimates
-
+R does not
 ```{r PrintJAGS}
-sink(here::here(sub("xlsx", "txt", File)), append = FALSE)
+sink(here::here(sub("xlsx", "txt", File)), append = FALSE, split = TRUE)
 cat("Posteriors\n")
 cat("List and List: Colony Total and Active and Nest Total and Active by Stratum\n")
 print(PostStat[grepl("[LN][CAN][TC]", cParm), ], digits = 3)
@@ -699,20 +738,20 @@ TblLoc <- read.table(
 PostStat,3,1,MdlParm,'Model Parmeters'
 LstColSmry,4,3,Estimates,'List Colonies'
 LstActColSmry,15,3,Estimates,'Active List Colonies'
-LstNestSmry,26,3,Estimates,'List Nest per Colony'
-LstActSmry,37,3,Estimates,'Active per Colony'
+LstNestSmry,26,3,Estimates,'List Nests'
+LstActSmry,37,3,Estimates,'Active Nests'
 NewColSmry,4,11,Estimates,'New Colonies'
 NewActColSmry,15,11,Estimates,'New Active Colonies'
 NewNestSmry,26,11,Estimates,'New Nests'
 NewActSmry,37,11,Estimates,'New Active Nests'
 DFColSmry,4,19,Estimates,'Dual-Frame Colonies'
-DFActColSmry,15,19,Estimates,'Dual-Frame Colonies'
-DFNestSmry,26,19,Estimates,'Dual-Frame Colonies'
-DFActSmry,37,19,Estimates,'Dual-Frame Active Colonies'
-DFMean,4,27,Estimates,'Dual-Frame Means'
-DFSD,15,27,Estimates,'Dual-Frame SDs'
-CVSmry,26,27,Estimates,'Coefficients of Variation'
-PctLstCovSmry,37,27,Estimates,'Percent List Coverage'
+DFActColSmry,15,19,Estimates,'Dual-Frame Active Colonies'
+DFNestSmry,26,19,Estimates,'Dual-Frame Nests'
+DFActSmry,37,19,Estimates,'Dual-Frame Active Nests'
+DFMean,4,27,Estimates,'Dual-Frame Active Nest Means'
+DFSD,15,27,Estimates,'Dual-Frame Active Nest SDs'
+CVSmry,26,27,Estimates,' Active Nest Coefficients of Variation'
+PctLstCovSmry,37,27,Estimates,'Percent Colony List Coverage'
 PctNestDetSmry,3,3,'Obsr Det','Percent Nest Detection'
 PctColDetSmry,9,3,'Obsr Det','Percent Colony Detection'
 "),
@@ -835,8 +874,21 @@ save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
 Detection is low and 
 
 ```{r ColonyDetection}
+tCmbNest <- pmax(1, CmbNest)
+fCHYear <- 1 + as.integer(factor(CapHist$Year, cYear))
+pCO <- rvnorm(n = nCmb * 2)
+dim(pCO) <- c(nCmb, 2)
+pCO[, 1] <- (1 - (1 - pColDet[1])^sqrt(tCmbNest))
+pCO[, 2] <- (1 - (1 - pColDet[fCHYear])^sqrt(tCmbNest))
+pBoth = pCO[, 1] + pCO[, 2] - pCO[, 1] * pCO[, 2]
 
-
+pColSeen <- tibble(
+  Nest = tCmbNest,
+  Median = rvmedian(pBoth),
+  C0.05 = as.vector(rvquantile(pBoth, probs = Probs[2])),
+  C0.95 = as.vector(rvquantile(pBoth, probs = Probs[3]))
+) %>%
+  arrange(Nest)
 
 pColSeen %>%
   ggplot(aes(Nest, Median)) +
@@ -849,9 +901,10 @@ pColSeen %>%
   ) +
   geom_rug(
     data = SmpColYr,
-    aes(x = Nest, y = 0.1),
+    aes(x = Nest, y = 0.85),
     alpha = 1 / 2,
     sides = "b",
     position = "jitter"
-  )
+  ) +
+  scale_y_continuous(limits = c(0.85, 1))
 
