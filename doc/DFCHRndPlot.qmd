@@ -94,12 +94,27 @@ ColYr <- left_join(
     Frame = ifelse(is.na(Frame), "List", Frame),
     InSmp = ifelse(is.na(InSmp), FALSE, InSmp),
     ColYr = factor(paste(FWSColonyID, Year, sep = "."), cColYr),
+    Year = factor(Year, cYear),
     YrStr = factor(paste(Year, Str, sep = "."), cYrStr),
     YFS = factor(paste(Year, Frame, Str, sep = "."), cYFS),
-    StrPlot = factor(paste(Str, PlotID, sep = "."), cStrPlot)
+    cStrPlot = paste(Str, PlotID, sep = "."),
+    StrPlot = factor(paste(Str, PlotID, sep = "."), sort(unique(cStrPlot)))
   ) %>%
-  select(Year, Frame, Str, YrStr, YFS, PlotID, StrPlot, FWSColonyID, ColYr, InSmp) %>%
+  select(Year,
+         Frame,
+         Str,
+         YrStr,
+         YFS,
+         PlotID,
+         StrPlot,
+         FWSColonyID,
+         ColYr,
+         InSmp) %>%
   arrange(Year, FWSColonyID)
+
+cStrPlotColony <- levels(ColYr$StrPlot)
+nStrPlotColony <- length(cStrPlotColony)
+
 
 Idx <- duplicated(ColYr %>% select(Year, FWSColonyID))
 ColYr %>%
@@ -108,9 +123,11 @@ ColYr %>%
 setdiff(Colony$FWSColonyID, ColYr$FWSColonyID)
 nColYr <- nrow(ColYr)
 ColYr2ColYr <- as.numeric(ColYr$ColYr)
-cColYr <- as.character(ColYr$ColYr)
+cColYr <- sort(unique(as.character(ColYr$ColYr)))
+ColYr2Year <- as.numeric(ColYr$Year)
 ColYr2YS <- as.numeric(ColYr$YrStr)
 ColYr2YFS <- as.numeric(ColYr$YFS)
+# This is for StrPlotColony but ColYr make that obvious.  
 ColYr2StrPlot <- as.integer(ColYr$StrPlot)
 rm(tColYr)
 
@@ -172,7 +189,10 @@ bind_rows(tibble(YFS = cYFS, Nest = 0),
             select(YFS, Nest)) %>%
   group_by(YFS) %>%
   summarize(Nest = sum(Nest))
-YFS0 <- c(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0)
+
+# Set all the year-frame-stratum NpC estimates with no new colonies to zero
+YFSnon0 <- c(1:3,5:10)
+nYFSnon0 <- length(YFSnon0)
 
 # Colony indicator to match number of nests in colonies
 SmpColYr2ColYr <- as.numeric(SmpColYr$ColYr)
@@ -250,6 +270,7 @@ PlotYr <- left_join(
     InSmp = ifelse(is.na(InSmp), FALSE, InSmp),
     StrPlot = factor(paste(Str, PlotID, sep = "."), ),
     PlotStrYr = paste(PlotID, Str, Year, sep = "."),
+    Year = factor(Year, levels = cYear),
     YrStr = factor(paste(Year, Str, sep = "."), levels = cYrStr)
   ) %>%
   select(PlotID, Str, Year, StrPlot, PlotStrYr, YrStr, KMSq, InSmp) %>%
@@ -257,6 +278,7 @@ PlotYr <- left_join(
 
 nPlotYr <- nrow(PlotYr)
 cPlotStrYr <- as.character(PlotYr$PlotStrYr)
+PlotYr2Year <- as.integer(PlotYr$Year)
 PlotYr2YAS <- nYrStr + as.integer(PlotYr$YrStr)
 PlotYr2KMSq <- as.double(PlotYr$KMSq)
 PlotYr2StrPlot <- as.integer(PlotYr$StrPlot)
@@ -306,7 +328,11 @@ bind_rows(
 ) %>%
   group_by(YrStr) %>%
   summarize(nCol = sum(nCol))
-YS0 <- c(0, 1, 1, 1, 0, 0)
+
+# Stratum-years where no new colonies were observed.
+# Set all the year-frame-stratum NpC estimates with no new colonies to zero
+YSnon0 <- 2:4
+nYSnon0 <- length(YSnon0)
 
 nSmpPlotYr <- nrow(SmpPlotYr)
 SmpPlotYr2PlotStrYr <- as.integer(SmpPlotYr$PlotStrYr)
@@ -368,26 +394,32 @@ xCH <- t(xCH)
 ```{r JAGSData}
 # Model data
 Data <- list(
+  nYear = nYear,
   nYFS = nYFS,
   nSmpColYr = nSmpColYr,
   nest = SmpColYr$Nest,
   act = SmpColYr$Act,
-  YFS0 = YFS0,  
+  nYFSnon0 = nYFSnon0,
+  YFSnon0 = YFSnon0,
   SmpColYr2ColYr = SmpColYr2ColYr,
   SmpColYr2Det = SmpColYr2Det,
   nYrStr = nYrStr,
   nNestDet = nNestDet,
   nColYr = nColYr,
+  ColYr2Year = ColYr2Year, 
   ColYr2YS = ColYr2YS,
   ColYr2YFS = ColYr2YFS,
   ColYr2StrPlot = ColYr2StrPlot,
+  nStrPlotColony = nStrPlotColony,
   nSmpPlotYr = nSmpPlotYr,
   newcol = SmpPlotYr$nCol,
   newact = SmpPlotYr$nActCol,
-  YS0 = YS0,
+  nYSnon0 = nYSnon0,
+  YSnon0 = YSnon0,
   SmpPlotYr2PlotStrYr = SmpPlotYr2PlotStrYr,
   SmpPlotYr2Det = SmpPlotYr2Det,
   nPlotYr = nPlotYr,
+  PlotYr2Year = PlotYr2Year,
   PlotYr2YS = as.numeric(PlotYr$YrStr),
   PlotYr2YAS = PlotYr2YAS,
   PlotYr2KMSq = PlotYr2KMSq,
@@ -403,6 +435,8 @@ Data <- list(
   nColDet = nColDet,
   CHCoef = CHCoef
 )
+# No duplicated names in the data list
+# any(duplicated(names(Data)))
 
 ```
 
@@ -487,8 +521,9 @@ Parm <- c(
   "NewActColTot",
   "NewNestTot",
   "NewActTot",
-  "ColPsiNu",
-  "ColPsiNup",
+  "ColPsi",
+  "StrPlotColonySD",
+  "StrPlotSD",
   "NpC",
   "pAct",
   "CpA",
@@ -516,9 +551,11 @@ cParm <- c(
   paste("NNT", cYrStr, sep = ""),
   #  new active nests
   paste("NAT", cYrStr, sep = ""),
-  # ColPsi colony exists random stratum-plot exists
-  "ColPsiNu",
-  "ColPsiNup",
+  #  Colony existence Psi
+  paste("CP", cYrStr, sep = ""),
+  # stratum-plot colony and area plot random effect SDs
+  "SPC.SD",
+  "SP.SD",
   # Nests per Colony
   paste("NpC", sub(
     "\\.Area\\.", "a", sub("\\.List\\.", "l", cYFS)
@@ -670,8 +707,10 @@ sink(here::here(sub("xlsx", "txt", File)), append = FALSE, split = TRUE)
 cat("Posteriors\n")
 cat("List and List: Colony Total and Active and Nest Total and Active by Stratum\n")
 print(PostStat[grepl("[LN][CAN][TC]", cParm), ], digits = 3)
-cat("Random Effect Beta Priors\n")
+cat("Colony Existence Psi\n")
 print(PostStat[grepl("ColPsi", cParm), ], digits = 2)
+cat("Random Stratum-Plot Effects\n")
+print(PostStat[grepl("StrPlot", cParm), ], digits = 2)
 cat("Nest per Colony\n")
 print(PostStat[grepl("NpC", cParm), ], digits = 4)
 cat("Proportion Active\n")

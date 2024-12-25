@@ -1,15 +1,19 @@
 # Random effect detection and including the ground truth (GT) observations
 # There is a differential in first detecting colonies over nests in colonies.
-var ColYrZ[nSmpColYr], pNestDet[nNestDet], pColDet[nColDet]
+var ColYrZ[nSmpColYr], NpC[nYFS], CpA[nYrStr], pNestDet[nNestDet], pColDet[nColDet]
 
+data{
+  NpC <- c(NA, NA, NA, 0, NA, NA, NA, NA, NA, NA, 0, 0)
+  CpA <- c(0, NA, NA, NA, 0, 0)
+}
 model {
   # Likelihood for the nest and active nest observations by
   # front observer, and rear observers, and from the ground.
   # Some aerial counts may be higher than the ground truth
   # The ground observations also have a detection probability.
   for (iSmpColYr  in 1:nSmpColYr) {
-    nest[iSmpColYr]~dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Nest[SmpColYr2ColYr[iSmpColYr]])
-    act[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr ]], Act[SmpColYr2ColYr[iSmpColYr ]])
+    nest[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Nest[SmpColYr2ColYr[iSmpColYr]])
+    act[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Act[SmpColYr2ColYr[iSmpColYr]])
   }
   
   # Likelihood of the new colonies found in the area plots.
@@ -27,8 +31,8 @@ model {
     # Calculate the new colony detection for each observer given colony size
     # pCO[1, iCmb] <- (1 - (1 - pColDet[1]) ^ sqrt(Nest[Cmb2ColYr[iCmb]]))
     # pCO[2, iCmb] <- (1 - (1 - pColDet[Cmb2RYr[iCmb]]) ^ sqrt(Nest[Cmb2ColYr[iCmb]]))
-    pCO[1, iCmb] <- (1 - (1 - pColDet[1]) ^ sqrt(max(1, CmbNest[iCmb])))
-    pCO[2, iCmb] <- (1 - (1 - pColDet[Cmb2RYr[iCmb]]) ^ sqrt(max(1, CmbNest[iCmb])))
+    pCO[1, iCmb] <- (1 - (1 - pColDet[1])^sqrt(max(1, CmbNest[iCmb])))
+    pCO[2, iCmb] <- (1 - (1 - pColDet[Cmb2RYr[iCmb]])^sqrt(max(1, CmbNest[iCmb])))
     
     # Calculate the detection of combinations of different capture histories
     pCH[nCH, iCmb] <-
@@ -51,17 +55,20 @@ model {
   # Think in the future of working with the list plots, which are the primary sample unit.
   # Nests per colony.  For all colonies, list and new.
   for (iColYr in 1:nColYr) {
-    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2YFS[iColYr]]
+    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2Year[iColYr]] * exp(StrPlotColony[ColYr2StrPlot[iColYr]])
     Nest[iColYr] ~ dpois(ENest[iColYr])
     Act[iColYr] ~ dbin(pAct[ColYr2YS[iColYr]], Nest[iColYr])
-    ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2StrPlot[iColYr]])
+    ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2YS[iColYr]])
   }
   
   # Estimates for all plots apart from observer detection
+  # nPlotYr is actually nStrPlotYr.
   for (iPlotYr in 1:nPlotYr) {
     NewCol[iPlotYr] ~ dpois(ENewCol[iPlotYr])
-    ENewCol[iPlotYr] <- ColPsi[PlotYr2StrPlot[iPlotYr]] * CpA[PlotYr2YS[iPlotYr]] * PlotYr2KMSq[iPlotYr]
     NewActCol[iPlotYr] ~ dbin(pActCol[PlotYr2YS[iPlotYr]], NewCol[iPlotYr])
+    # The stratum-plot and CpA are on the log scale
+    ENewCol[iPlotYr] <- ColPsi[PlotYr2YS[iPlotYr]] * CpA[PlotYr2Year[iPlotYr]] *
+      exp(StrPlot[PlotYr2StrPlot[iPlotYr]]) * PlotYr2KMSq[iPlotYr]
     
     # YAS is Year-Area Frame only-Stratum
     NewNest[iPlotYr] ~ dpois(NpC[PlotYr2YAS[iPlotYr]] * ENewCol[iPlotYr])
@@ -70,13 +77,13 @@ model {
   
   # Only to the list colony totals for 2015 and 2023.
   # We estimate the Area frame just to get the NpC, not for the totals.
-  for (iYrStr in c(1:3,7:9)) {
+  for (iYrStr in c(1:3, 7:9)) {
     LstColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest > 0, 0))
     LstActColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Act > 0, 0))
     LstNestTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest, 0))
     LstActTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Act, 0))
   }
-
+  
   for (iYrStr in 1:nYrStr) {
     NewColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewCol, 0))
     NewActColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewActCol, 0))
@@ -87,23 +94,30 @@ model {
   # Occupancy of active colonies (assumes it is the same for the list and area frames.)
   for (iYrStr in 1:nYrStr) {
     ActPsi[iYrStr] = sum(ifelse(ColYr2YS == iYrStr, Act > 0, 0)) /
-                     sum(ifelse(ColYr2YS == iYrStr, Nest > 0, 0))
+      sum(ifelse(ColYr2YS == iYrStr, Nest > 0, 0))
   }
   
   # Use the occupancy as the random stratum-plot effect
-  ColPsiNu ~ dunif(0.2, 100)
-  ColPsiNup ~ dunif(0.2, 100)
+  for (iYrStr in 1:nYrStr) {
+    ColPsi[iYrStr] ~ dbeta(1, 1)
+  }
+  
+  # Random stratum-plot effect for colonies
+  StrPlotColonySD ~ dunif(0.001, 7)
+  for (iStrPlotColony in 1:nStrPlotColony) {
+    StrPlotColony[iStrPlotColony] ~ dnorm(0.0, pow(StrPlotColonySD, -2))
+  }
+  
+  # Random stratum-plot effect for area plots
+  StrPlotSD ~ dunif(0.001, 7)
   for (iStrPlot in 1:nStrPlot) {
-    ColPsi[iStrPlot] ~ dbeta(ColPsiNu, ColPsiNup)
+    StrPlot[iStrPlot] ~ dnorm(0.0, pow(StrPlotSD, -2))
   }
   
-  # Nests per colony
-  for (iYFS in 1:nYFS) {
-    NpC[iYFS] <- YFS0[iYFS] * exp(lnNpC[iYFS])
-  }
-  
-  for (iYFS in 1:nYFS) {
+  # Nests per colony on the log scale.  Only estimate the nonzero year-frame-strata.
+  for (iYFS in 1:nYFSnon0) {
     lnNpC[iYFS] ~ dunif(-10, 10)
+    NpC[YFSnon0[iYFS]] <- exp(lnNpC[iYFS])
   }
   
   # Assume proportion active does not change between list and area frames
@@ -112,9 +126,14 @@ model {
   }
   
   # Colonies per area
+  # Colonies per plot on the log scale.  Only estimate the nonzero year-strata.
+  for (iYS in 1:nYSnon0) {
+    lnCpA[iYS] ~ dunif(-10, 10)
+    CpA[YSnon0[iYS]] <- exp(lnCpA[iYS])
+  }
+  
+  # Colony proportion active
   for (iYrStr in 1:nYrStr) {
-    CpA[iYrStr] <- YS0[iYrStr] * exp(lnCpA[iYrStr])
-    lnCpA[iYrStr] ~ dunif(-10, 10)
     pActCol[iYrStr] ~ dbeta(1, 1)
   }
   
