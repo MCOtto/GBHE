@@ -1,9 +1,9 @@
 # Random effect detection and including the ground truth (GT) observations
 # There is a differential in first detecting colonies over nests in colonies.
-var ColYrZ[nSmpColYr], NpC[nYFS], CpA[nYrStr], pNestDet[nNestDet], pColDet[nColDet]
+var ColYrZ[nSmpColYr], NpC[nYrStr], CpA[nYrStr], pNestDet[nNestDet], pColDet[nColDet]
 
 data{
-  NpC <- c(NA, NA, NA, 0, NA, NA, NA, NA, NA, NA, 0, 0)
+#  NpC <- c(NA, NA, NA, 0, NA, NA, NA, NA, NA, NA, 0, 0)
   CpA <- c(0, NA, NA, NA, 0, 0)
 }
 model {
@@ -55,7 +55,7 @@ model {
   # Think in the future of working with the list plots, which are the primary sample unit.
   # Nests per colony.  For all colonies, list and new.
   for (iColYr in 1:nColYr) {
-    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2Year[iColYr]] * exp(StrPlotColony[ColYr2StrPlot[iColYr]])
+    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2YS[iColYr]] * exp(StrPlotColony[ColYr2StrPlot[iColYr]])
     Nest[iColYr] ~ dpois(ENest[iColYr])
     Act[iColYr] ~ dbin(pAct[ColYr2YS[iColYr]], Nest[iColYr])
     ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2YS[iColYr]])
@@ -67,11 +67,11 @@ model {
     NewCol[iPlotYr] ~ dpois(ENewCol[iPlotYr])
     NewActCol[iPlotYr] ~ dbin(pActCol[PlotYr2YS[iPlotYr]], NewCol[iPlotYr])
     # The stratum-plot and CpA are on the log scale
-    ENewCol[iPlotYr] <- ColPsi[PlotYr2YS[iPlotYr]] * CpA[PlotYr2Year[iPlotYr]] *
+    ENewCol[iPlotYr] <- ColPsi[PlotYr2YS[iPlotYr]] * CpA[PlotYr2YS[iPlotYr]] *
       exp(StrPlot[PlotYr2StrPlot[iPlotYr]]) * PlotYr2KMSq[iPlotYr]
     
     # YAS is Year-Area Frame only-Stratum
-    NewNest[iPlotYr] ~ dpois(NpC[PlotYr2YAS[iPlotYr]] * ENewCol[iPlotYr])
+    NewNest[iPlotYr] ~ dpois(NpC[PlotYr2YS[iPlotYr]] * ENewCol[iPlotYr])
     NewActNest[iPlotYr] ~ dbin(pAct[PlotYr2YS[iPlotYr]], NewNest[iPlotYr])
   }
   
@@ -103,21 +103,21 @@ model {
   }
   
   # Random stratum-plot effect for colonies
-  StrPlotColonySD ~ dunif(0.001, 7)
+  StrPlotColonySD ~ dgamma(0.25, 8)
   for (iStrPlotColony in 1:nStrPlotColony) {
     StrPlotColony[iStrPlotColony] ~ dnorm(0.0, pow(StrPlotColonySD, -2))
   }
   
   # Random stratum-plot effect for area plots
-  StrPlotSD ~ dunif(0.001, 7)
+  StrPlotSD ~ dgamma(0.25, 8)
   for (iStrPlot in 1:nStrPlot) {
     StrPlot[iStrPlot] ~ dnorm(0.0, pow(StrPlotSD, -2))
   }
   
-  # Nests per colony on the log scale.  Only estimate the nonzero year-frame-strata.
-  for (iYFS in 1:nYFSnon0) {
-    lnNpC[iYFS] ~ dunif(-10, 10)
-    NpC[YFSnon0[iYFS]] <- exp(lnNpC[iYFS])
+  # Nests per colony on the log scale.  
+  for (iYS in 1:nYrStr) {
+    lnNpC[iYS] ~ dunif(-10, 10)
+    NpC[iYS] <- exp(lnNpC[iYS])
   }
   
   # Assume proportion active does not change between list and area frames

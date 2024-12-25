@@ -148,6 +148,9 @@ nNestDet <- length(cNestDet)
 
 SmpColYr <- inner_join(tSmpColYr,
                      ColYr %>%
+                       mutate(
+                         Year = as.integer(as.character(Year))
+                       ) %>%
                        select(Year, FWSColonyID, ColYr),
                      by = c("Year", "FWSColonyID")) %>%
   mutate(
@@ -307,6 +310,7 @@ tSmpPlotYr <- AllObs %>%
 SmpPlotYr <- left_join(
   PlotYr %>%
     filter(InSmp) %>%
+    mutate(Year = as.integer(as.character(Year))) %>%
     select(PlotID, Str, Year, PlotStrYr, YrStr, KMSq),
   tSmpPlotYr,
   by = c("PlotID", "Str", "Year")
@@ -394,19 +398,19 @@ xCH <- t(xCH)
 ```{r JAGSData}
 # Model data
 Data <- list(
-  nYear = nYear,
+#  nYear = nYear,
   nYFS = nYFS,
   nSmpColYr = nSmpColYr,
   nest = SmpColYr$Nest,
   act = SmpColYr$Act,
-  nYFSnon0 = nYFSnon0,
-  YFSnon0 = YFSnon0,
+#  nYFSnon0 = nYFSnon0,
+#  YFSnon0 = YFSnon0,
   SmpColYr2ColYr = SmpColYr2ColYr,
   SmpColYr2Det = SmpColYr2Det,
   nYrStr = nYrStr,
   nNestDet = nNestDet,
   nColYr = nColYr,
-  ColYr2Year = ColYr2Year, 
+#  ColYr2Year = ColYr2Year, 
   ColYr2YS = ColYr2YS,
   ColYr2YFS = ColYr2YFS,
   ColYr2StrPlot = ColYr2StrPlot,
@@ -419,7 +423,7 @@ Data <- list(
   SmpPlotYr2PlotStrYr = SmpPlotYr2PlotStrYr,
   SmpPlotYr2Det = SmpPlotYr2Det,
   nPlotYr = nPlotYr,
-  PlotYr2Year = PlotYr2Year,
+#  PlotYr2Year = PlotYr2Year,
   PlotYr2YS = as.numeric(PlotYr$YrStr),
   PlotYr2YAS = PlotYr2YAS,
   PlotYr2KMSq = PlotYr2KMSq,
@@ -557,9 +561,7 @@ cParm <- c(
   "SPC.SD",
   "SP.SD",
   # Nests per Colony
-  paste("NpC", sub(
-    "\\.Area\\.", "a", sub("\\.List\\.", "l", cYFS)
-  ), sep = ""),
+  paste("NpC", cYrStr, sep = ""),
   # Proportion active nests per colony
   paste("pA", cYrStr, sep = ""),
   paste("CpA", cYrStr, sep = ""),
