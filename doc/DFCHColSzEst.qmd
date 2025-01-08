@@ -1,7 +1,7 @@
 ---
 title: "Great Blue Heron Survey Bayesian Estimation 2015 and 2023"
 author: "Mark C. Otto"
-date: "18 December 2024"
+date: "3 January 2025"
 echo: false
 format: docx
 editor: source
@@ -37,6 +37,7 @@ source("/Users/MOtto/Ref/RLib/logit.R")
 source("/Users/MOtto/Ref/RLib/expit.R")
 source(here::here("R/Beta.R"))
 source(here::here("R/MkSmry.R"))
+source(here::here("R/MedCIFmt.R"))
 
 # Load the data
 source(file = here::here("data/MetaVars.R"))
@@ -45,7 +46,7 @@ load(file = here::here("output/SimpleEst.RData"))
 Probs <- c(0.5, 0.05, 0.95)
 cMdl <- "DFCHColSz"
 File <- paste("doc/Notes/", cMdl, ".xlsx", sep = "")
-lEst <- TRUE
+lEst <- FALSE
 
 ```
 
@@ -764,8 +765,22 @@ stringsAsFactors = FALSE
 # Colonies
 DFColTot <- LstColTot + NewColTot
 DFActColTot <- LstActColTot + NewActColTot
+
+# Colony percent change 
+StrActColPctChgSmry <- rvquantile(100 * (DFActColTot[4:6]/DFActColTot[1:3] -1), probs = Probs)
+StrActColPctChgSmry <- round(StrActColPctChgSmry)
+dimnames(StrActColPctChgSmry)[[1]] <- cStr
+ActColPctChg <- 100 * (sum(DFColTot[4:6])/sum(DFColTot[1:3]) -1)
+ActColPctChgSmry <- rvquantile(ActColPctChg, probs = Probs)
+
+# Dual-Frame Nest totals with percent changes
 DFNestTot <- LstNestTot + NewNestTot
 DFActTot <- LstActTot + NewActTot
+StrActPctChgSmry <- rvquantile(100 * (DFActTot[4:6]/DFActTot[1:3] -1), probs = Probs)
+StrActPctChgSmry <- round(StrActPctChgSmry)
+dimnames(StrActPctChgSmry)[[1]] <- cStr
+ActPctChg <- 100 * (sum(DFActTot[4:6])/sum(DFActTot[1:3]) -1)
+ActPctChgSmry <- rvquantile(ActPctChg, probs = Probs)
 
 # List coverage
 tPctLstCovTot <- 100 * LstColTot / DFColTot
@@ -777,7 +792,19 @@ Smry <- RVSmry(Series = Sim, probs = Probs)
 #                      tibble(Year = 2015, Stratum = "Total"),
 #                      YrStrNames[nStr + 1:nStr,],
 #                      tibble(Year = 2023, Stratum = "Total"))
-PctLstCovSmry <- bind_cols(YrStrNames, Smry)
+PctLstCovSmry <- bind_cols(LstColSmry %>%
+                             select(Year, Stratum),
+                           Smry) %>%
+  select(
+    Year,
+    Stratum,
+    Mean,
+    SD,
+    Median = CI50,
+    LC95 = `CI 5`,
+    UC95 = CI95
+  )
+
 rm(tPctLstCovTot, Tot1, Tot2, Sim, Smry)
 
 for (iTbl in TblLoc[c(2:9, 10:13), "Table"]) {
@@ -802,7 +829,8 @@ DFSD <- bind_cols(YrStrNames,
                   List = LstActSmry$SD,
                   New = NewActSmry$SD,
                   DF = DFActSmry$SD)
-# Coefficient of Variation
+
+# Coefficient of Variation of Nests
 tLstCV <- LstActSmry %>%
   mutate(PctCV = 100 * SD / Mean)
 
@@ -820,7 +848,68 @@ PctNestDetSmry <- bind_cols(Seat = cNestDet, RVSmry(Series = 100 * pNestDet, pro
 PctColDetSmry <- bind_cols(Seat = cRSeatYr, RVSmry(Series = 100 * pColDet, probs = Probs))
 
 ```
+# Make tables of medians as CI tables for active colonies and active nests
+Note the CI are 90% and the lables should say that!
 
+```{r MedianCITables}
+# Active Colony median-CIs
+ActColMCI <- inner_join(
+  inner_join(
+    MedCIFmt(LstColSmry) %>%
+      mutate(List = MCI) %>%
+      select(-MCI),
+    MedCIFmt(NewColSmry) %>%
+      mutate(New = MCI) %>%
+      select(-MCI),
+    by = c("Year", "Stratum")
+  ),
+  MedCIFmt(DFColSmry) %>%
+    mutate(DF = MCI) %>%
+    select(-MCI),
+  by = c("Year", "Stratum")
+)
+write_csv(ActColMCI, file = here::here("doc/Notes/ActColMCI.csv"))
+
+# Active nest median-CIs
+ActNestMCI <- inner_join(
+  inner_join(
+    MedCIFmt(LstNestSmry) %>%
+      mutate(List = MCI) %>%
+      select(-MCI),
+    MedCIFmt(NewNestSmry) %>%
+      mutate(New = MCI) %>%
+      select(-MCI),
+    by = c("Year", "Stratum")
+  ),
+  MedCIFmt(DFNestSmry) %>%
+    mutate(DF = MCI) %>%
+    select(-MCI),
+  by = c("Year", "Stratum")
+)
+write_csv(ActNestMCI, file = here::here("Notes/ActNestMCI.csv"))
+
+# Active Colony percent change.  Copy and paste into the spreadsheet.
+print(paste(
+  "Active Colony Percent Change",
+  MedCIFmt(ActColPctChg, Probs = Probs, Rnd = 0)
+))
+
+print(paste(
+  "Active Nest Percent Change",
+  MedCIFmt(ActNestPctChg, Probs = Probs, Rnd = 0)
+))
+
+DFCVCov <- inner_join(
+  CVSmry %>%
+    mutate(ColonyCV = NA) %>%
+    select(Year, Stratum, ColonyCV, NestCV = DF),
+  MedCIFmt(PctLstCovSmry, Rnd = 0),
+  by = c("Year", "Stratum")
+)
+write_csv(DFCVCov, file = here::here("Notes/DFCVCov.csv"))
+
+
+```
 ## Write the Tables
 
 ```{r WriteTables}
@@ -871,7 +960,6 @@ save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
 ```
 
 ## Colony Detection by Size
-Detection is low and 
 
 ```{r ColonyDetection}
 tCmbNest <- pmax(1, CmbNest)
@@ -886,7 +974,7 @@ pColSeen <- tibble(
   Nest = tCmbNest,
   Median = rvmedian(pBoth),
   C0.05 = as.vector(rvquantile(pBoth, probs = Probs[2])),
-  C0.95 = as.vector(rvquantile(pBoth, probs = Probs[3]))
+  C0.95 = pmin(1, as.vector(rvquantile(pBoth, probs = Probs[3])))
 ) %>%
   arrange(Nest)
 
@@ -906,5 +994,58 @@ pColSeen %>%
     sides = "b",
     position = "jitter"
   ) +
+  ggtitle("Detection by Colony Size") +
+  xlab("Colony Size") +
+  ylab("Observer Detection") +
+  scale_x_continuous(limits = c(0, 10)) +
   scale_y_continuous(limits = c(0.85, 1))
 
+```
+Make plots of ActCol and year total ActCol, ActNest and year total ActNest, 
+and the percent change of each.
+
+```{r ColonyPlots}
+DFActColSmry %>%
+  ggplot(aes(
+    x = Year,
+    y = Median,
+    group = Stratum,
+    col = Stratum,
+    fill = Stratum
+  )) +
+  geom_line() +
+  geom_ribbon(aes(ymin = LC95, ymax = UC95),
+              alpha = 0.3
+              # outline.type = "none"
+              ) +
+  scale_colour_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+  scale_fill_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+  ggtitle("Active Colonys Over Years",
+         subtitle = "Total Active Colony Percent Change Median = -26% (-50% to +7%)") +
+  xlab("Survey Year") +
+  ylab("Active Colonies")
+
+
+```
+```{r ActNestPlots}
+ DFActSmry %>%
+  ggplot(aes(
+    x = Year,
+    y = Median,
+    group = Stratum,
+    col = Stratum,
+    fill = Stratum
+  )) +
+  geom_line() +
+  geom_ribbon(aes(ymin = LC95, ymax = UC95),
+              alpha = 0.3
+              # outline.type = "none"
+              ) +
+  scale_colour_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+  scale_fill_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+ ggtitle("Active Nests Over Years",
+         subtitle = "Total Active Nest Percent Change Median = -40% (-60% to -11%)") +
+  xlab("Survey Year") +
+  ylab("Active Nests")
+
+```
