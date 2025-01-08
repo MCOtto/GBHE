@@ -343,6 +343,17 @@ SmpPlotYr2PlotStrYr <- as.integer(SmpPlotYr$PlotStrYr)
 SmpPlotYr2Det <- as.integer(SmpPlotYr$Det)
 
 ```
+
+## Expansion Factors
+
+```{r ExpFac}
+ExpFac <- NewSmry %>%
+  mutate(YrStr = factor(paste(Year, Str, sep = "."), cYrStr),
+         ExpFac = 1 + NSKMSq / SmpKMSq) %>%
+  select(YrStr, ExpFac) %>%
+  arrange(YrStr)
+
+```
 ## List Colony Nest Occupancy
 
 ```{r NewColonies}
@@ -398,19 +409,19 @@ xCH <- t(xCH)
 ```{r JAGSData}
 # Model data
 Data <- list(
-#  nYear = nYear,
+  #  nYear = nYear,
   nYFS = nYFS,
   nSmpColYr = nSmpColYr,
   nest = SmpColYr$Nest,
   act = SmpColYr$Act,
-#  nYFSnon0 = nYFSnon0,
-#  YFSnon0 = YFSnon0,
+  #  nYFSnon0 = nYFSnon0,
+  #  YFSnon0 = YFSnon0,
   SmpColYr2ColYr = SmpColYr2ColYr,
   SmpColYr2Det = SmpColYr2Det,
   nYrStr = nYrStr,
   nNestDet = nNestDet,
   nColYr = nColYr,
-#  ColYr2Year = ColYr2Year, 
+  #  ColYr2Year = ColYr2Year,
   ColYr2YS = ColYr2YS,
   ColYr2YFS = ColYr2YFS,
   ColYr2StrPlot = ColYr2StrPlot,
@@ -418,14 +429,15 @@ Data <- list(
   nSmpPlotYr = nSmpPlotYr,
   newcol = SmpPlotYr$nCol,
   newact = SmpPlotYr$nActCol,
+  ExpFac = ExpFac$ExpFac,
   nYSnon0 = nYSnon0,
   YSnon0 = YSnon0,
   SmpPlotYr2PlotStrYr = SmpPlotYr2PlotStrYr,
   SmpPlotYr2Det = SmpPlotYr2Det,
   nPlotYr = nPlotYr,
-#  PlotYr2Year = PlotYr2Year,
+  #  PlotYr2Year = PlotYr2Year,
   PlotYr2YS = as.numeric(PlotYr$YrStr),
-#  PlotYr2YAS = PlotYr2YAS,
+  #  PlotYr2YAS = PlotYr2YAS,
   PlotYr2KMSq = PlotYr2KMSq,
   PlotYr2StrPlot = PlotYr2StrPlot,
   nStrPlot = nStrPlot,
@@ -793,8 +805,13 @@ stringsAsFactors = FALSE
 # Colonies
 DFColTot <- LstColTot + NewColTot
 DFActColTot <- LstActColTot + NewActColTot
+ActColPctChg <- 100 * (sum(DFColTot[4:6])/sum(DFColTot[1:3]) -1)
+ActColPctChgSmry <- rvquantile(ActColPctChg, probs = Probs)
+
 DFNestTot <- LstNestTot + NewNestTot
 DFActTot <- LstActTot + NewActTot
+ActPctChg <- 100 * (sum(DFActTot[4:6])/sum(DFActTot[1:3]) -1)
+ActPctChgSmry <- rvquantile(ActColPctChg, probs = Probs)
 
 # List coverage
 tPctLstCovTot <- 100 * LstColTot / DFColTot
@@ -900,7 +917,6 @@ save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
 ```
 
 ## Colony Detection by Size
-Detection is low and 
 
 ```{r ColonyDetection}
 tCmbNest <- pmax(1, CmbNest)
@@ -935,5 +951,46 @@ pColSeen %>%
     sides = "b",
     position = "jitter"
   ) +
+  scale_x_continuous(limits = c(0, 20)) +
   scale_y_continuous(limits = c(0.85, 1))
 
+```
+Make plots of ActCol and year total ActCol, ActNest and year total ActNest, 
+and the percent change of each.
+
+```{r ColonyPlots}
+DFActColSmry %>%
+  ggplot(aes(
+    x = Year,
+    y = Median,
+    group = Stratum,
+    col = Stratum,
+    fill = Stratum
+  )) +
+  geom_line() +
+  geom_ribbon(aes(ymin = LC95, ymax = UC95),
+              alpha = 0.3
+              # outline.type = "none"
+              ) +
+  scale_colour_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+  scale_fill_manual("", values = c("light blue", "light green", "tan", "light gray"))
+
+```
+```{r ColonyPlots}
+ %>%
+  ggplot(aes(
+    x = Year,
+    y = Median,
+    group = Stratum,
+    col = Stratum,
+    fill = Stratum
+  )) +
+  geom_line() +
+  geom_ribbon(aes(ymin = LC95, ymax = UC95),
+              alpha = 0.3
+              # outline.type = "none"
+              ) +
+  scale_colour_manual("", values = c("light blue", "light green", "tan", "light gray")) +
+  scale_fill_manual("", values = c("light blue", "light green", "tan", "light gray"))
+
+```
