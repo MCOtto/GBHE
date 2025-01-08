@@ -886,7 +886,7 @@ ActNestMCI <- inner_join(
     select(-MCI),
   by = c("Year", "Stratum")
 )
-write_csv(ActNestMCI, file = here::here("Notes/ActNestMCI.csv"))
+write_csv(ActNestMCI, file = here::here("doc/Notes/ActNestMCI.csv"))
 
 # Active Colony percent change.  Copy and paste into the spreadsheet.
 print(paste(
@@ -906,7 +906,7 @@ DFCVCov <- inner_join(
   MedCIFmt(PctLstCovSmry, Rnd = 0),
   by = c("Year", "Stratum")
 )
-write_csv(DFCVCov, file = here::here("Notes/DFCVCov.csv"))
+write_csv(DFCVCov, file = here::here("doc/Notes/DFCVCov.csv"))
 
 
 ```
