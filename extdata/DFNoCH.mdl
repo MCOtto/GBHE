@@ -1,0 +1,87 @@
+# DFDR2: 
+# 1. No capture histories detected for the list, so no imperfect detection estimation
+#    for the list frame
+# 2  Colony detection for area frame because of too few capture histories.
+# 3. Random observer detection rates
+# fixed effect detection RATES and including the ground truth observations
+ var ColZ[nCol], ToStr[2*nStr,nFS], pObsr[nObsr];
+ model {
+# Some aerial counts may be higher than the ground truth
+  for(iObs in 1:nColObs){
+#   nest[iObs]~dbin(pObsr[Obs2Obsr[iObs]],Nest[Obs2Col[iObs]]);
+   nest[iObs]~dpois(pObsr[Obs2Obsr[iObs]]*Nest[Obs2Col[iObs]]);
+#    act[iObs]~ dbin(pObsr[Obs2Obsr[iObs]], Act[Obs2Col[iObs]]);
+    act[iObs]~ dpois(pObsr[Obs2Obsr[iObs]]*Act[Obs2Col[iObs]]);
+  }
+
+  for(iPlot in 1:nAreaPlot){
+   newcol[iPlot]~dpois(FullPlt[iPlot]*CpA[Plot2Str[iPlot]]);
+  }
+
+# Colony Occupancy, Nests and Active per colony
+  for(iCol in 1:NLstCol){
+   Nest[iCol]~dpois(ColZ[iCol]*NpC[Col2FS[iCol]])
+    Act[iCol]~dbin(pAct[Col2Str[iCol]],Nest[iCol])
+   ColZ[iCol]~dbern(ColPsi[Col2Str[iCol]]);
+  }
+
+# Nest per colony for area frame nests.  No occupancy.
+  for(iCol in NLstCol+1:nNewCol){
+   Nest[iCol]~dpois(NpC[Col2FS[iCol]])
+    Act[iCol]~dbin(pAct[Col2Str[iCol]],Nest[iCol])
+  }
+
+# Occupancy of active colonies.  Only use for list
+  for(iStr in 1:nStr){
+       LstColTot[iStr]=sum(ifelse(Col2FS==iStr,Nest>0,0))
+    LstActColTot[iStr]=sum(ifelse(Col2FS==iStr, Act>0,0))
+      LstNestTot[iStr]=sum(ifelse(Col2FS==iStr,  Nest,0))
+       LstActTot[iStr]=sum(ifelse(Col2FS==iStr,   Act,0))
+
+# Area expansion for the area frame  
+      NewColTot[iStr]~dpois(StrFullPlt[iStr]* CpA[iStr])
+# Need to simulate outside of JAGS
+   NewActColTot[iStr]~dbin(1-dpois(0,NpC[nStr+iStr]*pAct[iStr]),NewColTot[iStr])
+     NewNestTot[iStr]~dpois(NewColTot[iStr]*NpC[nStr+iStr])
+      NewActTot[iStr]~dbin(pAct[iStr],NewNestTot[iStr])
+  }
+
+# Prior occupancy of each colony
+  for(iStr in 1:nStr){
+   ColPsi[iStr]~dbeta(1,1);
+  }
+  
+  lnNpC<-ToStr%*%lnNpCFS;
+#  NpC<-mexp(ToStr%*%lnNpCFS);
+  for(iFS in 1:(2*nStr)){
+   NpC[iFS]<-exp(lnNpC[iFS]);
+  }
+
+  for(iFS in 1:nFS){
+   lnNpCFS[iFS]~dnorm(0,0.01) # dunif(-10,10);
+  }
+
+# Assume proportion active does not change between list and area frames
+  for(iStr in 1:nStr){
+   pAct[iStr]~dbeta(1,1);
+  }
+  
+# Colonies per area
+  for(iStr in 1:nStr){
+   CpA[iStr]<-exp(lnCpA[iStr]);
+   lnCpA[iStr]~dnorm(0,0.01) # dunif(-10,10);
+  }
+
+# Observer random effects
+#  logitDD~dunif(-1,1)  # Differential for detecting active nests if any
+  tau0~dgamma(3.2890,7.8014);
+  p0~dbeta(1,1);
+  ObsrMu~dnorm(0,tau0/p0);
+  ObsrSD<-tau0/(1-p0);
+  for(iObsr in 1:(nObsr-1)){  # Last is the ground observations
+   lgtObsr[iObsr]~dnorm(ObsrMu,ObsrSD);
+   logit(pObsr[iObsr])<-lgtObsr[iObsr];
+  }
+  pObsr[nObsr]<-1.0  # Ground truth
+
+ }
