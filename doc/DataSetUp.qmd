@@ -72,9 +72,10 @@ cYrStr <- apply(expand_grid(Year = cYear, Str = cStr), 1, function(x)
 nYrStr <- length(cYrStr)
 
 # Make the year-frame-stratum levels.
-# Should call cYFS.
-cYFS <- apply(expand_grid(Year = cYear, Frame = cFrame, Str = cStr), 1, function(x)
-  paste(x[1], x[2], x[3], sep = "."))
+# Arrange according to how things are displayed in the output tables
+# List, New, DF or frame is the major division.
+cYFS <- apply(expand_grid(Frame = cFrame, Year = cYear, Str = cStr), 1, function(x)
+  paste(x[2], x[1], x[3], sep = "."))
 nYFS <- length(cYFS)
 
 if(lWrite) {
@@ -89,7 +90,7 @@ if(lWrite) {
       "nStr",
       "cYrStr",
       "nYrStr",
-      "cYFS" ,              ,
+      "cYFS" ,
       "nYFS"
     ),
     file = here::here("data/MetaVars.R")
