@@ -1,0 +1,100 @@
+# DFDR2:
+# 1. No capture histories were detected for the list, so no imperfect detection estimation
+#    for the list frame
+# 2  No colony detection for area frame because of too few capture histories.
+# 3. Random observer detection rates
+# 4. Fixed effect detection RATES and including the ground truth observations
+var ColYrZ[nColYr], pNestDet[nNestDet]
+
+model {
+  # Likelihood for the nest and active nest observations by
+  
+  # Some aerial counts may be higher than the ground truth
+  for (iSmpColYr  in 1:nSmpColYr) {
+    nest[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Nest[SmpColYr2ColYr[iSmpColYr]])
+    # nest[iSmpColYr] ~ dpois(pNestDet[SmpColYr2Det[iSmpColYr]] * Nest[SmpColYr2ColYr[iSmpColYr]])
+    
+    act[iSmpColYr] ~ dbin(pNestDet[SmpColYr2Det[iSmpColYr]], Act[SmpColYr2ColYr[iSmpColYr]])
+    # act[iSmpColYr] ~ dpois(pNestDet[SmpColYr2Det[iSmpColYr]] * Act[SmpColYr2ColYr[iSmpColYr]])
+  }
+  
+  # Likelihood of the new colonies found in the area plots.
+  for (iSmpPlotYr in 1:nSmpPlotYr) {
+    newcol[iSmpPlotYr] ~ dpois(ENewCol[SmpPlotYr2PlotStrYr[iSmpPlotYr]])
+    newact[iSmpPlotYr] ~ dbin(pActCol[SmpPlotYr2Det[iSmpPlotYr]], NewCol[SmpPlotYr2PlotStrYr[iSmpPlotYr]])
+  }
+  
+  # No Colony detection
+  
+  # Colony Occupancy, Nests and Active per colony
+  for (iColYr in 1:nColYr) {
+    ENest[iColYr] <- ColYrZ[iColYr] * NpC[ColYr2YFS[iColYr]]
+    Nest[iColYr] ~ dpois(ENest[iColYr])
+    Act[iColYr] ~ dbin(pAct[ColYr2YS[iColYr]], Nest[iColYr])
+    # ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2YS[iColYr]])
+    ColYrZ[iColYr] ~ dbern(ColPsi[ColYr2YFS[iColYr]])
+  }
+  # Estimates for all plots apart from observer detection
+  for (iPlotYr in 1:nPlotYr) {
+    NewCol[iPlotYr] ~ dpois(ENewCol[iPlotYr])
+    ENewCol[iPlotYr] <- ColPsi[PlotYr2YS[iPlotYr]] * CpA[PlotYr2YS[iPlotYr]] * PlotYr2KMSq[iPlotYr]
+    NewActCol[iPlotYr] ~ dbin(pActCol[PlotYr2YS[iPlotYr]], NewCol[iPlotYr])
+    
+    # YAS is Year-Area Frame only-Stratum
+    NewNest[iPlotYr] ~ dpois(NpC[PlotYr2YAS[iPlotYr]] * ENewCol[iPlotYr])
+    NewActNest[iPlotYr] ~ dbin(pAct[PlotYr2YS[iPlotYr]], NewNest[iPlotYr])
+  }
+  
+  # Only to the list colony totals for 2015 and 2023.
+  # We estimate the Area frame just to get the NpC, not for the totals.
+  for (iYrStr in c(1:3, 7:9)) {
+    LstColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest > 0, 0))
+    LstActColTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Act > 0, 0))
+    LstNestTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Nest, 0))
+    LstActTot[iYrStr] = sum(ifelse(ColYr2YFS == iYrStr, Act, 0))
+  }
+  
+  for (iYrStr in 1:nYrStr) {
+    NewColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewCol, 0))
+    NewActColTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewActCol, 0))
+    NewNestTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewNest, 0))
+    NewActTot[iYrStr] = sum(ifelse(PlotYr2YS == iYrStr, NewActNest, 0))
+  }
+  
+  # Occupancy of active colonies (assumes it is the same for the list and area frames.)
+  for (iYrStr in 1:nYrStr) {
+    ActPsi[iYrStr] = sum(ifelse(ColYr2YS == iYrStr, Act > 0, 0)) /
+      sum(ifelse(ColYr2YS == iYrStr, Nest > 0, 0))
+  }
+  
+  # Prior occupancy of each colony
+  for (iYFS in 1:nYFS) {
+    ColPsi[iYFS] ~ dbeta(1, 1)
+  }
+  
+  # Nests per colony
+  for (iYFS in 1:nYFS) {
+    # NpC[iYFS] <- YFS0[iYFS] * exp(lnNpC[iYFS])
+    NpC[iYFS] <- exp(lnNpC[iYFS])
+    lnNpC[iYFS] ~ dunif(-10, 10)
+  }
+  
+  # Assume the proportion active does not change between list and area frames
+  for (iYrStr in 1:nYrStr) {
+    pAct[iYrStr] ~ dbeta(1, 1)
+  }
+  
+  # Colonies per area
+  for (iYrStr in 1:nYrStr) {
+    # CpA[iYrStr] <- YS0[iYrStr] * exp(lnCpA[iYrStr])
+    CpA[iYrStr] <- exp(lnCpA[iYrStr])
+    lnCpA[iYrStr] ~ dunif(-10, 10)
+    pActCol[iYrStr] ~ dbeta(1, 1)
+  }
+  
+  # Observer effects: rear by year and front
+  for (iObsr in 1:nNestDet) {
+    # Last is the ground observations but they miss too.
+    pNestDet[iObsr] ~ dbeta(1, 1)
+  }
+}
