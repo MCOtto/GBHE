@@ -426,32 +426,15 @@ Data <- list(
   nColYr = nColYr,
   ColYr2YS = ColYr2YS,
   ColYr2YFS = ColYr2YFS,
-  #  ColYr2StrPlot = ColYr2StrPlot,
-  # nStrPlotColony = nStrPlotColony,
-  # YS0 = YS0,
   nSmpPlotYr = nSmpPlotYr,
   newcol = SmpPlotYr$nCol,
   newact = SmpPlotYr$nActCol,
-  #  ExpFac = ExpFac$ExpFac,
-  #  nYSnon0 = nYSnon0,
-  #  YSnon0 = YSnon0,
   SmpPlotYr2PlotStrYr = SmpPlotYr2PlotStrYr,
   SmpPlotYr2Det = SmpPlotYr2Det,
   nPlotYr = nPlotYr,
   PlotYr2YS = as.numeric(PlotYr$YrStr),
   PlotYr2YAS = PlotYr2YAS,
   PlotYr2KMSq = PlotYr2KMSq
-  #  PlotYr2StrPlot = PlotYr2StrPlot,
-  # nStrPlot = nStrPlot,
-  # nCH = nCH,
-  # nCmb = nCmb,
-  # xCH = xCH,
-  # # Add index and connect with ColObs that Nest and Act are associated with.
-  # CmbNest = CmbNest,
-  # Cmb2RYr = RSeatYr,
-  # # Cmb2Col = Cmb2Col,
-  # nColDet = nColDet,
-  # CHCoef = CHCoef
 )
 # No duplicated names in the data list
 # any(duplicated(names(Data)))
@@ -533,9 +516,7 @@ Parm <- c(
   "CpA",
   "pActCol",
   "pNestDet",
-#  "pColDet",
-#  "pD", "popt", 
-  "deviance"
+  "deviance" # , "dic"
 )
 cParm <- c(
   #   sub("new","n",sub("ME","N",SmpColYr$FWSColonyID)),
@@ -556,7 +537,7 @@ cParm <- c(
   #  new active nests
   paste("NAT", cYrStr, sep = ""),
   # ColPsi colony exists
-  paste("CP", cYFS, sep = ""),
+  paste("CP", cYrStr, sep = ""),
   # Nests per Colony
   paste("NpC", sub(
     "\\.Area\\.", "a", sub("\\.List\\.", "l", cYFS)
@@ -572,7 +553,7 @@ cParm <- c(
   # paste("pc", cRSeatYr, sep = ""),
   # Model deviance (could not monitor DIC)
 #  "pD", "popt", 
-  "Dev"
+  "Dev" #,   "DIC"
 )
 nParm <- length(cParm)
 
@@ -662,7 +643,7 @@ if(lEst) {
 }
 
 # MCMC<-extend.jags(MCMC,sample=50000)
-plot(MCMC, plot.type = "trace"#, vars = "NpC"
+plot(MCMC, plot.type = "trace", vars = "NpC"
      )
 
 # iObs<-159;Data$act[iObs];iCol<-Obs2Col[iObs];sapply(1:4,function(i)Inits[[i]]$Act[iCol])
@@ -842,6 +823,17 @@ Smry <- RVSmry(Series = Sim, probs = Probs)
 #                      tibble(Year = 2015, Stratum = "Total"),
 #                      YrStrNames[nStr + 1:nStr,],
 #                      tibble(Year = 2023, Stratum = "Total"))
+
+for (iTbl in TblLoc[c(2:9, 10:13), "Table"]) {
+  # iTbl<-TblLoc[2,"Table"]
+  iTot <- sub("Smry", "Tot", iTbl)
+  assign(iTbl, eval(parse(text = paste(
+    "MkSmry(", iTot, ")"
+  ))))
+  #   assign(iTbl,eval(parse(text=paste("RVSmry(Series=",iTot,",probs=Probs)"))))
+}
+
+# Percent List Colony Summary
 PctLstCovSmry <- bind_cols(LstColSmry %>%
                              select(Year, Stratum),
                            Smry) %>%
@@ -856,15 +848,6 @@ PctLstCovSmry <- bind_cols(LstColSmry %>%
   )
 
 rm(tPctLstCovTot, Tot1, Tot2, Sim, Smry)
-
-for (iTbl in TblLoc[c(2:9, 10:13), "Table"]) {
-  # iTbl<-TblLoc[2,"Table"]
-  iTot <- sub("Smry", "Tot", iTbl)
-  assign(iTbl, eval(parse(text = paste(
-    "MkSmry(", iTot, ")"
-  ))))
-  #   assign(iTbl,eval(parse(text=paste("RVSmry(Series=",iTot,",probs=Probs)"))))
-}
 
 # Estimates summary in terms of active nests
 DFMean <- bind_cols(
@@ -950,7 +933,7 @@ save.image(here::here(paste("TmpData/", cMdl, ".Image.RData", sep = "")))
 
 ## Colony Detection by Size
 
-```{r ColonyDetection}
+```{r ColonyDetection, eval=FALSE}
 tCmbNest <- pmax(1, CmbNest)
 fCHYear <- 1 + as.integer(factor(CapHist$Year, cYear))
 pCO <- rvnorm(n = nCmb * 2)
@@ -1016,6 +999,8 @@ DFActColSmry %>%
 
 
 ```
+## Active nest plots
+
 ```{r ActNestPlots}
  DFActSmry %>%
   ggplot(aes(

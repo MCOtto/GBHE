@@ -1,0 +1,64 @@
+Posteriors
+List and List: Colony Total and Active and Nest Total and Active by Stratum
+             Year    Frame       Str               nColony          nColonySD        
+ 2015:6   List:6   Length:12          Min.   :   0.00   Min.   :   0.0305  
+ 2023:6   Area:6   Class :character   1st Qu.:  14.77   1st Qu.:   0.0601  
+                   Mode  :character   Median :  31.74   Median : 196.9242  
+                                      Mean   : 416.29   Mean   : 607.1972  
+                                      3rd Qu.: 299.12   3rd Qu.: 456.6712  
+                                      Max.   :2200.52   Max.   :2938.5777  
+   NestPerCol      NestPerColSD         NestMn            NestSD        
+ Min.   : 0.000   Min.   : 0.0000   Min.   :    0.0   Min.   :   0.000  
+ 1st Qu.: 1.317   1st Qu.: 0.7742   1st Qu.:    0.0   1st Qu.:   2.181  
+ Median : 2.812   Median : 1.9679   Median :  130.7   Median : 121.665  
+ Mean   : 4.461   Mean   : 2.8496   Mean   : 2008.5   Mean   :1259.732  
+ 3rd Qu.: 6.602   3rd Qu.: 3.0804   3rd Qu.: 1021.7   3rd Qu.: 531.811  
+ Max.   :19.417   Max.   :10.9238   Max.   :12985.3   Max.   :6954.405  
+   Year    Frame       Str               nColony          nColonySD        
+ 2015:6   List:6   Length:12          Min.   :   0.00   Min.   :   0.0305  
+ 2023:6   Area:6   Class :character   1st Qu.:  14.77   1st Qu.:   0.0601  
+                   Mode  :character   Median :  31.74   Median : 196.9242  
+                                      Mean   : 416.29   Mean   : 607.1972  
+                                      3rd Qu.: 299.12   3rd Qu.: 456.6712  
+                                      Max.   :2200.52   Max.   :2938.5777  
+   NestPerCol      NestPerColSD         NestMn            NestSD        
+ Min.   : 0.000   Min.   : 0.0000   Min.   :    0.0   Min.   :   0.000  
+ 1st Qu.: 1.317   1st Qu.: 0.7742   1st Qu.:    0.0   1st Qu.:   2.181  
+ Median : 2.812   Median : 1.9679   Median :  130.7   Median : 121.665  
+ Mean   : 4.461   Mean   : 2.8496   Mean   : 2008.5   Mean   :1259.732  
+ 3rd Qu.: 6.602   3rd Qu.: 3.0804   3rd Qu.: 1021.7   3rd Qu.: 531.811  
+ Max.   :19.417   Max.   :10.9238   Max.   :12985.3   Max.   :6954.405  
+# A tibble: 12 × 9
+# Groups:   Year, Frame [4]
+   Year  Frame Str   nColony nColonySD NestPerCol NestPerColSD  NestMn  NestSD
+   <fct> <fct> <chr>   <dbl>     <dbl>      <dbl>        <dbl>   <dbl>   <dbl>
+ 1 2015  List  SC      127.     0.0305       6.99         1.21   886.   154.  
+ 2 2015  List  Co       34.8    0.0622      19.4          2.23   675.    89.2 
+ 3 2015  List  ND       28.7    0.0697       6.47         2.51   186.    73.8 
+ 4 2023  List  SC       56.3    0.0336       0            0        0      0   
+ 5 2023  List  Co       25.3    0.0535       3.00         7.72    75.5  206.  
+ 6 2023  List  ND       19.7    4.23         2.00        10.9     38.5  246.  
+ 7 2015  Area  SC        0    454.           2.62         1.03     0      2.91
+ 8 2015  Area  Co      816.   466.           1.76         1.71  1428.  1388.  
+ 9 2015  Area  ND     2201.  2619.           3.56         2.73  7827.  6002.  
+10 2023  Area  SC     1687.   416.           7.71         4.13 12985.  6954.  
+11 2023  Area  Co        0    390.           0            0        0      0   
+12 2023  Area  ND        0   2939.           0            0        0      0   
+                                                                              
+   126.82468     34.76087     28.72500     56.30481     25.33766     19.69565 
+YrStr2015.SC YrStr2015.Co YrStr2015.ND YrStr2023.SC YrStr2023.Co YrStr2023.ND 
+     0.00000    815.98743   2200.52457   1687.36234      0.00000      0.00000 
+A2023.List.Co 0.85 0.069   0.85    0.74    1.00
+pA2023.List.ND 0.71 0.149   0.74    0.37    0.93
+pA2023.Area.SC 0.67 0.162   0.71    0.29    0.90
+pA2023.Area.Co 0.74 0.133   0.76    0.46    0.98
+pA2023.Area.ND 0.74 0.131   0.76    0.47    0.98
+Detection Mean and SD
+            Mean      SD median lower95 upper95
+pFront    0.9964 0.00352 0.9975  0.9894  1.0000
+pRear     0.9891 0.01026 0.9921  0.9686  1.0000
+pDirt     1.0000 0.00000 1.0000  1.0000  1.0000
+pNest2Col 0.0307 0.00502 0.0304  0.0211  0.0405
+Deviance
+    Mean   SD median lower95 upper95
+Dev 6619 37.4   6619    6549    6695
