@@ -98,7 +98,8 @@ tGRTSSmp1 <- bind_rows(
     select(Year, Frame, Str, PlotID)
 ) 
   
-# Add the colonies for
+# nListColonies are the colonies that are not new by year because the a 2015
+# colony is part of the list in 2023.
 tGRTSSmp <- left_join(
   tGRTSSmp1,
   anti_join(Colony, NewColonies, by = c("Year", "FWSColonyID")) %>%
@@ -140,6 +141,8 @@ cFrame <- c("List", "Area")
 
 GBHEObs <- left_join(
   RecObs %>%
+    # Keep only the GBHE observations by filtering out the non-GBHE codes and
+    # the missing colony IDs.
     filter(!(AOU != "GBHE" |
                is.na(FWSColonyID))) %>%
     mutate(Str = factor(Str, cStr),
@@ -433,7 +436,7 @@ knitr::kable(LstSmry[, c(
   "nNestNSCol",
   "nActCol",
   "nActNSCol"
-)], digits = 2, caption = "List Frame Colony Summary:  The colonies to predict are the number of colonies les the sample and non-sample observations, nColonyPred = nColony - nSmpCol - nNsCol.")
+)], digits = 2, caption = "List Frame Colony Summary:  The colonies to predict are the number of colonies less the sample and non-sample observations, nColonyPred = nColony - nSmpCol - nNsCol.")
 
 ```
 ## Nests in colony summaries
